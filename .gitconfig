@@ -1,0 +1,26 @@
+[user]
+	name = hnagato
+	email = hnagato@gmail.com
+[color]
+	ui = auto
+[alias]
+	ai = add --interactive
+	ci = commit
+	co = checkout
+	di = diff
+	st = status
+	br = branch
+	uptodate = !git submodule foreach "git pull --rebase; git co master"
+	unstage = reset HEAD --
+	uncommit = reset --soft HEAD~
+	undopush = push -f origin HEAD~:master
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[core]
+	pager = lv -z -Ia -c -Ou8
+	excludesfile = /Users/hnagato/.gitignore
+	quotepath = false
+[github]
+	user = hnagato
+[branch]
+	# 全追跡ブランチで 'git pull' する時に rebase を使う
+	autosetuprebase = always
