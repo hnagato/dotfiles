@@ -2,7 +2,7 @@ set columns=105
 set lines=40
 set wrap
 
-set guifont=Inconsolata:h14
+set guifont=Inconsolata_for_Powerline:h14
 set guifontwide=M+_2m_regular:h14
 
 scriptencoding utf-8

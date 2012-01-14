@@ -60,6 +60,9 @@ Bundle 'thinca/vim-ref'
 " toggle-comment
 Bundle "tyru/caw.vim"
 
+" Statusline
+Bundle "Lokaltog/vim-powerline"
+
 " Obsolete
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'vim-ruby/vim-ruby'
@@ -886,6 +889,10 @@ let g:fuf_keyPreview = '<C-]>'
 " Autoclose {{{
 let g:autoclose_on = 0
 nmap <Leader>x <Plug>ToggleAutoCloseMappings
+" }}}
+
+" Powerline {{{
+let g:Powerline_symbols = 'fancy'
 " }}}
 
 " obsolete {{{
