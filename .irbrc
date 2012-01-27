@@ -2,6 +2,7 @@ require 'irb/completion'
 require 'pp'
 require 'rubygems'
 require 'wirble'
+require 'what_methods'
 
 Wirble.init
 Wirble.colorize
