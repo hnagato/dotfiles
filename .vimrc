@@ -7,7 +7,6 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
-Bundle 'Align'
 Bundle 'genutils'
 Bundle 'netrw.vim'
 Bundle 'smartword'
@@ -17,9 +16,9 @@ Bundle 'AutoClose'
 
 Bundle 'neocomplcache'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'hail2u/vim-css3-syntax'
 Bundle 'kana/vim-textobj-indent'
 Bundle 'kana/vim-textobj-user'
+Bundle 'kana/vim-textobj-line'
 Bundle 'othree/html5.vim'
 Bundle 'othree/eregex.vim'
 Bundle 'thinca/vim-template'
@@ -48,33 +47,38 @@ Bundle 'errormarker.vim'
 " ruby
 Bundle 'vim-ruby/vim-ruby'
 
-" Fuzzyfinder
-Bundle 'FuzzyFinder'
-
 " unite
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'tsukkee/unite-help'
 Bundle 'thinca/vim-ref'
 
-" toggle-comment
+" comment
 Bundle "tyru/caw.vim"
 
 " Statusline
 Bundle "Lokaltog/vim-powerline"
 
+" align
+Bundle "h1mesuke/vim-alignta"
+
+" syntax
+Bundle 'hail2u/vim-css3-syntax'
+Bundle "scrooloose/syntastic"
+
 " Obsolete
 "Bundle 'scrooloose/nerdcommenter'
-"Bundle 'vim-ruby/vim-ruby'
 "Bundle 'vim-scripts/AutoComplPop'
 "Bundle 'The-NERD-tree'
+"Bundle 'FuzzyFinder'
+
 
 filetype plugin indent on
 
 " }}}
 
 " settgings {{{
-set autochdir
+" set autochdir
 set noswapfile
 set nobackup
 " .viminfo の上限設定
@@ -494,6 +498,40 @@ nmap <Space>/ <Plug>(caw:I:toggle)
 vmap <Space>/ <Plug>(caw:I:toggle)
 " }}}
 
+" alignta.vim {{{2
+let g:unite_source_alignta_preset_arguments = [
+      \ ["Align at '='", '=>\='],  
+      \ ["Align at ':'", '01 :'],
+      \ ["Align at '|'", '|'   ],
+      \ ["Align at ')'", '0 )' ],
+      \ ["Align at ']'", '0 ]' ],
+      \ ["Align at '}'", '}'   ],
+      \]
+
+let s:comment_leadings = '^\s*\("\|#\|/\*\|//\|<!--\)'
+let g:unite_source_alignta_preset_options = [
+      \ ["Justify Left",      '<<' ],
+      \ ["Justify Center",    '||' ],
+      \ ["Justify Right",     '>>' ],
+      \ ["Justify None",      '==' ],
+      \ ["Shift Left",        '<-' ],
+      \ ["Shift Right",       '->' ],
+      \ ["Shift Left  [Tab]", '<--'],
+      \ ["Shift Right [Tab]", '-->'],
+      \ ["Margin 0:0",        '0'  ],
+      \ ["Margin 0:1",        '01' ],
+      \ ["Margin 1:0",        '10' ],
+      \ ["Margin 1:1",        '1'  ],
+      \
+      \ 'v/' . s:comment_leadings,
+      \ 'g/' . s:comment_leadings,
+      \]
+unlet s:comment_leadings
+nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
+xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
+vnoremap <Space>a          :<C-u>Alignta
+" }}}
+
 " }}}
 
 " folding {{{
@@ -795,6 +833,10 @@ nnoremap <silent> [unite]u :<C-u>Unite source<CR>
 nnoremap <silent> [unite]h :<C-u>UniteWithCursorWord help<CR>
 nnoremap <silent> [unite]r :<C-u>UniteResume files<CR>
 "nnoremap <C-e> :<C-u>Unite -buffer-name=files buffer file file_mru bookmark<CR>
+
+nnoremap <silent> <C-e> :<C-u>UniteWithBufferDir -buffer-name=files file buffer file_mru bookmark<CR>
+nnoremap <silent> <C-f> :<C-u>Unite -buffer-name=files buffer<CR>
+nnoremap <silent> <C-b> :<C-u>Unite -buffer-name=files file_mru<CR>
 " }}}
 
 " open-browser {{{
@@ -872,20 +914,6 @@ function! s:template_keywords()
 endfunction
 " }}}
 
-" fuzzyfinder.vim {{{
-nnoremap <unique> <silent> <C-e> :FufFileWithCurrentBufferDir!<CR>
-nnoremap <unique> <silent> <C-f> :FufBuffer!<CR>
-nnoremap <unique> <silent> <C-b> :FufMruFile!<CR>
-au FileType fuf nmap <C-c> <ESC>
-let g:fuf_patternSeparator = ' '
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png|classes)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-let g:fuf_mrufile_exclude = '\v\~$|\.bak$|\.swp|\.howm$|\.(gif|jpg|png)$'
-let g:fuf_mrufile_maxItem = 1000
-let g:fuf_enumeratingLimit = 20
-let g:fuf_keyPreview = '<C-]>'
-" }}}
-
 " Autoclose {{{
 let g:autoclose_on = 0
 nmap <Leader>x <Plug>ToggleAutoCloseMappings
@@ -893,6 +921,13 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 
 " Powerline {{{
 let g:Powerline_symbols = 'fancy'
+" let g:Powerline_theme   = 'solarized'
+" }}}
+
+" Syntastic {{{
+let g:syntastic_mode_map = { 'mode': 'active',
+      \ 'active_filetypes': ['ruby', 'sh', 'perl', 'python', 'php', 'javascript', 'xml', 'html', 'css', 'eruby'],
+      \ 'passive_filetypes': ['puppet'] }
 " }}}
 
 " obsolete {{{
@@ -960,6 +995,20 @@ let g:Powerline_symbols = 'fancy'
 "\ |   setlocal omnifunc=syntaxcomplete#Complete
 "\ | endif
 
+" }}}
+
+" fuzzyfinder.vim {{{
+"nnoremap <unique> <silent> <C-e> :FufFileWithCurrentBufferDir!<CR>
+"nnoremap <unique> <silent> <C-f> :FufBuffer!<CR>
+"nnoremap <unique> <silent> <C-b> :FufMruFile!<CR>
+"au FileType fuf nmap <C-c> <ESC>
+"let g:fuf_patternSeparator = ' '
+"let g:fuf_modesDisable = ['mrucmd']
+"let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png|classes)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+"let g:fuf_mrufile_exclude = '\v\~$|\.bak$|\.swp|\.howm$|\.(gif|jpg|png)$'
+"let g:fuf_mrufile_maxItem = 1000
+"let g:fuf_enumeratingLimit = 20
+"let g:fuf_keyPreview = '<C-]>'
 " }}}
 
 " }}}
