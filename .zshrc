@@ -21,6 +21,7 @@ export LSCOLORS=cxFxCxDxBxegedabagacad
 export LV="-z -Ia -c -Ou8"
 #export TERM=xterm-color
 #export DISPLAY=:0.0
+export GREP_OPTIONS="--color=auto --mmap"
 
 # JAVA_OPTS / ANT_OPTS
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
@@ -205,7 +206,6 @@ alias sls="screen -ls"
 alias jdate='date +"%Y/%m/%d (%a) %H:%M:%S"'
 alias tcp='sudo lsof -nPiTCP'
 alias udp='sudo lsof -nPiUDP'
-alias grep='grep --color=auto --mmap'
 
 # ネットワークにアクセスしているプロセスの一覧
 alias nwps='lsof -Pni | cut -f1 -d" " | sort -u'
