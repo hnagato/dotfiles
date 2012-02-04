@@ -17,7 +17,7 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [core]
 	pager = lv -z -Ia -c -Ou8
-	excludesfile = /Users/hnagato/.gitignore
+	excludesfile = /Users/hnagato/.global_gitignore
 	quotepath = false
 [github]
 	user = hnagato
