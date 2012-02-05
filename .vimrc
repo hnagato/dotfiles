@@ -529,7 +529,7 @@ let g:unite_source_alignta_preset_options = [
 unlet s:comment_leadings
 nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
 xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
-vnoremap <Space>a          :<C-u>Alignta
+vnoremap <Space>a          :Alignta =
 " }}}
 
 " }}}
