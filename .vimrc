@@ -54,17 +54,20 @@ Bundle 'tsukkee/unite-help'
 Bundle 'thinca/vim-ref'
 
 " comment
-Bundle "tyru/caw.vim"
+Bundle 'tyru/caw.vim'
 
 " Statusline
-Bundle "Lokaltog/vim-powerline"
+Bundle 'Lokaltog/vim-powerline'
 
 " align
-Bundle "h1mesuke/vim-alignta"
+Bundle 'h1mesuke/vim-alignta'
 
 " syntax
 Bundle 'hail2u/vim-css3-syntax'
-Bundle "scrooloose/syntastic"
+Bundle 'scrooloose/syntastic'
+
+" tree
+Bundle 'scrooloose/nerdtree'
 
 " Obsolete
 "Bundle 'scrooloose/nerdcommenter'
@@ -268,13 +271,6 @@ au FileType gitcommit :set textwidth=72
 au FileType html setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
 au FileType jsp  setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
 
-" これらのftではインデントを無効にする
-au FileType php   :set indentexpr=
-au FileType jsp   :set indentexpr=
-au FileType eruby :set indentexpr=
-au FileType html  :set indentexpr=
-au FileType xhtml :set indentexpr=
-
 " ↓キーでシンタックスチェック
 au FileType html :compiler tidy
 au FileType html :setlocal makeprg=tidy\ -raw\ -quiet\ -errors\ --gnu-emacs\ yes\ \"%\"
@@ -299,7 +295,7 @@ au FileType javascript :map <up> <esc>:!node %<cr>
 augroup FiletypeAliases
   autocmd!
   autocmd FileType js  set filetype=javascript ts=2 sw=2 sts=2 et
-  autocmd FileType ejs set filetype=html       ts=2 sw=2 sts=2 et
+  autocmd FileType ejs set filetype=html       ts=4 sw=4 sts=4 et
   autocmd FileType cf  set filetype=coffee     ts=2 sw=2 sts=2 et
 augroup END
 " }}}
@@ -315,9 +311,9 @@ endfunction
 
 " tabstop, shiftwidth, softtabstop
 au FileType *     set ts=4 sw=4 sts=4 noet
-au FileType html  set ts=2 sw=2 sts=2 noet
-au FileType xhtml set ts=2 sw=2 sts=2 noet
-au FileType rhtml set ts=2 sw=2 sts=2 et
+au FileType html  set ts=4 sw=4 sts=4 et
+au FileType xhtml set ts=4 sw=4 sts=4 et
+au FileType rhtml set ts=4 sw=4 sts=4 et
 au FileType ruby  set ts=2 sw=2 sts=2 et
 au FileType yaml  set ts=2 sw=2 sts=2 et
 au FileType sh    set ts=2 sw=2 sts=2 et
@@ -326,7 +322,7 @@ au FileType txt   set ts=2 sw=2 sts=2 et
 au FileType vim   set ts=2 sw=2 sts=2 et
 au FileType js    set ts=2 sw=2 sts=2 et
 au FileType json  set ts=2 sw=2 sts=2 et
-au FileType ejs   set ts=2 sw=2 sts=2 et
+au FileType ejs   set ts=4 sw=4 sts=4 et
 au FileType javascript set ts=2 sw=2 sts=2 et
 
 " テキストファイルは markdown 形式で開く
@@ -334,10 +330,10 @@ au BufNewFile,BufReadPost **/*.txt set ft=markdown
 
 " json
 au BufNewFile,BufRead,BufEnter **/*.json setfiletype json
-
+" ejs
+au BufNewFile,BufRead,BufEnter **/*.ejs setfiletype html
 " apache
 au BufNewFile,BufRead,BufEnter **/*.conf setfiletype apache
-
 " markdown
 au BufNewFile,BufRead,BufEnter **/*.md setfiletype markdown
 
@@ -492,6 +488,9 @@ vnoremap <silent> <C-x> :ContinuousNumber <C-x><CR>
 " 検索時に勝手にエスケープさせる
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
+
+" toggle nerdtree
+nnoremap <F4> :<C-u>NERDTreeToggle<CR>
 
 " caw.vim {{{2
 nmap <Space>/ <Plug>(caw:I:toggle)
