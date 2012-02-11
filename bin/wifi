@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+function start() {
+  networksetup -setairportpower en0 on
+}
+
+function stop() {
+  networksetup -setairportpower en0 off
+}
+
+function restart() {
+  stop
+  start
+}
+
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        stop
+        start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac

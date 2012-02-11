@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pmset -g ps | awk '/Internal/ {PERCENT = $2} {STATUS = $3} {REMAIN = $4} END {printf("Ba:%2d%%",PERCENT) ;if (STATUS == "charged;") printf("(Charged)");if (STATUS == "charging;") printf("(Charging)"); if (STATUS == "discharging;") printf("(%s)",REMAIN)}'
