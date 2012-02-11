@@ -185,7 +185,7 @@ alias -g H="|& head"
 alias -g L="|& lv -z -Ia -c -Ou8"
 alias -g N="|& nkf -w"
 alias -g G="| grep"
-alias -g V="| vim -R -"
+alias -g V="| vi -R -"
 
 if which pbcopy >/dev/null 2>&1 ; then
   # 文字化けさせない pbcopy
