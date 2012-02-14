@@ -57,7 +57,8 @@ end
 # init vundle.vim
 VUNDLE_DIR = '~/.vim/bundle/vundle'.expand
 unless VUNDLE_DIR.directory?
-  mkdir_p VUNDLE_DIR system "git clone http://github.com/gmarik/vundle.git #{VUNDLE_DIR.to_s}"
+  mkdir_p VUNDLE_DIR
+  system "git clone http://github.com/gmarik/vundle.git #{VUNDLE_DIR.to_s}"
   system 'vi -c BundleInstall!'
 end
 
