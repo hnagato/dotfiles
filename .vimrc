@@ -143,12 +143,12 @@ set title
 set wildmode=list:longest
 
 " Hilight cursor-line {{{
-set cursorline
-augroup cch
-  autocm! cch
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
-augroup END
+set cursorline cursorcolumn
+ augroup cch
+   autocmd! cch
+   autocmd WinLeave * set nocursorline nocursorcolumn
+   autocmd WinEnter,BufRead * set cursorline cursorcolumn
+ augroup END
 " }}}
 
 "set helpfile=$VIMRUNTIME/doc/help.txt
@@ -294,7 +294,7 @@ au FileType javascript :map <up> <esc>:!node %<cr>
 " http://vim-users.jp/2010/04/hack138/
 augroup FiletypeAliases
   autocmd!
-  autocmd FileType js  set filetype=javascript ts=2 sw=2 sts=2 et
+  autocmd FileType js  set filetype=javascript ts=4 sw=4 sts=4 et
   autocmd FileType ejs set filetype=html       ts=4 sw=4 sts=4 et
   autocmd FileType cf  set filetype=coffee     ts=2 sw=2 sts=2 et
 augroup END
@@ -320,10 +320,10 @@ au FileType sh    set ts=2 sw=2 sts=2 et
 au FileType zsh   set ts=2 sw=2 sts=2 et
 au FileType txt   set ts=2 sw=2 sts=2 et
 au FileType vim   set ts=2 sw=2 sts=2 et
-au FileType js    set ts=2 sw=2 sts=2 et
-au FileType json  set ts=2 sw=2 sts=2 et
+au FileType json  set ts=4 sw=4 sts=4 et
 au FileType ejs   set ts=4 sw=4 sts=4 et
-au FileType javascript set ts=2 sw=2 sts=2 et
+au FileType js    set ts=4 sw=4 sts=4 et
+au FileType javascript set ts=4 sw=4 sts=4 et
 
 " テキストファイルは markdown 形式で開く
 au BufNewFile,BufReadPost **/*.txt set ft=markdown
