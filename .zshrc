@@ -21,7 +21,7 @@ export LSCOLORS=cxFxCxDxBxegedabagacad
 export LV="-z -Ia -c -Ou8"
 #export TERM=xterm-color
 #export DISPLAY=:0.0
-export GREP_OPTIONS="--color=auto --mmap"
+#export GREP_OPTIONS="--color=auto --mmap"
 
 # }}}
 
@@ -162,6 +162,7 @@ alias cp='cp -p'
 alias scp='scp -p'
 alias du='du -h'
 alias df='df -h'
+alias grep='grep --color=auto --mmap'
 alias h='history'
 alias j='jobs -l'
 alias rmdir='rm -rf'
