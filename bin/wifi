@@ -8,11 +8,6 @@ function stop() {
   networksetup -setairportpower en0 off
 }
 
-function restart() {
-  stop
-  start
-}
-
 
 case "$1" in
   start)
@@ -23,6 +18,7 @@ case "$1" in
         ;;
   restart)
         stop
+        sleep 5
         start
         ;;
   *)
