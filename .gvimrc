@@ -30,6 +30,11 @@ set imdisable
 set iminsert=1
 set number
 
+
+" <F2>, <F3> で background を切り替える - gVim のみ
+nnoremap <F2> :<C-u>set bg=light<Return>
+nnoremap <F3> :<C-u>set bg=dark<Return>
+
 " macvim specific {{{
 if has('gui_running') && has('macvim')
   nnoremap <SwipeLeft> :bp

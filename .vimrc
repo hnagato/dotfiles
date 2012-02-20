@@ -363,10 +363,6 @@ augroup END
 " Y で * レジスタに yank (=clipboard)
 vnoremap Y "*y
 
-" <F2>, <F3> で background を切り替える
-nnoremap <F2> :<C-u>set bg=light<Return>
-nnoremap <F3> :<C-u>set bg=dark<Return>
-
 " 不可視文字の表示切り替え
 nnoremap <Space>l :<C-u>set list!<Return>
 " 行番号表示の切り替え
