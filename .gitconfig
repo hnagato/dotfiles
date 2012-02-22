@@ -10,12 +10,15 @@
 	di = diff
 	st = status
 	br = branch
+	fo = fetch origin
+	ro = rebase origin
 	uptodate = !git submodule foreach "git pull --rebase; git co master"
 	unstage = reset HEAD --
 	uncommit = reset --soft HEAD~
 	undopush = push -f origin HEAD~:master
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	l = log --pretty=format:\"%h (%an): %s\" --date=short -20
+	# l = log --pretty=format:\"%h (%an): %s\" --date=short -20
+	l = log --graph --pretty=format:'%Cblue%h%Creset%d %Cgreen%an%Creset: %s %Cblue%ar%Creset'
 	ls = log --stat -p -1
 [core]
 	pager = lv -z -Ia -c -Ou8
