@@ -173,7 +173,14 @@ alias jdate='date +"%Y/%m/%d (%a) %H:%M:%S"'
 alias tcp='sudo lsof -nPiTCP'
 alias udp='sudo lsof -nPiUDP'
 
-alias gst='git st'
+# git commands
+alias gs='git status'
+alias gd='git diff'
+alias gl='git hist'
+alias ga='git add'
+alias gc='git commit'
+alias go='git checkout'
+alias gb='git branch'
 
 # ネットワークにアクセスしているプロセスの一覧
 alias nwps='lsof -Pni | cut -f1 -d" " | sort -u'

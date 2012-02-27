@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+ROUTER_IP="192.168.0.1"
+
+PATH=/usr/bin:/usr/sbin:$HOME/bin:$PATH
+
+if [[ -n "`netstat -rn | grep default | grep 192.168.0.1`" ]]; then
+
+  if [[ -z "`dig +short hnagato.com @$ROUTER_IP`" ]]; then
+    echo "Need to restart router $ROUTER_IP"
+    exec $(dirname $0)/restart-router # | mail -s "Router($ROUTER_IP) restarted." $USER
+  else
+    echo OK
+    exit 0
+  fi
+else
+  echo NOP
+fi
+
+exit 0
