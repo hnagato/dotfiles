@@ -485,6 +485,13 @@ vnoremap <silent> <C-x> :ContinuousNumber <C-x><CR>
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
 
+" Write with sudo
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Better command-line editing
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
 " toggle nerdtree
 nnoremap <F4> :<C-u>NERDTreeToggle<CR>
 
