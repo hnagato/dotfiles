@@ -164,7 +164,7 @@ alias du='du -h'
 alias df='df -h'
 alias grep='grep --color=auto --mmap'
 alias h='history'
-alias j='jobs -l'
+# alias j='jobs -l'
 alias rmdir='rm -rf'
 alias ntop='nice -10 top -s 2'
 alias sr="screen -R -U -O"
@@ -535,6 +535,12 @@ function sjis() {
     mv -f /tmp/euc.$$ $i
   done;
 }
+
+# autojump : https://github.com/joelthelion/autojump
+if which brew >/dev/null 2>&1 ; then
+  test -f `brew --prefix`/etc/autojump && source `brew --prefix`/etc/autojump
+fi
+
 # }}}
 
 # obsolete {{{
