@@ -178,7 +178,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gl='git hist'
 alias ga='git add'
-alias gc='git commit'
+alias gc='git commit -v'
 alias go='git checkout'
 alias gb='git branch'
 
