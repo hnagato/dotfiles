@@ -19,8 +19,11 @@ export MYSQL_PS1='([32m\u[00m@[33m\h[00m) [34m[\d][00m > '
 # nvm
 [[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
 
-# rvm
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+# rbenv
+if which rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+  [[ -s $HOME/.rbenv/completions/rbenv.zsh ]] && source $HOME/.rbenv/completions/rbenv.zsh
+fi
 
 # gisty
 # via. https://github.com/swdyh/gisty
