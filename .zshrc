@@ -536,11 +536,6 @@ function sjis() {
   done;
 }
 
-# autojump : https://github.com/joelthelion/autojump
-if which brew >/dev/null 2>&1 ; then
-  test -f `brew --prefix`/etc/autojump && source `brew --prefix`/etc/autojump
-fi
-
 # }}}
 
 # obsolete {{{
