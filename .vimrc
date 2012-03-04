@@ -473,6 +473,10 @@ nmap ,fm :set fileformat=mac<CR>
 nmap <Space>st :set noexpandtab<CR>:retab!<CR>
 nmap <Space>ss :set expandtab<CR>:retab!<CR>
 
+" switch indent depth
+nmap <Space>2 :set sts=2 ts=2 sw=2<CR>
+nmap <Space>4 :set sts=4 ts=4 sw=4<CR>
+
 " redraw!
 nmap ,r :redraw!<CR>
 
