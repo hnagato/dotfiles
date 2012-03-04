@@ -69,6 +69,9 @@ Bundle 'scrooloose/syntastic'
 " tree
 Bundle 'scrooloose/nerdtree'
 
+" gist
+Bundle 'mattn/gist-vim'
+
 " Obsolete
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'vim-scripts/AutoComplPop'
