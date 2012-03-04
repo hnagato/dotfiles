@@ -642,13 +642,13 @@ inoremap <expr><C-e> neocomplcache#cancel_popup()
 "let g:neocomplcache_enable_auto_select = 1
 
 " インクルードパスの指定
-let g:neocomplcache_include_paths = {}
-"      \ 'ruby' : $HOME.'/.rvm/rubies/ruby-1.9.3-p0/lib/ruby/1.9.1'
-"      \ }
+let g:neocomplcache_include_paths = {
+      \ 'ruby' : '/usr/local/lib/ruby/1.9.1'
+      \ }
 
 " インクルード文のパターン指定
 let g:neocomplcache_include_patterns = {
-      \ 'cpp' : '^\s*#\s*include',
+      \ 'cpp'  : '^\s*#\s*include',
       \ 'ruby' : '^\s*require',
       \ 'perl' : '^\s*use',
       \ }
