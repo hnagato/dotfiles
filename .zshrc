@@ -176,7 +176,7 @@ alias udp='sudo lsof -nPiUDP'
 # git commands
 alias gs='git status'
 alias gd='git diff'
-alias gl='git hist'
+alias gl='git l'
 alias ga='git add'
 alias gc='git commit -v'
 alias go='git checkout'
