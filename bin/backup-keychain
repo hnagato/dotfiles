@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+LOGIN_KEYCHAIN_DEST=/Volumes/Vault/Library/Keychains
+[[ -w $LOGIN_KEYCHAIN_DEST/login.keychain ]] &&
+  cp -f $HOME/Library/Keychains/login.keychain $LOGIN_KEYCHAIN_DEST/
+
+SYSTEM_KEYCHAIN_DEST=/Volumes/Vault/Library/SystemKeychains
+[[ -w $SYSTEM_KEYCHAIN_DEST/System.keychain ]] &&
+  cp -f /Library/Keychains/System.keychain $SYSTEM_KEYCHAIN_DEST/
+
