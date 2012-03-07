@@ -1,0 +1,18 @@
+# For Windows:
+# Thumbs.db
+#
+# For OSX:
+#.DS_Store
+#
+# For TextMate:
+#*.tmproj
+#tmtags
+#
+# For emacs:
+#*~
+#\#*
+#.\#*
+#
+# For vim:
+#*.swp
+#
