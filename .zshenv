@@ -1,6 +1,6 @@
 # PATH
 typeset -U path cdpath fpath manpath
-path=($HOME/bin(N-/) /usr/*/(bin|sbin)(N-/) $path)
+path=($HOME/bin(N-/) /usr/local/(bin|sbin)(N-/) $path)
 
 # JAVA_OPTS / ANT_OPTS
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
@@ -13,17 +13,17 @@ export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 # via. http://subtech.g.hatena.ne.jp/secondlife/20100427/1272350109
 export MYSQL_PS1='([32m\u[00m@[33m\h[00m) [34m[\d][00m > '
 
-# npm
-[[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules
-
-# nvm
-[[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
-
 # rbenv
 if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
   [[ -s $HOME/.rbenv/completions/rbenv.zsh ]] && source $HOME/.rbenv/completions/rbenv.zsh
 fi
+
+# npm
+[[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules
+
+# nodebrew
+[[ -d $HOME/.nodebrew/current/bin ]] && path=($HOME/.nodebrew/current/bin(N-/) $path)
 
 # autojump : https://github.com/joelthelion/autojump
 if which brew >/dev/null 2>&1 ; then
@@ -32,7 +32,3 @@ if which brew >/dev/null 2>&1 ; then
   test -f $BREW_PREFIX/etc/autojump && source $BREW_PREFIX/etc/autojump
 fi
 
-
-# gisty
-# via. https://github.com/swdyh/gisty
-export GISTY_DIR=$HOME/git/gists
