@@ -10,6 +10,18 @@ abbr        def end
         ${2}
     end
 
+snippet     class
+abbr        class end
+    class ${1:class_name}
+        ${2}
+    end
+
+snippet     module
+abbr        module end
+    class ${1:module_name}
+        ${2}
+    end
+
 snippet     do
 abbr        do end
     do
@@ -30,7 +42,7 @@ abbr        { |var| }
 
 snippet     blockvar
 abbr        { |var| }
-    { |${1:var}|
+    {|${1:var}|
         ${2}
     }
 
