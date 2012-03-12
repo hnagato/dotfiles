@@ -575,3 +575,5 @@ function sjis() {
 #  java -version
 #}# }}}
 
+test -r ~/.zshrc.local && source ~/.zshrc.local
+
