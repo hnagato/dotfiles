@@ -17,7 +17,7 @@
 	uncommit = reset --soft HEAD~
 	undopush = push -f origin HEAD~:master
 	hist = log --graph --date=short --pretty=format:\"%C(yellow)%h%C(green bold) %ad%C(reset) %s%C(blue)%d [%an]\"
-	l = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(green bold)%an, %ar%Creset'
+	l = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset'
 	ls = log --stat -p -1
 [core]
 	pager = lv -z -Ia -c -Ou8
