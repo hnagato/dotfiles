@@ -25,6 +25,7 @@
 	quotepath = false
 [github]
 	user = hnagato
-[branch]
+[pull]
 	# 全追跡ブランチで 'git pull' する時に rebase を使う
-	autosetuprebase = always
+	rebase = true
+
