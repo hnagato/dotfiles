@@ -29,6 +29,7 @@ fi
 if which brew >/dev/null 2>&1 ; then
   local BREW_PREFIX=`brew --prefix`
   fpath=($BREW_PREFIX/share/zsh/(site-|)functions(N) $fpath)
-  test -f $BREW_PREFIX/etc/autojump && source $BREW_PREFIX/etc/autojump
+  [[ -f $BREW_PREFIX/etc/autojump ]] && source $BREW_PREFIX/etc/autojump
+  unset BREW_PREFIX
 fi
 
