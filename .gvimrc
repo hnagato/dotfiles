@@ -1,5 +1,5 @@
 set columns=105
-set lines=40
+set lines=80
 set wrap
 
 set guifont=Inconsolata_for_Powerline:h14
@@ -15,7 +15,7 @@ augroup END
 "highlight SpecialKey gui=underline guifg=darkgray
 "colorscheme Inkpot
 "colorscheme lucius_mod
-set bg=dark
+set bg=light
 colorscheme solarized
 
 set noeb
