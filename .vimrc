@@ -46,6 +46,7 @@ Bundle 'errormarker.vim'
 
 " ruby
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
 
 " unite
 Bundle 'Shougo/unite.vim'
