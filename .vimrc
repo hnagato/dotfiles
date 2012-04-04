@@ -246,7 +246,7 @@ if &term =~ "256color"
     let g:solarized_visibility="high"
 
   else
-    colorscheme lucius_mod
+    colorscheme Tomorrow-Night
 
   endif
 
