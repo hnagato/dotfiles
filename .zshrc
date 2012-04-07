@@ -235,7 +235,7 @@ function extract() {
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
 # tmux
-alias tm="tmux attach-session || tmux new"
+alias t="tmux attach-session || tmux new"
 #}}}
 
 # predict {{{
