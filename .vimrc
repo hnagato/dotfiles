@@ -73,6 +73,7 @@ Bundle 'scrooloose/nerdtree'
 
 " gist
 Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 
 " Obsolete
 "Bundle 'scrooloose/nerdcommenter'
