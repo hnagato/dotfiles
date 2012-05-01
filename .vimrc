@@ -300,7 +300,7 @@ au FileType javascript :map <up> <esc>:!node %<cr>
 " http://vim-users.jp/2010/04/hack138/
 augroup FiletypeAliases
   autocmd!
-  autocmd FileType js  set filetype=javascript ts=4 sw=4 sts=4 et
+  autocmd FileType js  set filetype=javascript ts=4 sw=4 sts=4 noet
   autocmd FileType ejs set filetype=html       ts=4 sw=4 sts=4 et
   autocmd FileType cf  set filetype=coffee     ts=2 sw=2 sts=2 et
 augroup END
@@ -330,6 +330,8 @@ au FileType json  set ts=4 sw=4 sts=4 et
 au FileType ejs   set ts=4 sw=4 sts=4 et
 au FileType js    set ts=4 sw=4 sts=4 et
 au FileType javascript set ts=4 sw=4 sts=4 et
+
+au FileType git setlocal foldlevel=99
 
 " テキストファイルは markdown 形式で開く
 au BufNewFile,BufReadPost **/*.txt set ft=markdown
