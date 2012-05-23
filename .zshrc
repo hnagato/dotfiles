@@ -166,7 +166,7 @@ alias grep='grep --color=auto --mmap'
 alias h='history'
 # alias j='jobs -l'
 alias rmdir='rm -rf'
-alias ntop='nice -10 top -s 2'
+alias ntop='nice -10 top -s 2 -o cpu'
 alias sr="screen -R -U -O"
 alias sls="screen -ls"
 alias jdate='date +"%Y/%m/%d (%a) %H:%M:%S"'
