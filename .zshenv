@@ -1,6 +1,6 @@
 # PATH
 typeset -U path cdpath fpath manpath
-path=($HOME/bin(N-/) /usr/local/(bin|sbin)(N-/) $path)
+path=($HOME/bin(N-/) $HOME/play-1.2.4 /usr/local/(bin|sbin)(N-/) $path)
 
 # JAVA_OPTS / ANT_OPTS
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
