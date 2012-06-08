@@ -5,13 +5,9 @@ path=($HOME/bin(N-/) $HOME/play-1.2.4 /usr/local/(bin|sbin)(N-/) $path)
 # JAVA_OPTS / ANT_OPTS
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
-# export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home)
 # export JRE_HOME=$JAVA_HOME
 # export PATH=$JAVA_HOME/bin:$PATH
-
-# MySQL prompt.
-# via. http://subtech.g.hatena.ne.jp/secondlife/20100427/1272350109
-export MYSQL_PS1='([32m\u[00m@[33m\h[00m) [34m[\d][00m > '
 
 # rbenv
 if which rbenv >/dev/null 2>&1; then
