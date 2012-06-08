@@ -76,6 +76,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 
+" nginx
+Bundle 'chase/nginx.vim'
+
 " Obsolete
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'vim-scripts/AutoComplPop'
@@ -341,8 +344,6 @@ au BufNewFile,BufReadPost **/*.txt set ft=markdown
 au BufNewFile,BufRead,BufEnter **/*.json setfiletype json
 " ejs
 au BufNewFile,BufRead,BufEnter **/*.ejs setfiletype html
-" apache
-au BufNewFile,BufRead,BufEnter **/*.conf setfiletype apache
 " markdown
 au BufNewFile,BufRead,BufEnter **/*.md setfiletype markdown
 
