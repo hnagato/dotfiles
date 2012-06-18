@@ -1,13 +1,15 @@
-# PATH
-typeset -U path cdpath fpath manpath
-path=($HOME/bin(N-/) $HOME/play-1.2.4 /usr/local/(bin|sbin)(N-/) $path)
-
 # JAVA_OPTS / ANT_OPTS
+export JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
-export JAVA_HOME=$(/usr/libexec/java_home)
-# export JRE_HOME=$JAVA_HOME
-# export PATH=$JAVA_HOME/bin:$PATH
+
+# Play!
+export PLAY_PATH=$HOME/play-1.2.4
+export PLAY_HOME=$PLAY_PATH
+
+# PATH
+typeset -U path cdpath fpath manpath
+path=($HOME/bin(N-/) $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin)(N-/) $path)
 
 # rbenv
 if which rbenv >/dev/null 2>&1; then
