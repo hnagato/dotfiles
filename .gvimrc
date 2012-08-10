@@ -1,4 +1,4 @@
-set columns=105
+set columns=120
 set lines=80
 set wrap
 
@@ -15,7 +15,7 @@ augroup END
 "highlight SpecialKey gui=underline guifg=darkgray
 "colorscheme Inkpot
 "colorscheme lucius_mod
-set bg=light
+set bg=dark
 colorscheme solarized
 
 set noeb
