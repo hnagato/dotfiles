@@ -20,7 +20,7 @@
 	l = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset'
 	ls = log --stat -p -1
 [core]
-	pager = lv -z -Ia -c -Ou8
+	pager = less -R
 	excludesfile = /Users/hnagato/.global_gitignore
 	quotepath = false
 [github]

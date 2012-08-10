@@ -9,7 +9,7 @@ if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
 else
   export EDITOR=vim
 fi
-export PAGER=lv
+export PAGER=less
 
 ## いろいろ
 export LANG=ja_JP.UTF-8
@@ -19,6 +19,7 @@ export LESSCHARSET=utf-8
 export CLICOLOR=1
 export LSCOLORS=cxFxCxDxBxegedabagacad
 export LV="-z -Ia -c -Ou8"
+export LESS="-R"
 #export TERM=xterm-color
 #export DISPLAY=:0.0
 #export GREP_OPTIONS="--color=auto --mmap"
@@ -97,7 +98,7 @@ function _growl_lazy_precmd() {
 }
 function _growl_lazy_preexec() {
   COMMAND="${1}"
-  if [[ ! $COMMAND =~ "^(ssh|vi|man|lv|tail)" ]]; then
+  if [[ ! $COMMAND =~ "^(ssh|vi|man|lv|less|tail)" ]]; then
     COMMAND_TIME=`date +%s`
   fi
 }
@@ -163,6 +164,7 @@ alias scp='scp -p'
 alias du='du -h'
 alias df='df -h'
 alias grep='grep --color=auto --mmap'
+alias lv='less -S'
 alias h='history'
 # alias j='jobs -l'
 alias rmdir='rm -rf'
@@ -192,7 +194,7 @@ alias memps='ps -ecmo "command %cpu %mem pid rss" | head -11'
 alias cpups='ps -ecro "command %cpu %mem pid rss" | head -11'
 
 alias -g H="|& head"
-alias -g L="|& lv -z -Ia -c -Ou8"
+alias -g L="|& less -R"
 alias -g N="|& nkf -w"
 alias -g G="| grep"
 alias -g V="| vi -R -"
@@ -236,6 +238,7 @@ alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
 # tmux
 alias t="tmux attach-session || tmux new"
+alias tn="tmux new"
 #}}}
 
 # predict {{{
