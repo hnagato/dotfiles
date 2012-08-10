@@ -29,7 +29,7 @@ autodetach on
 
 # Messages
 hardstatus string "%?%h%:%t (screen #%n on %H)%?"
-caption always "%{=r dd}%-Lw%40L>%?%F%{=b dd}%:[%? %n%f %t %?%F%{-}%:]%?%+Lw %=%?%{= rk}%3`%?%?%F%{=r dd}%:%{= WW}%?%?%P *** copy ***%:%?"
+caption always "%{= Gw}%-Lw%40L>%?%F%{=b rw}%:[%? %n%f %t %?%F%{-}%:]%?%+Lw %=%?%{= rd}%3`%?%?%F%{=b cW}%:%{=b wy}%?%?%P *** copy ***%:%?"
 #caption always "%{=r dd}%-Lw%40L>%?%F%{=b dR}%:[%? %n%f %t %?%F%{-}%:]%?%+Lw %=%?%{= rk}%3`%?%?%F%{=r dd}%:%{= WW}%? %?%F%{=r dd}%?%m/%d(%D) %02c"
 #caption always "%{=r dd}%-Lw%40L>%?%F%{=b dR}%:[%? %n%f %t %?%F%{-}%:]%?%+Lw %=%?%{= rk}%3`%?%?%F%{=r dd}%:%{= WW}%? %?%F%{= ck}%?%?%2`%? %?%F%{= gk}%?%m/%d(%D) %02c"
 #backtick 0 1 1   cpu
@@ -60,6 +60,9 @@ bind -c REGION . eval 'next'         'command -c REGION'
 bind -c REGION s eval 'split'        'command -c REGION'
 bind -c REGION v eval 'split -v'     'command -c REGION'
 bind -c REGION q eval 'remove'       'command -c REGION'
+
+bind , eval 'prev' 'command -c REGION'
+bind . eval 'next' 'command -c REGION'
 
 # split
 bind s split
