@@ -1,96 +1,100 @@
-" vundle {{{
+" neobundle {{{
+set nocompatible
 filetype off
 filetype plugin indent off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-Bundle 'gmarik/vundle'
+call neobundle#rc(expand('~/.vim/bundle/'))
 
-Bundle 'genutils'
-Bundle 'netrw.vim'
-Bundle 'smartword'
-Bundle 'smartchr'
-Bundle 'YankRing.vim'
-Bundle 'AutoClose'
+NeoBundle 'genutils'
+NeoBundle 'netrw.vim'
+NeoBundle 'smartword'
+NeoBundle 'smartchr'
+NeoBundle 'YankRing.vim'
+NeoBundle 'AutoClose'
 
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-snippets-complete'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'kana/vim-textobj-indent'
-Bundle 'kana/vim-textobj-user'
-Bundle 'kana/vim-textobj-line'
-Bundle 'othree/html5.vim'
-Bundle 'othree/eregex.vim'
-Bundle 'thinca/vim-template'
-Bundle 'thinca/vim-quickrun'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tyru/open-browser.vim'
-Bundle 'tyru/urilib.vim'
-Bundle 'vim-scripts/L9'
-Bundle 't9md/vim-textmanip'
-Bundle 'quickhl.vim'
-Bundle 'vim-jp/vimdoc-ja'
-Bundle 'sudo.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-line'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'othree/eregex.vim'
+NeoBundle 'thinca/vim-template'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tyru/urilib.vim'
+NeoBundle 'vim-scripts/L9'
+NeoBundle 't9md/vim-textmanip'
+NeoBundle 'quickhl.vim'
+NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'sudo.vim'
 
 " html
-Bundle 'ZenCoding.vim'
+NeoBundle 'ZenCoding.vim'
 
 " javascript & node
-Bundle 'IndentAnything'
-Bundle 'pangloss/vim-javascript'
-Bundle 'teramako/jscomplete-vim'
+NeoBundle 'IndentAnything'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'teramako/jscomplete-vim'
 
 " errormarker
-Bundle 'errormarker.vim'
+NeoBundle 'errormarker.vim'
 
 " ruby
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-rails'
 
 " unite
-Bundle 'Shougo/unite.vim'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'tsukkee/unite-help'
-Bundle 'thinca/vim-ref'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tsukkee/unite-help'
+NeoBundle 'thinca/vim-ref'
 
 " comment
-Bundle 'tyru/caw.vim'
+NeoBundle 'tyru/caw.vim'
 
 " Statusline
-Bundle 'Lokaltog/vim-powerline'
+NeoBundle 'Lokaltog/vim-powerline'
 
 " align
-Bundle 'h1mesuke/vim-alignta'
+NeoBundle 'h1mesuke/vim-alignta'
 
 " syntax
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'scrooloose/syntastic'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'scrooloose/syntastic'
 
 " tree
-Bundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 
 " gist
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
 
 " nginx
-Bundle 'chase/nginx.vim'
+NeoBundle 'chase/nginx.vim'
 
 " Obsolete
-"Bundle 'scrooloose/nerdcommenter'
-"Bundle 'vim-scripts/AutoComplPop'
-"Bundle 'The-NERD-tree'
-"Bundle 'FuzzyFinder'
+"NeoBundle 'scrooloose/nerdcommenter'
+"NeoBundle 'vim-scripts/AutoComplPop'
+"NeoBundle 'The-NERD-tree'
+"NeoBundle 'FuzzyFinder'
 
 
 filetype plugin indent on
 
 " }}}
 
-" settgings {{{
+" base {{{
 " set autochdir
 set noswapfile
 set nobackup
@@ -192,29 +196,6 @@ syntax enable
 
 " 無名レジスタに入るデータを、*レジスタにも入れる。
 "set clipboard+=unnamed
-" }}}
-
-" statusline {{{
-set statusline=%{expand('%:p:t')}\ %<\(%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'...')}\)%=\ %m%r%y%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%3l,%3c]%{fugitive#statusline()}
-
-function! SnipMid(str, len, mask)
-  if a:len >= len(a:str)
-    return a:str
-  elseif a:len <= len(a:mask)
-    return a:mask
-  endif
-
-  let len_head = (a:len - len(a:mask)) / 2
-  let len_tail = a:len - len(a:mask) - len_head
-
-  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
-endfunction
-
-" Screen Buffer 切り替えで screen にファイル名を表示
-if &term =~ "screen"
-  au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kvim:%\\"' |
-endif
-
 " }}}
 
 " listchars {{{
@@ -551,9 +532,9 @@ vnoremap <Space>a          :Alignta =
 " }}}
 
 " folding {{{
-"set viewdir=~/.vim/vimview
-au BufWritePost * mkview
-au BufReadPost * loadview
+" set viewdir=~/.vim/vimview
+" au BufWritePost * mkview
+" au BufReadPost * loadview
 
 au FileType *     :set fdm=marker
 au FileType xhtml :set fdm=syntax
@@ -938,7 +919,8 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 
 " Powerline {{{
 let g:Powerline_symbols = 'fancy'
-" let g:Powerline_theme   = 'solarized'
+" let g:Powerline_theme = 'default'
+let g:Powerline_colorscheme = 'solarized'
 " }}}
 
 " Syntastic {{{
@@ -949,7 +931,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 " obsolete {{{
 
-" statusline
+" statusline {{{
 "function! GetB()
 "  let c = matchstr(getline('.'), '.', col('.') - 1)
 "  let c = iconv(c, &enc, &fenc)
@@ -979,6 +961,30 @@ let g:syntastic_mode_map = { 'mode': 'active',
 "endfunc
 "set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
 "let &statusline = '%=%m%y%{"[".(&fenc!=""?&fenc:&enc).",".&ff."]"}%{"[".neocomplcache#keyword_complete#caching_percent("")."%]"} %3l,%3c %3p%%'
+"}}}
+
+" statusline {{{
+"set statusline=%{expand('%:p:t')}\ %<\(%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'...')}\)%=\ %m%r%y%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%3l,%3c]%{fugitive#statusline()}
+"
+"function! SnipMid(str, len, mask)
+"  if a:len >= len(a:str)
+"    return a:str
+"  elseif a:len <= len(a:mask)
+"    return a:mask
+"  endif
+"
+"  let len_head = (a:len - len(a:mask)) / 2
+"  let len_tail = a:len - len(a:mask) - len_head
+"
+"  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
+"endfunction
+
+" Screen Buffer 切り替えで screen にファイル名を表示
+"if &term =~ "screen"
+"  au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kvim:%\\"' |
+"endif
+
+" }}}
 
 " completion {{{
 "set completeopt=menu,preview,menuone
