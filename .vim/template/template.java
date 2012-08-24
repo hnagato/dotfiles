@@ -2,8 +2,7 @@
  * @FILE@.java
  * @DATE@ @AUTHOR@
  */
-package @JAVA_PACKAGE@
-
+package ;
 
 /**
  * @author @AUTHOR@
