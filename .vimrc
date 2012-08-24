@@ -83,6 +83,9 @@ NeoBundle 'mattn/webapi-vim'
 " nginx
 NeoBundle 'chase/nginx.vim'
 
+" Rooter
+NeoBundle 'airblade/vim-rooter'
+
 " Obsolete
 "NeoBundle 'scrooloose/nerdcommenter'
 "NeoBundle 'vim-scripts/AutoComplPop'
@@ -663,7 +666,7 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
@@ -905,9 +908,10 @@ let g:quickrun_config['markdown'] = {
 " template.vim {{{
 autocmd User plugin-template-loaded call s:template_keywords()
 function! s:template_keywords()
-  %s/@FILE@/\=expand('%:t')/g
+  %s/@FILE@/\=expand('%:t:r')/g
   %s/@DATE@/\=strftime('%Y-%m-%d')/g
   %s/@YEAR@/\=strftime('%Y')/g
+  %s/@AUTHOR@/\=expand('`whoami`')/g
   " And more...
 endfunction
 " }}}
@@ -927,6 +931,14 @@ let g:Powerline_colorscheme = 'solarized'
 let g:syntastic_mode_map = { 'mode': 'active',
       \ 'active_filetypes': ['ruby', 'sh', 'perl', 'python', 'php', 'javascript', 'xml', 'html', 'css', 'eruby'],
       \ 'passive_filetypes': ['puppet'] }
+" }}}
+
+" Rooter {{{
+" \cd でカレントディレクトリを移動（デフォルト）
+" map <silent> <unique> <Leader>cd <Plug>RooterChangeToRootDirectory
+autocmd BufEnter *.rb,*.html,*.haml,*.erb,*.rjs,*.css,*.js,*.java,*.conf,*.jsp,*.sql :Rooter
+" cd の代わりに lcd を使う
+let g:rooter_use_lcd = 1
 " }}}
 
 " obsolete {{{
