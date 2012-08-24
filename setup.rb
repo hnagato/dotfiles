@@ -5,8 +5,8 @@ require 'rubygems'
 require 'pathname'
 require 'fileutils'
 
-# include FileUtils::DryRun
-include FileUtils::Verbose
+include FileUtils::DryRun
+# include FileUtils::Verbose
 
 class String
   def expand
@@ -54,12 +54,14 @@ cd BASE do
 end
 
 
-# init vundle.vim
-VUNDLE_DIR = '~/.vim/bundle/vundle'.expand
-unless VUNDLE_DIR.directory?
-  mkdir_p VUNDLE_DIR
-  system "git clone git://github.com/gmarik/vundle.git #{VUNDLE_DIR.to_s}"
-  system 'vi -c BundleInstall!'
+# init neobundle.vim
+BUNDLE_DIR = '~/.vim/bundle'.expand
+unless BUNDLE_DIR/'neobundle.vim'.exist?
+  mkdir_p BUNDLE_DIR unless BUNDLE_DIR.directory?
+  cd BUNDLE_DIR do
+    system "git clone git://github.com/Shougo/neobundle.vim"
+    system 'vi -c "Unite neobundle/install:!"'
+  end
 end
 
 # vim: ft=ruby
