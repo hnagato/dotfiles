@@ -3,10 +3,10 @@
 set -e
 
 LOGIN_KEYCHAIN_DEST=/Volumes/Vault/Library/Keychains
-[[ -w $LOGIN_KEYCHAIN_DEST/login.keychain ]] &&
+[[ -d $LOGIN_KEYCHAIN_DEST ]] &&
   cp -f $HOME/Library/Keychains/login.keychain $LOGIN_KEYCHAIN_DEST/
 
 SYSTEM_KEYCHAIN_DEST=/Volumes/Vault/Library/SystemKeychains
-[[ -w $SYSTEM_KEYCHAIN_DEST/System.keychain ]] &&
+[[ -d $SYSTEM_KEYCHAIN_DEST ]] &&
   cp -f /Library/Keychains/System.keychain $SYSTEM_KEYCHAIN_DEST/
 
