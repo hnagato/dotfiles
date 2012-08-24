@@ -149,11 +149,11 @@ fi
 if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
   alias vi='/Applications/MacVim.app/Contents/MacOS/Vim "$@"'
   alias mvim='open -a /Applications/MacVim.app "$@"'
-  ## sudo vi を unite.vim が許してくれないので仕方なく function 定義してる
-  function suvi() {
-    /Applications/MacVim.app/Contents/MacOS/Vim $(echo $@ | perl -pe 's/(\S+)/sudo:\1/g')
-  }
 fi
+## sudo vi を unite.vim が許してくれないので仕方なく function 定義してる
+function suvi() {
+ vim $(echo $@ | perl -pe 's/(\S+)/sudo:\1/g')
+}
 
 alias ls='ls -v'
 alias ll='ls -lhtrvGF'
