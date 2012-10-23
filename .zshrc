@@ -24,6 +24,7 @@ export LESS="-R"
 #export DISPLAY=:0.0
 #export GREP_OPTIONS="--color=auto --mmap"
 
+REPORTTIME=3
 # }}}
 
 # history {{{
@@ -98,7 +99,7 @@ function _growl_lazy_precmd() {
 }
 function _growl_lazy_preexec() {
   COMMAND="${1}"
-  if [[ ! $COMMAND =~ "^(ssh|vi|man|lv|less|tail)" ]]; then
+  if [[ ! $COMMAND =~ "^(ssh|vi|man|lv|less|tail|tmux)" ]]; then
     COMMAND_TIME=`date +%s`
   fi
 }
@@ -174,6 +175,9 @@ alias sls="screen -ls"
 alias jdate='date +"%Y/%m/%d (%a) %H:%M:%S"'
 alias tcp='sudo lsof -nPiTCP'
 alias udp='sudo lsof -nPiUDP'
+
+# typo
+alias snv='svn'
 
 # git commands
 alias gs='git status'

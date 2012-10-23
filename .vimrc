@@ -17,7 +17,7 @@ NeoBundle 'YankRing.vim'
 NeoBundle 'AutoClose'
 
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'altercation/vim-colors-solarized'
