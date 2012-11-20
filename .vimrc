@@ -223,21 +223,14 @@ endif
 " colors {{{
 if &term =~ "256color"
   set t_Co=256
-  "colorscheme z256
-  "colorscheme lucius_mod
-  "colorscheme proton
-  "colorscheme pyte
 
   if $COLORFGBG =~ "11;15" || $COLORFGBG =~ "12;8"
-    colorscheme solarized
-    let g:solarized_termcolors=256
     let g:solarized_termtrans=1
-    let g:solarized_contrast="high"
-    let g:solarized_visibility="high"
+    let g:solarized_menu=1
+    colorscheme solarized
 
   else
     colorscheme Tomorrow-Night
-
   endif
 
 " 16 Colors
@@ -939,6 +932,32 @@ let g:syntastic_mode_map = { 'mode': 'active',
 autocmd BufEnter *.rb,*.html,*.haml,*.erb,*.rjs,*.css,*.js,*.java,*.conf,*.jsp,*.sql :Rooter
 " cd の代わりに lcd を使う
 let g:rooter_use_lcd = 1
+" }}}
+
+" unite-diff {{{
+" refs. http://daisuzu.hatenablog.com/entry/2012/08/22/231557
+let diff_action = {
+      \   'description' : 'diff',
+      \   'is_selectable' : 1,
+      \ }
+
+function! diff_action.func(candidates)
+  if len(a:candidates) == 1
+
+    execute 'vert diffsplit ' . a:candidates[0].action__path
+  elseif len(a:candidates) == 2
+
+    execute 'tabnew ' . a:candidates[0].action__path
+    execute 'vert diffsplit ' . a:candidates[1].action__path
+  else
+
+    echo 'too many candidates!'
+  endif
+endfunction
+
+call unite#custom_action('file', 'diff', diff_action)
+
+unlet diff_action
 " }}}
 
 " obsolete {{{
