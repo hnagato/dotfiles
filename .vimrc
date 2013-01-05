@@ -225,10 +225,7 @@ if &term =~ "256color"
   set t_Co=256
 
   if $COLORFGBG =~ "11;15" || $COLORFGBG =~ "12;8"
-    let g:solarized_termtrans=1
-    let g:solarized_menu=1
     colorscheme solarized
-
   else
     colorscheme Tomorrow-Night
   endif
