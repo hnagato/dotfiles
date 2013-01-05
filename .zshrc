@@ -202,6 +202,7 @@ alias -g L="|& less -R"
 alias -g N="|& nkf -w"
 alias -g G="| grep"
 alias -g V="| vi -R -"
+alias -g CA="| canything"
 
 if which pbcopy >/dev/null 2>&1 ; then
   # 文字化けさせない pbcopy
