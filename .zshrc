@@ -480,6 +480,9 @@ setopt share_history
 # history (fc -l) コマンドをヒストリリストから取り除く。
 setopt hist_no_store
 
+# 古いコマンドと同じものは無視
+setopt hist_save_no_dups
+
 # 文字列末尾に改行コードが無い場合でも表示する
 unsetopt promptcr
 
