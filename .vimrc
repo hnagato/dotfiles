@@ -38,6 +38,7 @@ NeoBundle 't9md/vim-textmanip'
 NeoBundle 'quickhl.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'sudo.vim'
+NeoBundle 'kmnk/vim-unite-svn'
 
 " html
 NeoBundle 'ZenCoding.vim'
@@ -828,6 +829,11 @@ nnoremap <silent> [unite]r :<C-u>UniteResume files<CR>
 nnoremap <silent> <C-e> :<C-u>UniteWithBufferDir -buffer-name=files file buffer file_mru bookmark<CR>
 nnoremap <silent> <C-f> :<C-u>Unite -buffer-name=files buffer<CR>
 nnoremap <silent> <C-b> :<C-u>Unite -buffer-name=files file_mru<CR>
+
+" vim-unite-svn
+nnoremap <silent> [unite]ss :<C-u>Unite svn/status<CR>
+nnoremap <silent> [unite]sd :<C-u>Unite svn/diff<CR>
+nnoremap <silent> [unite]sb :<C-u>Unite svn/blame<CR>
 " }}}
 
 " open-browser {{{
