@@ -23,5 +23,5 @@ path=($HOME/bin(N-/) $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin)(N-/) $RUBY_HOME
 [[ -d $HOME/.nodebrew/current/bin ]] && path=($HOME/.nodebrew/current/bin(N-/) $path)
 
 # autojump
-[[ -f `brew --prefix`/etc/autojump.sh ]] && source `brew --prefix`/etc/autojump.sh
+[[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
 
