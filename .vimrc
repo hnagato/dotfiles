@@ -87,6 +87,8 @@ NeoBundle 'chase/nginx.vim'
 " Rooter
 NeoBundle 'airblade/vim-rooter'
 
+NeoBundle 'terryma/vim-multiple-cursors'
+
 " Obsolete
 "NeoBundle 'scrooloose/nerdcommenter'
 "NeoBundle 'vim-scripts/AutoComplPop'
