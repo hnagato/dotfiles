@@ -547,6 +547,18 @@ function sjis() {
   done;
 }
 
+#
+# JDK の version 切り替え
+# 引数は 1.6 とか 1.7 とか
+#
+function jdk() {
+#   cd /System/Library/Frameworks/JavaVM.framework/Versions
+#   sudo rm CurrentJDK && sudo ln -s $1 CurrentJDK
+#   cd -
+  export JAVA_HOME=`/usr/libexec/java_home -v "$1*"`
+  java -version
+}
+
 # }}}
 
 # obsolete {{{
@@ -574,17 +586,7 @@ function sjis() {
 #  esac  
 #  find $dir -name "$file" -exec grep -IHn $string {} \; ;
 #}
-
-#
-# JDK の version 変更というか切り替え
-# 引数は 1.5 とか 1.6 とか
-#
-#function jdk() {
-#  cd /System/Library/Frameworks/JavaVM.framework/Versions
-#  sudo rm CurrentJDK && sudo ln -s $1 CurrentJDK
-#  cd -
-#  java -version
-#}# }}}
+# }}}
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
 
