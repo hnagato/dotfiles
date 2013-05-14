@@ -27,5 +27,13 @@
 	user = hnagato
 [pull]
 	# 全追跡ブランチで 'git pull' する時に rebase を使う
-	rebase = true
+# 	rebase = true
+[merge]
+	tool = p4merge
+[mergetool]
+	keepBackup = false
+[mergetool "p4merge"]
+	path = p4merge
+	keepTemporaries = false
+	trustExitCode = false
 
