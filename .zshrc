@@ -188,6 +188,9 @@ alias gc='git commit -v'
 alias go='git checkout'
 alias gb='git branch'
 
+# bundle
+alias be='bundle exec'
+
 # ネットワークにアクセスしているプロセスの一覧
 alias nwps='lsof -Pni | cut -f1 -d" " | sort -u'
 # IO待ちのプロセス一覧
