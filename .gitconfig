@@ -37,3 +37,5 @@
 	keepTemporaries = false
 	trustExitCode = false
 
+[push]
+	default = simple
