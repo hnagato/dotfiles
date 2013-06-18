@@ -612,7 +612,7 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 " Snippets dir
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
 " SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
