@@ -5,8 +5,8 @@ require 'rubygems'
 require 'pathname'
 require 'fileutils'
 
-include FileUtils::DryRun
-# include FileUtils::Verbose
+# include FileUtils::DryRun
+include FileUtils::Verbose
 
 class String
   def expand
