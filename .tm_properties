@@ -1,3 +1,4 @@
 softWrap = true  
 tabSize = 4  
 softTabs = true
+followSymbolicLinks = true
