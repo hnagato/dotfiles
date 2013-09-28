@@ -128,8 +128,9 @@ function _update_title() {
 function _revert_title() {
   if [[ $TERM =~ 'screen' ]]; then
     #echo -ne "\ek$(basename $SHELL)\e\\"
-  # window title
-    echo -ne "\ek$(pwd)\e\\"
+    # window title
+    local cur=$(pwd | ruby -ne 'puts $_.split("/").last')
+    echo -ne "\ek$cur\e\\"
   fi
 }
 add-zsh-hook precmd  _revert_title
@@ -143,9 +144,9 @@ PROMPT="%{${fg[blue]}%}[%~]
 # }}}
 
 # aliases && functions {{{
-if [[ $TERM =~ '256color' ]]; then
-  alias ssh='TERM=xterm ssh'
-fi
+# if [[ $TERM =~ '256color' ]]; then 
+# alias ssh='TERM=xterm ssh'         
+# fi                                 
 # vim
 if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
   alias vi='/Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -187,6 +188,8 @@ alias ga='git add'
 alias gc='git commit -v'
 alias go='git checkout'
 alias gb='git branch'
+alias gr='git rebase -i'
+alias gt='git stash'
 
 # bundle
 alias be='bundle exec'
@@ -504,6 +507,7 @@ setopt nocheckjobs
 source ~/.zsh/cdd
 function chpwd() {
   _reg_pwd_screennum
+  [[ -f env.sh ]] && source env.sh
   ls -lhavF
 }
 
@@ -514,8 +518,7 @@ function getip() {
 }
 # Global IP 表示＆コピー
 function getexip() {
-  curl -L -s --max-time 10 http://checkip.dyndns.org | egrep -o -m 1 '([[:digit:]]{1,3}\.){3}[[:digit:]]{1,3}' |
-    tee /dev/stderr | pbcopy
+  curl -L -s --max-time 10 ifconfig.me | tee /dev/stderr | pbcopy
 }
 
 ## CPU 使用率の高い方から8つ

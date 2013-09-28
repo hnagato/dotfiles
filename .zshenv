@@ -4,7 +4,7 @@ export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 
 # Play!
-export PLAY_PATH=$HOME/play-1.2.5
+export PLAY_PATH=$HOME/play1.x
 export PLAY_HOME=$PLAY_PATH
 
 # ruby
