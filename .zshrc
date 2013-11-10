@@ -30,7 +30,7 @@ REPORTTIME=3
 # history {{{
 HISTFILE=$HOME/.zsh_history  # 履歴保存ファイル
 HISTSIZE=10000               # メモリ内の履歴の数
-SAVEHIST=500000              # 保存される履歴の数
+SAVEHIST=1000000             # 保存される履歴の数
 LISTMAX=10000                # 補完リストを尋ねる数 (1=黙って表示, 0=ウィンドウから溢れるときは尋ねる)
 if [ $UID = 0 ]; then        # root のコマンドは履歴に追加しない
   unset HISTFILE
