@@ -19,7 +19,7 @@ export LESSCHARSET=utf-8
 export CLICOLOR=1
 export LSCOLORS=cxFxCxDxBxegedabagacad
 # export LV="-z -Ia -c -Ou8"
-export LESS="-R"
+export LESS="-Ri"
 #export TERM=xterm-color
 #export DISPLAY=:0.0
 #export GREP_OPTIONS="--color=auto --mmap"
@@ -144,9 +144,9 @@ PROMPT="%{${fg[blue]}%}[%~]
 # }}}
 
 # aliases && functions {{{
-# if [[ $TERM =~ '256color' ]]; then 
-# alias ssh='TERM=xterm ssh'         
-# fi                                 
+#if [[ $TERM =~ '256color' ]]; then
+#  alias ssh='TERM=xterm ssh'
+#fi
 # vim
 if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
   alias vi='/Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -156,6 +156,18 @@ fi
 function suvi() {
  vim $(echo $@ | perl -pe 's/(\S+)/sudo:\1/g')
 }
+
+# dircolors-solarized
+if [[ -x /usr/local/bin/gls ]]; then
+  alias ls="gls --color=auto"
+fi
+
+if [[ -x /usr/local/bin/gdircolors ]]; then
+  alias dircolors="gdircolors"
+fi
+if [[ -r $HOME/git/dircolors-solarized/dircolors.256dark ]]; then
+  eval `dircolors $HOME/git/dircolors-solarized/dircolors.256dark`
+fi
 
 alias ls='ls -v'
 alias ll='ls -lhtrvGF'
@@ -248,7 +260,7 @@ function extract() {
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
 # tmux
-alias t="tmux attach-session || tmux new"
+alias t="tmux attach-session -d || tmux new"
 alias tn="tmux new"
 #}}}
 
@@ -305,7 +317,7 @@ function _rake () {
 compdef _rake rake
 
 # cdgem: refs. http://subtech.g.hatena.ne.jp/secondlife/20101224/1293179431
-function cdgem() { 
+function cdgem() {
   cd `echo $GEM_HOME/**/gems/$1*|awk -F' ' '{print $1}'`
 }
 compctl -K _cdgem cdgem

@@ -10,8 +10,13 @@
 	di = diff
 	st = status
 	br = branch
+	fa = fetch --all
 	fo = fetch origin
+	mf = merge FETCH_HEAD
 	ro = rebase origin
+	sl = stash list
+	sa = stash apply
+	sp = stash pop
 	uptodate = !git submodule foreach "git pull --rebase; git co master"
 	unstage = reset HEAD --
 	uncommit = reset --soft HEAD~
@@ -20,7 +25,7 @@
 	l = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset'
 	ls = log --stat -p -1
 [core]
-	pager = less -R
+	pager = less -Ri
 	excludesfile = /Users/hnagato/.global_gitignore
 	quotepath = false
 [github]
@@ -39,3 +44,10 @@
 
 [push]
 	default = simple
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+

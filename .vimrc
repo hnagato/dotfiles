@@ -16,7 +16,7 @@ NeoBundle 'smartchr'
 NeoBundle 'YankRing.vim'
 NeoBundle 'AutoClose'
 
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neobundle.vim'
@@ -46,7 +46,6 @@ NeoBundle 'ZenCoding.vim'
 " javascript & node
 NeoBundle 'IndentAnything'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'teramako/jscomplete-vim'
 
 " errormarker
 NeoBundle 'errormarker.vim'
@@ -65,7 +64,8 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'tyru/caw.vim'
 
 " Statusline
-NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 
 " align
 NeoBundle 'h1mesuke/vim-alignta'
@@ -468,7 +468,7 @@ nmap ,r :redraw!<CR>
 nmap <silent> ,o :silent !open "%:p"<CR>
 
 " 連番作成
-command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor 
+command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
 vnoremap <silent> <C-a> :ContinuousNumber <C-a><CR>
 vnoremap <silent> <C-x> :ContinuousNumber <C-x><CR>
 
@@ -493,7 +493,7 @@ vmap <Space>/ <Plug>(caw:I:toggle)
 
 " alignta.vim {{{2
 let g:unite_source_alignta_preset_arguments = [
-      \ ["Align at '='", '=>\='],  
+      \ ["Align at '='", '=>\='],
       \ ["Align at ':'", '01 :'],
       \ ["Align at '|'", '|'   ],
       \ ["Align at ')'", '0 )' ],
@@ -579,90 +579,90 @@ endfunction
 " neocomplcache {{{
 
 " Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
 " Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplete#enable_camel_case_completion = 1
 " Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplete#enable_underbar_completion = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#min_syntax_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplete#dictionary_filetype_lists = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
     \ }
 
 " Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
 
 " Snippets dir
-let g:neocomplcache_snippets_dir = '~/.vim/snippets'
+let g:neocomplete#snippets_dir = '~/.vim/snippets'
 " SuperTab like snippets behavior.
 imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-inoremap <expr><C-j>  neocomplcache#smart_close_popup() . "\<CR>"
+"inoremap <expr><CR>  neocomplete#smart_close_popup() . "\<CR>"
+inoremap <expr><C-j>  neocomplete#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplete#close_popup()
+inoremap <expr><C-e> neocomplete#cancel_popup()
 
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplete#enable_auto_select = 1
 
 " インクルードパスの指定
-let g:neocomplcache_include_paths = {
+let g:neocomplete#include_paths = {
       \ 'ruby' : '/usr/local/lib/ruby/1.9.1'
       \ }
 
 " インクルード文のパターン指定
-let g:neocomplcache_include_patterns = {
+let g:neocomplete#include_patterns = {
       \ 'cpp'  : '^\s*#\s*include',
       \ 'ruby' : '^\s*require',
       \ 'perl' : '^\s*use',
       \ }
 
 "インクルード先のファイル名の解析パターン
-let g:neocomplcache_include_exprs = {
+let g:neocomplete#include_exprs = {
       \ 'ruby' : substitute(substitute(v:fname,'::','/','g'),'$','.rb','')
       \ }
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
 " Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+if !exists('g:neocomplete#omni_patterns')
+  let g:neocomplete#omni_patterns = {}
 endif
-" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+" let g:neocomplete#omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplete#omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " }}}
 
 " fugitive {{{
@@ -677,7 +677,7 @@ nnoremap <Space>gr :<C-u>Gread<Enter>
 nnoremap <Space>gc :<C-u>Gcommit -v<Enter>
 nnoremap <Space>gd :<C-u>Gdiff<Enter>
 nnoremap <Space>gb :<C-u>Gblame<Enter>
-nnoremap <Space>gg :<C-u>Ggrep 
+nnoremap <Space>gg :<C-u>Ggrep
 nnoremap <Space>gm :<C-u>Gmove
 nnoremap <Space>gl :<C-u>Glog<Enter>
 nnoremap <Space>gw :<C-u>Gwrite<Enter>
@@ -786,7 +786,7 @@ vnoremap <silent> <space>he :call <SID>HtmlEscape()<CR>
 vnoremap <silent> <space>hu :call <SID>HtmlUnEscape()<CR>
 " }}}
 
-" netrw {{{ 
+" netrw {{{
 " netrw-ftp
 let g:netrw_ftp_cmd="netkit-ftp"
 " netrw-http
@@ -920,9 +920,28 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 " }}}
 
 " Powerline {{{
-let g:Powerline_symbols = 'fancy'
-" let g:Powerline_theme = 'default'
-let g:Powerline_colorscheme = 'solarized'
+"let g:Powerline_symbols = 'fancy'
+"" let g:Powerline_theme = 'default'
+"let g:Powerline_colorscheme = 'solarized'
+"let g:Powerline_colorscheme = 'solarized'
+" }}}
+
+" airline {{{
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = '⭡'
+let g:airline_linecolumn_prefix = ''
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
+let g:airline_inactive_collapse=1
+let g:airline#extensions#csv#enabled = 1
 " }}}
 
 " Syntastic {{{
@@ -996,7 +1015,7 @@ unlet diff_action
 "  return out
 "endfunc
 "set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
-"let &statusline = '%=%m%y%{"[".(&fenc!=""?&fenc:&enc).",".&ff."]"}%{"[".neocomplcache#keyword_complete#caching_percent("")."%]"} %3l,%3c %3p%%'
+"let &statusline = '%=%m%y%{"[".(&fenc!=""?&fenc:&enc).",".&ff."]"}%{"[".neocomplete#keyword_complete#caching_percent("")."%]"} %3l,%3c %3p%%'
 "}}}
 
 " statusline {{{
