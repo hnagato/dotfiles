@@ -55,13 +55,13 @@ end
 
 
 # init neobundle.vim
-BUNDLE_DIR = '~/.vim/bundle'.expand
-unless BUNDLE_DIR/'neobundle.vim'.exist?
-  mkdir_p BUNDLE_DIR unless BUNDLE_DIR.directory?
-  cd BUNDLE_DIR do
-    system "git clone git://github.com/Shougo/neobundle.vim"
-    system 'vi -c "Unite neobundle/install:!"'
-  end
-end
+#BUNDLE_DIR = '~/.vim/bundle'.expand
+#unless (BUNDLE_DIR/'neobundle.vim').exists?
+#  mkdir_p BUNDLE_DIR unless BUNDLE_DIR.directory?
+#  cd BUNDLE_DIR do
+#    system "git clone git://github.com/Shougo/neobundle.vim"
+#    system 'vi -c "Unite neobundle/install:!"'
+#  end
+#end
 
 # vim: ft=ruby

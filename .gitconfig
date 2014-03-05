@@ -1,6 +1,6 @@
 [user]
 	name = hnagato
-	email = hnagato@gmail.com
+	email = nagato@team-lab.com
 [color]
 	ui = auto
 [alias]
@@ -28,6 +28,8 @@
 	pager = less -Ri
 	excludesfile = /Users/hnagato/.global_gitignore
 	quotepath = false
+	safecrlf = true
+	autocrlf = input
 [github]
 	user = hnagato
 [pull]
@@ -51,3 +53,9 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 
+[http]
+	sslVerify = false
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

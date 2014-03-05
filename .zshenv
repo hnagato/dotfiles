@@ -10,11 +10,12 @@ export PLAY_HOME=$PLAY_PATH
 # ruby
 export GEM_HOME=~/.gem
 
-local RUBY_HOME=/usr/local/Cellar/ruby
+local RUBY_HOME=/usr/local/opt/ruby
 
 # PATH
 typeset -U path cdpath fpath manpath
-path=($HOME/bin(N-/) $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin)(N-/) $RUBY_HOME/*/bin(N-/) $GEM_HOME/bin $path)
+
+path=($HOME/bin(N-/) $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin)(N-/) $RUBY_HOME/*/bin(N-/) $RUBY_HOME/bin $GEM_HOME/bin $path)
 
 # npm
 [[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules
@@ -24,4 +25,7 @@ path=($HOME/bin(N-/) $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin)(N-/) $RUBY_HOME
 
 # autojump
 [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
+
+# bunlder
+[[ -d $HOME/.vendor/bin ]] && path=($HOME/.vendor/bin(N-/) $path)
 

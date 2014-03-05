@@ -4,16 +4,21 @@ bindkey -e
 limit coredumpsize 0
 
 ## Editor & Pager
-if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
-  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+if [[ -x /usr/local/bin/atom ]]; then
+  export EDITOR=/usr/local/bin/atom
 else
-  export EDITOR=vim
+  export EDITOR=/usr/bin/vim
 fi
+#if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
+#  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+#else
+#  export EDITOR=vim
+#fi
 export PAGER=less
 
 ## いろいろ
 export LANG=ja_JP.UTF-8
-export LC_ALL=ja_JP.UTF-8
+# export LC_ALL=ja_JP.UTF-8
 
 export LESSCHARSET=utf-8
 export CLICOLOR=1
@@ -274,7 +279,7 @@ zstyle ':predict' verbose true
 #}}}
 
 # completion {{{
-fpath=($HOME/.zsh/completion $fpath)
+fpath=($HOME/.zsh/completion $HOME/git/zsh-completions/src $fpath)
 
 autoload -U compinit; compinit -u
 ### pid 補完
@@ -581,7 +586,7 @@ function jdk() {
 
 # obsolete {{{
 # 指定されたディレクトリ以下をgrep
-#function search() { 
+#function search() {
 #  dir=.
 #  file=*
 #  case $# in
@@ -589,7 +594,7 @@ function jdk() {
 #    echo "usage: search STRING [DIR [FILE]]"
 # exit 1
 #    ;;
-#    1) 
+#    1)
 #    string=$1
 #    ;;
 #    2)
@@ -601,10 +606,9 @@ function jdk() {
 #    dir=$2
 #    file=$3
 #    ;;
-#  esac  
+#  esac
 #  find $dir -name "$file" -exec grep -IHn $string {} \; ;
 #}
 # }}}
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
-
