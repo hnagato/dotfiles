@@ -279,7 +279,7 @@ zstyle ':predict' verbose true
 #}}}
 
 # completion {{{
-fpath=($HOME/.zsh/completion $HOME/git/zsh-completions/src $fpath)
+fpath=($HOME/git/zsh-completions/src $fpath)
 
 autoload -U compinit; compinit -u
 ### pid 補完
