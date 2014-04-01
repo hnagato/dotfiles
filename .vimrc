@@ -20,6 +20,7 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-user'
@@ -88,6 +89,8 @@ NeoBundle 'chase/nginx.vim'
 NeoBundle 'airblade/vim-rooter'
 
 NeoBundle 'terryma/vim-multiple-cursors'
+
+NeoBundle 'Lokaltog/vim-easymotion'
 
 " Obsolete
 "NeoBundle 'scrooloose/nerdcommenter'
@@ -204,30 +207,12 @@ syntax enable
 "set clipboard+=unnamed
 " }}}
 
-" listchars {{{
-scriptencoding utf-8
-set list
-set listchars=tab:»\ ,extends:<,trail:\ ,eol:¬
-"highlight SpecialKey cterm=underline ctermfg=darkgray
-
-function! ZenkakuSpace()
-  highlight ZenkakuSpace cterm=underline ctermfg=red
-  silent! match ZenkakuSpace /　\+/
-endfunction
-
-if has('syntax')
-  augroup ZenkakuSpace
-    autocmd!
-    autocmd VimEnter,BufEnter * call ZenkakuSpace()
-  augroup END
-endif
-" }}}
-
 " colors {{{
 if &term =~ "256color"
   set t_Co=256
 
   if $COLORFGBG =~ "11;15" || $COLORFGBG =~ "12;8"
+    let g:solarized_contrast = "high"
     colorscheme solarized
   else
     colorscheme Tomorrow-Night
@@ -238,6 +223,26 @@ else
   set t_Co=16
   set t_Sf=[3%dm
   set t_Sb=[4%dm
+endif
+" }}}
+
+" listchars {{{
+scriptencoding utf-8
+set list
+set listchars=tab:»\ ,extends:<,trail:\ ,eol:¬
+hi NonText ctermfg=darkgreen
+hi SpecialKeys ctermfg=darkgreen
+
+function! ZenkakuSpace()
+  highlight ZenkakuSpace cterm=underline ctermfg=darkgray
+  silent! match ZenkakuSpace /　\+/
+endfunction
+
+if has('syntax')
+  augroup ZenkakuSpace
+    autocmd!
+    autocmd VimEnter,BufEnter * call ZenkakuSpace()
+  augroup END
 endif
 " }}}
 

@@ -1,5 +1,4 @@
-# JAVA_OPTS / ANT_OPTS
-export JAVA_HOME=$(/usr/libexec/java_home)
+# JAVA_OPTS / ANT_OPTS export JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 
@@ -28,4 +27,3 @@ path=($HOME/bin(N-/) $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin)(N-/) $RUBY_HOME
 
 # bunlder
 [[ -d $HOME/.vendor/bin ]] && path=($HOME/.vendor/bin(N-/) $path)
-

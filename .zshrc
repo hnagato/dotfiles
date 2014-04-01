@@ -86,30 +86,43 @@ function _update_vcs_info_msg() {
 add-zsh-hook precmd _update_vcs_info_msg
 # }}}
 
-## growl-notify after lazy command {{{2
+# cdr {{{
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 10000
+zstyle ':chpwd:*' recent-dirs-default on
+zstyle ':filter-select:highlight' matched fg=yellow,standout
+zstyle ':filter-select' max-lines 20
+zstyle ':filter-select' case-insensitive yes
+zstyle ':filter-select' extended-search yes
+zstyle ':completion:*' recent-dirs-insert always
+zstyle ":completion:*:*:cdr:*:*" menu select=2
+#}}}
+
+## notify after lazy command {{{2
 ## orig. http://d.hatena.ne.jp/umezo/20100508/1273332857
 local COMMAND=""
 local COMMAND_TIME=""
-function _growl_lazy_precmd() {
+function _notify_lazy_precmd() {
   if [ "$COMMAND_TIME" -ne "0" ] ; then
     local d=`date +%s`
     d=`expr $d - $COMMAND_TIME`
-    if [ "$d" -ge "5" ] ; then
+    if [ "$d" -ge "30" ] ; then
       COMMAND="$COMMAND "
-      growlnotify -t "${${(s: :)COMMAND}[1]}" -m "$COMMAND" -a iTerm > /dev/null 2>&1
+      terminal-notifier -title "${${(s: :)COMMAND}[1]}" -message "$COMMAND" > /dev/null 2>&1
     fi
   fi
   COMMAND="0"
   COMMAND_TIME="0"
 }
-function _growl_lazy_preexec() {
+function _notify_lazy_preexec() {
   COMMAND="${1}"
-  if [[ ! $COMMAND =~ "^(ssh|vi|man|lv|less|tail|tmux)" ]]; then
+  if [[ ! $COMMAND =~ "^(ssh|vi|man|lv|less|tail|tmux|t|atom)" ]]; then
     COMMAND_TIME=`date +%s`
   fi
 }
-add-zsh-hook precmd _growl_lazy_precmd
-add-zsh-hook preexec _growl_lazy_preexec
+add-zsh-hook precmd _notify_lazy_precmd
+add-zsh-hook preexec _notify_lazy_preexec
 # }}}
 
 ## update shell title & screen's window name {{{2
