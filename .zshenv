@@ -14,16 +14,15 @@ local RUBY_HOME=/usr/local/opt/ruby
 # PATH
 typeset -U path cdpath fpath manpath
 
-path=($HOME/bin(N-/) $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin)(N-/) $RUBY_HOME/*/bin(N-/) $RUBY_HOME/bin $GEM_HOME/bin $path)
+path=($HOME/bin $JAVA_HOME $PLAY_HOME /usr/local/(bin|sbin) $RUBY_HOME/bin $GEM_HOME/bin $path)
+# nodebrew
+path=($HOME/.nodebrew/current/bin $path)
+# bunlder
+path=($HOME/.vendor/bin $path)
+path=($^path(N-/))
 
 # npm
 [[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules
 
-# nodebrew
-[[ -d $HOME/.nodebrew/current/bin ]] && path=($HOME/.nodebrew/current/bin(N-/) $path)
-
 # autojump
 [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
-
-# bunlder
-[[ -d $HOME/.vendor/bin ]] && path=($HOME/.vendor/bin(N-/) $path)
