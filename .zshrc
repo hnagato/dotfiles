@@ -157,7 +157,7 @@ add-zsh-hook preexec _update_title
 
 RPROMPT="%{${fg[cyan]}%}%n@%m%{${reset_color}%}%1(v|%F{green}%1v%f|)"
 PROMPT="%{${fg[blue]}%}[%~]
-%(?.%{${fg[yellow]}%}».%{${fg[red]}%}») %{${reset_color}%}"
+%(?.%{${fg[green]}%}⮁.%{${fg[red]}%}⮁) %{${reset_color}%}"
 
 # }}}
 
@@ -168,6 +168,7 @@ PROMPT="%{${fg[blue]}%}[%~]
 # vim
 if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
   alias vi='/Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+  alias vim='/Applications/MacVim.app/Contents/MacOS/Vim "$@"'
   alias mvim='open -a /Applications/MacVim.app "$@"'
 fi
 ## sudo vi を unite.vim が許してくれないので仕方なく function 定義してる
@@ -195,7 +196,7 @@ alias cp='cp -p'
 alias scp='scp -p'
 alias du='du -h'
 alias df='df -h'
-alias grep='grep --color=auto --mmap'
+alias grep='grep --color=auto'
 alias lv='less -S'
 alias h='history'
 # alias j='jobs -l'
@@ -216,10 +217,11 @@ alias gd='git diff'
 alias gl='git l'
 alias ga='git add'
 alias gc='git commit -v'
-alias go='git checkout'
 alias gb='git branch'
 alias gr='git rebase -i'
 alias gt='git stash'
+alias gco='git checkout'
+alias gcb='git checkout -b'
 
 # bundle
 alias be='bundle exec'
@@ -325,6 +327,12 @@ zstyle ':completion:*:hosts' hosts $hosts
 
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
+
+# find in /develop/project/*
+_peco_mdfind() {
+  open $(mdfind -onlyin /develop/projects -name $@ | peco)
+}
+alias p="_peco_mdfind"
 
 # rake
 function _rake () {
