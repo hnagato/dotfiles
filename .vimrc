@@ -1,4 +1,7 @@
 " neobundle {{{
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
 set nocompatible
 filetype off
 filetype plugin indent off
@@ -7,7 +10,8 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundle 'Shougo/neobundle.vim'
 
 NeoBundle 'genutils'
 NeoBundle 'netrw.vim'
@@ -18,7 +22,14 @@ NeoBundle 'AutoClose'
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -36,7 +47,7 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tyru/urilib.vim'
 NeoBundle 'vim-scripts/L9'
 NeoBundle 't9md/vim-textmanip'
-NeoBundle 'quickhl.vim'
+" NeoBundle 'quickhl.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'sudo.vim'
 NeoBundle 'kmnk/vim-unite-svn'
@@ -98,8 +109,11 @@ NeoBundle 'Lokaltog/vim-easymotion'
 "NeoBundle 'The-NERD-tree'
 "NeoBundle 'FuzzyFinder'
 
+call neobundle#end()
 
 filetype plugin indent on
+
+NeoBundleCheck
 
 " }}}
 
