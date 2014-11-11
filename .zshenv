@@ -1,3 +1,7 @@
+# ssh先での文字化け対策
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # JAVA_OPTS / ANT_OPTS export JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
@@ -8,6 +12,9 @@ export PLAY_HOME=$PLAY_PATH
 
 # ruby
 export GEM_HOME=~/.gem
+
+# go
+export GOPATH=$HOME/.gocode
 
 local RUBY_HOME=/usr/local/opt/ruby
 
