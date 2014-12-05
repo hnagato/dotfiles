@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
-var args = Array.prototype.slice.call(process.argv, 2) || [];
+var raw = Array.prototype.slice.call(process.argv, 2).join('') ||
+    require('fs').readFileSync('/dev/stdin', 'utf8');
 
-console.log(decodeURIComponent(args.join('')));
+console.log(decodeURIComponent(raw));
+
