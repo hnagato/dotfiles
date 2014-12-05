@@ -6,9 +6,12 @@ export LC_ALL=en_US.UTF-8
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 
-# Play!
+# play1
 export PLAY_PATH=$HOME/play1.x
 export PLAY_HOME=$PLAY_PATH
+
+# sbt
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
 
 # ruby
 export GEM_HOME=~/.gem
