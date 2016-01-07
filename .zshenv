@@ -19,8 +19,11 @@ export GEM_HOME=~/.gem
 # go
 export GOPATH=$HOME/.gocode
 
+# gist & gist-img
+export GITHUB_URL=http://gist.github.team-lab.local/
+
 local RUBY_HOME=/usr/local/opt/ruby
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # PATH
 typeset -U path cdpath fpath manpath

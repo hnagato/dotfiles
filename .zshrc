@@ -4,11 +4,7 @@ bindkey -e
 limit coredumpsize 0
 
 ## Editor & Pager
-if [[ -x /usr/local/bin/atom ]]; then
-  export EDITOR="/usr/local/bin/atom -nw"
-else
-  export EDITOR=/usr/bin/vim
-fi
+export EDITOR=/usr/bin/vim
 # if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
 #   export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 # else
