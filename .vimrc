@@ -77,7 +77,8 @@ NeoBundle 'tyru/caw.vim'
 
 " Statusline
 " NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 " align
 NeoBundle 'h1mesuke/vim-alignta'
@@ -222,16 +223,11 @@ syntax enable
 " }}}
 
 " colors {{{
+" 256 Colors
 if &term =~ "256color"
   set t_Co=256
-
-  if $COLORFGBG =~ "11;15" || $COLORFGBG =~ "12;8"
-    let g:solarized_contrast = "high"
-    colorscheme solarized
-  else
-    colorscheme Tomorrow-Night
-  endif
-
+  let g:solarized_contrast = "high"
+  colorscheme solarized
 " 16 Colors
 else
   set t_Co=16
@@ -938,13 +934,6 @@ let g:autoclose_on = 0
 nmap <Leader>x <Plug>ToggleAutoCloseMappings
 " }}}
 
-" Powerline {{{
-"let g:Powerline_symbols = 'fancy'
-"" let g:Powerline_theme = 'default'
-"let g:Powerline_colorscheme = 'solarized'
-"let g:Powerline_colorscheme = 'solarized'
-" }}}
-
 " airline {{{
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -961,6 +950,7 @@ let g:airline_detect_modified=1
 let g:airline_detect_paste=1
 let g:airline_inactive_collapse=1
 let g:airline#extensions#csv#enabled = 1
+let g:airline_theme = 'solarized'
 " }}}
 
 " Syntastic {{{

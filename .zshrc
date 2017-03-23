@@ -241,7 +241,7 @@ alias -g CA="| canything"
 if which pbcopy >/dev/null 2>&1 ; then
   # 文字化けさせない pbcopy
   # refs http://d.hatena.ne.jp/edvakf/20080929/1222657230
-  alias pbcopy="nkf -w | __CF_USER_TEXT_ENCODING=0x$(printf %x $(id -u)):0x08000100:14 pbcopy"
+#   alias pbcopy="nkf -w | __CF_USER_TEXT_ENCODING=0x$(printf %x $(id -u)):0x08000100:14 pbcopy"
 
   # Copy to clipboard: Mac
   alias -g C='| pbcopy'
@@ -632,3 +632,7 @@ test -r ~/.zshrc.local && source ~/.zshrc.local
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+### iTerm2 Shell Integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
