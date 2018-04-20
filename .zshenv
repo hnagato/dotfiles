@@ -23,8 +23,8 @@ export GITHUB_URL=http://gist.github.team-lab.local/
 typeset -U path cdpath fpath manpath
 
 path=($HOME/bin $JAVA_HOME /usr/local/opt/coreutils/libexec/gnubin /usr/local/(bin|sbin) $GEM_HOME/bin $path)
-# nodebrew
-path=($HOME/.nodebrew/current/bin $path)
+# node
+path=(/usr/local/opt/node@4/bin $path)
 # bunlder
 path=($HOME/.vendor/bin $path)
 path=($^path(N-/))
