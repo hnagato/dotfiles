@@ -147,8 +147,8 @@ function _revert_title() {
     echo -ne "\ek$cur\e\\"
   fi
 }
-add-zsh-hook precmd  _revert_title
-add-zsh-hook preexec _update_title
+# add-zsh-hook precmd  _revert_title
+# add-zsh-hook preexec _update_title
 # }}}
 
 RPROMPT="%{${fg[cyan]}%}%n@%m%{${reset_color}%}%1(v|%F{green}%1v%f|)"
@@ -255,6 +255,20 @@ fi
 if which osascript >/dev/null 2>&1 ; then
   alias hibernate="osascript -e 'tell app \"Finder\" to sleep'"
 fi
+
+# ssh 使ってる間に tmux の window name 変える
+function ssh() {
+  if [[ -n $(printenv TMUX) ]]
+  then
+    local window_name=$(tmux display -p '#{window_name}')
+    tmux rename-window -- "$@[-1]" # zsh specified
+    # tmux rename-window -- "${!#}" # for bash
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
+}
 
 # extract で圧縮ファイルを解凍
 # via. http://d.hatena.ne.jp/se-kichi/20101017/1287341473
@@ -629,10 +643,3 @@ function jdk() {
 # }}}
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### iTerm2 Shell Integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-

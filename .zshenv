@@ -22,11 +22,23 @@ export GITHUB_URL=http://gist.github.team-lab.local/
 # PATH
 typeset -U path cdpath fpath manpath
 
-path=($HOME/bin $JAVA_HOME /usr/local/opt/coreutils/libexec/gnubin /usr/local/(bin|sbin) $GEM_HOME/bin $path)
-# node
+path=($HOME/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/(bin|sbin) $GEM_HOME/bin $path)
+
+#Java
+# export JAVA_HOME=`/usr/libexec/java_home -v '1.8*'`
+# path=($JAVA_HOME/bin $path)
+# Scala
+export SCALA_HOME=/usr/local/opt/scala/idea
+path=($SCALA_HOME/bin $path)
+# NodeJS
 path=(/usr/local/opt/node@4/bin $path)
 # bunlder
 path=($HOME/.vendor/bin $path)
+# pear
+path=($HOME/pear/bin $path)
+# composer
+path=($HOME/.composer/vendor/bin $path)
+
 path=($^path(N-/))
 
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -36,3 +48,4 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # autojump
 [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
+
