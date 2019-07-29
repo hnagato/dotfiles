@@ -15,18 +15,15 @@ export GOPATH=$HOME/.gocode
 # gist & gist-img
 export GITHUB_URL=http://gist.github.team-lab.local/
 
-# ruby
-# export GEM_HOME=~/.gem
-# eval "$(rbenv init -)"
-
 # PATH
 typeset -U path cdpath fpath manpath
 
 path=($HOME/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/(bin|sbin) $GEM_HOME/bin $path)
 
 #Java
-# export JAVA_HOME=`/usr/libexec/java_home -v '1.8*'`
-# path=($JAVA_HOME/bin $path)
+# export JAVA_HOME=`/usr/libexec/java_home amazon-corretto-11.jdk`
+export JAVA_HOME=`/usr/libexec/java_home 1.8`
+path=($JAVA_HOME/bin $path)
 # Scala
 export SCALA_HOME=/usr/local/opt/scala/idea
 path=($SCALA_HOME/bin $path)
@@ -48,4 +45,8 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # autojump
 [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
+
+# ruby
+# export GEM_HOME=~/.gem
+eval "$(rbenv init -)"
 

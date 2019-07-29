@@ -184,6 +184,7 @@ if [[ -r $HOME/git/dircolors-solarized/dircolors.256dark ]]; then
   eval `dircolors $HOME/git/dircolors-solarized/dircolors.256dark`
 fi
 
+alias o='open'
 alias ls='ls -v'
 alias ll='ls -lhtrvGF'
 alias la='ls -lhavG'
@@ -551,6 +552,21 @@ setopt nocheckjobs
 #}}}
 
 # utilities {{{
+## zaw
+
+source ~/git/zaw/zaw.zsh
+bindkey '^X^O' zaw-cdr
+bindkey '^X^R' zaw-history
+bindkey '^X^F' zaw-git-files
+bindkey '^X^B' zaw-git-branches
+bindkey '^X^P' zaw-process
+bindkey '^X^T' zaw-tmux
+bindkey '^X^S' zaw-ssh-hosts
+
+## zsh-syntax-highlighting
+test -f ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
 ## cd on screen
 source ~/.zsh/cdd
 function chpwd() {
