@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# percov - Start unite-line if buffer is not empty.
-
-READ_FROM_PIPE=
-[ -t 0 ] || READ_FROM_PIPE='-'
-vim -c 'if line("$") !=# 1 || getline(1) !=# "" | execute "Unite -no-split line" | endif' $READ_FROM_PIPE "$@"
-

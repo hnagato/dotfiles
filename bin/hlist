@@ -1,4 +1,0 @@
-#!/bin/zsh
-LC_ALL='C'
-#ruby -Ku -pe 'gsub(/^.+;| .+$/,"")' ~/.zsh_history | sort | uniq -c | sort -r | head -20
-perl -pe 's/^.+;| .+$//' ~/.zsh_history | sort | uniq -c | sort -r |head -20

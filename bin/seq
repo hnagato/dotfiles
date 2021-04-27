@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-
-((ARGV[0].to_i)..(ARGV[1].to_i)).each {|x| printf "%0#{ARGV[0].length}d\n", x }
