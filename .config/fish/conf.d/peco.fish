@@ -42,7 +42,7 @@ function peco-z
     end
 end
 
-set -l srcdir ~/projects/tle
+set srcdir ~/projects/tle
 
 function peco-idea
     set repo (ls $srcdir | peco)
