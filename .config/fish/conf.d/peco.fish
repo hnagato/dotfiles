@@ -49,9 +49,17 @@ function peco-idea
     end
 end
 
+function peco-code
+    set repo (ls ~/Projects/tle | peco)
+    if test -n "$repo"
+        code ~/Projects/tle/(echo $repo)
+    end
+end
+
 
 function fish_user_key_bindings
     bind \cr peco_select_history
+    bind \cx\cc peco-code
     bind \cx\ci peco-idea
     bind \cx\cb peco-git-checkout
     bind \cx\cd peco-delete-branch

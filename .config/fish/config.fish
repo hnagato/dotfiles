@@ -1,9 +1,10 @@
 # env
 set fish_cursor_unknown block
+
 set -gx EDITOR code
+set -gx JAVA_HOME ~/.sdkman/candidates/java/current
 
-# aliases & abbr
-
+# aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
 abbr -a lf ls -lhavGF
 abbr -a h history
@@ -20,7 +21,7 @@ abbr -a gd  git diff -ubw
 abbr -a gt  git stash
 
 # paths
-set -U fish_user_paths ~/.sdkman/candidates/java/current/bin $fish_user_paths
+set -U fish_user_paths $JAVA_HOME/bin $fish_user_paths
 set -U fish_user_paths ~/.nodebrew/current/bin $fish_user_paths
 set -U fish_user_paths ~/bin $fish_user_paths
 

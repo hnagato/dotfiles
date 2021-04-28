@@ -2,7 +2,7 @@
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# JAVA_OPTS / ANT_OPTS export JAVA_HOME=$(/usr/libexec/java_home)
+# JAVA_OPTS / ANT_OPTS
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Duser.country=JP -Duser.language=ja"
 
@@ -15,7 +15,7 @@ export GOPATH=$HOME/.gocode
 # PATH
 typeset -U path cdpath fpath manpath
 
-path=($HOME/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/opt/mysql@5.7/bin /usr/local/(bin|sbin) $GEM_HOME/bin $path)
+path=($HOME/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/opt/mysql@5.7/bin /usr/local/(bin|sbin) $path)
 
 # Scala
 export SCALA_HOME=/usr/local/opt/scala/idea
