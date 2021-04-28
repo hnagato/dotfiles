@@ -4,12 +4,11 @@ bindkey -e
 limit coredumpsize 0
 
 ## Editor & Pager
-export EDITOR=/usr/bin/vim
-# if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
-#   export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-# else
-#   export EDITOR=vim
-# fi
+if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
+  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+else
+  export EDITOR=vim
+fi
 export PAGER=less
 
 ## いろいろ
@@ -659,3 +658,8 @@ function jdk() {
 # }}}
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/hnagato/.sdkman"
+[[ -s "/Users/hnagato/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hnagato/.sdkman/bin/sdkman-init.sh"
+

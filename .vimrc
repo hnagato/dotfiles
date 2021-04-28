@@ -32,7 +32,7 @@ NeoBundle 'Shougo/vimproc.vim', {
       \ }
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'aereal/vim-colors-japanesque'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-line'
@@ -76,9 +76,9 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'tyru/caw.vim'
 
 " Statusline
-" NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'ryanoasis/vim-devicons'
 
 " align
 NeoBundle 'h1mesuke/vim-alignta'
@@ -180,14 +180,14 @@ set fileformats=unix,dos,mac
 set title
 set wildmode=list:longest
 
-" Hilight cursor-line {{{
-set cursorline cursorcolumn
- augroup cch
-   autocmd! cch
-   autocmd WinLeave * set nocursorline nocursorcolumn
-   autocmd WinEnter,BufRead * set cursorline cursorcolumn
- augroup END
-" }}}
+" " Hilight cursor-line {{{
+" set cursorline cursorcolumn
+"  augroup cch
+"    autocmd! cch
+"    autocmd WinLeave * set nocursorline nocursorcolumn
+"    autocmd WinEnter,BufRead * set cursorline cursorcolumn
+"  augroup END
+" " }}}
 
 "set helpfile=$VIMRUNTIME/doc/help.txt
 set helplang=ja,en
@@ -226,8 +226,7 @@ syntax enable
 " 256 Colors
 if &term =~ "256color"
   set t_Co=256
-  let g:solarized_contrast = "high"
-  colorscheme solarized
+  colorscheme japanesque
 " 16 Colors
 else
   set t_Co=16
@@ -502,8 +501,8 @@ cnoremap <C-e> <End>
 nnoremap <F4> :<C-u>NERDTreeToggle<CR>
 
 " caw.vim {{{2
-nmap <Space>/ <Plug>(caw:I:toggle)
-vmap <Space>/ <Plug>(caw:I:toggle)
+nmap <Space>/ <Plug>(caw:zeropos:toggle)
+vmap <Space>/ <Plug>(caw:zeropos:toggle)
 " }}}
 
 " alignta.vim {{{2
@@ -935,22 +934,8 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 " }}}
 
 " airline {{{
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
-let g:airline_linecolumn_prefix = ''
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
-let g:airline_inactive_collapse=1
-let g:airline#extensions#csv#enabled = 1
-let g:airline_theme = 'solarized'
+" let g:airline_powerline_fonts = 1
+let g:airline_theme = 'violet'
 " }}}
 
 " Syntastic {{{
@@ -964,7 +949,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 " map <silent> <unique> <Leader>cd <Plug>RooterChangeToRootDirectory
 autocmd BufEnter *.rb,*.html,*.haml,*.erb,*.rjs,*.css,*.js,*.java,*.conf,*.jsp,*.sql :Rooter
 " cd の代わりに lcd を使う
-let g:rooter_use_lcd = 1
+let g:rooter_cd_cmd="lcd"
 " }}}
 
 " unite-diff {{{

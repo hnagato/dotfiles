@@ -12,23 +12,14 @@ export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=256M"
 # go
 export GOPATH=$HOME/.gocode
 
-# gist & gist-img
-export GITHUB_URL=http://gist.github.team-lab.local/
-
 # PATH
 typeset -U path cdpath fpath manpath
 
-path=($HOME/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/(bin|sbin) $GEM_HOME/bin $path)
+path=($HOME/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/opt/mysql@5.7/bin /usr/local/(bin|sbin) $GEM_HOME/bin $path)
 
-#Java
-# export JAVA_HOME=`/usr/libexec/java_home amazon-corretto-11.jdk`
-export JAVA_HOME=`/usr/libexec/java_home 1.8`
-path=($JAVA_HOME/bin $path)
 # Scala
 export SCALA_HOME=/usr/local/opt/scala/idea
 path=($SCALA_HOME/bin $path)
-# NodeJS
-path=(/usr/local/opt/node@4/bin $path)
 # bunlder
 path=($HOME/.vendor/bin $path)
 # pear
@@ -37,6 +28,7 @@ path=($HOME/pear/bin $path)
 path=($HOME/.composer/vendor/bin $path)
 
 path=($^path(N-/))
+
 
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
