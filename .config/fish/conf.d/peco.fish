@@ -42,17 +42,19 @@ function peco-z
     end
 end
 
+set -l srcdir ~/projects/tle
+
 function peco-idea
-    set repo (ls ~/Projects/tle | peco)
+    set repo (ls $srcdir | peco)
     if test -n "$repo"
-        idea ~/Projects/tle/(echo $repo)
+        idea $srcdir/(echo $repo)
     end
 end
 
 function peco-code
-    set repo (ls ~/Projects/tle | peco)
+    set repo (ls $srcdir | peco)
     if test -n "$repo"
-        code ~/Projects/tle/(echo $repo)
+        code $srcdir/(echo $repo)
     end
 end
 
