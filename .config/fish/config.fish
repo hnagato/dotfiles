@@ -1,10 +1,12 @@
 # env
 set fish_cursor_unknown block
+set fish_greeting
 
 set -gx EDITOR code
 set -gx PAGER less
 set -gx JAVA_HOME ~/.sdkman/candidates/java/current
 set -gx NODE_PATH /usr/local/lib/node_modules
+set -gx GOPATH ~/.local/lib/go
 
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
@@ -23,9 +25,7 @@ abbr -a gd  git diff -ubw
 abbr -a gt  git stash
 
 # paths
-set -U fish_user_paths $JAVA_HOME/bin $fish_user_paths
-set -U fish_user_paths ~/.nodebrew/current/bin $fish_user_paths
-set -U fish_user_paths ~/bin $fish_user_paths
+set fish_user_paths $JAVA_HOME/bin ~/.nodebrew/current/bin ~/bin
 
 # sdk command
 function sdk
