@@ -32,7 +32,6 @@ NeoBundle 'Shougo/vimproc.vim', {
       \ }
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'aereal/vim-colors-japanesque'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-line'
@@ -103,6 +102,9 @@ NeoBundle 'airblade/vim-rooter'
 NeoBundle 'terryma/vim-multiple-cursors'
 
 NeoBundle 'Lokaltog/vim-easymotion'
+
+" colorscheme
+NeoBundle 'arzg/vim-colors-xcode'
 
 " Obsolete
 "NeoBundle 'scrooloose/nerdcommenter'
@@ -226,7 +228,7 @@ syntax enable
 " 256 Colors
 if &term =~ "256color"
   set t_Co=256
-  colorscheme japanesque
+  colorscheme xcodedark
 " 16 Colors
 else
   set t_Co=16
