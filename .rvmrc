@@ -1,3 +1,0 @@
-rvm_pretty_print_flag=1
-rvm_path="$HOME/.rvm"
-rvm_project_rvmrc=1
