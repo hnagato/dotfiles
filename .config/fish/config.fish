@@ -2,7 +2,7 @@
 set fish_cursor_unknown block
 set fish_greeting
 
-set -gx EDITOR code
+set -gx EDITOR vi
 set -gx PAGER less
 set -gx JAVA_HOME ~/.sdkman/candidates/java/current
 set -gx NODE_PATH /usr/local/lib/node_modules
