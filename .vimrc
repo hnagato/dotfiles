@@ -101,10 +101,12 @@ NeoBundle 'airblade/vim-rooter'
 
 NeoBundle 'terryma/vim-multiple-cursors'
 
-NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'easymotion/vim-easymotion'
 
 " colorscheme
 NeoBundle 'arzg/vim-colors-xcode'
+
+NeoBundle 'dag/vim-fish'
 
 " Obsolete
 "NeoBundle 'scrooloose/nerdcommenter'
@@ -220,6 +222,10 @@ set tags=~/.tags,tags
 
 syntax enable
 
+if $shell =~# 'fish$'
+  set shell=sh
+endif
+
 " 無名レジスタに入るデータを、*レジスタにも入れる。
 "set clipboard+=unnamed
 " }}}
@@ -327,6 +333,7 @@ au FileType json  set ts=4 sw=4 sts=4 et
 au FileType ejs   set ts=4 sw=4 sts=4 et
 au FileType js    set ts=4 sw=4 sts=4 et
 au FileType javascript set ts=4 sw=4 sts=4 et
+au FileType fish  set ts=2 sw=2 sts=2 et
 
 au FileType git setlocal foldlevel=99
 
