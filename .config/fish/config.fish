@@ -24,16 +24,24 @@ abbr -a gb  git branch
 abbr -a gd  git diff -ubw
 abbr -a gt  git stash
 
+abbr -a dps docker ps
+abbr -a dcu docker compose up -d
+abbr -a dcd docker compose down
+
 # paths
-set fish_user_paths $JAVA_HOME/bin ~/.nodebrew/current/bin ~/bin
+set fish_user_paths $JAVA_HOME/bin /usr/local/opt/mysql@5.7/bin ~/.nodebrew/current/bin ~/bin
 
 # sdk command
 function sdk
-    bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk $argv"
+  bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk $argv"
 end
 
 # vim
 function vi
-    bash -c "/Applications/MacVim.app/Contents/MacOS/Vim $argv"
+  bash -c "/Applications/MacVim.app/Contents/MacOS/Vim $argv"
+end
+
+function psg
+  ps -ef | grep $argv
 end
 

@@ -30,7 +30,6 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-user'
@@ -234,6 +233,7 @@ endif
 " 256 Colors
 if &term =~ "256color"
   set t_Co=256
+  set termguicolors
   colorscheme xcodedark
 " 16 Colors
 else
