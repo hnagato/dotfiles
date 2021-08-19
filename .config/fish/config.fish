@@ -10,6 +10,7 @@ set -gx GOPATH ~/.local/lib/go
 
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
+alias tn='tmux new-session'
 abbr -a lf ls -lhavGF
 abbr -a h history
 

@@ -7,7 +7,6 @@ require 'fileutils'
 
 # include FileUtils::DryRun
 include FileUtils::Verbose
-
 class String
   def expand
     Pathname.new(self).expand_path
@@ -44,7 +43,7 @@ BASE = File.dirname(__FILE__).expand
 cd BASE do
   Pathname.glob('.*') do |dotfile|
     next if dotfile.to_s =~ /^\.{1,2}$/
-    next if dotfile.to_s =~ /^\.(DS_Store|git(modules)?)$/
+    next if dotfile.to_s =~ /^\.(config|DS_Store|git(modules)?)$/
     next if dotfile.symlink?
 
     symlink dotfile, HOME/dotfile

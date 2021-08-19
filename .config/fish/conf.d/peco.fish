@@ -62,6 +62,15 @@ function peco-code
   end
 end
 
+function peco-ssh
+  cat ~/.ssh/config | grep 'Host ' | grep -v '*' | cut -d ' ' -f2 | peco | read host
+  if [ $host ]
+    commandline -r "ssh $host"
+  else
+    commandline -r ''
+  end
+end
+
 
 function fish_user_key_bindings
   bind \cr peco_select_history
@@ -70,5 +79,6 @@ function fish_user_key_bindings
   bind \cx\cb peco-git-checkout
   bind \cx\cd peco-delete-branch
   bind \cx\co peco-z
+  bind \cx\cs peco-ssh
 end
 
