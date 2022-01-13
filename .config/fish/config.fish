@@ -24,6 +24,7 @@ abbr -a gc  git commit -v
 abbr -a gb  git branch
 abbr -a gd  git diff -ubw
 abbr -a gt  git stash
+abbr -a gp  git pull
 
 abbr -a dps docker ps
 abbr -a dcu docker compose up -d
@@ -36,6 +37,9 @@ set fish_user_paths $JAVA_HOME/bin /usr/local/opt/mysql@5.7/bin ~/.nodebrew/curr
 function sdk
   bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk $argv"
 end
+
+# rbenv
+status --is-interactive; and . (rbenv init -|psub)
 
 # vim
 function vi
