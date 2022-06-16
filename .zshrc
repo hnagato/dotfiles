@@ -152,7 +152,7 @@ function _revert_title() {
 
 RPROMPT="%{${fg[cyan]}%}%n@%m%{${reset_color}%}%1(v|%F{green}%1v%f|)"
 PROMPT="%{${fg[blue]}%}[%~]
-%(?.%{${fg[green]}%}⮁.%{${fg[red]}%}⮁) %{${reset_color}%}"
+%(?.%{${fg[green]}%}».%{${fg[red]}%}») %{${reset_color}%}"
 
 # }}}
 
@@ -553,14 +553,16 @@ setopt nocheckjobs
 # utilities {{{
 ## zaw
 
-source ~/git/zaw/zaw.zsh
-bindkey '^X^O' zaw-cdr
-bindkey '^X^R' zaw-history
-bindkey '^X^F' zaw-git-files
-bindkey '^X^B' zaw-git-branches
-bindkey '^X^P' zaw-process
-bindkey '^X^T' zaw-tmux
-bindkey '^X^S' zaw-ssh-hosts
+if [ -f ~/git/zaw/zaw.zsh ]; then
+  source ~/git/zaw/zaw.zsh
+  bindkey '^X^O' zaw-cdr
+  bindkey '^X^R' zaw-history
+  bindkey '^X^F' zaw-git-files
+  bindkey '^X^B' zaw-git-branches
+  bindkey '^X^P' zaw-process
+  bindkey '^X^T' zaw-tmux
+  bindkey '^X^S' zaw-ssh-hosts
+fi
 
 ## zsh-syntax-highlighting
 test -f ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
