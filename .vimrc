@@ -1,4 +1,4 @@
-" neobundle {{{
+" vundle {{{
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
@@ -6,118 +6,90 @@ set nocompatible
 filetype off
 filetype plugin indent off
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/neobundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
-NeoBundle 'genutils'
-NeoBundle 'netrw.vim'
-NeoBundle 'smartword'
-NeoBundle 'smartchr'
-NeoBundle 'YankRing.vim'
-NeoBundle 'AutoClose'
+Plugin 'genutils'
+Plugin 'netrw.vim'
+Plugin 'smartword'
+Plugin 'smartchr'
+Plugin 'YankRing.vim'
+Plugin 'AutoClose'
 
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-line'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'thinca/vim-template'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'tyru/urilib.vim'
-NeoBundle 'vim-scripts/L9'
-NeoBundle 't9md/vim-textmanip'
-" NeoBundle 'quickhl.vim'
-NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'sudo.vim'
-NeoBundle 'kmnk/vim-unite-svn'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neomru.vim'
+Plugin 'kana/vim-textobj-indent'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-line'
+Plugin 'othree/html5.vim'
+Plugin 'othree/eregex.vim'
+Plugin 'thinca/vim-template'
+Plugin 'thinca/vim-quickrun'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tyru/open-browser.vim'
+Plugin 'vim-jp/vital.vim'
+Plugin 'vim-scripts/L9'
+Plugin 't9md/vim-textmanip'
+" Plugin 'quickhl.vim'
+Plugin 'vim-jp/vimdoc-ja'
+Plugin 'sudo.vim'
+Plugin 'kmnk/vim-unite-svn'
 
 " html
-NeoBundle 'ZenCoding.vim'
+Plugin 'ZenCoding.vim'
 
 " javascript & node
-NeoBundle 'IndentAnything'
-NeoBundle 'pangloss/vim-javascript'
-
-" errormarker
-NeoBundle 'errormarker.vim'
-
-" ruby
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
+Plugin 'IndentAnything'
+Plugin 'pangloss/vim-javascript'
 
 " unite
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'thinca/vim-ref'
+Plugin 'Shougo/unite.vim'
+Plugin 'h1mesuke/unite-outline'
+Plugin 'tsukkee/unite-help'
+Plugin 'thinca/vim-ref'
 
 " comment
-NeoBundle 'tyru/caw.vim'
+Plugin 'tyru/caw.vim'
 
 " Statusline
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'ryanoasis/vim-devicons'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ryanoasis/vim-devicons'
 
 " align
-NeoBundle 'h1mesuke/vim-alignta'
+Plugin 'h1mesuke/vim-alignta'
 
 " syntax
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'scrooloose/syntastic'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'scrooloose/syntastic'
 
 " tree
-NeoBundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " gist
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
 
 " nginx
-NeoBundle 'chase/nginx.vim'
+Plugin 'chase/nginx.vim'
 
 " Rooter
-NeoBundle 'airblade/vim-rooter'
+Plugin 'airblade/vim-rooter'
 
-NeoBundle 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 
-NeoBundle 'easymotion/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 
 " colorscheme
-NeoBundle 'arzg/vim-colors-xcode'
+Plugin 'arzg/vim-colors-xcode'
+Plugin 'dag/vim-fish'
 
-NeoBundle 'dag/vim-fish'
-
-" Obsolete
-"NeoBundle 'scrooloose/nerdcommenter'
-"NeoBundle 'vim-scripts/AutoComplPop'
-"NeoBundle 'The-NERD-tree'
-"NeoBundle 'FuzzyFinder'
-
-call neobundle#end()
-
+call vundle#end()
 filetype plugin indent on
-
-NeoBundleCheck
-
 " }}}
 
 " base {{{
@@ -176,7 +148,7 @@ set autoread
 set encoding=utf-8
 set termencoding=utf-8
 "set fileencodings=guess,ucs-bom,latin1,iso-2022-jp-3,utf-8,euc-jisx0213,euc-jp
-set fileencodings=fileencodings=iso-2022-jp,utf-8,cp932,euc-jp,default,latin1
+" set fileencodings=fileencodings=utf-8,iso-2022-jp,cp932,euc-jp,default,latin1
 set fileformats=unix,dos,mac
 
 set title
@@ -853,7 +825,7 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 " }}}
 
 " airline {{{
-" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme = 'violet'
 " }}}
 
@@ -897,111 +869,7 @@ call unite#custom_action('file', 'diff', diff_action)
 unlet diff_action
 " }}}
 
-" obsolete {{{
-
-" statusline {{{
-"function! GetB()
-"  let c = matchstr(getline('.'), '.', col('.') - 1)
-"  let c = iconv(c, &enc, &fenc)
-"  return String2Hex(c)
-"endfunction
-"" :help eval-examples
-"" The function Nr2Hex() returns the Hex string of a number.
-"func! Nr2Hex(nr)
-"  let n = a:nr
-"  let r = ""
-"  while n
-"    let r = '0123456789ABCDEF'[n % 16] . r
-"    let n = n / 16
-"  endwhile
-"  return r
-"endfunc
-"" The function String2Hex() converts each character in a string to a two
-"" character Hex string.
-"func! String2Hex(str)
-"  let out = ''
-"  let ix = 0
-"  while ix < strlen(a:str)
-"    let out = out . Nr2Hex(char2nr(a:str[ix]))
-"    let ix = ix + 1
-"  endwhile
-"  return out
-"endfunc
-"set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
-"let &statusline = '%=%m%y%{"[".(&fenc!=""?&fenc:&enc).",".&ff."]"}%{"[".neocomplete#keyword_complete#caching_percent("")."%]"} %3l,%3c %3p%%'
-"}}}
-
-" statusline {{{
-"set statusline=%{expand('%:p:t')}\ %<\(%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'...')}\)%=\ %m%r%y%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%3l,%3c]%{fugitive#statusline()}
-"
-"function! SnipMid(str, len, mask)
-"  if a:len >= len(a:str)
-"    return a:str
-"  elseif a:len <= len(a:mask)
-"    return a:mask
-"  endif
-"
-"  let len_head = (a:len - len(a:mask)) / 2
-"  let len_tail = a:len - len(a:mask) - len_head
-"
-"  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
-"endfunction
-
-" Screen Buffer 切り替えで screen にファイル名を表示
-"if &term =~ "screen"
-"  au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kvim:%\\"' |
-"endif
-
-" }}}
-
-" completion {{{
-"set completeopt=menu,preview,menuone
-"set complete=.,w,b,u,t,i
-"
-"set omnifunc=syntaxcomplete#Complete
-"imap <C-o> <C-x><C-o>
-"imap <C-l> <C-x><C-l>
-"
-"" 辞書ファイルからの単語補間
-"set complete+=k
-
-" obsolete
-"au FileType python set omnifunc=pythoncomplete#Complete
-"au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"au FileType html set omnifunc=htmlcomplete#CompleteTags
-"au FileType xhtml set omnifunc=htmlcomplete#CompleteTags
-"au FileType css set omnifunc=csscomplete#CompleteCSS
-"au FileType xml set omnifunc=xmlcomplete#CompleteTags
-"au FileType php set omnifunc=phpcomplete#CompletePHP
-"au FileType c set omnifunc=ccomplete#Complete
-"
-"" javascript は . で Omni補完発動
-"au FileType javascript :inoremap . .<C-X><C-O>
-"" html 系のファイルは </ で Omni補完を発動させる
-"au FileType html,xhtml,xml,rhtml,jsp,php :inoremap / /<C-X><C-O>
-"
-"" 注意: この内容は:filetype onよりも後に記述すること。
-"au FileType *
-"\   if &l:omnifunc == ''
-"\ |   setlocal omnifunc=syntaxcomplete#Complete
-"\ | endif
-
-" }}}
-
-" fuzzyfinder.vim {{{
-"nnoremap <unique> <silent> <C-e> :FufFileWithCurrentBufferDir!<CR>
-"nnoremap <unique> <silent> <C-f> :FufBuffer!<CR>
-"nnoremap <unique> <silent> <C-b> :FufMruFile!<CR>
-"au FileType fuf nmap <C-c> <ESC>
-"let g:fuf_patternSeparator = ' '
-"let g:fuf_modesDisable = ['mrucmd']
-"let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png|classes)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-"let g:fuf_mrufile_exclude = '\v\~$|\.bak$|\.swp|\.howm$|\.(gif|jpg|png)$'
-"let g:fuf_mrufile_maxItem = 1000
-"let g:fuf_enumeratingLimit = 20
-"let g:fuf_keyPreview = '<C-]>'
-" }}}
-
 " }}}
 
 " vim: set ft=vim fdm=marker commentstring="%s
+
