@@ -192,10 +192,11 @@ set tags=~/.tags,tags
 
 syntax enable
 
-if $shell =~# 'fish$'
-  set shell=sh
-endif
-
+" if $shell =~# 'fish$'
+"   set shell=sh
+" endif
+set shell=/bin/sh
+" 
 " 無名レジスタに入るデータを、*レジスタにも入れる。
 "set clipboard+=unnamed
 " }}}
