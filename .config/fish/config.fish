@@ -2,6 +2,11 @@
 set fish_cursor_unknown block
 set fish_greeting
 
+# paths
+fish_add_path $JAVA_HOME/bin
+fish_add_path $HOME/bin
+fish_add_path $HOME/bin/onelogin
+
 # homebrew
 if status is-interactive
   eval (/opt/homebrew/bin/brew shellenv)
@@ -16,15 +21,10 @@ set -gx LESS "-RSM~gIsw"
 set -gx JAVA_HOME ~/.sdkman/candidates/java/current
 set -gx GPG_TTY $(tty)
 
-# paths
-fish_add_path $JAVA_HOME/bin
-fish_add_path $HOME/bin
-fish_add_path $HOME/bin/onelogin
-
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
 alias tn='tmux new-session'
-abbr -a lf ls -lhavGF
+abbr -a ll ls -lhavGF
 abbr -a e code .
 abbr -a i idea .
 
