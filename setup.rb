@@ -47,13 +47,10 @@ Pathname.glob('.*') do |dotfile|
   symlink dotfile, HOME/dotfile
 end
 
-%w(
-  .config/starship.toml
-  .config/fish/config.fish
-  .config/peco/config.json 
-).each do |path|
-  symlink path.expand, HOME/path
-end
+Pathname.glob('.config/**/*') do |config|
+  next if config.symlink? or config.directory?
 
+  symlink config, HOME/config
+end
 
 # vim: ft=ruby
