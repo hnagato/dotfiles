@@ -1,0 +1,8 @@
+{
+  "Keymap": {
+    "C-g": "peco.Cancel"
+  },
+
+  "Use256Color": true
+}
+

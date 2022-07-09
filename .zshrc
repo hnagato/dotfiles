@@ -553,8 +553,8 @@ setopt nocheckjobs
 # utilities {{{
 ## zaw
 
-if [ -f ~/git/zaw/zaw.zsh ]; then
-  source ~/git/zaw/zaw.zsh
+if [ -f ~/.zsh/plugin/zaw/zaw.zsh ]; then
+  source ~/.zsh/plugin/zaw/zaw.zsh
   bindkey '^X^O' zaw-cdr
   bindkey '^X^R' zaw-history
   bindkey '^X^F' zaw-git-files

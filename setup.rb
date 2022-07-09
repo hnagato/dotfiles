@@ -24,7 +24,6 @@ class Pathname
   end
 end
 
-
 def symlink src, dest
   # backup or remove
   if dest.exist?
@@ -38,17 +37,22 @@ def symlink src, dest
 end
 
 
-# symlink
 HOME = '~'.expand
-BASE = File.dirname(__FILE__).expand
-cd BASE do
-  Pathname.glob('.*') do |dotfile|
-    next if dotfile.to_s =~ /^\.{1,2}$/
-    next if dotfile.to_s =~ /^\.(config|DS_Store|git(modules)?)$/
-    next if dotfile.symlink?
 
-    symlink dotfile, HOME/dotfile
-  end
+Pathname.glob('.*') do |dotfile|
+  next if dotfile.to_s =~ /^\.{1,2}$/
+  next if dotfile.to_s =~ /^\.(config|DS_Store|git(ignore|modules)?)$/
+  next if dotfile.symlink?
+
+  symlink dotfile, HOME/dotfile
+end
+
+%w(
+  .config/starship.toml
+  .config/fish/config.fish
+  .config/peco/config.json 
+).each do |path|
+  symlink path.expand, HOME/path
 end
 
 

@@ -1,0 +1,18 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+command_timeout = 1000
+
+[directory]
+truncation_length = 2
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+
+[package]
+disabled = true
+
+[git_branch]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
