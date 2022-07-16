@@ -52,33 +52,7 @@ zshaddhistory() {
 # prompt {{{
 setopt prompt_subst
 
-## vsc info on right prompt. {{{2
-## refs. http://d.hatena.ne.jp/mollifier/20100906/p1
-autoload -Uz add-zsh-hook
-autoload -Uz colors; colors
-autoload -Uz vcs_info
-
-zstyle ':vcs_info:*' enable git svn #hg bzr
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
-zstyle ':vcs_info:bzr:*' use-simple true
-
-autoload -Uz is-at-least
-if is-at-least 4.3.10; then
-  zstyle ':vcs_info:git:*' check-for-changes true
-  zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
-  zstyle ':vcs_info:git:*' unstagedstr "-"  # 適当の文字列に変更する
-  zstyle ':vcs_info:git:*' formats '(%s)-[%b] %c%u'
-  zstyle ':vcs_info:git:*' actionformats '(%s)-[%b|%a] %c%u'
-fi
-
-function _update_vcs_info_msg() {
-  psvar=()
-  LANG=en_US.UTF-8 vcs_info
-  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-add-zsh-hook precmd _update_vcs_info_msg
+eval "$(starship init zsh)"
 # }}}
 
 # cdr {{{
@@ -93,68 +67,6 @@ zstyle ':filter-select' extended-search yes
 zstyle ':completion:*' recent-dirs-insert always
 zstyle ":completion:*:*:cdr:*:*" menu select=2
 #}}}
-
-## notify after lazy command {{{2
-## orig. http://d.hatena.ne.jp/umezo/20100508/1273332857
-local COMMAND=""
-local COMMAND_TIME=""
-function _notify_lazy_precmd() {
-  if [ "$COMMAND_TIME" -ne "0" ] ; then
-    local d=`date +%s`
-    d=`expr $d - $COMMAND_TIME`
-    if [ "$d" -ge "30" ] ; then
-      COMMAND="$COMMAND "
-      terminal-notifier -title "${${(s: :)COMMAND}[1]}" -message "$COMMAND" > /dev/null 2>&1
-    fi
-  fi
-  COMMAND="0"
-  COMMAND_TIME="0"
-}
-function _notify_lazy_preexec() {
-  COMMAND="${1}"
-  if [[ ! $COMMAND =~ "^(ssh|vi|man|lv|less|tail|tmux|t|atom)" ]]; then
-    COMMAND_TIME=`date +%s`
-  fi
-}
-add-zsh-hook precmd _notify_lazy_precmd
-add-zsh-hook preexec _notify_lazy_preexec
-# }}}
-
-## update shell title & screen's window name {{{2
-function _update_title() {
-  local CURCMD="$1"
-  if [[ $TERM =~ 'screen' ]]; then
-    case $1 in
-      ssh)
-        CURCMD="$2"
-        ;;
-      *)
-        CURCMD="$1"
-        ;;
-    esac
-    # screen window name
-    echo -ne "\ek${CURCMD}\e\\"
-  fi
-  # term title
-  echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD} [${CURCMD}]\007"
-}
-function _revert_title() {
-  if [[ $TERM =~ 'screen' ]]; then
-    #echo -ne "\ek$(basename $SHELL)\e\\"
-    # window title
-    local cur=$(pwd | ruby -ne 'puts $_.split("/").last')
-    echo -ne "\ek$cur\e\\"
-  fi
-}
-# add-zsh-hook precmd  _revert_title
-# add-zsh-hook preexec _update_title
-# }}}
-
-RPROMPT="%{${fg[cyan]}%}%n@%m%{${reset_color}%}%1(v|%F{green}%1v%f|)"
-PROMPT="%{${fg[blue]}%}[%~]
-%(?.%{${fg[green]}%}».%{${fg[red]}%}») %{${reset_color}%}"
-
-# }}}
 
 # aliases && functions {{{
 #if [[ $TERM =~ '256color' ]]; then
@@ -171,18 +83,6 @@ function suvi() {
  vim $(echo $@ | perl -pe 's/(\S+)/sudo:\1/g')
 }
 
-# dircolors-solarized
-if [[ -x /usr/local/bin/gls ]]; then
-  alias ls="gls --color=auto"
-fi
-
-if [[ -x /usr/local/bin/gdircolors ]]; then
-  alias dircolors="gdircolors"
-fi
-if [[ -r $HOME/git/dircolors-solarized/dircolors.256dark ]]; then
-  eval `dircolors $HOME/git/dircolors-solarized/dircolors.256dark`
-fi
-
 alias o='open'
 alias ls='ls -v'
 alias ll='ls -lhtrvGF'
@@ -198,29 +98,19 @@ alias h='history'
 # alias j='jobs -l'
 alias rmdir='rm -rf'
 alias ntop='nice -10 top -s 2 -o cpu'
-alias sr="screen -R -U -O"
-alias sls="screen -ls"
 alias jdate='date +"%Y/%m/%d (%a) %H:%M:%S"'
 alias tcp='sudo lsof -nPiTCP'
 alias udp='sudo lsof -nPiUDP'
 
-# typo
-alias snv='svn'
-
 # git commands
 alias gs='git status'
-alias gd='git diff'
+alias gd='git diff -ubw'
 alias gl='git l'
 alias ga='git add'
-alias gc='git commit -v'
+alias gc='git commit -vS'
 alias gb='git branch'
-alias gr='git rebase -i'
-alias gt='git stash'
 alias gco='git checkout'
 alias gcb='git checkout -b'
-
-# bundle
-alias be='bundle exec'
 
 # ネットワークにアクセスしているプロセスの一覧
 alias nwps='lsof -Pni | cut -f1 -d" " | sort -u'
@@ -583,7 +473,7 @@ function getip() {
 }
 # Global IP 表示＆コピー
 function getexip() {
-  curl -L -s --max-time 10 ifconfig.me | tee /dev/stderr | pbcopy
+  curl -sL --max-time 10 inet-ip.info | tee /dev/stderr | pbcopy
 }
 
 ## CPU 使用率の高い方から8つ
@@ -618,45 +508,6 @@ function sjis() {
   done;
 }
 
-#
-# JDK の version 切り替え
-# 引数は 1.6 とか 1.7 とか
-#
-function jdk() {
-#   cd /System/Library/Frameworks/JavaVM.framework/Versions
-#   sudo rm CurrentJDK && sudo ln -s $1 CurrentJDK
-#   cd -
-  export JAVA_HOME=`/usr/libexec/java_home -v "$1*"`
-  java -version
-}
-
-# }}}
-
-# obsolete {{{
-# 指定されたディレクトリ以下をgrep
-#function search() {
-#  dir=.
-#  file=*
-#  case $# in
-#    0)
-#    echo "usage: search STRING [DIR [FILE]]"
-# exit 1
-#    ;;
-#    1)
-#    string=$1
-#    ;;
-#    2)
-#    string=$1
-#    dir=$2
-#    ;;
-#    3)
-#    string=$1
-#    dir=$2
-#    file=$3
-#    ;;
-#  esac
-#  find $dir -name "$file" -exec grep -IHn $string {} \; ;
-#}
 # }}}
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
