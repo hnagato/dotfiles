@@ -1,12 +1,15 @@
-#!/usr/bin/env ruby -Ku
-# -*- coding: utf-8 -*-
+#!/usr/bin/env ruby
 
 require 'rubygems'
 require 'pathname'
 require 'fileutils'
+require 'optparse'
 
-# include FileUtils::DryRun
 include FileUtils::Verbose
+
+opt = OptionParser.new
+opt.on('-d', '--dry-run') {|v| include FileUtils::DryRun }
+opt.parse!(ARGV)
 
 class String
   def expand
@@ -38,19 +41,23 @@ end
 
 
 HOME = '~'.expand
+BASE = File.dirname(__FILE__).expand
 
-Pathname.glob('.*') do |dotfile|
-  next if dotfile.to_s =~ /^\.{1,2}$/
-  next if dotfile.to_s =~ /^\.(config|DS_Store|git(ignore|modules)?)$/
-  next if dotfile.symlink?
+cd BASE do
+  Pathname.glob('.*') do |dotfile|
+    next if dotfile.to_s =~ /^\.{1,2}$/
+    next if dotfile.to_s =~ /^\.(config|DS_Store|git(ignore|modules)?)$/
+    next if dotfile.symlink?
 
-  symlink dotfile, HOME/dotfile
+    symlink BASE/dotfile, HOME/dotfile
+  end
+
+  Pathname.glob('.config/**/*') do |config|
+    next if config.symlink? or config.directory?
+
+    dir = (HOME/config).parent
+    dir.mkpath unless dir.exist?
+
+    symlink BASE/config, HOME/config
+  end
 end
-
-Pathname.glob('.config/**/*') do |config|
-  next if config.symlink? or config.directory?
-
-  symlink config, HOME/config
-end
-
-# vim: ft=ruby
