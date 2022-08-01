@@ -11,18 +11,12 @@ else
 fi
 export PAGER=less
 
-## いろいろ
 export LANG=ja_JP.UTF-8
-# export LC_ALL=ja_JP.UTF-8
 
 export LESSCHARSET=utf-8
 export CLICOLOR=1
 export LSCOLORS=cxFxCxDxBxegedabagacad
-# export LV="-z -Ia -c -Ou8"
 export LESS="-Ri"
-#export TERM=xterm-color
-#export DISPLAY=:0.0
-#export GREP_OPTIONS="--color=auto --mmap"
 
 REPORTTIME=3
 # }}}
@@ -84,33 +78,41 @@ function suvi() {
 }
 
 alias o='open'
+alias e='code'
 alias ls='ls -v'
 alias ll='ls -lhtrvGF'
 alias la='ls -lhavG'
 alias lf='ls -lhavGF'
-alias cp='cp -p'
-alias scp='scp -p'
+
+if [[ (( $+commands[exa] )) ]]; then
+  export EXA_COLORS="uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
+  alias ls='exa --icons --git'
+  alias lf='exa -la --icons --git --ignore-glob .git'
+  alias lt='exa -la --icons --git --git-ignore -T --ignore-glob .git --level=2'
+  alias la='exa -la --icons --color=never'
+fi
+
 alias du='du -h'
 alias df='df -h'
 alias grep='grep --color=auto'
 alias lv='less -S'
 alias h='history'
-# alias j='jobs -l'
-alias rmdir='rm -rf'
 alias ntop='nice -10 top -s 2 -o cpu'
 alias jdate='date +"%Y/%m/%d (%a) %H:%M:%S"'
 alias tcp='sudo lsof -nPiTCP'
 alias udp='sudo lsof -nPiUDP'
 
-# git commands
-alias gs='git status'
-alias gd='git diff -ubw'
+# git
+alias gs='git status -sb'
+alias gco='git checkout'
+alias gfa='git fetch --all'
 alias gl='git l'
 alias ga='git add'
-alias gc='git commit -vS'
+alias gc='git commit -vS -m'
 alias gb='git branch'
-alias gco='git checkout'
-alias gcb='git checkout -b'
+alias gd='git diff -ubw'
+alias gp='git pull'
+alias gg='git clone'
 
 # ネットワークにアクセスしているプロセスの一覧
 alias nwps='lsof -Pni | cut -f1 -d" " | sort -u'
@@ -200,7 +202,7 @@ autoload -U compinit; compinit -u
 ### pid 補完
 zstyle ':completion:*:processes' command 'ps x -o pid,args'
 # sudo でも補完まくる
-zstyle ':completion:*:sudo:*' command-path /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin /opt/local/bin /opt/local/sbin ~/bin
+zstyle ':completion:*:sudo:*' command-path /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin /opt/homebrew/bin ~/bin
 # 補完の時に大文字小文字を区別しない (但し、大文字を打った場合は小文字に変換しない)
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完候補を ←↓↑→ で選択 (補完候補が色分け表示される)
@@ -228,9 +230,9 @@ zstyle ':completion:*:hosts' hosts $hosts
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
-# find in /develop/project/*
+# find in ~/projects/*
 _peco_mdfind() {
-  open $(mdfind -onlyin /develop/projects -name $@ | peco)
+  open $(mdfind -onlyin ~/projects -name $@ | peco)
 }
 alias p="_peco_mdfind"
 
@@ -457,13 +459,12 @@ fi
 ## zsh-syntax-highlighting
 test -f ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
 ## cd on screen
 source ~/.zsh/cdd
 function chpwd() {
   _reg_pwd_screennum
   [[ -f env.sh ]] && source env.sh
-  ls -lhavF
+  lt
 }
 
 # Private IP 表示＆コピー
