@@ -1,5 +1,4 @@
-"$schema" = 'https://starship.rs/config-schema.json'
-
+scan_timeout = 100
 command_timeout = 1000
 
 [directory]
@@ -15,4 +14,17 @@ symbol = " "
 
 [docker_context]
 symbol = " "
+
+[ruby]
+symbol = " "
+
+[java]
+symbol = " "
+
+[shell]
+fish_indicator = ""
+zsh_indicator = ""
+powershell_indicator = ""
+style = "cyan bold"
+disabled = false
 
