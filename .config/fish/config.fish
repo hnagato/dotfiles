@@ -2,18 +2,29 @@
 set fish_cursor_unknown block
 set fish_greeting
 
+# fzf
+set -gx fzf_fd_opts --hidden --exclude=.git
+set -gx fzf_preview_dir_cmd exa -la --git --ignore-glob .git
+
 # paths
 fish_add_path $JAVA_HOME/bin
 fish_add_path $HOME/bin
 fish_add_path $HOME/bin/onelogin
 
-# homebrew
 if status is-interactive
-  eval (/opt/homebrew/bin/brew shellenv)
-end
+  # homebrew
+  if test -d /home/linuxbrew/.linuxbrew
+    set HOMEBREW_HOME /home/linuxbrew/.linuxbrew
+  else if test -d /opt/homebrew
+    set HOMEBREW_HOME /opt/homebrew
+  else
+    set HOMEBREW_HOME /usr/local
+  end
+  eval ($HOMEBREW_HOME/bin/brew shellenv)
 
-# prompt
-starship init fish | source
+  # prompt
+  starship init fish | source
+end
 
 set -gx EDITOR vim
 set -gx PAGER less
@@ -24,13 +35,14 @@ set -gx GPG_TTY $(tty)
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
 alias tn='tmux new-session'
+abbr -a ... cd ../..
+abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
-abbr -a e code .
-abbr -a i idea .
+abbr -a e code
+abbr -a i idea
 
 abbr -a gs  git status -sb
-abbr -a gco git switch
-abbr -a gcb git stash -b
+abbr -a gco git checkout
 abbr -a gfa git fetch --all
 abbr -a gl  git l
 abbr -a ga  git add
@@ -53,4 +65,5 @@ function psg
 end
 
 source "$HOME/.config/fish/peco.fish"
+source "$HOME/.config/fish/fzf.fish"
 
