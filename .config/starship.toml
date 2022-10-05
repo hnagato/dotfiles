@@ -5,21 +5,76 @@ command_timeout = 1000
 truncation_length = 2
 truncate_to_repo = false
 fish_style_pwd_dir_length = 1
-
-[package]
-disabled = true
+read_only = " "
 
 [git_branch]
-symbol = " "
+symbol = " "
 
-[docker_context]
-symbol = " "
+[hg_branch]
+symbol = " "
 
 [ruby]
 symbol = " "
 
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
 [java]
 symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
+
+[rust]
+symbol = " "
 
 [shell]
 fish_indicator = ""

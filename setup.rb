@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
 require 'pathname'
 require 'fileutils'
 require 'optparse'
