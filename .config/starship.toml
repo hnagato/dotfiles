@@ -5,7 +5,7 @@ command_timeout = 1000
 truncation_length = 2
 truncate_to_repo = false
 fish_style_pwd_dir_length = 1
-read_only = " "
+read_only = " 󰏮"
 
 [git_branch]
 symbol = " "
@@ -53,10 +53,10 @@ symbol = " "
 symbol = " "
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 
 [nim]
-symbol = " "
+symbol = " "
 
 [nix_shell]
 symbol = " "
@@ -65,7 +65,7 @@ symbol = " "
 symbol = " "
 
 [package]
-symbol = " "
+symbol = " "
 
 [python]
 symbol = " "
@@ -77,8 +77,8 @@ symbol = "🅢 "
 symbol = " "
 
 [shell]
-fish_indicator = ""
-zsh_indicator = ""
+fish_indicator = "󰈺"
+zsh_indicator = "󰰶"
 powershell_indicator = ""
 style = "cyan bold"
 disabled = false
