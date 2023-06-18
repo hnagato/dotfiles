@@ -10,6 +10,7 @@ set -gx fzf_preview_dir_cmd exa -la --git --ignore-glob .git
 fish_add_path $JAVA_HOME/bin
 fish_add_path $HOME/bin
 fish_add_path $HOME/bin/onelogin
+fish_add_path $HOME/.rd/bin
 
 if status is-interactive
   # homebrew
