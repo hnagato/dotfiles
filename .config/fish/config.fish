@@ -27,7 +27,7 @@ if status is-interactive
   starship init fish | source
 end
 
-set -gx EDITOR vim
+set -gx EDITOR code
 set -gx PAGER less
 set -gx LESS "-RSM~gIsw"
 set -gx JAVA_HOME ~/.sdkman/candidates/java/current
@@ -67,4 +67,3 @@ end
 
 source "$HOME/.config/fish/peco.fish"
 source "$HOME/.config/fish/fzf.fish"
-
