@@ -13,7 +13,7 @@ fi
 # PATH
 typeset -U path cdpath fpath manpath
 
-path=($HOME/bin $HOME/bin/onelogin $path)
+path=($HOME/bin $HOME/bin/onelogin $HOME/.rd/bin $path)
 path=($^path(N-/))
 
 [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
