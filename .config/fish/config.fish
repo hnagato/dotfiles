@@ -2,15 +2,22 @@
 set fish_cursor_unknown block
 set fish_greeting
 
+set -gx EDITOR code
+set -gx PAGER less
+set -gx LESS "-RSM~gIsw"
+set -gx JAVA_HOME ~/.sdkman/candidates/java/current
+set -gx GPG_TTY $(tty)
+ 
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
 set -gx fzf_preview_dir_cmd exa -la --git --ignore-glob .git
 
 # paths
-fish_add_path $JAVA_HOME/bin
 fish_add_path $HOME/bin
 fish_add_path $HOME/bin/onelogin
 fish_add_path $HOME/.rd/bin
+fish_add_path $HOME/Library/Application\ Support/JetBrains/Toolbox/scripts
+fish_add_path $JAVA_HOME/bin
 
 if status is-interactive
   # homebrew
@@ -26,12 +33,6 @@ if status is-interactive
   # prompt
   starship init fish | source
 end
-
-set -gx EDITOR code
-set -gx PAGER less
-set -gx LESS "-RSM~gIsw"
-set -gx JAVA_HOME ~/.sdkman/candidates/java/current
-set -gx GPG_TTY $(tty)
 
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
@@ -52,6 +53,8 @@ abbr -a gb  git branch
 abbr -a gd  git diff -ubw
 abbr -a gp  git pull
 abbr -a gg  git clone
+
+abbr -a vi  code
 
 if type -q exa
   abbr -a lf exa -la --icons --git --ignore-glob .git
