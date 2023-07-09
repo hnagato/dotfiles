@@ -85,8 +85,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'easymotion/vim-easymotion'
 
 " colorscheme
+Plugin 'tomasiser/vim-code-dark'
 Plugin 'arzg/vim-colors-xcode'
-Plugin 'EdenEast/nightfox.nvim'
 Plugin 'dag/vim-fish'
 
 call vundle#end()
@@ -207,8 +207,7 @@ set shell=/bin/sh
 if &term =~ "256color"
   set t_Co=256
   set termguicolors
-  colorscheme nightfox
-"   colorscheme xcodedark
+  colorscheme codedark
 " 16 Colors
 else
   set t_Co=16
@@ -829,8 +828,8 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 
 " airline {{{
 let g:airline_powerline_fonts = 0
-" let g:airline_theme = 'violet'
-let g:airline_theme = 'nord_minimal'
+let g:airline_theme = 'violet'
+" let g:airline_theme = 'nord_minimal'
 " }}}
 
 " Syntastic {{{

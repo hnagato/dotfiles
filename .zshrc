@@ -4,11 +4,7 @@ bindkey -e
 limit coredumpsize 0
 
 ## Editor & Pager
-if [[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
-  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-else
-  export EDITOR=vim
-fi
+export EDITOR="code --wait"
 export PAGER=less
 
 export LANG=ja_JP.UTF-8
@@ -104,6 +100,7 @@ alias udp='sudo lsof -nPiUDP'
 
 # git
 alias gs='git status -sb'
+alias gst='git status -sb'
 alias gco='git checkout'
 alias gfa='git fetch --all'
 alias gl='git l'
@@ -512,7 +509,3 @@ function sjis() {
 # }}}
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/hnagato/.sdkman"
-[[ -s "/Users/hnagato/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hnagato/.sdkman/bin/sdkman-init.sh"
