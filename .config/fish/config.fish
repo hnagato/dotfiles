@@ -1,22 +1,20 @@
 # env
 set fish_cursor_unknown block
-set fish_greeting
 
-set -gx EDITOR code
+set -gx EDITOR 'code --wait'
 set -gx PAGER less
 set -gx LESS "-RSM~gIsw"
 set -gx JAVA_HOME ~/.sdkman/candidates/java/current
 set -gx GPG_TTY $(tty)
- 
+
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
 set -gx fzf_preview_dir_cmd exa -la --git --ignore-glob .git
 
 # paths
 fish_add_path $HOME/bin
-fish_add_path $HOME/bin/onelogin
+fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.rd/bin
-fish_add_path $HOME/Library/Application\ Support/JetBrains/Toolbox/scripts
 fish_add_path $JAVA_HOME/bin
 
 if status is-interactive
@@ -29,7 +27,6 @@ if status is-interactive
     set HOMEBREW_HOME /usr/local
   end
   eval ($HOMEBREW_HOME/bin/brew shellenv)
-
   # prompt
   starship init fish | source
 end
@@ -68,5 +65,24 @@ function psg
   ps -ef | grep -i $argv
 end
 
-source "$HOME/.config/fish/peco.fish"
+function push-line
+  set cl (commandline)
+  commandline -f repaint
+  if test -n (string join $cl)
+    set -g fish_buffer_stack $cl
+    commandline ''
+    commandline -f repaint
+
+    function restore_line -e fish_postexec
+      commandline $fish_buffer_stack
+      functions -e restore_line
+      set -e fish_buffer_stack
+    end
+  end
+end
+
+function fish_user_key_bindings
+  bind \cs push-line
+end
+
 source "$HOME/.config/fish/fzf.fish"

@@ -4,6 +4,7 @@ export LC_ALL=en_US.UTF-8
 
 if (( $+commands[brew] )); then
   eval "$($(brew --prefix)/bin/brew shellenv)"
+  [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
 fi
 
 if (( $+commands[fnm] )); then
@@ -13,8 +14,9 @@ fi
 # PATH
 typeset -U path cdpath fpath manpath
 
-path=($HOME/bin $HOME/bin/onelogin $HOME/.rd/bin $path)
+path=($HOME/bin $HOME/.rd/bin $path)
 path=($^path(N-/))
 
-[[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
-
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
