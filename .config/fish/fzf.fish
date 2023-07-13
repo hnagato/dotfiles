@@ -17,7 +17,7 @@ end
 
 function fzf-z-search
   set -l query (commandline)
-  z -l |
+  z -lr |
       _fzf_wrapper --exit-0 --print0 --no-multi --query="$query" --prompt="z> " \
           --preview-window="right,50%" \
           --preview="echo -n {} | cut -c 12- | tr -d '\n' |
