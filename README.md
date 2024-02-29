@@ -1,11 +1,9 @@
-dotfiles
-========
+# dotfiles
 
-- - -
+## Setup
 
-Setup
---------
-
-	$ git clone git@github.com:hnagato/dotfiles.git
-	$ cd dotfiles
-	$ ./setup.rb
+```shell
+git clone git@github.com:hnagato/dotfiles.git
+cd dotfiles
+./setup.rb
+```

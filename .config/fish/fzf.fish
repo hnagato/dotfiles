@@ -20,8 +20,7 @@ function fzf-z-search
   z -lr |
       _fzf_wrapper --exit-0 --print0 --no-multi --query="$query" --prompt="z> " \
           --preview-window="right,50%" \
-          --preview="echo -n {} | cut -c 12- | tr -d '\n' |
-      xargs -0 $fzf_preview_dir_cmd" |
+          --preview="_fzf_preview_file (echo -n {} | cut -c 12- | tr -d '\n')" |
       cut -c 12- |
       read -l recent
   if [ $recent ]
