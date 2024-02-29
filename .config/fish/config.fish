@@ -9,7 +9,7 @@ set -gx GPG_TTY $(tty)
 
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
-set -gx fzf_preview_dir_cmd exa -la --git --ignore-glob .git
+set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
 
 # paths
 fish_add_path $HOME/bin
@@ -19,16 +19,24 @@ fish_add_path $JAVA_HOME/bin
 
 if status is-interactive
   # homebrew
-  if test -d /home/linuxbrew/.linuxbrew
-    set HOMEBREW_HOME /home/linuxbrew/.linuxbrew
-  else if test -d /opt/homebrew
+  if test -d /opt/homebrew
     set HOMEBREW_HOME /opt/homebrew
   else
     set HOMEBREW_HOME /usr/local
   end
   eval ($HOMEBREW_HOME/bin/brew shellenv)
-  # prompt
-  starship init fish | source
+
+  if type -q starship
+    starship init fish | source
+  end
+
+  if type -q mise
+    mise activate fish | source
+  end
+
+  if test -d $HOMEBREW_HOME/opt/mysql@8.0
+    fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
+  end
 end
 
 # aliases & abbrs
@@ -53,12 +61,12 @@ abbr -a gg  git clone
 
 abbr -a vi  code
 
-if type -q exa
-  abbr -a lf exa -la --icons --git --ignore-glob .git
-  abbr -a lt exa -la --icons --git --git-ignore -T --ignore-glob .git --level=2
-  abbr -a la exa -la --icons --color=never
-  abbr -a ls exa --icons --git
-  set -gx EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
+if type -q eza
+  abbr -a lf eza -la --icons --git --ignore-glob .git
+  abbr -a lt eza -la --icons --git --git-ignore -T --ignore-glob .git --level=2
+  abbr -a la eza -la --icons --color=never
+  abbr -a ls eza --icons --git
+  set -gx EZA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
 end
 
 function psg
@@ -86,3 +94,4 @@ function fish_user_key_bindings
 end
 
 source "$HOME/.config/fish/fzf.fish"
+
