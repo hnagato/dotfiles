@@ -34,6 +34,10 @@ if status is-interactive
     mise activate fish | source
   end
 
+  if type -q fnm
+    fnm env --use-on-cd | source
+  end
+
   if test -d $HOMEBREW_HOME/opt/mysql@8.0
     fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
   end
