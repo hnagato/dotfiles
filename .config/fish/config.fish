@@ -7,6 +7,10 @@ set -gx LESS "-RSM~gIsw"
 set -gx JAVA_HOME ~/.sdkman/candidates/java/current
 set -gx GPG_TTY $(tty)
 
+# homebrew
+set -gx HOMEBREW_NO_ENV_HINTS 1
+set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
+
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
 set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
@@ -28,10 +32,6 @@ if status is-interactive
 
   if type -q starship
     starship init fish | source
-  end
-
-  if type -q mise
-    mise activate fish | source
   end
 
   if type -q fnm
