@@ -16,19 +16,26 @@ set -gx fzf_fd_opts --hidden --exclude=.git
 set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
 
 # paths
-fish_add_path $HOME/bin
+if test -d $HOME/bin
+  fish_add_path 
+end
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.rd/bin
 fish_add_path $JAVA_HOME/bin
 
 if status is-interactive
-  # homebrew
   if test -d /opt/homebrew
     set HOMEBREW_HOME /opt/homebrew
   else
     set HOMEBREW_HOME /usr/local
   end
-  eval ($HOMEBREW_HOME/bin/brew shellenv)
+  if test -d $HOMEBREW_HOME/bin
+    eval ($HOMEBREW_HOME/bin/brew shellenv)
+    fish_add_path $HOMEBREW_HOME/bin $HOMEBREW_HOME/sbin
+    if test -d $HOMEBREW_HOME/opt/mysql@8.0
+      fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
+    end
+  end
 
   if type -q starship
     starship init fish | source
@@ -36,10 +43,6 @@ if status is-interactive
 
   if type -q fnm
     fnm env --use-on-cd | source
-  end
-
-  if test -d $HOMEBREW_HOME/opt/mysql@8.0
-    fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
   end
 end
 
