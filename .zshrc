@@ -508,4 +508,12 @@ function sjis() {
 
 # }}}
 
+# testcontainers
+if [ -S "$HOME/.rd/docker.sock" ]; then
+  export DOCKER_HOST="unix://$HOME/.rd/docker.sock"
+  export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="/var/run/docker.sock"
+  export TESTCONTAINERS_HOST_OVERRIDE=$(rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
+fi
+
 test -r ~/.zshrc.local && source ~/.zshrc.local
+
