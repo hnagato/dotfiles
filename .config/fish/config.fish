@@ -17,7 +17,7 @@ set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
 
 # paths
 if test -d $HOME/bin
-  fish_add_path 
+  fish_add_path $HOME/bin
 end
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.rd/bin
@@ -43,6 +43,10 @@ if status is-interactive
 
   if type -q fnm
     fnm env --use-on-cd | source
+  end
+
+  if type -q pyenv
+    pyenv init - | source
   end
 end
 

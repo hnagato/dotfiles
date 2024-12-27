@@ -1,0 +1,35 @@
+# Note
+# docs:
+# ghostty +show-config --default --docs | less
+# examples:
+# https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
+
+theme = nord
+
+font-family = UDEV Gothic NF
+
+font-size = 16
+adjust-cell-height = 4%
+
+cursor-style = block
+cursor-style-blink = false
+
+background-opacity = 0.85
+background-blur-radius = 20
+
+macos-option-as-alt = true
+macos-titlebar-style = hidden
+macos-non-native-fullscreen = true
+
+# Quick Terminal
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0
+keybind = "global:ctrl+cmd+`=toggle_quick_terminal"
+
+window-width = 120
+window-height = 50
+
+# shell-integration=fish
+# shell-integration-features=no-cursor
+
