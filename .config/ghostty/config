@@ -21,15 +21,12 @@ macos-option-as-alt = true
 macos-titlebar-style = hidden
 macos-non-native-fullscreen = true
 
-# Quick Terminal
-quick-terminal-position = top
-quick-terminal-screen = main
-quick-terminal-animation-duration = 0
-keybind = "global:ctrl+cmd+`=toggle_quick_terminal"
-
 window-width = 120
 window-height = 50
 
-# shell-integration=fish
-# shell-integration-features=no-cursor
+# Workaround
+# https://github.com/ghostty-org/ghostty/issues/3320
+keybind = ctrl+m=text:\x0D
+keybind = ctrl+i=text:\x09
+keybind = ctrl+[=text:\x1B
 

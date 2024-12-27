@@ -209,7 +209,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # /Applications/* を補完候補に追加
 if [ "`uname`" = "Darwin" ]; then
-   compctl -f -x 'p[2]' -s "`/bin/ls -d1 /Applications/*/*.app /Applications/*.app | sed 's|^.*/\([^/]*\)\.app.*|\\1|;s/ /\\\\ /g'`" -- open
+   compctl -f -x 'p[2]' -s "`/bin/ls -d1 /Applications/*.app | sed 's|^.*/\([^/]*\)\.app.*|\\1|;s/ /\\\\ /g'`" -- open
    alias run='open -a'
 fi
 
@@ -510,10 +510,8 @@ function sjis() {
 
 test -r ~/.zshrc.local && source ~/.zshrc.local
 
-# Rancher Desktop で Testcontainers を使うための環境変数設定
 if [ -S "$HOME/.rd/docker.sock" ]; then
   export DOCKER_HOST="unix://$HOME/.rd/docker.sock"
   export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="/var/run/docker.sock"
   export TESTCONTAINERS_HOST_OVERRIDE=$(rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
 fi
-
