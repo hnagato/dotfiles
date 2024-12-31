@@ -4,25 +4,32 @@
 # examples:
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
-theme = nord
+# theme = catppuccin-frappe
 
+# Font
 font-family = UDEV Gothic NF
-
 font-size = 16
-adjust-cell-height = 4%
-
-cursor-style = block
-cursor-style-blink = false
+font-feature = -dlig
+adjust-cell-height = 10%
 
 background-opacity = 0.85
-background-blur-radius = 20
+background-blur-radius = 10
 
 macos-option-as-alt = true
-macos-titlebar-style = hidden
 macos-non-native-fullscreen = true
+focus-follows-mouse = true
 
 window-width = 120
 window-height = 50
+
+keybind = ctrl+super+h=goto_split:left
+keybind = ctrl+super+j=goto_split:bottom
+keybind = ctrl+super+k=goto_split:top
+keybind = ctrl+super+l=goto_split:right
+keybind = alt+super+h=resize_split:left,30
+keybind = alt+super+j=resize_split:down,30
+keybind = alt+super+k=resize_split:up,30
+keybind = alt+super+l=resize_split:right,30
 
 # Workaround
 # https://github.com/ghostty-org/ghostty/issues/3320
