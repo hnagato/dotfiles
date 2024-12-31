@@ -1,6 +1,9 @@
 # env
 set fish_cursor_unknown block
 
+set -gx LANG ja_JP.UTF-8
+set -gx LC_ALL ja_JP.UTF-8
+
 set -gx EDITOR 'code --wait'
 set -gx PAGER less
 set -gx LESS "-RSM~gIsw"
