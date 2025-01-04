@@ -1,10 +1,9 @@
-# env
-set fish_cursor_unknown block
-
 set -gx LANG ja_JP.UTF-8
 set -gx LC_ALL ja_JP.UTF-8
 
-set -gx EDITOR 'code --wait'
+#set -gx EDITOR 'code --wait'
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 set -gx PAGER less
 set -gx LESS "-RSM~gIsw"
 set -gx JAVA_HOME ~/.sdkman/candidates/java/current
@@ -63,6 +62,8 @@ end
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
 alias tn='tmux new-session'
+alias vi='nvim'
+
 abbr -a ... cd ../..
 abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
@@ -79,8 +80,6 @@ abbr -a gb  git branch
 abbr -a gd  git diff -ubw
 abbr -a gp  git pull
 abbr -a gg  git clone
-
-abbr -a vi  code
 
 if type -q eza
   abbr -a lf eza -la --icons --git --ignore-glob .git
@@ -115,3 +114,4 @@ function fish_user_key_bindings
 end
 
 source "$HOME/.config/fish/fzf.fish"
+
