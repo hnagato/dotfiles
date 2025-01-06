@@ -4,15 +4,13 @@
 # examples:
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
-# theme = catppuccin-frappe
-
-# Font
+theme = catppuccin-macchiato
 font-family = UDEV Gothic NF
 font-size = 16
 font-feature = -dlig
 adjust-cell-height = 10%
 
-background-opacity = 0.85
+background-opacity = 0.90
 background-blur-radius = 10
 
 macos-option-as-alt = true
