@@ -4,7 +4,9 @@
 # examples:
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
+# theme = catppuccin-macchiato
 theme = catppuccin-macchiato
+
 font-family = UDEV Gothic NF
 font-size = 16
 font-feature = -dlig
