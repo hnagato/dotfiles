@@ -53,7 +53,7 @@ if status is-interactive
 end
 
 # testcontainers
-if test -S "$HOME/.rd/docker.sock"
+if rdctl shell ip a show vznat > /dev/null 2>&1
   set -x DOCKER_HOST unix://$HOME/.rd/docker.sock
   set -x TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock
   set -x TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
