@@ -52,13 +52,6 @@ if status is-interactive
   end
 end
 
-# testcontainers
-if rdctl shell ip a show vznat > /dev/null 2>&1
-  set -x DOCKER_HOST unix://$HOME/.rd/docker.sock
-  set -x TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock
-  set -x TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
-end
-
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
 alias tn='tmux new-session'
@@ -113,5 +106,9 @@ function fish_user_key_bindings
   bind \cs push-line
 end
 
+# testcontainers
+set -x TESTCONTAINERS_RYUK_DISABLED true
+
 source "$HOME/.config/fish/fzf.fish"
+
 
