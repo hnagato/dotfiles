@@ -6,7 +6,6 @@ set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx PAGER less
 set -gx LESS "-RSM~gIsw"
-set -gx JAVA_HOME ~/.sdkman/candidates/java/current
 set -gx GPG_TTY $(tty)
 
 # homebrew
@@ -45,6 +44,10 @@ if status is-interactive
 
   if type -q fnm
     fnm env --use-on-cd | source
+  end
+
+  if type -q mise
+    mise activate fish | source
   end
 
   if type -q pyenv
@@ -110,5 +113,5 @@ end
 set -x TESTCONTAINERS_RYUK_DISABLED true
 
 source "$HOME/.config/fish/fzf.fish"
-
+source "$HOME/.config/op/plugins.sh"
 
