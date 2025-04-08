@@ -71,7 +71,7 @@ abbr -a gco git checkout
 abbr -a gfa git fetch --all
 abbr -a gl  git l
 abbr -a ga  git add
-abbr -a gc  git commit -vS -m
+abbr -a gc  git czg ai
 abbr -a gb  git branch
 abbr -a gd  git diff -ubw
 abbr -a gp  git pull
