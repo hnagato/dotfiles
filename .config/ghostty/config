@@ -4,10 +4,11 @@
 # examples:
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
-# theme = catppuccin-macchiato
-theme = catppuccin-macchiato
+# theme = catppuccin-mocha
+# theme = flexoki-dark
+# theme = Monokai Pro
 
-font-family = UDEV Gothic NF
+font-family = UDEV Gothic NFLG
 font-size = 16
 font-feature = -dlig
 adjust-cell-height = 10%
@@ -17,7 +18,7 @@ background-blur-radius = 10
 
 macos-option-as-alt = true
 macos-non-native-fullscreen = true
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 focus-follows-mouse = true
 
 window-width = 120
