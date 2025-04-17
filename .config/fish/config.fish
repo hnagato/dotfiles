@@ -110,7 +110,9 @@ function fish_user_key_bindings
 end
 
 # testcontainers
-set -x TESTCONTAINERS_RYUK_DISABLED true
+set -gx DOCKER_HOST "unix://$HOME/.rd/docker.sock"
+set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "/var/run/docker.sock"
+set -gx TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
 
 source "$HOME/.config/fish/fzf.fish"
 source "$HOME/.config/op/plugins.sh"
