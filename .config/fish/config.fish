@@ -75,7 +75,6 @@ abbr -a gc  git czg ai emoji
 abbr -a gb  git branch
 abbr -a gd  git diff -ubw
 abbr -a gp  git pull
-abbr -a gg  git clone
 
 if type -q eza
   abbr -a lf eza -la --icons --git --ignore-glob .git
@@ -110,7 +109,7 @@ function fish_user_key_bindings
 end
 
 # testcontainers
-if rdctl shell true &>/dev/null
+if type -q rdctl; and rdctl shell true &>/dev/null
   set -gx DOCKER_HOST "unix://$HOME/.rd/docker.sock"
   set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "/var/run/docker.sock"
   set -gx TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
