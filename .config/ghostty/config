@@ -4,7 +4,7 @@
 # examples:
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
-# theme = catppuccin-mocha
+theme = catppuccin-mocha
 # theme = flexoki-dark
 # theme = Monokai Pro
 
@@ -16,9 +16,11 @@ adjust-cell-height = 10%
 background-opacity = 0.90
 background-blur-radius = 10
 
+shell-integration-features = no-title
+
 macos-option-as-alt = true
 macos-non-native-fullscreen = true
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 focus-follows-mouse = true
 
 window-width = 120
