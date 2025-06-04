@@ -453,59 +453,6 @@ if [ -f ~/.zsh/plugin/zaw/zaw.zsh ]; then
   bindkey '^X^S' zaw-ssh-hosts
 fi
 
-## zsh-syntax-highlighting
-test -f ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-## cd on screen
-source ~/.zsh/cdd
-function chpwd() {
-  _reg_pwd_screennum
-  [[ -f env.sh ]] && source env.sh
-  lt
-}
-
-# Private IP 表示＆コピー
-function getip() {
-  ifconfig | ruby -ane 'puts $F[1] if $_ =~ /inet /' |
-    tee /dev/stderr | pbcopy
-}
-# Global IP 表示＆コピー
-function getexip() {
-  curl -sL --max-time 10 inet-ip.info | tee /dev/stderr | pbcopy
-}
-
-## CPU 使用率の高い方から8つ
-function pst() {
-  #ps aux | head -n 1
-  #ps aux | sort -r -n +1 | grep -v "ps aux" | grep -v grep | head -n 8
-  ps aux -r | head -8
-}
-## メモリ占有率の高い方から8つ
-function psm() {
-  #ps aux | head -n 1
-  #ps aux | sort -r -n +3 | grep -v "ps aux" | grep -v grep | head -n 8
-  ps -eo rss,vsz,args -m | head -8
-}
-## 全プロセスから引数の文字列を含むものを grep
-function psg() {
-  ps aux | head -n 1                                 # ラベルを表示
-  ps aux | grep $* | grep -v "ps aux" | grep -v grep # grep プロセスを除外
-}
-
-## 引数のファイルを euc-LF や sjis-CR+LF に変換
-function euc() {
-  for i in $@; do;
-    nkf -e -Lu $i >! /tmp/euc.$$ # -Lu :改行を LF にする
-    mv -f /tmp/euc.$$ $i
-  done;
-}
-function sjis() {
-  for i in $@; do;
-    nkf -s -Lw $i >! /tmp/euc.$$ # -Lu :改行を CR+LF にする
-    mv -f /tmp/euc.$$ $i
-  done;
-}
-
 # }}}
 
 test -r ~/.zshrc.local && source ~/.zshrc.local

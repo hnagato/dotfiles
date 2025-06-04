@@ -1,62 +1,95 @@
 #!/usr/bin/env ruby
 
-require 'pathname'
 require 'fileutils'
+require 'pathname'
 require 'optparse'
+require 'open3'
 
-include FileUtils::Verbose
+def error(msg)
+  warn "ERROR: #{msg}"
+  exit 1
+end
 
-opt = OptionParser.new
-opt.on('-d', '--dry-run') {|v| include FileUtils::DryRun }
-opt.parse!(ARGV)
+# Parse options
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{$0} [options]"
+  opts.on('-t', '--test', 'Setup in /tmp instead of $HOME') { options[:test] = true }
+  opts.on('-h', '--help', 'Show this help') { puts opts; exit }
+end.parse!
 
-class String
-  def expand
-    Pathname.new(self).expand_path
+target = Pathname(options[:test] ? "/tmp/#{ENV['USER']}" : ENV['HOME'])
+dotfiles = Pathname(__FILE__).dirname.expand_path
+
+target.mkpath
+
+# Link dotfiles (skip special cases)
+dotfiles.glob('{.*,*}').each do |file|
+  next unless file.exist?
+  next if file == dotfiles || file == dotfiles.parent || file.symlink?
+  next if file.basename.to_s =~ /^(README\.md|setup\.(sh|rb)|\.git.*|\.config)$/
+  
+  link = target / file.basename
+  next if link.symlink? && link.readlink == file
+  link.rmtree if link.exist?
+  link.make_symlink(file)
+end
+
+# Link .config files (skip fish/nvim)
+config_dir = target / '.config'
+config_dir.mkpath
+
+(dotfiles / '.config').glob('*').each do |file|
+  next unless file.exist?
+  next if file.basename.to_s =~ /^(fish|nvim)$/
+  
+  link = config_dir / file.basename
+  next if link.symlink? && link.readlink == file
+  link.rmtree if link.exist?
+  link.make_symlink(file)
+end
+
+# Setup fish
+fish_dir = target / '.config/fish'
+functions_dir = fish_dir / 'functions'
+[fish_dir, functions_dir].each(&:mkpath)
+
+(dotfiles / '.config/fish').glob('*').select(&:file?).each do |file|
+  link = file.basename.to_s == 'fish_greeting.fish' ? functions_dir / file.basename : fish_dir / file.basename
+  next if link.symlink? && link.readlink == file
+  link.rmtree if link.exist?
+  link.make_symlink(file)
+end
+
+# Install fisher plugins
+_, _, status = Open3.capture3('command -v fish')
+error "fish not installed" unless status.success?
+
+fisher_cmd = 'curl -sL git.io/fisher | source && fisher update'
+env = options[:test] ? {'HOME' => target.to_s} : {}
+_, _, status = Open3.capture3(env, "fish -c '#{fisher_cmd}'")
+error "fisher failed" unless status.success?
+
+# Setup nvim submodule
+Dir.chdir(dotfiles) do
+  nvim_git = dotfiles / '.config/nvim/.git'
+  unless nvim_git.exist?
+    _, _, status = Open3.capture3('git submodule init .config/nvim')
+    error "submodule init failed" unless status.success?
+    _, _, status = Open3.capture3('git submodule update .config/nvim')
+    error "submodule update failed" unless status.success?
   end
 end
 
-class Pathname
-  def / other
-    (self + other).expand_path
-  end
-
-  def to_bak
-    (self.realpath.to_s + '.org').expand
-  end
+Dir.chdir(dotfiles / '.config/nvim') do
+  _, _, status1 = Open3.capture3('git pull origin main')
+  _, _, status2 = Open3.capture3('git pull origin master') unless status1.success?
+  error "nvim pull failed" unless status1.success? || status2.success?
 end
 
-def symlink src, dest
-  # backup or remove
-  if dest.exist?
-    if dest.symlink?
-      rm dest
-    else
-      mv dest, dest.to_bak
-    end
-  end
-  ln_sf src.expand_path, dest
-end
-
-
-HOME = '~'.expand
-BASE = File.dirname(__FILE__).expand
-
-cd BASE do
-  Pathname.glob('.*') do |dotfile|
-    next if dotfile.to_s =~ /^\.{1,2}$/
-    next if dotfile.to_s =~ /^\.(config|DS_Store|git(ignore|modules)?)$/
-    next if dotfile.symlink?
-
-    symlink BASE/dotfile, HOME/dotfile
-  end
-
-  Pathname.glob('.config/**/*') do |config|
-    next if config.symlink? or config.directory?
-
-    dir = (HOME/config).parent
-    dir.mkpath unless dir.exist?
-
-    symlink BASE/config, HOME/config
-  end
+nvim_link = target / '.config/nvim'
+nvim_source = dotfiles / '.config/nvim'
+unless nvim_link.symlink? && nvim_link.readlink == nvim_source
+  nvim_link.rmtree if nvim_link.exist?
+  nvim_link.make_symlink(nvim_source)
 end
