@@ -90,3 +90,13 @@ else
 fi
 
 echo "Setup tools completed successfully!"
+
+# Setup tpm
+echo "Setting up tpm..."
+mkdir -p "$TARGET/.local/share/tmux/plugins" || error "Failed to create tmux plugins directory"
+cd "$TARGET/.local/share/tmux/plugins"
+if [ ! -d "$TARGET/.local/share/tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm "$TARGET/.local/share/tmux/plugins/tpm" || error "Failed to clone tpm"
+else
+    echo "tpm is already installed"
+fi
