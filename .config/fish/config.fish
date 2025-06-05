@@ -115,5 +115,10 @@ if type -q rdctl; and rdctl shell true &>/dev/null
   set -gx TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
 end
 
-source "$HOME/.config/fish/fzf.fish"
-source "$HOME/.config/op/plugins.sh"
+if test -f "$HOME/.config/fish/fzf.fish"
+  source "$HOME/.config/fish/fzf.fish"
+end
+
+if test -f "$HOME/.config/op/plugins.sh"
+  source "$HOME/.config/op/plugins.sh"
+end
