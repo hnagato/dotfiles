@@ -83,8 +83,8 @@ function fzf-idea
   _fzf_open_in_dir idea $FZF_PROJECTS_ROOT
 end
 
-function fzf-code
-  _fzf_open_in_dir code $FZF_PROJECTS_ROOT
+function fzf-cursor
+  _fzf_open_in_dir cursor $FZF_PROJECTS_ROOT
 end
 
 bind \co    fzf-z-search
@@ -92,8 +92,7 @@ bind \cx\cb fzf-git-co-branch
 bind \cx\cs fzf-ssh
 bind \cx\cd fzf-docker
 bind \cx\cw fzf-tmux-windows
-bind \cx\ci fzf-idea
-bind \cx\ce fzf-code
+bind \cx\ce fzf-cursor
 # fzf_configure_bindings では複合キーを指定できない
 bind \cx\cf _fzf_search_directory
 
