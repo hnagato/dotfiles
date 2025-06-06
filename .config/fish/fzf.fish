@@ -102,3 +102,5 @@ fzf_configure_bindings --history=\cr
 
 set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"'
 set -x FZF_TMUX_OPTS '-p'
+set -x fzf_history_time_format "%Y-%m-%d %H:%M:%S"
+
