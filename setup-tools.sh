@@ -89,8 +89,6 @@ else
     ln -s "$nvim_source" "$nvim_link"
 fi
 
-echo "Setup tools completed successfully!"
-
 # Setup tpm
 echo "Setting up tpm..."
 mkdir -p "$TARGET/.local/share/tmux/plugins" || error "Failed to create tmux plugins directory"
@@ -100,3 +98,6 @@ if [ ! -d "$TARGET/.local/share/tmux/plugins/tpm" ]; then
 else
     echo "tpm is already installed"
 fi
+$TARGET/.local/share/tmux/plugins/tpm/bin/install_plugins
+
+echo "Setup tools completed successfully!"
