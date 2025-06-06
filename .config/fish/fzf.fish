@@ -98,7 +98,9 @@ bind \cx\ce fzf-code
 bind \cx\cf _fzf_search_directory
 
 # patrickf1/fzf.fish
-fzf_configure_bindings --history=\cr
+if type -q fzf_configure_bindings
+  fzf_configure_bindings --history=\cr
+end
 
 set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"'
 set -x FZF_TMUX_OPTS '-p'
