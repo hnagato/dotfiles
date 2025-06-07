@@ -122,4 +122,4 @@ end
 if test -f "$HOME/.config/op/plugins.sh"
   source "$HOME/.config/op/plugins.sh"
 end
-source ~/.local/share/gh/extensions/gh-fish/gh-copilot-alias.fish
+
