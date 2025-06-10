@@ -1,16 +1,21 @@
-function fzf-git-co-branch
+function fzf-git-branch
   if not test -d .git
     return
   end
-  set -l query (commandline)
-  git --no-pager branch -a | grep -v HEAD |
-      _fzf_wrapper --exit-0 --info=hidden --no-multi --prompt="branch> " --query="$query" \
+  set -l current_line (commandline)
+  set -l trimmed_line (string trim "$current_line")
+  set -l branch (git --no-pager branch -a | grep -v HEAD |
+      _fzf_wrapper --exit-0 --info=hidden --no-multi --prompt="branch> " \
           --preview-window="right,65%" \
           --preview "echo {} | sed -e 's/^.* //g' | xargs git lgn --color=always" |
       head -n1 |
-      read -l branch
-  if test -n $branch
-    git checkout (echo "$branch" | sed -e "s/^.* //g" -e "s#remotes/[^/]*/##")
+      sed -e "s/^.* //g" -e "s#remotes/[^/]*/##")
+  if test -n "$branch"
+    if test -z "$trimmed_line"
+      git switch "$branch"
+    else
+      commandline -i "$branch"
+    end
   end
   commandline -f repaint
 end
@@ -64,44 +69,39 @@ function fzf-tmux-windows
   commandline -f repaint
 end
 
-function _fzf_open_in_dir
-  set -f app $argv[1]
-  set -f dir (eval echo -- $argv[2])
-  set -f query (commandline)
+function fzf-project
+  set -f dir (eval echo -- $FZF_PROJECTS_ROOT)
+  set -f current_line (commandline)
+  set -f query ""
+  if not string match -q "* " "$current_line"
+    set -f words (string split " " "$current_line")
+    if test (count $words) -gt 0
+      set query $words[-1]
+    end
+  end  
   fd -d2 -td --base-directory $dir |
-      _fzf_wrapper --exit-0 --print0 --no-multi --query="$query" --prompt="$app> " \
+      _fzf_wrapper --exit-0 --print0 --no-multi --query="$query" --prompt="project> " \
           --preview-window="right,50%" \
           --preview="_fzf_preview_file $dir/{}" |
       read -l project_dir
   if [ $project_dir ]
-    commandline "$app $dir/$project_dir"
+    if test -n "$query"
+      set -f new_line (string replace -r "$query\$" "$dir/$project_dir" "$current_line")
+      commandline -r "$new_line"
+    else
+      commandline -i "$dir/$project_dir"
+    end
   end
   commandline -f repaint
 end
 
-function fzf-idea
-  _fzf_open_in_dir idea $FZF_PROJECTS_ROOT
-end
-
-function fzf-cursor
-  _fzf_open_in_dir cursor $FZF_PROJECTS_ROOT
-end
-
 bind \co    fzf-z-search
-bind \cx\cb fzf-git-co-branch
+bind \cx\cb fzf-git-branch
 bind \cx\cs fzf-ssh
 bind \cx\cd fzf-docker
 bind \cx\cw fzf-tmux-windows
-bind \cx\ce fzf-cursor
-# fzf_configure_bindings では複合キーを指定できない
-bind \cx\cf _fzf_search_directory
-
-# patrickf1/fzf.fish
-if type -q fzf_configure_bindings
-  fzf_configure_bindings --history=\cr
-end
+bind \cx\ce fzf-project
 
 set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"'
 set -x FZF_TMUX_OPTS '-p'
 set -x fzf_history_time_format "%Y-%m-%d %H:%M:%S"
-
