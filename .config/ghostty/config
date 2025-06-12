@@ -4,10 +4,6 @@
 # examples:
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
-theme = catppuccin-mocha
-# theme = flexoki-dark
-# theme = Monokai Pro
-
 font-family = UDEV Gothic NFLG
 font-size = 16
 font-feature = -dlig
