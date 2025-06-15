@@ -60,22 +60,22 @@ alias t='tmux attach-session -d || tmux new'
 alias tn='tmux new-session'
 alias vi='nvim'
 
-abbr -a ... cd ../..
-abbr -a .... cd ../../../
-abbr -a ll ls -lhavGF
-abbr -a e cursor
-abbr -a c code
-abbr -a i idea
-
-abbr -a gs  git status -sb
-abbr -a gco git checkout
-abbr -a gfa git fetch --all
-abbr -a gl  git l
-abbr -a ga  git add
-abbr -a gc  git czg ai emoji
-abbr -a gb  git branch
-abbr -a gd  git diff -ubw
-abbr -a gp  git pull
+abbr -a ...   cd ../..
+abbr -a ....  cd ../../../
+abbr -a ll    ls -lhavGF
+abbr -a e     cursor
+abbr -a c     code
+abbr -a i     idea
+abbr -a cc    claude
+abbr -a gs    git status -sb
+abbr -a gco   git checkout
+abbr -a gfa   git fetch --all
+abbr -a gl    git l
+abbr -a ga    git add
+abbr -a gc    git czg ai emoji
+abbr -a gb    git branch
+abbr -a gd    git diff -ubw
+abbr -a gp    git pull
 
 if type -q eza
   abbr -a lf eza -la --icons --git --ignore-glob .git
