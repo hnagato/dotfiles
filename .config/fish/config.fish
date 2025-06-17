@@ -42,10 +42,6 @@ if status is-interactive
     starship init fish | source
   end
 
-  if type -q fnm
-    fnm env --use-on-cd | source
-  end
-
   if type -q mise
     mise activate fish | source
   end
