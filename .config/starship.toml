@@ -1,5 +1,7 @@
-scan_timeout = 100
-command_timeout = 1000
+"$schema" = 'https://starship.rs/config-schema.json'
+
+scan_timeout = 30
+command_timeout = 200
 
 [directory]
 truncation_length = 2
