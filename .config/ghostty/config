@@ -9,7 +9,7 @@ font-size = 16
 font-feature = -dlig
 adjust-cell-height = 10%
 
-background-opacity = 0.90
+background-opacity = 0.95
 background-blur-radius = 10
 
 shell-integration-features = no-title
