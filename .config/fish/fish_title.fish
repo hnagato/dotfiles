@@ -5,6 +5,10 @@ function _fish_title_get_git_display
   set -l gwd (git rev-parse --show-toplevel 2>/dev/null)
   or return 1
 
+  if test -f "$gwd/.git"
+    return 1
+  end
+
   if test "$PWD" = "$gwd"
     basename $gwd
   else
