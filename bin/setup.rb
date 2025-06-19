@@ -34,8 +34,11 @@ class Pathname
   end
   
   def safe_symlink(target)
-    return if symlink? && readlink == target
-    unlink if exist?
+    if exist? && !symlink?
+      error "Cannot create symlink: '#{self}' exists and is not a symlink"
+    end
+    
+    unlink if symlink?
     make_symlink target
   end
   
