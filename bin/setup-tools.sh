@@ -43,8 +43,8 @@ else
     TARGET="$HOME"
 fi
 
-# Get dotfiles directory (script location)
-DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Get dotfiles directory
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 echo "Target directory: $TARGET"
 echo "Dotfiles directory: $DOTFILES"
