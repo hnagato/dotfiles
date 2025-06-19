@@ -1,6 +1,5 @@
 function fish_user_key_bindings
   bind \cs    push_line
-  bind \cg    cc_cmd
   bind \co    fzf_z_search
   bind \cx\cb fzf_git_branch
   bind \cx\cs fzf_ssh
