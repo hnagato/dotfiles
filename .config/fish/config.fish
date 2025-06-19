@@ -15,11 +15,11 @@ set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
 set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
+set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"'
+set -gx FZF_TMUX_OPTS '-p'
+set -gx fzf_history_time_format "%Y-%m-%d %H:%M:%S"
 
 # paths
-if test -d $HOME/bin
-  fish_add_path $HOME/bin
-end
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.rd/bin
 fish_add_path $JAVA_HOME/bin
@@ -84,35 +84,11 @@ function psg
   ps -ef | grep -i $argv
 end
 
-function push-line
-  set -l cl (commandline)
-  commandline -f repaint
-  if test -n (string join $cl)
-    set -g fish_buffer_stack $cl
-    commandline ''
-    commandline -f repaint
-
-    function restore_line -e fish_postexec
-      commandline $fish_buffer_stack
-      functions -e restore_line
-      set -e fish_buffer_stack
-    end
-  end
-end
-
-function fish_user_key_bindings
-  bind \cs push-line
-end
-
 # testcontainers
 if type -q rdctl; and rdctl shell true &>/dev/null
   set -gx DOCKER_HOST "unix://$HOME/.rd/docker.sock"
   set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "/var/run/docker.sock"
   set -gx TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
-end
-
-if test -f "$HOME/.config/fish/fzf.fish"
-  source "$HOME/.config/fish/fzf.fish"
 end
 
 if test -f "$HOME/.config/op/plugins.sh"
