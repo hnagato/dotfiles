@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'fileutils'
 require 'pathname'
 require 'optparse'
-
-include FileUtils::Verbose
 
 def error(msg)
   warn "ERROR: #{msg}"
@@ -38,8 +35,14 @@ class Pathname
   
   def safe_symlink(target)
     return if symlink? && readlink == target
-    rmtree if exist?
-    make_symlink(target)
+    unlink if exist?
+    make_symlink target
+  end
+  
+  def mkdir_r
+    return if exist?
+    parent.mkdir_r unless parent.exist?
+    mkdir unless exist?
   end
 end
 
@@ -51,9 +54,9 @@ OptionParser.new do |opts|
 end.parse!
 
 target = (options[:test] ? "/tmp/#{ENV['USER']}" : ENV['HOME']).to_path
-dotfiles = __FILE__.to_path.dirname
+dotfiles = __FILE__.to_path.dirname.parent
 
-mkdir_p target
+target.mkdir_r
 
 # Link dotfiles (skip special cases)
 dotfiles.glob('.*').select(&:file?).each do |file|
@@ -65,7 +68,7 @@ end
 
 # Link .config files (skip fish/nvim)
 config_dir = target/'.config'
-mkdir_p config_dir
+config_dir.mkdir_r
 
 (dotfiles/'.config').glob('*') do |file|
   next if file.basename?(/^(fish|nvim)$/)
@@ -77,9 +80,16 @@ end
 # Setup fish
 fish_dir = target/'.config/fish'
 functions_dir = fish_dir/'functions'
-[fish_dir, functions_dir].each(&method(:mkdir_p))
+[fish_dir, functions_dir].each(&:mkdir_r)
 
+# Link fish config files (excluding functions directory)
 (dotfiles/'.config/fish').glob('*').select(&:file?).each do |file|
-  link = file.basename?('fish_greeting.fish') ? functions_dir/file : fish_dir/file
+  link = fish_dir/file
+  link.safe_symlink(file)
+end
+
+# Link fish functions
+(dotfiles/'.config/fish/functions').glob('*.fish').each do |file|
+  link = functions_dir/file
   link.safe_symlink(file)
 end
