@@ -25,17 +25,18 @@ fish_add_path $HOME/.rd/bin
 fish_add_path $JAVA_HOME/bin
 
 if status is-interactive
-  if test -d /opt/homebrew
-    set HOMEBREW_HOME /opt/homebrew
-  else
-    set HOMEBREW_HOME /usr/local
-  end
+  set HOMEBREW_HOME /opt/homebrew
   if test -d $HOMEBREW_HOME/bin
     eval ($HOMEBREW_HOME/bin/brew shellenv)
     fish_add_path $HOMEBREW_HOME/bin $HOMEBREW_HOME/sbin
     if test -d $HOMEBREW_HOME/opt/mysql@8.0
       fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
     end
+  end
+  if type -q rdctl; and rdctl shell true &>/dev/null
+    set -gx DOCKER_HOST "unix://$HOME/.rd/docker.sock"
+    set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "/var/run/docker.sock"
+    set -gx TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
   end
 
   if type -q starship
@@ -82,13 +83,6 @@ end
 
 function psg
   ps -ef | grep -i $argv
-end
-
-# testcontainers
-if type -q rdctl; and rdctl shell true &>/dev/null
-  set -gx DOCKER_HOST "unix://$HOME/.rd/docker.sock"
-  set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "/var/run/docker.sock"
-  set -gx TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
 end
 
 if test -f "$HOME/.config/op/plugins.sh"
