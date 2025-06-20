@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "🔍 Running gitleaks security check..."
+if ! gitleaks protect --staged; then
+  echo "❌ Gitleaks detected potential secrets. Commit blocked."
+  exit 1
+fi
+
+GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+LOCAL_HOOK="${GIT_ROOT}/.git/hooks/pre-commit"
+
+if [ -f "$LOCAL_HOOK" ] && [ "$LOCAL_HOOK" != "$0" ]; then
+  echo "🔧 Running repository-specific pre-commit hook..."
+  if [ -x "$LOCAL_HOOK" ]; then
+    "$LOCAL_HOOK" || exit $?
+  else
+    echo "⚠️ Local hook exists but is not executable: $LOCAL_HOOK"
+  fi
+fi
+
+echo "✅ All pre-commit checks passed."
+
