@@ -96,3 +96,11 @@ end
   link = functions_dir/file
   link.safe_symlink(file)
 end
+
+# Setup .ssh
+ssh_dir = target/'.ssh'
+ssh_dir.safe_symlink(dotfiles/'.ssh')
+## chmod 600 .ssh/*
+ssh_dir.glob('*').each do |file|
+  file.chmod(0o600)
+end
