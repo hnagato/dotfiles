@@ -1,9 +1,7 @@
-# Include configurations
-[include]
-  path = ~/.config/git/delta.gitconfig
-  path = ~/.config/git/themes.gitconfig
-  path = ~/.config/git-private/config
-
+[user]
+  name = hnagato
+  email = 134620+hnagato@users.noreply.github.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyNxs7hvlujFU2mK9EqE3PcLCkuCQYf133vwSLzzSG6
 [color]
   ui = true
 [alias]
@@ -29,6 +27,16 @@
   lgn = log --graph --decorate --abbrev-commit --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)\n  %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
   lgna = lgn --all
   ls = log --stat -p -1
+[github]
+  user = hnagato
+[commit]
+  gpgsign = true
+  verbose = true
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  allowedSignersFile = ~/.ssh/allowed_signers
 [init]
   defaultBranch = main
 [core]
@@ -67,17 +75,17 @@
   autoupdate = true
 [help]
   autocorrect = 1
-
 [filter "lfs"]
   required = true
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
-
 [submodule]
   recurse = true
-
 [merge]
   tool = code
 [mergetool "code"]
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[include]
+  path = ~/.config/git/delta.gitconfig
+  path = ~/.config/git/themes.gitconfig
