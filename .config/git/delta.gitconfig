@@ -1,0 +1,37 @@
+# Delta Configuration
+# Advanced diff display settings
+
+[delta]
+  features = nord-custom
+  hyperlinks = true
+  navigate = true
+  dark = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[add.interactive]
+  useBuiltin = false
+
+[delta "nord-custom"]
+  dark = true
+  commit-decoration-style = bold box ul "#34fd50"
+  file-decoration-style = none
+  file-style = omit
+  hunk-header-decoration-style = "#6272a4" box ul
+  hunk-header-file-style = "#999999"
+  hunk-header-line-number-style = bold "#EED835"
+  hunk-header-style = file line-number syntax
+  keep-plus-minus-markers = true
+  line-numbers = true
+  line-numbers-left-style = black
+  line-numbers-minus-style = "#EE356A"
+  line-numbers-plus-style = "#13CCE7"
+  line-numbers-right-style = black
+  line-numbers-zero-style = "#999999"
+  minus-emph-style = normal "#BF0A3E"
+  minus-style = normal "#844C5C"
+  plus-emph-style = syntax "#198494"
+  plus-style = syntax "#104850"
+  side-by-side = false
+  syntax-theme = Nord
