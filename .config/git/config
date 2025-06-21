@@ -44,7 +44,7 @@
   quotepath = false
   precomposeunicode = true
   ignorecase = true
-  excludesfile = ~/.config/git-private/ignore
+  excludesfile = ~/.config/git/ignore
   hooksPath = ~/.config/git/hooks
 [branch]
   sort = -committerdate
