@@ -20,6 +20,9 @@ set -gx FZF_TMUX_OPTS '-p'
 set -gx fzf_history_time_format "%Y-%m-%d %H:%M:%S"
 
 # paths
+fish_add_path -m $HOME/.local/bin
+fish_add_path $HOME/.rd/bin
+
 if status is-interactive
   set HOMEBREW_HOME /opt/homebrew
   if test -d $HOMEBREW_HOME/bin
@@ -48,9 +51,9 @@ if status is-interactive
   end
 end
 
-fish_add_path -m $HOME/.local/bin
-fish_add_path $HOME/.rd/bin
-fish_add_path $JAVA_HOME/bin
+if test -d $HOME/.cargo/bin
+  fish_add_path $HOME/.cargo/bin
+end
 
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new' 
