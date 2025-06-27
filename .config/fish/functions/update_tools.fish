@@ -7,15 +7,7 @@ function update_tools --on-event fish_prompt
     if not test -f $lock_file
       touch $lock_file
       set -U __fish_update_tools_date $today
-
-      brew upgrade --greedy
-      mas upgrade
-      gh extension upgrade --all
-      ~/.local/share/tmux/plugins/tpm/bin/update_plugins all
-      cargo install-update -a
-      npm update -g
-      fisher update
-      fish_update_completions
+      ~/.local/bin/update
       rm -f '$lock_file'
     end
   end
