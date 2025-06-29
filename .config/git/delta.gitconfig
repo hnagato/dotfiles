@@ -2,7 +2,7 @@
 # Advanced diff display settings
 
 [delta]
-  features = nord-custom
+  features = ghostty
   hyperlinks = true
   navigate = true
   dark = true
@@ -35,3 +35,26 @@
   plus-style = syntax "#104850"
   side-by-side = false
   syntax-theme = Nord
+
+[delta "ghostty"]
+  dark = true
+  commit-decoration-style = bold box ul "#B8C477"
+  file-decoration-style = none
+  file-style = omit
+  hunk-header-decoration-style = "#88A4D3" box ul
+  hunk-header-file-style = "#EAEAEA"
+  hunk-header-line-number-style = bold "#E9BD5A"
+  hunk-header-style = file line-number syntax
+  keep-plus-minus-markers = true
+  line-numbers = true
+  line-numbers-left-style = "#666666"
+  line-numbers-minus-style = "#BF6B6B"
+  line-numbers-plus-style = "#B8C477"
+  line-numbers-right-style = "#666666"
+  line-numbers-zero-style = "#C5C8C6"
+  minus-emph-style = normal "#C45353"
+  minus-style = normal "#4D1F21"
+  plus-emph-style = bold black "#B5E655"
+  plus-style = syntax "#3A4A2A"
+  side-by-side = false
+  syntax-theme = OneHalfDark
