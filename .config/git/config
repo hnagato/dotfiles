@@ -40,7 +40,7 @@
 [init]
   defaultBranch = main
 [core]
-  pager = delta --max-line-length=$((COLUMNS - 10))
+  pager = delta
   quotepath = false
   precomposeunicode = true
   ignorecase = true
