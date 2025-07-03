@@ -1,7 +1,7 @@
 function update_tools --on-event fish_prompt
   set -l current_timestamp (date '+%s')
   set -l last_run_timestamp $__fish_update_tools_timestamp
-  set -l min_interval_seconds (math "8 * 60 * 60")
+  set -l min_interval_seconds (math "12 * 60 * 60")
 
   # Execute only on first run or when 8+ hours have passed
   if test -z "$last_run_timestamp"; or test (math "$current_timestamp - $last_run_timestamp") -ge $min_interval_seconds
