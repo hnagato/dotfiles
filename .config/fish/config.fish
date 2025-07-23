@@ -55,6 +55,11 @@ if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
 end
 
+if test -d $HOME/.bun
+    set -gx BUN_INSTALL "$HOME/.bun"
+    fish_add_path $BUN_INSTALL/bin
+end
+
 # aliases & abbrs
 alias t='tmux attach-session -d || tmux new'
 alias tn='tmux new-session'
@@ -95,3 +100,4 @@ end
 if test -f "$HOME/.claude/local/claude"
     alias claude="$HOME/.claude/local/claude"
 end
+
