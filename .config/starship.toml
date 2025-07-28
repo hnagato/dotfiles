@@ -149,6 +149,7 @@ symbol = "🅢 "
 [shell]
 fish_indicator = "󰈺"
 zsh_indicator = "󰰶"
+bash_indicator = "\ue760"
 powershell_indicator = ""
 style = "cyan bold"
 disabled = false
