@@ -13,7 +13,7 @@
 [add.interactive]
   useBuiltin = false
 
-[delta "nord-custom"]
+[delta "nord"]
   dark = true
   commit-decoration-style = bold box ul "#34fd50"
   file-decoration-style = none
@@ -60,7 +60,6 @@
   syntax-theme = OneHalfDark
 
 [delta "kanagawa-dragon"]
-  # refs: https://github.com/rebelot/kanagawa.nvim (Kanagawa Dragon variant)
   dark = true
   commit-decoration-style = bold box ul "#c4b28a"
   file-decoration-style = none
@@ -81,4 +80,4 @@
   plus-emph-style = bold "#0d0c0c" "#8a9a7b"
   plus-style = "#c5c9c5" "#253326"
   side-by-side = false
-  syntax-theme = kanagawa-dragon
+  syntax-theme = gruvbox-dark
