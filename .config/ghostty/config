@@ -5,10 +5,12 @@
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
 theme = Kanagawa Dragon
+font-family = TX-02 SemiCondensed
 font-family = UDEV Gothic NFLG
-font-size = 16
+font-size = 15
 font-feature = -dlig
-adjust-cell-height = 10%
+adjust-cell-height = 5%
+# adjust-cell-width = -1
 
 background-opacity = 0.95
 background-blur-radius = 10
