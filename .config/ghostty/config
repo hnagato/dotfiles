@@ -13,7 +13,7 @@ font-style-italic = Oblique
 font-style-bold-italic = ExtraBold Oblique
 font-size = 15
 font-feature = -dlig
-adjust-cell-height = 5%
+# adjust-cell-height = 5%
 # adjust-cell-width = -1
 
 background-opacity = 0.95
