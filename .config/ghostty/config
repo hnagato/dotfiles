@@ -7,6 +7,10 @@
 theme = Kanagawa Dragon
 font-family = TX-02 SemiCondensed
 font-family = UDEV Gothic NFLG
+font-style = Regular
+font-style-bold = ExtraBold
+font-style-italic = Oblique
+font-style-bold-italic = ExtraBold Oblique
 font-size = 15
 font-feature = -dlig
 adjust-cell-height = 5%
