@@ -96,8 +96,3 @@ end
 if test -f "$HOME/.config/op/plugins.sh"
     source "$HOME/.config/op/plugins.sh"
 end
-
-if test -f "$HOME/.claude/local/claude"
-    alias claude="$HOME/.claude/local/claude"
-end
-
