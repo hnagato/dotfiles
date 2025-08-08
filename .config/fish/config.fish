@@ -19,6 +19,9 @@ set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=90% --preview-window
 set -gx FZF_TMUX_OPTS -p
 set -gx fzf_history_time_format "%Y-%m-%d %H:%M:%S"
 
+# lazygit
+set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
+
 # paths
 fish_add_path -m $HOME/.local/bin
 fish_add_path $HOME/.rd/bin
@@ -81,6 +84,7 @@ abbr -a gc git czg ai emoji
 abbr -a gb git branch
 abbr -a gd git diff -ubw
 abbr -a gp git pull
+abbr -a lg lazygit
 
 if type -q eza
     abbr -a lf eza -la --icons --git --ignore-glob .git
@@ -96,3 +100,4 @@ end
 if test -f "$HOME/.config/op/plugins.sh"
     source "$HOME/.config/op/plugins.sh"
 end
+
