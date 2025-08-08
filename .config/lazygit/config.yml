@@ -1,0 +1,13 @@
+customCommands:
+  - key: "<c-g>"
+    context: "commitMessage"
+    command: "ghcc"
+    description: "Generate AI commit message"
+    loadingText: "Generating commit message..."
+    output: popup
+
+git:
+  paging:
+    pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
+    useConfig: false
+
