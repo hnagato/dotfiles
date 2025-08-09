@@ -29,6 +29,8 @@ focus-follows-mouse = true
 window-width = 120
 window-height = 50
 
+keybind = ctrl+super+[=write_screen_file:paste
+
 keybind = ctrl+super+h=goto_split:left
 keybind = ctrl+super+j=goto_split:bottom
 keybind = ctrl+super+k=goto_split:top
