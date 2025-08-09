@@ -1,13 +1,44 @@
 customCommands:
-  - key: "<c-g>"
-    context: "commitMessage"
-    command: "ghcc"
-    description: "Generate AI commit message"
-    loadingText: "Generating commit message..."
-    output: popup
-
+  - key: "C"
+    context: "files"
+    command: "czg ai"
+    output: terminal
+    description: "AI generated commit with czg"
 git:
   paging:
     pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
     useConfig: false
+  branchLogCmd: git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' {{branchName}} --
+  allBranchesLogCmds:
+    - git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' --
 
+gui:
+  theme:
+    activeBorderColor:
+      - "#c4746e"
+    inactiveBorderColor:
+      - "#625e5a"
+    selectedLineBgColor:
+      - "#2d2a2e"
+    selectedRangeBgColor:
+      - "#2d2a2e"
+    cherryPickedCommitBgColor:
+      - "#c4746e"
+    cherryPickedCommitFgColor:
+      - "#0d0c0c"
+    unstagedChangesColor:
+      - "#c4746e"
+    defaultFgColor:
+      - "#c5c9c5"
+    searchingActiveBorderColor:
+      - "#8ba4b0"
+    optionsTextColor:
+      - "#8ea4a2"
+    # reflog
+    markedBaseCommitBgColor:
+      - "#8a9a7b"
+    markedBaseCommitFgColor:
+      - "#0d0c0c"
+  # reflog authors
+  authorColors:
+    "hnagato": "#8ea4a2"
