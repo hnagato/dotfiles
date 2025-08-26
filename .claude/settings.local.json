@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(fish:*)",
+      "mcp__context7__resolve-library-id",
+      "Bash(markdownlint-cli2:*)",
+      "mcp__context7__get-library-docs",
+      "Bash(nvim:*)",
+      "Bash(time fish:*)",
+      "Bash(time:*)",
+      "Bash(/usr/bin/time:*)",
+      "Bash(strace:*)",
+      "Bash(true)",
+      "mcp__repomix__pack_remote_repository",
+      "mcp__repomix__read_repomix_output",
+      "Bash(/dev/null)",
+      "mcp__repomix__pack_codebase",
+      "mcp__repomix__grep_repomix_output",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "WebFetch(domain:semaphore.io)",
+      "WebFetch(domain:gist.github.com)",
+      "WebFetch(domain:dev.to)",
+      "Bash(./bin/setup.rb:*)",
+      "WebSearch",
+      "Read(//Users/hnagato/Sync/dotfiles.private/**)",
+      "Read(//Users/hnagato/Sync/dotfiles.private/**)",
+      "Bash(brew install:*)",
+      "Bash(stow:*)"
+    ],
+    "deny": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "sequential-thinking"
+  ]
+}

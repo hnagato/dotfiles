@@ -1,0 +1,24 @@
+# Stow ignore patterns
+# Documentation and project files
+README\.md
+PLAN\.md
+TODO\.md
+STOW_DESIGN\.md
+
+# Git files
+\.git
+\.gitmodules
+
+# Legacy files
+bin/setup\.rb
+
+# Claude Code artifacts
+\.claude
+
+# macOS files
+\.DS_Store
+
+# Temporary and backup files
+.*~
+.*\.bak
+.*\.tmp
