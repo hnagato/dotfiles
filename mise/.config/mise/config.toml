@@ -1,0 +1,22 @@
+[tools]
+bun = "1.2.19"
+deno = "latest"
+go = "latest"
+java = "liberica-21.0.6+10"
+kotlin = "latest"
+node = "lts"
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@biomejs/biome" = "latest"
+"npm:markdownlint-cli" = "latest"
+"npm:markdownlint-cli2" = "latest"
+"npm:textlint" = "latest"
+rust = "stable"
+uv = "latest"
+
+[hooks]
+enter = "mise i -q"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
+experimental = true
+
