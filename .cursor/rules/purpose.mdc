@@ -1,0 +1,76 @@
+---
+description: dotfiles プロジェクトの目的と構造の理解
+globs:
+alwaysApply: true
+---
+
+# dotfiles プロジェクトの概要
+
+## 目的
+
+dotfiles を管理するためのプロジェクトを、独自のスクリプトでの管理から GNU stow を使った管理に移行することが目的です。
+
+## プロジェクト構造
+
+```
+dotfiles/
+├── bin/
+│   ├── setup.rb           # Ruby による dotfiles 展開スクリプト
+│   └── setup-tools.sh     # 外部ツール・プラグインセットアップスクリプト
+├── .config/               # アプリケーション設定ファイル群
+│   ├── fish/              # fish shell 設定
+│   ├── git/               # git 設定
+│   ├── tmux/              # tmux 設定
+│   ├── karabiner/         # karabiner 設定
+│   ├── lazygit/           # lazygit 設定
+│   ├── starship.toml      # starship プロンプト設定
+│   └── その他各種設定ファイル
+├── .ssh/                  # SSH 設定ファイル群
+├── .zshrc, .zshenv        # zsh 設定
+├── .tigrc, .inputrc       # その他設定ファイル
+└── README.md
+```
+
+## 現在の処理内容
+
+### setup.rb の展開処理
+
+1. **オプション処理**
+   - `-t/--test`: テストモード（/tmp/$USER を使用）
+   - `-h/--help`: ヘルプ表示
+
+2. **シンボリックリンク作成**
+   - dotfiles のトップレベルファイル → $HOME
+   - .git*, .config は除外
+   - .config 内のファイル → $HOME/.config/ （fish, nvim は除外）
+   - fish 設定の個別処理（config.fish, functions/*.fish）
+   - .ssh の特別処理（権限600設定）
+
+3. **カスタムメソッド**
+   - `safe_symlink`: 安全なシンボリックリンク作成
+   - `mkdir_r`: 再帰的ディレクトリ作成
+
+### setup-tools.sh の後処理
+
+1. **Fisher プラグイン管理**
+   - fish プラグインマネージャー fisher のインストール・更新
+
+2. **nvim サブモジュール処理**
+   - git サブモジュール初期化・更新
+   - nvim 設定へのシンボリックリンク作成
+
+3. **tpm セットアップ**
+   - Tmux Plugin Manager のクローン・インストール
+
+## 特徴と課題
+
+### 現在の利点
+- テストモードでの安全な検証
+- 細かい権限設定（.ssh）
+- 外部依存ツールの自動セットアップ
+
+### 課題
+- Ruby への依存
+- 複雑なカスタムロジック
+- GNU stow のようなシンプルで標準的なツールへの移行希望
+
