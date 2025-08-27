@@ -90,7 +90,7 @@ validate_packages() {
             invalid_packages+=("$package")
         fi
     done
-    
+
     if [ ${#invalid_packages[@]} -gt 0 ]; then
         log_error "以下のパッケージが見つかりません:"
         printf '  - %s\n' "${invalid_packages[@]}"
@@ -212,7 +212,7 @@ if [ "$DRY_RUN" = true ]; then
     log "Dry-run 完了。上記のコマンドが実行される予定です。"
 else
     log "dotfiles セットアップが完了しました!"
-    
+
     if [ "$TEST_MODE" = true ]; then
         log "テスト環境での結果を確認してください: $TARGET"
         log "問題がなければ、テストモードなしで実行してください"
