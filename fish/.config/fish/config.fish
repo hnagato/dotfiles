@@ -18,6 +18,7 @@ set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
 set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"'
 set -gx FZF_TMUX_OPTS -p
 set -gx fzf_history_time_format "%Y-%m-%d %H:%M:%S"
+set -gx FZF_PROJECTS_ROOT ~/projects
 
 # lazygit
 set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
