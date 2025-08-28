@@ -25,11 +25,3 @@ indent_style = space
 indent_size = 2
 trim_trailing_whitespace = false
 
-# Python: 4 spaces (PEP 8 standard)
-[*.py]
-indent_style = space
-indent_size = 4
-
-# Makefile: tabs required
-[Makefile]
-indent_style = tab
