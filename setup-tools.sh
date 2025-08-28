@@ -8,7 +8,7 @@ error() {
 }
 
 show_help() {
-  cat << EOF
+  cat <<EOF
 Usage: $0 [options]
 Options:
   -t, --test      Setup in /tmp instead of \$HOME
@@ -20,15 +20,15 @@ EOF
 TEST_MODE=false
 while [[ $# -gt 0 ]]; do
   case $1 in
-    -t|--test)
+  -t | --test)
     TEST_MODE=true
     shift
     ;;
-    -h|--help)
+  -h | --help)
     show_help
     exit 0
     ;;
-    *)
+  *)
     echo "Unknown option: $1" >&2
     show_help
     exit 1
@@ -59,9 +59,6 @@ if [ "$TEST_MODE" = true ]; then
 else
   fish -c "$fisher_cmd" || error "fisher failed"
 fi
-
-# nvim is now managed via stow as a regular package
-echo "nvim configuration is managed via stow - use ./setup.sh nvim"
 
 # Setup tpm
 echo "Setting up tpm..."
