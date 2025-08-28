@@ -3,42 +3,99 @@
 
 set -euo pipefail
 
-# Resolve symlink to get actual script location
-SCRIPT_REAL_PATH="$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || realpath "${BASH_SOURCE[0]}" 2>/dev/null || echo "${BASH_SOURCE[0]}")"
-SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_REAL_PATH")" && pwd)"
-NVIM_DIR="$SCRIPT_DIR"
-UPSTREAM_REPO="https://github.com/nvim-lua/kickstart.nvim.git"
-TEMP_DIR="/tmp/nvim-upstream-sync-$$"
-SYNC_METADATA_DIR="$NVIM_DIR/.nvim-upstream-sync"
+# === CONSTANTS ===
+readonly SCRIPT_REAL_PATH="$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || realpath "${BASH_SOURCE[0]}" 2>/dev/null || echo "${BASH_SOURCE[0]}")"
+readonly SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_REAL_PATH")" && pwd)"
+readonly NVIM_DIR="$SCRIPT_DIR"
+readonly UPSTREAM_REPO="https://github.com/nvim-lua/kickstart.nvim.git"
+readonly TEMP_DIR="/tmp/nvim-upstream-sync-$$"
+readonly SYNC_METADATA_DIR="$NVIM_DIR/.nvim-upstream-sync"
+
+# File paths
+readonly KICKSTART_INIT="$NVIM_DIR/lua/kickstart/init.lua"
+readonly UPSTREAM_INIT="$TEMP_DIR/init.lua"
+readonly UPSTREAM_PLUGINS="$TEMP_DIR/lua/kickstart/plugins"
+readonly UPSTREAM_HEALTH="$TEMP_DIR/lua/kickstart/health.lua"
+readonly LOCAL_PLUGINS="$NVIM_DIR/lua/kickstart/plugins"
+readonly LOCAL_HEALTH="$NVIM_DIR/lua/kickstart/health.lua"
+readonly LAST_COMMIT_FILE="$SYNC_METADATA_DIR/last-commit"
+readonly LAST_SYNC_FILE="$SYNC_METADATA_DIR/last-sync"
+
+# Colors
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[0;33m'
+readonly BLUE='\033[0;34m'
+readonly NC='\033[0m'
 
 # Options
 DRY_RUN=false
 FORCE=false
-VERBOSE=false
 
-# Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-
+# === UTILITY FUNCTIONS ===
 log_info() { echo -e "${BLUE}[INFO]${NC} $*"; }
 log_success() { echo -e "${GREEN}[SUCCESS]${NC} $*"; }
 log_warn() { echo -e "${YELLOW}[WARN]${NC} $*"; }
 log_error() { echo -e "${RED}[ERROR]${NC} $*" >&2; }
 
+execute_with_dry_run() {
+  local description="$1"
+  local command="$2"
+
+  if [[ "$DRY_RUN" == true ]]; then
+    log_info "[DRY RUN] Would $description"
+    return 0
+  fi
+
+  eval "$command"
+}
+
+ensure_file_exists() {
+  local file_path="$1"
+  local description="$2"
+
+  if [[ ! -f "$file_path" ]]; then
+    log_error "$description not found: $file_path"
+    return 1
+  fi
+  return 0
+}
+
+sync_file() {
+  local src="$1"
+  local dest="$2"
+  local description="$3"
+
+  ensure_file_exists "$src" "Source file" || return 1
+
+  execute_with_dry_run "$description" "cp '$src' '$dest'"
+  [[ "$DRY_RUN" == false ]] && log_success "Updated $dest"
+}
+
+sync_directory() {
+  local src="$1"
+  local dest="$2"
+  local description="$3"
+
+  if [[ ! -d "$src" ]]; then
+    log_warn "Source directory not found: $src"
+    return 0
+  fi
+
+  execute_with_dry_run "$description" "rm -rf '$dest' && cp -r '$src' '$(dirname "$dest")'"
+  [[ "$DRY_RUN" == false ]] && log_success "Updated $dest"
+}
+
+# === ARGUMENT PARSING ===
 show_help() {
   cat <<EOF
 update.sh: Sync nvim config with upstream kickstart.nvim
 
-Usage:
-    update.sh [OPTIONS]
+Usage: update.sh [--dry-run] [--force] [-h|--help]
 
 Options:
     --dry-run     Show what would be done without making changes
     --force       Force sync even if no upstream changes detected
-    --verbose     Show detailed output
     -h, --help    Show this help message
 
 Description:
@@ -50,8 +107,7 @@ Description:
     2. Compares current state with upstream
     3. Updates lua/kickstart/init.lua and lua/kickstart/plugins/
     4. Preserves lua/custom/ directory completely
-    5. Updates sync metadata with commit info
-
+    5. Automatically restores custom plugin imports
 EOF
 }
 
@@ -64,10 +120,6 @@ parse_args() {
       ;;
     --force)
       FORCE=true
-      shift
-      ;;
-    --verbose)
-      VERBOSE=true
       shift
       ;;
     -h | --help)
@@ -83,180 +135,143 @@ parse_args() {
   done
 }
 
-# Check if sync is needed by comparing commit hashes
-check_sync_needed() {
-  if [[ "$FORCE" == true ]]; then
-    return 0 # Force sync
-  fi
-
-  # Get current upstream commit
-  local upstream_commit
-  upstream_commit=$(git ls-remote "$UPSTREAM_REPO" HEAD | cut -f1)
-
-  # Get last synced commit
-  local last_commit=""
-  if [[ -f "$SYNC_METADATA_DIR/last-commit" ]]; then
-    last_commit=$(cat "$SYNC_METADATA_DIR/last-commit")
-  fi
-
-  if [[ "$upstream_commit" == "$last_commit" ]]; then
-    log_info "Already up to date with upstream (commit: ${upstream_commit:0:8})"
-    return 1 # No sync needed
-  else
-    log_info "Upstream changes detected:"
-    log_info "  Last synced: ${last_commit:0:8}"
-    log_info "  Upstream:    ${upstream_commit:0:8}"
-    return 0 # Sync needed
-  fi
+# === SYNC LOGIC ===
+get_upstream_commit() {
+  git ls-remote "$UPSTREAM_REPO" HEAD | cut -f1
 }
 
-# Clone upstream repository
-fetch_upstream() {
-  log_info "Fetching upstream kickstart.nvim..."
+get_last_synced_commit() {
+  [[ -f "$LAST_COMMIT_FILE" ]] && cat "$LAST_COMMIT_FILE" || echo ""
+}
 
-  if [[ "$DRY_RUN" == true ]]; then
-    log_info "[DRY RUN] Would clone $UPSTREAM_REPO to $TEMP_DIR"
+check_sync_needed() {
+  if [[ "$FORCE" == true ]]; then
     return 0
   fi
 
-  git clone --depth 1 "$UPSTREAM_REPO" "$TEMP_DIR"
-  log_success "Upstream repository fetched"
+  local upstream_commit=$(get_upstream_commit)
+  local last_commit=$(get_last_synced_commit)
+
+  if [[ "$upstream_commit" == "$last_commit" ]]; then
+    log_info "Already up to date with upstream (commit: ${upstream_commit:0:8})"
+    return 1
+  fi
+
+  log_info "Upstream changes detected:"
+  log_info "  Last synced: ${last_commit:0:8}"
+  log_info "  Upstream:    ${upstream_commit:0:8}"
+  return 0
 }
 
-# Sync kickstart content while preserving custom
+fetch_upstream() {
+  log_info "Fetching upstream kickstart.nvim..."
+  execute_with_dry_run "clone $UPSTREAM_REPO to $TEMP_DIR" \
+    "git clone --depth 1 '$UPSTREAM_REPO' '$TEMP_DIR'"
+  [[ "$DRY_RUN" == false ]] && log_success "Upstream repository fetched"
+}
+
+sync_init_file() {
+  sync_file "$UPSTREAM_INIT" "$KICKSTART_INIT" "sync upstream init.lua to lua/kickstart/init.lua"
+}
+
+sync_plugins_dir() {
+  sync_directory "$UPSTREAM_PLUGINS" "$LOCAL_PLUGINS" "sync upstream plugins directory"
+}
+
+sync_health_file() {
+  [[ -f "$UPSTREAM_HEALTH" ]] && sync_file "$UPSTREAM_HEALTH" "$LOCAL_HEALTH" "sync upstream health.lua"
+}
+
 sync_kickstart_content() {
   log_info "Syncing kickstart content..."
 
   if [[ "$DRY_RUN" == true ]]; then
-    log_info "[DRY RUN] Would sync upstream init.lua to lua/kickstart/init.lua"
-    log_info "[DRY RUN] Would sync upstream lua/kickstart/plugins/ to lua/kickstart/plugins/"
-    log_info "[DRY RUN] Would sync upstream lua/kickstart/health.lua to lua/kickstart/health.lua"
+    log_info "[DRY RUN] Would sync all kickstart files"
     return 0
   fi
 
-  # Sync main init.lua to lua/kickstart/init.lua
-  if [[ -f "$TEMP_DIR/init.lua" ]]; then
-    cp "$TEMP_DIR/init.lua" "$NVIM_DIR/lua/kickstart/init.lua"
-    log_success "Updated lua/kickstart/init.lua"
-  fi
-
-  # Sync kickstart plugins directory
-  if [[ -d "$TEMP_DIR/lua/kickstart/plugins" ]]; then
-    rm -rf "$NVIM_DIR/lua/kickstart/plugins"
-    cp -r "$TEMP_DIR/lua/kickstart/plugins" "$NVIM_DIR/lua/kickstart/"
-    log_success "Updated lua/kickstart/plugins/"
-  fi
-
-  # Sync health.lua if it exists
-  if [[ -f "$TEMP_DIR/lua/kickstart/health.lua" ]]; then
-    cp "$TEMP_DIR/lua/kickstart/health.lua" "$NVIM_DIR/lua/kickstart/"
-    log_success "Updated lua/kickstart/health.lua"
-  fi
+  sync_init_file
+  sync_plugins_dir
+  sync_health_file
 }
 
-# Update metadata with sync information
+save_commit_hash() {
+  local commit_hash=$(cd "$TEMP_DIR" && git rev-parse HEAD)
+  echo "$commit_hash" >"$LAST_COMMIT_FILE"
+  echo "$commit_hash"
+}
+
 update_metadata() {
   log_info "Updating sync metadata..."
 
-  if [[ "$DRY_RUN" == true ]]; then
-    log_info "[DRY RUN] Would update sync metadata"
-    return 0
-  fi
+  execute_with_dry_run "update sync metadata" "
+        mkdir -p '$SYNC_METADATA_DIR' &&
+        date -Iseconds > '$LAST_SYNC_FILE'
+    "
 
-  mkdir -p "$SYNC_METADATA_DIR"
-
-  # Get upstream commit hash
-  local upstream_commit
-  upstream_commit=$(cd "$TEMP_DIR" && git rev-parse HEAD)
-
-  # Save metadata
-  echo "$upstream_commit" >"$SYNC_METADATA_DIR/last-commit"
-  date -Iseconds >"$SYNC_METADATA_DIR/last-sync"
-
-  # Save upstream version info
-  if [[ -f "$TEMP_DIR/README.md" ]]; then
-    head -5 "$TEMP_DIR/README.md" >"$SYNC_METADATA_DIR/upstream-info.txt"
-  fi
-
-  log_success "Metadata updated (commit: ${upstream_commit:0:8})"
-}
-
-# Cleanup temporary directory
-cleanup() {
-  if [[ -d "$TEMP_DIR" ]]; then
-    rm -rf "$TEMP_DIR"
-    [[ "$VERBOSE" == true ]] && log_info "Cleaned up temporary directory"
+  if [[ "$DRY_RUN" == false ]]; then
+    local commit_hash=$(save_commit_hash)
+    log_success "Metadata updated (commit: ${commit_hash:0:8})"
   fi
 }
 
-# Restore custom plugin import after upstream sync
 restore_custom_plugins() {
   log_info "Restoring custom plugin imports..."
 
-  local kickstart_init="$NVIM_DIR/lua/kickstart/init.lua"
+  ensure_file_exists "$KICKSTART_INIT" "kickstart init.lua" || return 1
 
-  if [[ "$DRY_RUN" == true ]]; then
-    log_info "[DRY RUN] Would uncomment { import = 'custom.plugins' } in $kickstart_init"
+  if ! grep -q "-- { import = 'custom.plugins' }" "$KICKSTART_INIT"; then
+    log_warn "Custom plugin import line not found or already active"
     return 0
   fi
 
-  if [[ -f "$kickstart_init" ]]; then
-    # Use sed to uncomment the custom.plugins import line
-    if grep -q "-- { import = 'custom.plugins' }" "$kickstart_init"; then
-      sed -i.bak "s/^[[:space:]]*-- { import = 'custom\.plugins' },/  { import = 'custom.plugins' },/" "$kickstart_init"
-      rm -f "$kickstart_init.bak" # Clean up backup file
-      log_success "Custom plugin import restored"
-    else
-      log_warn "Custom plugin import line not found or already active"
-    fi
-  else
-    log_error "kickstart init.lua not found: $kickstart_init"
-  fi
+  execute_with_dry_run "uncomment { import = 'custom.plugins' } in $KICKSTART_INIT" "
+        sed -i.bak 's/^[[:space:]]*-- { import = '\''custom\.plugins'\'' },/  { import = '\''custom.plugins'\'' },/' '$KICKSTART_INIT' &&
+        rm -f '$KICKSTART_INIT.bak'
+    "
+
+  [[ "$DRY_RUN" == false ]] && log_success "Custom plugin import restored"
 }
 
-# Show sync summary
 show_summary() {
   log_success "Nvim upstream sync completed successfully!"
   echo
-  log_info "Summary:"
   echo "  ✅ Kickstart content updated from upstream"
   echo "  ✅ Custom configuration preserved"
-  echo "  ✅ Sync metadata updated"
+  echo "  ✅ Custom plugins automatically restored"
   echo
   log_info "File structure:"
   echo "  📁 lua/kickstart/     ← Upstream content"
   echo "  📁 lua/custom/        ← Your customizations"
   echo "  📄 init.lua          ← Integration layer"
   echo "  🔧 update.sh         ← This sync script"
-  echo
-  if [[ -f "$SYNC_METADATA_DIR/last-commit" ]]; then
-    local last_commit
-    last_commit=$(cat "$SYNC_METADATA_DIR/last-commit")
+
+  if [[ -f "$LAST_COMMIT_FILE" ]]; then
+    local last_commit=$(cat "$LAST_COMMIT_FILE")
     echo "  🔗 Synced to: ${last_commit:0:8}"
   fi
 }
 
-# Main execution
+cleanup() {
+  [[ -d "$TEMP_DIR" ]] && rm -rf "$TEMP_DIR"
+}
+
+# === MAIN EXECUTION ===
 main() {
   parse_args "$@"
 
   log_info "Starting nvim upstream sync"
   log_info "Target directory: $NVIM_DIR"
 
-  if [[ "$DRY_RUN" == true ]]; then
-    log_warn "DRY RUN MODE - no changes will be made"
-  fi
+  [[ "$DRY_RUN" == true ]] && log_warn "DRY RUN MODE - no changes will be made"
 
-  # Set up cleanup trap
   trap cleanup EXIT
 
-  # Check if sync is needed
   if ! check_sync_needed; then
     log_info "No sync required"
     return 0
   fi
 
-  # Perform sync
   fetch_upstream
   sync_kickstart_content
   update_metadata
@@ -269,5 +284,4 @@ main() {
   fi
 }
 
-# Execute main function
 main "$@"
