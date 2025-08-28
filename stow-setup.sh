@@ -11,8 +11,17 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# デフォルトパッケージリスト
-DEFAULT_PACKAGES=(shell git fish tmux karabiner ssh bat ghostty lazygit mise starship onepassword misc)
+# パッケージ自動発見
+discover_packages() {
+    find . -maxdepth 1 -type d -name '[^.]*' \
+        -exec sh -c 'test -n "$(find "$1" -name ".*" -o -name ".config" 2>/dev/null | head -1)"' _ {} \; \
+        -print | sed 's|^\./||' | sort
+}
+
+# 全利用可能パッケージを取得
+get_all_packages() {
+    discover_packages
+}
 
 # ヘルプ表示
 show_help() {
@@ -27,21 +36,6 @@ GNU Stow ベースの dotfiles セットアップスクリプト
     -l, --list      利用可能なパッケージを表示
     -h, --help      このヘルプを表示
 
-パッケージ:
-    shell       シェル関連設定 (.zshrc, .zshenv, .inputrc)
-    git         Git 関連設定
-    fish        Fish shell 専用設定
-    tmux        Tmux 設定とプラグイン
-    karabiner   キーボード設定 (Karabiner)
-    ssh         SSH 設定 (権限設定含む)
-    bat         bat 設定とテーマ
-    ghostty     Ghostty ターミナル設定
-    lazygit     Lazygit Git TUI 設定
-    mise        Mise ツールバージョン管理設定
-    starship    Starship プロンプト設定
-    onepassword 1Password SSH agent 設定
-    misc        その他の設定ファイル (.tigrc, .gnupg)
-
 例:
     $0                      # 全パッケージをインストール
     $0 shell git fish       # 指定したパッケージのみインストール
@@ -53,7 +47,7 @@ EOF
 # パッケージリスト表示
 show_packages() {
     echo "利用可能なパッケージ:"
-    for package in "${DEFAULT_PACKAGES[@]}"; do
+    get_all_packages | while read -r package; do
         echo "  - $package"
     done
 }
@@ -85,8 +79,14 @@ check_stow() {
 # パッケージの存在確認
 validate_packages() {
     local invalid_packages=()
+    local all_packages=""
+    
+    while IFS= read -r package; do
+        all_packages="$all_packages $package "
+    done < <(get_all_packages)
+    
     for package in "$@"; do
-        if [ ! -d "$package" ]; then
+        if [[ ! "$all_packages" =~ " $package " ]]; then
             invalid_packages+=("$package")
         fi
     done
@@ -94,6 +94,7 @@ validate_packages() {
     if [ ${#invalid_packages[@]} -gt 0 ]; then
         log_error "以下のパッケージが見つかりません:"
         printf '  - %s\n' "${invalid_packages[@]}"
+        echo
         show_packages
         exit 1
     fi
@@ -138,14 +139,15 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# パッケージリスト（引数で指定されていれば使用）
-PACKAGES=("$@")
-if [ ${#PACKAGES[@]} -eq 0 ]; then
-    PACKAGES=("${DEFAULT_PACKAGES[@]}")
+# パッケージリスト決定
+if [ $# -eq 0 ]; then
+    PACKAGES=()
+    while IFS= read -r package; do
+        PACKAGES+=("$package")
+    done < <(get_all_packages)
+else
+    PACKAGES=("$@")
 fi
-
-# dotfiles ディレクトリに移動
-cd "$(dirname "$0")/.."
 
 # 前処理
 log "GNU Stow dotfiles セットアップを開始します"
@@ -181,7 +183,7 @@ for package in "${PACKAGES[@]}"; do
     fi
 done
 
-# 特殊な後処理
+# 特殊な後処理（最小限）
 if [[ " ${PACKAGES[*]} " =~ " ssh " ]]; then
     if [ "$DRY_RUN" = true ]; then
         echo "Would set SSH permissions: chmod 700 $TARGET/.ssh && chmod 600 $TARGET/.ssh/*"
@@ -192,27 +194,12 @@ if [[ " ${PACKAGES[*]} " =~ " ssh " ]]; then
     fi
 fi
 
-# fish の特殊処理：functions/ ディレクトリの個別ファイルリンクを保証
-if [[ " ${PACKAGES[*]} " =~ " fish " ]]; then
-    if [ "$DRY_RUN" = true ]; then
-        echo "Would ensure fish functions directory structure"
-    else
-        log "Ensuring fish functions directory structure..."
-        # functions/ ディレクトリが存在しない場合作成
-        mkdir -p "$TARGET/.config/fish/functions"
-        # stow の tree folding を防止するための制御ファイル
-        if [ ! -f "$TARGET/.config/fish/functions/.stow-local" ]; then
-            touch "$TARGET/.config/fish/functions/.stow-local"
-        fi
-    fi
-fi
-
 # 完了メッセージ
 if [ "$DRY_RUN" = true ]; then
     log "Dry-run 完了。上記のコマンドが実行される予定です。"
 else
     log "dotfiles セットアップが完了しました!"
-
+    
     if [ "$TEST_MODE" = true ]; then
         log "テスト環境での結果を確認してください: $TARGET"
         log "問題がなければ、テストモードなしで実行してください"
@@ -221,10 +208,9 @@ else
     fi
 fi
 
-# nvim は git submodule として別途管理される
-# setup-tools.sh で処理される予定
+# 外部ツールのセットアップ案内
 if [ "$DRY_RUN" = false ] && [ "$TEST_MODE" = false ]; then
-    if [ -f "bin/legacy/setup-tools.sh" ]; then
-        log "外部ツールのセットアップは bin/legacy/setup-tools.sh を実行してください"
+    if [ -f "setup-tools.sh" ]; then
+        log "外部ツールのセットアップは ./setup-tools.sh を実行してください"
     fi
 fi
