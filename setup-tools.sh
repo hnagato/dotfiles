@@ -60,34 +60,8 @@ else
   fish -c "$fisher_cmd" || error "fisher failed"
 fi
 
-# Setup nvim submodule
-echo "Setting up nvim submodule..."
-cd "$DOTFILES"
-
-nvim_git="$DOTFILES/.config/nvim/.git"
-if [ ! -e "$nvim_git" ]; then
-  git submodule init .config/nvim || error "submodule init failed"
-  git submodule update .config/nvim || error "submodule update failed"
-fi
-
-cd "$DOTFILES/.config/nvim"
-if ! git pull origin main 2>/dev/null; then
-  git pull origin master || error "nvim pull failed"
-fi
-
-# Create nvim symlink
-nvim_link="$TARGET/.config/nvim"
-nvim_source="$DOTFILES/.config/nvim"
-
-if [ -L "$nvim_link" ] && [ "$(readlink "$nvim_link")" = "$nvim_source" ]; then
-  echo "nvim link already exists and is correct"
-else
-  echo "Creating nvim symlink..."
-  if [ -e "$nvim_link" ]; then
-    rm -rf "$nvim_link"
-  fi
-  ln -s "$nvim_source" "$nvim_link"
-fi
+# nvim is now managed via stow as a regular package
+echo "nvim configuration is managed via stow - use ./setup.sh nvim"
 
 # Setup tpm
 echo "Setting up tpm..."
@@ -99,5 +73,8 @@ else
   echo "tpm is already installed"
 fi
 $TARGET/.local/share/tmux/plugins/tpm/bin/install_plugins
+
+# SSH permissions setup
+[ -d "$TARGET/.ssh" ] && chmod 700 "$TARGET/.ssh" && find "$TARGET/.ssh" -type f -exec chmod 600 {} \;
 
 echo "Setup tools completed successfully!"
