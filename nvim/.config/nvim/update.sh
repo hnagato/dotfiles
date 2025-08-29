@@ -220,13 +220,13 @@ restore_custom_plugins() {
 
   ensure_file_exists "$KICKSTART_INIT" "kickstart init.lua" || return 1
 
-  if ! grep -q "-- { import = 'custom.plugins' }" "$KICKSTART_INIT"; then
+  if ! grep -qF -- "-- { import = 'custom.plugins' }" "$KICKSTART_INIT"; then
     log_warn "Custom plugin import line not found or already active"
     return 0
   fi
 
   execute_with_dry_run "uncomment { import = 'custom.plugins' } in $KICKSTART_INIT" "
-        sed -i.bak 's/^[[:space:]]*-- { import = '\''custom\.plugins'\'' },/  { import = '\''custom.plugins'\'' },/' '$KICKSTART_INIT' &&
+        sed -i.bak 's/^[[:space:]]*--[[:space:]]*{[[:space:]]*import[[:space:]]*=[[:space:]]*'\''custom\.plugins'\''[[:space:]]*},/  { import = '\''custom.plugins'\'' },/' '$KICKSTART_INIT' &&
         rm -f '$KICKSTART_INIT.bak'
     "
 
