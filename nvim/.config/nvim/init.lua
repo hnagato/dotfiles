@@ -333,10 +333,18 @@ require('lazy').setup({
     dependencies = 'rafamadriz/friendly-snippets',
     version = '*',
     opts = {
-      keymap = { preset = 'default' },
+      keymap = { 
+        preset = 'enter',
+        ['<C-e>'] = {},  -- Disable <C-e> for copilot integration
+      },
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = 'mono'
+      },
+      completion = {
+        list = {
+          selection = { preselect = false }
+        }
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
@@ -362,13 +370,6 @@ require('lazy').setup({
         transparent = true,
         dimInactive = false,
         terminalColors = true,
-        colors = {
-          palette = {},
-          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-        },
-        overrides = function(colors)
-          return {}
-        end,
         theme = "dragon",
         background = {
           dark = "dragon",
@@ -469,7 +470,7 @@ require('lazy').setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        theme = "kanagawa",
+        theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = '', right = '' },
       },
@@ -627,12 +628,22 @@ require('lazy').setup({
           enabled = true,
           auto_trigger = true,
           keymap = {
-            accept = "<M-l>",
+            accept = "<C-e>",
             next = "<M-]>",
             prev = "<M-[>",
             dismiss = "<C-]>",
           },
         },
+      })
+
+      -- Hide copilot when blink.cmp menu is open to prevent conflicts
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlinkCmpMenuOpen",
+        callback = function()
+          if require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").dismiss()
+          end
+        end,
       })
     end,
   },
@@ -654,6 +665,17 @@ require('lazy').setup({
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "[L]azy[G]it" },
     },
+  },
+
+  -- tiny-inline-diagnostic
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    config = function()
+      require('tiny-inline-diagnostic').setup()
+      vim.diagnostic.config({ virtual_text = false }) -- Disable default virtual text
+    end
   },
 
   -- Kickstart plugins
