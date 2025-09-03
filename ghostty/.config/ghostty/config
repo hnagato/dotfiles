@@ -23,11 +23,11 @@ shell-integration-features = no-title
 
 macos-option-as-alt = true
 macos-non-native-fullscreen = true
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 focus-follows-mouse = true
 
-window-width = 120
-window-height = 50
+window-width = 95
+window-height = 100
 
 keybind = ctrl+super+[=write_screen_file:paste
 
