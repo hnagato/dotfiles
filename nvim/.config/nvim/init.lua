@@ -45,6 +45,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Save without autocommands (no auto-formatting)
+vim.keymap.set('n', '<leader>w', ':noautocmd w<CR>', { desc = 'Save without autocommands (no auto-formatting)' })
+
 -- =============================================================================
 -- AUTOCOMMANDS
 -- =============================================================================
@@ -478,10 +481,10 @@ require('lazy').setup({
       options = {
         theme = "auto",
         component_separators = { left = "", right = "│" },
-        section_separators = { left = '', right = '' },
+        section_separators = { left = "", right = "" },
       },
       sections = {
-        lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+        lualine_a = { { 'mode'} },
         lualine_b = { 'filename', 'branch' },
         lualine_c = {
           '%=',
@@ -533,22 +536,10 @@ require('lazy').setup({
               removed  = { fg = '#c4746e' }, -- dragonRed
             },
           },
-          {
-            'encoding',
-            show_bomb = false,
-          },
-          {
-            'fileformat',
-            symbols = {
-              unix = 'LF',
-              dos = 'CRLF',
-              mac = 'CR',
-            },
-          },
         },
         lualine_y = { 'filetype', 'progress' },
         lualine_z = {
-          { 'location', separator = { right = '' }, left_padding = 2 },
+          { 'location' },
         },
       },
       inactive_sections = {
