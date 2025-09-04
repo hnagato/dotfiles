@@ -4,6 +4,14 @@ customCommands:
     command: "czg ai"
     output: terminal
     description: "AI generated commit with czg"
+  - key: "v"
+    context: "localBranches"
+    command: "gh pr view -w {{.SelectedLocalBranch.Name}}"
+    description: "Open GitHub PR for selected branch"
+  - key: "v"
+    context: "commits"
+    command: "sh -c 'gh pr view -w 2>/dev/null || gh browse'"
+    description: "Open current PR or repository in browser"
 git:
   paging:
     pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate

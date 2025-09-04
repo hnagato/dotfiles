@@ -149,6 +149,12 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
         },
+        pickers = {
+          find_files = {
+            hidden = true,
+            file_ignore_patterns = { '%.git/.*' },
+          },
+        },
       }
 
       -- Enable extensions
