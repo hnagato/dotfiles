@@ -316,12 +316,34 @@ require('lazy').setup({
             },
           },
         },
+        -- Additional language servers
+        gopls = {},                      -- Go
+        rust_analyzer = {},              -- Rust
+        kotlin_language_server = {},     -- Kotlin
+        jdtls = {},                     -- Java
+        bashls = {},                    -- Bash
+        intelephense = {},              -- PHP
+        ruby_lsp = {},                  -- Ruby
       }
 
       -- Setup Mason
       require('mason').setup()
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, { 'stylua', 'biome', 'markdownlint' })
+      vim.list_extend(ensure_installed, { 
+        'stylua', 'biome', 'markdownlint',
+        -- Additional tools for extended language support
+        'gofumpt',           -- Go formatter
+        'goimports',         -- Go imports organizer
+        'rustfmt',           -- Rust formatter
+        'ktfmt',             -- Kotlin formatter (Google style)
+        'detekt',            -- Kotlin linter
+        'google-java-format', -- Java formatter
+        'shfmt',             -- Shell formatter
+        'shellcheck',        -- Shell linter
+        'php-cs-fixer',      -- PHP formatter
+        'phpstan',           -- PHP static analyzer
+        'rubocop',           -- Ruby linter/formatter
+      })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
@@ -466,6 +488,10 @@ require('lazy').setup({
   -- Markdown previewer
   {
     "OXY2DEV/markview.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.icons"
+    },
     lazy = false,
     priority = 49,
     config = function()
@@ -615,6 +641,7 @@ require('lazy').setup({
         json = { "biome" },
         jsonc = { "biome" },
         markdown = { "markdownlint-cli2" },
+        kotlin = { "ktfmt" },
       },
       -- Configure formatters to respect .editorconfig
       formatters = {
@@ -629,6 +656,10 @@ require('lazy').setup({
         },
         biome = {
           args = { "format", "--stdin-file-path", "$FILENAME" },
+          stdin = true,
+        },
+        ktfmt = {
+          args = { "--google-style", "-" },
           stdin = true,
         },
       },
@@ -653,6 +684,7 @@ require('lazy').setup({
         typescriptreact = {"biomejs"},
         json = {"biomejs"},
         jsonc = {"biomejs"},
+        kotlin = {"detekt"},
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -739,6 +771,10 @@ require('lazy').setup({
   require('kickstart.plugins.debug'),
 
 }, {
+  rocks = {
+    enabled = true,
+    hererocks = true,
+  },
   ui = {
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
@@ -831,5 +867,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Store TypeScript config for use in LSP setup
 vim.g.custom_ts_ls_config = ts_ls_config
+
+-- =============================================================================
+-- PROVIDER CONFIGURATION
+-- =============================================================================
+
+-- Disable unused providers to eliminate warnings
+vim.g.loaded_perl_provider = 0  -- Disable Perl provider
+-- Ruby provider enabled (Ruby 3.4.5 via mise)
+
+-- Configure provider paths if needed
+-- vim.g.python3_host_prog = '/path/to/python3'
+vim.g.ruby_host_prog = '/Users/hnagato/.local/share/mise/installs/ruby/3.4.5/bin/neovim-ruby-host'
+vim.g.node_host_prog = vim.fn.exepath('neovim-node-host')
 
 -- vim: ts=2 sts=2 sw=2 et
