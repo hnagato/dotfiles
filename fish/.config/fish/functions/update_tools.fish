@@ -31,17 +31,21 @@ function update_tools --on-event fish_prompt
             echo $fish_pid >$lock_file
 
             # Execute update command
-            ~/.local/bin/update
-            set -l exit_code $status
+            set -l tmux_command "~/.local/bin/update; set -l exit_code \$status; if test \$exit_code -eq 0; echo 'Update completed successfully'; else; echo 'Update failed (exit code: '\$exit_code')'; end; read -n1 -P 'Press any key to close...'; tmux kill-pane"
 
-            # Always update timestamp after execution attempt
-            set -U __fish_update_tools_timestamp $current_timestamp
-
-            # Report result without blocking timestamp update
-            if test $exit_code -eq 0
-                echo "Update completed successfully" >&2
+            if test -n "$TMUX"; and tmux split-window -vb "$tmux_command" 2>/dev/null
+                # Tmux split successful
+                set -U __fish_update_tools_timestamp $current_timestamp
             else
-                echo "Update failed (exit code: $exit_code)" >&2
+                # Normal execution (both tmux failure and non-tmux)
+                ~/.local/bin/update
+                set -l exit_code $status
+                set -U __fish_update_tools_timestamp $current_timestamp
+                if test $exit_code -eq 0
+                    echo "Update completed successfully" >&2
+                else
+                    echo "Update failed (exit code: $exit_code)" >&2
+                end
             end
 
             rm -f $lock_file
