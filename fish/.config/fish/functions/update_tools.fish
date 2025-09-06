@@ -1,7 +1,7 @@
 function update_tools --on-event fish_prompt
     set -l current_timestamp (date '+%s')
     set -l last_run_timestamp $__fish_update_tools_timestamp
-    set -l min_interval_seconds (math "12 * 60 * 60")
+    set -l min_interval_seconds (math "8 * 60 * 60")
 
     # Execute only on first run or when 8+ hours have passed
     if test -z "$last_run_timestamp"; or test (math "$current_timestamp - $last_run_timestamp") -ge $min_interval_seconds
@@ -31,23 +31,17 @@ function update_tools --on-event fish_prompt
             echo $fish_pid >$lock_file
 
             # Execute update command
-            set -l tmux_command "~/.local/bin/update; set -l exit_code \$status; if test \$exit_code -eq 0; echo 'Update completed successfully'; else; echo 'Update failed (exit code: '\$exit_code')'; end; read -n1 -P 'Press any key to close...'; tmux kill-pane"
+            ~/.local/bin/update
+            set -l exit_code $status
 
-            if test -n "$TMUX"; and tmux split-window -v -b "$tmux_command" 2>/dev/null
-                # Tmux split successful
-                set -U __fish_update_tools_timestamp $current_timestamp
+            # Always update timestamp after execution attempt
+            set -U __fish_update_tools_timestamp $current_timestamp
+
+            # Report result without blocking timestamp update
+            if test $exit_code -eq 0
+                echo "Update completed successfully" >&2
             else
-                # Normal execution (both tmux failure and non-tmux)
-                if test -n "$TMUX"
-                    echo "Failed to create tmux pane, running update normally..." >&2
-                end
-
-                ~/.local/bin/update
-                if test $status -eq 0
-                    set -U __fish_update_tools_timestamp $current_timestamp
-                else
-                    echo "Failed to update (exit code: $status)" >&2
-                end
+                echo "Update failed (exit code: $exit_code)" >&2
             end
 
             rm -f $lock_file
