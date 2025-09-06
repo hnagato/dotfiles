@@ -330,7 +330,7 @@ require('lazy').setup({
       -- Setup Mason
       require('mason').setup()
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, { 
+      vim.list_extend(ensure_installed, {
         'stylua', 'biome', 'markdownlint', 'marksman',
         -- Additional tools for extended language support
         'gofumpt',           -- Go formatter
@@ -663,7 +663,7 @@ require('lazy').setup({
     config = function()
       local lint = require("lint")
       lint.linters_by_ft = {
-        markdown = {"markdownlint"},
+        markdown = {"markdownlint-cli2"},
         javascript = {"biomejs"},
         typescript = {"biomejs"},
         javascriptreact = {"biomejs"},
@@ -674,6 +674,40 @@ require('lazy').setup({
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+      -- Configure markdownlint-cli2 with dynamic config resolution
+      -- Function to update markdownlint-cli2 args based on available config files
+      local function update_markdownlint_config()
+        -- Check for local config files in order of precedence
+        local config_files = {
+          ".markdownlint-cli2.jsonc",
+          ".markdownlint-cli2.yaml",
+          ".markdownlint.jsonc",
+          ".markdownlint.json"
+        }
+
+        for _, config_file in ipairs(config_files) do
+          if vim.fn.filereadable(config_file) == 1 then
+            lint.linters['markdownlint-cli2'].args = {"--config", config_file}
+            return
+          end
+        end
+
+        -- Fallback to global config if no local config found
+        local global_config = vim.fn.expand("~/.markdownlint-cli2.jsonc")
+        if vim.fn.filereadable(global_config) == 1 then
+          lint.linters['markdownlint-cli2'].args = {"--config", global_config}
+        else
+          lint.linters['markdownlint-cli2'].args = {}
+        end
+      end
+
+      -- Create autocmd to dynamically configure markdownlint-cli2 for markdown files
+      vim.api.nvim_create_autocmd({"BufEnter", "BufWritePost"}, {
+        pattern = "*.md",
+        group = lint_augroup,
+        callback = update_markdownlint_config
+      })
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
@@ -813,25 +847,25 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     -- Enable concealing for better markdown editing experience
     vim.opt_local.conceallevel = 2
-    
+
     -- Auto-create .marksman.toml for Obsidian-style wikilinks
     local function find_project_root()
       local git_root = vim.fn.fnamemodify(vim.fn.finddir('.git', '.;'), ':h')
       if git_root ~= '' then
         return git_root
       end
-      
+
       local marksman_root = vim.fn.fnamemodify(vim.fn.findfile('.marksman.toml', '.;'), ':h')
       if marksman_root ~= '' then
         return marksman_root
       end
-      
+
       return vim.fn.getcwd()
     end
-    
+
     local root = find_project_root()
     local marksman_file = root .. "/.marksman.toml"
-    
+
     if vim.fn.filereadable(marksman_file) == 0 then
       local content = {
         "[core]",
@@ -847,11 +881,11 @@ vim.api.nvim_create_autocmd("FileType", {
         "toc.enable = true",
         "create_missing_file.enable = true",
       }
-      
+
       vim.fn.writefile(content, marksman_file)
       print("Created .marksman.toml in " .. root)
     end
-    
+
     -- Markdown lint fix keymap
     vim.keymap.set("n", "<leader>mf", function()
       vim.cmd("silent! write")
