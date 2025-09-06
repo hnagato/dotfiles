@@ -22,7 +22,7 @@ macos-titlebar-style = hidden
 focus-follows-mouse = true
 
 window-width = 95
-window-height = 100
+window-height = 50
 
 keybind = ctrl+super+h=goto_split:left
 keybind = ctrl+super+j=goto_split:bottom
@@ -43,3 +43,6 @@ keybind = shift+super+w=close_surface
 keybind = ctrl+m=text:\x0D
 keybind = ctrl+i=text:\x09
 keybind = ctrl+[=text:\x1B
+
+custom-shader = ./shaders/cursor_smear.glsl
+# custom-shader = ./shaders/cursor_frozen.glsl
