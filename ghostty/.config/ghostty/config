@@ -7,24 +7,22 @@
 theme = Kanagawa Dragon
 font-family = Berkeley Mono
 font-family = UDEV Gothic NFLG
-font-style = Regular
 font-size = 15
 font-feature = -dlig
 
 background-opacity = 0.95
 background-blur-radius = 10
 
-shell-integration-features = no-title
+shell-integration-features = no-title,no-cursor
+cursor-style = block
 
 macos-option-as-alt = true
 macos-non-native-fullscreen = true
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 focus-follows-mouse = true
 
 window-width = 95
 window-height = 100
-
-keybind = ctrl+super+[=write_screen_file:paste
 
 keybind = ctrl+super+h=goto_split:left
 keybind = ctrl+super+j=goto_split:bottom
@@ -35,6 +33,8 @@ keybind = alt+super+j=resize_split:down,30
 keybind = alt+super+k=resize_split:up,30
 keybind = alt+super+l=resize_split:right,30
 
+keybind = shift+enter=text:\n
+
 keybind = super+w=ignore
 keybind = shift+super+w=close_surface
 
@@ -43,6 +43,3 @@ keybind = shift+super+w=close_surface
 keybind = ctrl+m=text:\x0D
 keybind = ctrl+i=text:\x09
 keybind = ctrl+[=text:\x1B
-
-keybind = shift+enter=text:\n
-

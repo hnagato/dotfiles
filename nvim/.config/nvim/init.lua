@@ -324,13 +324,14 @@ require('lazy').setup({
         bashls = {},                    -- Bash
         intelephense = {},              -- PHP
         ruby_lsp = {},                  -- Ruby
+        marksman = {},                  -- Markdown
       }
 
       -- Setup Mason
       require('mason').setup()
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, { 
-        'stylua', 'biome', 'markdownlint',
+        'stylua', 'biome', 'markdownlint', 'marksman',
         -- Additional tools for extended language support
         'gofumpt',           -- Go formatter
         'goimports',         -- Go imports organizer
@@ -467,10 +468,9 @@ require('lazy').setup({
   },
 
 
-  -- Treesitter and markview
+  -- Treesitter
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = { "OXY2DEV/markview.nvim" },
     lazy = false,
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
@@ -483,20 +483,6 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
-  },
-
-  -- Markdown previewer
-  {
-    "OXY2DEV/markview.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "echasnovski/mini.icons"
-    },
-    lazy = false,
-    priority = 49,
-    config = function()
-      require("markview").setup({})
-    end,
   },
 
   -- Statusline
@@ -821,10 +807,52 @@ vim.keymap.set("n", "<leader>k", ":bd<CR>", { desc = "Close buffer" })
 -- Diagnostic keymap
 vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "[O]pen diagnostic Quickfix list" })
 
--- Markdown lint fix keymap
+-- Markdown filetype configuration
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
+    -- Enable concealing for better markdown editing experience
+    vim.opt_local.conceallevel = 2
+    
+    -- Auto-create .marksman.toml for Obsidian-style wikilinks
+    local function find_project_root()
+      local git_root = vim.fn.fnamemodify(vim.fn.finddir('.git', '.;'), ':h')
+      if git_root ~= '' then
+        return git_root
+      end
+      
+      local marksman_root = vim.fn.fnamemodify(vim.fn.findfile('.marksman.toml', '.;'), ':h')
+      if marksman_root ~= '' then
+        return marksman_root
+      end
+      
+      return vim.fn.getcwd()
+    end
+    
+    local root = find_project_root()
+    local marksman_file = root .. "/.marksman.toml"
+    
+    if vim.fn.filereadable(marksman_file) == 0 then
+      local content = {
+        "[core]",
+        "markdown.file_extensions = [\"md\"]",
+        "title_from_heading = true",
+        "text_sync = \"full\"",
+        "",
+        "[completion]",
+        "wiki.style = \"title\"",
+        "candidates = 50",
+        "",
+        "[code_action]",
+        "toc.enable = true",
+        "create_missing_file.enable = true",
+      }
+      
+      vim.fn.writefile(content, marksman_file)
+      print("Created .marksman.toml in " .. root)
+    end
+    
+    -- Markdown lint fix keymap
     vim.keymap.set("n", "<leader>mf", function()
       vim.cmd("silent! write")
       vim.system({ "markdownlint-cli2", "--fix", vim.fn.expand("%") }, {
