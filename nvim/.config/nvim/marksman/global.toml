@@ -1,0 +1,12 @@
+[core]
+markdown.file_extensions = ["md"]
+title_from_heading = true
+text_sync = "full"
+
+[completion]
+wiki.style = "title"
+candidates = 50
+
+[code_action]
+toc.enable = true
+create_missing_file.enable = true
