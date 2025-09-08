@@ -324,7 +324,9 @@ require('lazy').setup({
         bashls = {},                    -- Bash
         intelephense = {},              -- PHP
         ruby_lsp = {},                  -- Ruby
-        marksman = {},                  -- Markdown
+        marksman = {
+          cmd = { 'marksman', 'server', '--config', vim.fn.expand('~/.config/nvim/marksman/global.toml') }
+        },                  -- Markdown
       }
 
       -- Setup Mason
@@ -641,7 +643,7 @@ require('lazy').setup({
           end,
         },
         biome = {
-          args = { "format", "--stdin-file-path", "$FILENAME" },
+          args = { "format", "--stdin-file-path", "$FILENAME", "--use-editorconfig=true" },
           stdin = true,
         },
         ktfmt = {
@@ -848,43 +850,6 @@ vim.api.nvim_create_autocmd("FileType", {
     -- Enable concealing for better markdown editing experience
     vim.opt_local.conceallevel = 2
 
-    -- Auto-create .marksman.toml for Obsidian-style wikilinks
-    local function find_project_root()
-      local git_root = vim.fn.fnamemodify(vim.fn.finddir('.git', '.;'), ':h')
-      if git_root ~= '' then
-        return git_root
-      end
-
-      local marksman_root = vim.fn.fnamemodify(vim.fn.findfile('.marksman.toml', '.;'), ':h')
-      if marksman_root ~= '' then
-        return marksman_root
-      end
-
-      return vim.fn.getcwd()
-    end
-
-    local root = find_project_root()
-    local marksman_file = root .. "/.marksman.toml"
-
-    if vim.fn.filereadable(marksman_file) == 0 then
-      local content = {
-        "[core]",
-        "markdown.file_extensions = [\"md\"]",
-        "title_from_heading = true",
-        "text_sync = \"full\"",
-        "",
-        "[completion]",
-        "wiki.style = \"title\"",
-        "candidates = 50",
-        "",
-        "[code_action]",
-        "toc.enable = true",
-        "create_missing_file.enable = true",
-      }
-
-      vim.fn.writefile(content, marksman_file)
-      print("Created .marksman.toml in " .. root)
-    end
 
     -- Markdown lint fix keymap
     vim.keymap.set("n", "<leader>mf", function()
