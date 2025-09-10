@@ -346,6 +346,9 @@ require('lazy').setup({
         'php-cs-fixer',      -- PHP formatter
         'phpstan',           -- PHP static analyzer
         'rubocop',           -- Ruby linter/formatter
+        -- textlint related tools
+        'textlint',          -- Text linter
+        'alex',              -- Inclusive language linter
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -664,8 +667,52 @@ require('lazy').setup({
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local lint = require("lint")
+      
+      -- Custom textlint linter definition
+      lint.linters.textlint = {
+        cmd = 'npx',
+        stdin = true,
+        args = { 
+          'textlint', 
+          '--format', 'json', 
+          '--stdin', 
+          '--stdin-filename', 
+          function()
+            return vim.api.nvim_buf_get_name(0)
+          end 
+        },
+        stream = 'stdout',
+        ignore_exitcode = true,
+        parser = function(output, bufnr)
+          local diagnostics = {}
+          if output and output ~= "" then
+            local ok, result = pcall(vim.json.decode, output)
+            if ok and type(result) == "table" and #result > 0 then
+              for _, file_result in ipairs(result) do
+                if file_result.messages then
+                  for _, message in ipairs(file_result.messages) do
+                    table.insert(diagnostics, {
+                      lnum = (message.line or 1) - 1,
+                      col = (message.column or 1) - 1,
+                      end_lnum = (message.line or 1) - 1,
+                      end_col = (message.column or 1) - 1,
+                      severity = message.severity == 2 and vim.diagnostic.severity.ERROR or vim.diagnostic.severity.WARN,
+                      message = message.message or "textlint error",
+                      source = "textlint",
+                      code = message.ruleId,
+                    })
+                  end
+                end
+              end
+            end
+          end
+          return diagnostics
+        end,
+      }
+      
       lint.linters_by_ft = {
-        markdown = {"markdownlint-cli2"},
+        markdown = {"markdownlint-cli2", "textlint"},
+        mdx = {"textlint"},
         javascript = {"biomejs"},
         typescript = {"biomejs"},
         javascriptreact = {"biomejs"},
@@ -713,13 +760,44 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
-          lint.try_lint()
+          -- Ensure nvim-lint is fully loaded before trying to lint
+          local ok, lint_module = pcall(require, "lint")
+          if ok and lint_module and lint_module.try_lint then
+            lint_module.try_lint()
+          end
         end,
       })
 
       vim.keymap.set("n", "<leader>l", function()
-        lint.try_lint()
+        local ok, lint_module = pcall(require, "lint")
+        if ok and lint_module and lint_module.try_lint then
+          lint_module.try_lint()
+        end
       end, { desc = "[L]int current file" })
+
+      -- textlint auto-fix keymap
+      vim.keymap.set("n", "<leader>tf", function()
+        local filetype = vim.bo.filetype
+        if filetype == "markdown" or filetype == "mdx" then
+          vim.cmd("silent! write")
+          vim.system({ "npx", "textlint", "--fix", vim.fn.expand("%") }, {
+            text = false,
+          }, function(result)
+            if result.code == 0 then
+              vim.schedule(function()
+                vim.cmd("checktime")
+                print("textlint auto-fix applied")
+              end)
+            else
+              vim.schedule(function()
+                print("Error applying textlint fixes: " .. (result.stderr or ""))
+              end)
+            end
+          end)
+        else
+          print("textlint fix only available for markdown/mdx files")
+        end
+      end, { desc = "[T]extlint [F]ix" })
     end,
   },
 
@@ -777,6 +855,73 @@ require('lazy').setup({
     },
   },
 
+  -- Better quickfix
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    opts = {
+      auto_enable = true,
+      magic_window = true,
+      auto_resize_height = false,
+      preview = {
+        auto_preview = false,
+        border = "rounded",
+        show_title = true,
+        should_preview_cb = function(bufnr, qwinid)
+          local ret = true
+          local bufname = vim.api.nvim_buf_get_name(bufnr)
+          local fsize = vim.fn.getfsize(bufname)
+          if fsize > 100 * 1024 then
+            ret = false
+          end
+          return ret
+        end,
+      },
+      func_map = {
+        vsplit = "",
+        ptogglemode = "z,",
+        stoggleup = "",
+      },
+      filter = {
+        fzf = {
+          action_for = { ["ctrl-s"] = "split" },
+          extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+        },
+      },
+    },
+  },
+
+  -- Diagnostics UI
+  {
+    "folke/trouble.nvim",
+    cmd = "Trouble",
+    opts = {
+      modes = {
+        preview_float = {
+          mode = "diagnostics",
+          preview = {
+            type = "float",
+            relative = "editor",
+            border = "rounded",
+            title = "Preview",
+            title_pos = "center",
+            position = { 0, -2 },
+            size = { width = 0.3, height = 0.3 },
+            zindex = 200,
+          },
+        },
+      },
+    },
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)" },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+    },
+  },
+
   -- tiny-inline-diagnostic
   {
     "rachartier/tiny-inline-diagnostic.nvim",
@@ -784,7 +929,7 @@ require('lazy').setup({
     priority = 1000,
     config = function()
       require('tiny-inline-diagnostic').setup()
-      vim.diagnostic.config({ virtual_text = false }) -- Disable default virtual text
+      vim.diagnostic.config({ virtual_text = false })
     end
   },
 
@@ -837,15 +982,18 @@ vim.schedule(function()
 end)
 
 -- Custom keymaps
-vim.keymap.set("n", "<leader>q", ":q!<CR>", { desc = "Force quit" })
+vim.keymap.set("n", "<leader>Q", ":q!<CR>", { desc = "Force [Q]uit" })
 vim.keymap.set("n", "<leader>k", ":bd<CR>", { desc = "Close buffer" })
 
--- Diagnostic keymap
+-- Diagnostic keymaps
 vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "[O]pen diagnostic Quickfix list" })
+vim.keymap.set("n", "<leader>q", function()
+  vim.cmd("Trouble diagnostics toggle")
+end, { desc = "Toggle [Q]uickfix diagnostics (Trouble)" })
 
--- Markdown filetype configuration
+-- Markdown and MDX filetype configuration
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
+  pattern = {"markdown", "mdx"},
   callback = function()
     -- Enable concealing for better markdown editing experience
     vim.opt_local.conceallevel = 2
