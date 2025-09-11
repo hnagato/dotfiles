@@ -610,7 +610,7 @@ require('lazy').setup({
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = function(bufnr)
         -- Disable for specific filetypes if needed
         local disable_filetypes = { c = true, cpp = true }
@@ -631,6 +631,7 @@ require('lazy').setup({
         javascriptreact = { "biome" },
         json = { "biome" },
         jsonc = { "biome" },
+        css = { "biome" },
         markdown = { "markdownlint-cli2" },
         kotlin = { "ktfmt" },
       },
