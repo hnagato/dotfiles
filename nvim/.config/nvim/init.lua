@@ -668,19 +668,19 @@ require('lazy').setup({
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local lint = require("lint")
-      
+
       -- Custom textlint linter definition
       lint.linters.textlint = {
         cmd = 'npx',
         stdin = true,
-        args = { 
-          'textlint', 
-          '--format', 'json', 
-          '--stdin', 
-          '--stdin-filename', 
+        args = {
+          'textlint',
+          '--format', 'json',
+          '--stdin',
+          '--stdin-filename',
           function()
             return vim.api.nvim_buf_get_name(0)
-          end 
+          end
         },
         stream = 'stdout',
         ignore_exitcode = true,
@@ -710,7 +710,7 @@ require('lazy').setup({
           return diagnostics
         end,
       }
-      
+
       lint.linters_by_ft = {
         markdown = {"markdownlint-cli2", "textlint"},
         mdx = {"textlint"},
@@ -983,7 +983,7 @@ vim.schedule(function()
 end)
 
 -- Custom keymaps
-vim.keymap.set("n", "<leader>Q", ":q!<CR>", { desc = "Force [Q]uit" })
+vim.keymap.set("n", "QQ", ":q!<CR>", { desc = "Force [Q]uit" })
 vim.keymap.set("n", "<leader>k", ":bd<CR>", { desc = "Close buffer" })
 
 -- Diagnostic keymaps
