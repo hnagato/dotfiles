@@ -33,8 +33,6 @@ vim.opt.confirm = true
 -- Clear search highlight on escape
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -132,7 +130,22 @@ require('lazy').setup({
   -- Fuzzy finder
   {
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
+    cmd = 'Telescope',
+    keys = {
+      { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = '[S]earch [H]elp' },
+      { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = '[S]earch [K]eymaps' },
+      { '<leader>sf', '<cmd>Telescope find_files<cr>', desc = '[S]earch [F]iles' },
+      { '<leader>ss', '<cmd>Telescope builtin<cr>', desc = '[S]earch [S]elect Telescope' },
+      { '<leader>sw', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [W]ord' },
+      { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = '[S]earch by [G]rep' },
+      { '<leader>sd', '<cmd>Telescope diagnostics<cr>', desc = '[S]earch [D]iagnostics' },
+      { '<leader>sr', '<cmd>Telescope resume<cr>', desc = '[S]earch [R]esume' },
+      { '<leader>s.', '<cmd>Telescope oldfiles<cr>', desc = '[S]earch Recent Files ("." for repeat)' },
+      { '<leader><leader>', '<cmd>Telescope buffers<cr>', desc = '[ ] Find existing buffers' },
+      { '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false }) end, desc = '[/] Fuzzily search in current buffer' },
+      { '<leader>s/', function() require('telescope.builtin').live_grep { grep_open_files = true, prompt_title = 'Live Grep in Open Files' } end, desc = '[S]earch [/] in Open Files' },
+      { '<leader>sn', function() require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' } end, desc = '[S]earch [N]eovim files' },
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
@@ -163,38 +176,6 @@ require('lazy').setup({
       -- Enable extensions
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-
-      -- Key mappings
-
-      local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-
-      vim.keymap.set('n', '<leader>/', function()
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, { desc = '[/] Fuzzily search in current buffer' })
-
-      vim.keymap.set('n', '<leader>s/', function()
-        builtin.live_grep {
-          grep_open_files = true,
-          prompt_title = 'Live Grep in Open Files',
-        }
-      end, { desc = '[S]earch [/] in Open Files' })
-
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
     end,
   },
 
@@ -316,39 +297,33 @@ require('lazy').setup({
             },
           },
         },
-        -- Additional language servers
-        gopls = {},                      -- Go
-        rust_analyzer = {},              -- Rust
-        kotlin_language_server = {},     -- Kotlin
-        jdtls = {},                     -- Java
-        bashls = {},                    -- Bash
-        intelephense = {},              -- PHP
-        ruby_lsp = {},                  -- Ruby
+        gopls = {},
+        rust_analyzer = {},
+        kotlin_language_server = {},
+        jdtls = {},
+        bashls = {},
         marksman = {
           cmd = { 'marksman', 'server', '--config', vim.fn.expand('~/.config/nvim/marksman/global.toml') }
-        },                  -- Markdown
+        },
       }
 
       -- Setup Mason
       require('mason').setup()
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', 'biome', 'markdownlint', 'marksman',
-        -- Additional tools for extended language support
-        'gofumpt',           -- Go formatter
-        'goimports',         -- Go imports organizer
-        'rustfmt',           -- Rust formatter
-        'ktfmt',             -- Kotlin formatter (Google style)
-        'detekt',            -- Kotlin linter
-        'google-java-format', -- Java formatter
-        'shfmt',             -- Shell formatter
-        'shellcheck',        -- Shell linter
-        'php-cs-fixer',      -- PHP formatter
-        'phpstan',           -- PHP static analyzer
-        'rubocop',           -- Ruby linter/formatter
-        -- textlint related tools
-        'textlint',          -- Text linter
-        'alex',              -- Inclusive language linter
+        'stylua',
+        'biome',
+        'markdownlint',
+        'marksman',
+        'gofumpt',
+        'goimports',
+        'rustfmt',
+        'ktfmt',
+        'detekt',
+        'google-java-format',
+        'shfmt',
+        'shellcheck',
+        'textlint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -624,16 +599,19 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
-        lua = { "stylua" },
-        typescript = { "biome" },
-        typescriptreact = { "biome" },
-        javascript = { "biome" },
-        javascriptreact = { "biome" },
-        json = { "biome" },
-        jsonc = { "biome" },
-        css = { "biome" },
-        markdown = { "markdownlint-cli2" },
-        kotlin = { "ktfmt" },
+        lua = { 'stylua' },
+        typescript = { 'biome' },
+        typescriptreact = { 'biome' },
+        javascript = { 'biome' },
+        javascriptreact = { 'biome' },
+        json = { 'biome' },
+        jsonc = { 'biome' },
+        css = { 'biome' },
+        markdown = { 'markdownlint-cli2' },
+        go = { 'gofumpt' },
+        kotlin = { 'ktfmt' },
+        rust = { 'rustfmt' },
+        java = { 'google-java-format' },
       },
       -- Configure formatters to respect .editorconfig
       formatters = {
@@ -651,7 +629,7 @@ require('lazy').setup({
           stdin = true,
         },
         ktfmt = {
-          args = { "--google-style", "-" },
+          args = { '--google-style', '-' },
           stdin = true,
         },
       },
@@ -712,15 +690,16 @@ require('lazy').setup({
       }
 
       lint.linters_by_ft = {
-        markdown = {"markdownlint-cli2", "textlint"},
-        mdx = {"textlint"},
-        javascript = {"biomejs"},
-        typescript = {"biomejs"},
-        javascriptreact = {"biomejs"},
-        typescriptreact = {"biomejs"},
-        json = {"biomejs"},
-        jsonc = {"biomejs"},
-        kotlin = {"detekt"},
+        markdown = {'markdownlint-cli2', 'textlint'},
+        mdx = {'textlint'},
+        javascript = {'biomejs'},
+        typescript = {'biomejs'},
+        javascriptreact = {'biomejs'},
+        typescriptreact = {'biomejs'},
+        json = {'biomejs'},
+        jsonc = {'biomejs'},
+        kotlin = {'detekt'},
+        sh = {'shellcheck'},
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -856,41 +835,6 @@ require('lazy').setup({
     },
   },
 
-  -- Better quickfix
-  {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-    opts = {
-      auto_enable = true,
-      magic_window = true,
-      auto_resize_height = false,
-      preview = {
-        auto_preview = false,
-        border = "rounded",
-        show_title = true,
-        should_preview_cb = function(bufnr, qwinid)
-          local ret = true
-          local bufname = vim.api.nvim_buf_get_name(bufnr)
-          local fsize = vim.fn.getfsize(bufname)
-          if fsize > 100 * 1024 then
-            ret = false
-          end
-          return ret
-        end,
-      },
-      func_map = {
-        vsplit = "",
-        ptogglemode = "z,",
-        stoggleup = "",
-      },
-      filter = {
-        fzf = {
-          action_for = { ["ctrl-s"] = "split" },
-          extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
-        },
-      },
-    },
-  },
 
   -- Diagnostics UI
   {
@@ -983,14 +927,11 @@ vim.schedule(function()
 end)
 
 -- Custom keymaps
-vim.keymap.set("n", "QQ", ":q!<CR>", { desc = "Force [Q]uit" })
+vim.keymap.set("n", "<leader>q", ":q!<CR>", { desc = "Force [Q]uit" })
 vim.keymap.set("n", "<leader>k", ":bd<CR>", { desc = "Close buffer" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "[O]pen diagnostic Quickfix list" })
-vim.keymap.set("n", "<leader>q", function()
-  vim.cmd("Trouble diagnostics toggle")
-end, { desc = "Toggle [Q]uickfix diagnostics (Trouble)" })
 
 -- Markdown and MDX filetype configuration
 vim.api.nvim_create_autocmd("FileType", {
@@ -998,7 +939,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     -- Enable concealing for better markdown editing experience
     vim.opt_local.conceallevel = 2
-
 
     -- Markdown lint fix keymap
     vim.keymap.set("n", "<leader>mf", function()
@@ -1050,11 +990,10 @@ vim.g.custom_ts_ls_config = ts_ls_config
 
 -- Disable unused providers to eliminate warnings
 vim.g.loaded_perl_provider = 0  -- Disable Perl provider
--- Ruby provider enabled (Ruby 3.4.5 via mise)
+vim.g.loaded_ruby_provider = 0  -- Disable Ruby provider
 
 -- Configure provider paths if needed
 -- vim.g.python3_host_prog = '/path/to/python3'
-vim.g.ruby_host_prog = '/Users/hnagato/.local/share/mise/installs/ruby/3.4.5/bin/neovim-ruby-host'
 vim.g.node_host_prog = vim.fn.exepath('neovim-node-host')
 
 -- vim: ts=2 sts=2 sw=2 et
