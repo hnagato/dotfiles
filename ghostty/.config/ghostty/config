@@ -5,12 +5,13 @@
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
 theme = Kanagawa Dragon
+
 font-family = Berkeley Mono
 font-family = UDEV Gothic NFLG
 font-size = 15
 font-feature = -dlig
 
-background-opacity = 0.95
+background-opacity = 0.9
 background-blur-radius = 10
 
 shell-integration-features = no-title,no-cursor
@@ -18,7 +19,8 @@ cursor-style = block
 
 macos-option-as-alt = true
 macos-non-native-fullscreen = true
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
+macos-window-buttons = hidden
 focus-follows-mouse = true
 
 window-width = 95
@@ -44,5 +46,5 @@ keybind = ctrl+m=text:\x0D
 keybind = ctrl+i=text:\x09
 keybind = ctrl+[=text:\x1B
 
-custom-shader = ./shaders/cursor_smear.glsl
+# custom-shader = ./shaders/cursor_smear.glsl
 # custom-shader = ./shaders/cursor_frozen.glsl
