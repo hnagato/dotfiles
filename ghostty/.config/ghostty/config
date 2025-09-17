@@ -23,8 +23,8 @@ macos-titlebar-style = tabs
 macos-window-buttons = hidden
 focus-follows-mouse = true
 
-window-width = 95
-window-height = 50
+window-width = 140
+window-height = 70
 
 keybind = ctrl+super+h=goto_split:left
 keybind = ctrl+super+j=goto_split:bottom
@@ -36,9 +36,6 @@ keybind = alt+super+k=resize_split:up,30
 keybind = alt+super+l=resize_split:right,30
 
 keybind = shift+enter=text:\n
-
-keybind = super+w=ignore
-keybind = shift+super+w=close_surface
 
 # Workaround
 # https://github.com/ghostty-org/ghostty/issues/3320

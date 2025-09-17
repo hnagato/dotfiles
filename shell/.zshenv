@@ -7,8 +7,9 @@ if (( $+commands[brew] )); then
   [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
 fi
 
-if (( $+commands[fnm] )); then
-  eval "$(fnm env --use-on-cd)"
+# mise
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
 fi
 
 # PATH
