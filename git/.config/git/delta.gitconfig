@@ -2,10 +2,10 @@
 # Advanced diff display settings
 
 [delta]
-  features = kanagawa-dragon
+#  features = kanagawa-dragon
   hyperlinks = true
   navigate = true
-  dark = true
+#  dark = true
 
 [interactive]
   diffFilter = delta --color-only
@@ -81,3 +81,26 @@
   plus-style = "#c5c9c5" "#253326"
   side-by-side = false
   syntax-theme = gruvbox-dark
+
+[delta "gruvbox-light-hard"]
+  light = true
+  commit-decoration-style = bold box ul "#d79921"
+  file-decoration-style = none
+  file-style = omit
+  hunk-header-decoration-style = "#458588" box ul
+  hunk-header-file-style = "#3c3836"
+  hunk-header-line-number-style = bold "#d65d0e"
+  hunk-header-style = file line-number syntax
+  keep-plus-minus-markers = true
+  line-numbers = true
+  line-numbers-left-style = "#928374"
+  line-numbers-minus-style = "#cc241d"
+  line-numbers-plus-style = "#98971a"
+  line-numbers-right-style = "#928374"
+  line-numbers-zero-style = "#928374"
+  minus-emph-style = bold "#3c3836" "#cc241d"
+  minus-style = "#3c3836" "#fae8e8"
+  plus-emph-style = bold "#3c3836" "#98971a"
+  plus-style = "#3c3836" "#e8f5e8"
+  side-by-side = false
+  syntax-theme = gruvbox-light

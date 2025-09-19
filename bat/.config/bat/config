@@ -1,4 +1,4 @@
---theme="kanagawa-dragon"
+--theme="${BAT_THEME}"
 --style="numbers,changes"
 --map-syntax ".ignore:Git Ignore"
  
