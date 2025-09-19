@@ -20,7 +20,8 @@ set -gx FZF_TMUX_OPTS -p
 set -gx fzf_history_time_format "%Y-%m-%d %H:%M:%S"
 set -gx FZF_PROJECTS_ROOT ~/projects
 
-# lazygit
+set -gx NVIM_THEME kanagawa-dragon
+set -gx BAT_THEME $NVIM_THEME
 set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 
 # paths
@@ -100,4 +101,3 @@ end
 if test -f "$HOME/.config/op/plugins.sh"
     source "$HOME/.config/op/plugins.sh"
 end
-

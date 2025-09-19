@@ -365,7 +365,7 @@ require('lazy').setup({
     opts_extend = { "sources.default" }
   },
 
-  -- Colorscheme
+  -- Colorschemes
   {
     "rebelot/kanagawa.nvim",
     lazy = false,
@@ -388,10 +388,106 @@ require('lazy').setup({
           light = "lotus",
         },
       })
+    end,
+  },
 
-      vim.schedule(function()
+  {
+    "Tsuzat/NeoSolarized.nvim",
+    lazy = false,
+    priority = 999,
+  },
+
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = false,
+    priority = 997,
+    config = function()
+      require("gruvbox").setup({
+        contrast = "hard",
+        terminal_colors = true,
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = true,
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+    end,
+  },
+
+  -- Theme switcher based on environment variable
+  {
+    dir = ".",
+    name = "theme-switcher",
+    lazy = false,
+    priority = 998,
+    config = function()
+      local nvim_theme = os.getenv("NVIM_THEME") or "kanagawa"
+
+      -- Helper function to apply transparency
+      local function apply_transparency()
+        vim.cmd([[
+          highlight Normal guibg=NONE ctermbg=NONE
+          highlight NonText guibg=NONE ctermbg=NONE
+          highlight NormalNC guibg=NONE ctermbg=NONE
+        ]])
+      end
+
+      local should_apply_transparency = false
+
+      if nvim_theme:match("^solarized_") then
+        local style = nvim_theme == "solarized_light" and "light" or "dark"
+
+        require("NeoSolarized").setup({
+          style = style,
+          transparent = (style == "dark"),
+          terminal_colors = true,
+          enable_italics = true,
+          styles = {
+            comments = { italic = true },
+            keywords = { italic = true },
+            functions = { bold = true },
+            variables = {},
+            string = { italic = true },
+          },
+          underline = true,
+          undercurl = true,
+        })
+        vim.cmd.colorscheme("NeoSolarized")
+
+        -- NeoSolarized handles transparency internally for dark themes
+        should_apply_transparency = false
+      elseif nvim_theme:match("^gruvbox_") then
+        local background = nvim_theme == "gruvbox_light_hard" and "light" or "dark"
+        vim.o.background = background
+        vim.cmd.colorscheme("gruvbox")
+
+        -- Apply transparency for dark gruvbox themes
+        should_apply_transparency = (background == "dark")
+      else
         vim.cmd.colorscheme("kanagawa")
-      end)
+
+        -- Apply transparency for kanagawa (always dark)
+        should_apply_transparency = true
+      end
+
+      -- Apply transparency once at the end if needed
+      if should_apply_transparency then
+        apply_transparency()
+      end
     end,
   },
 
