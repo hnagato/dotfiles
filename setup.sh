@@ -15,4 +15,4 @@ fi
 
 command -v ya >/dev/null 2>&1 && ya pkg install
 
-[ -d "$HOME/.ssh" ] && chmod 700 "$HOME/.ssh" && find "$HOME/.ssh" -type f -exec chmod 600 {} \;
+[ -d "$HOME/.ssh" ] && chmod 700 "$HOME/.ssh" && find "$HOME/.ssh/" -type f -exec chmod 600 {} \;
