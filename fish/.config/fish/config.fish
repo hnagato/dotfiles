@@ -85,7 +85,6 @@ abbr -a gb git branch
 abbr -a gd git diff -ubw
 abbr -a gp git pull
 abbr -a lg lazygit
-abbr -a vi nvim
 
 if type -q eza
     abbr -a lf eza -la --icons --git --ignore-glob .git
@@ -108,4 +107,8 @@ end
 
 function tn
     tmux new-session
+end
+
+function vi
+    nvim
 end
