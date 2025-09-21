@@ -12,16 +12,20 @@ set -gx GPG_TTY $(tty)
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 
+# themes
+set -gx NVIM_THEME kanagawa-dragon
+set -gx BAT_THEME $NVIM_THEME
+set -gx TMUX_THEME dark
+
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
 set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
-set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"'
+set -gx FZF_DEFAULT_OPTS --color=$TMUX_THEME --cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"
 set -gx FZF_TMUX_OPTS -p
 set -gx fzf_history_time_format "%Y-%m-%d %H:%M:%S"
 set -gx FZF_PROJECTS_ROOT ~/projects
 
-set -gx NVIM_THEME kanagawa-dragon
-set -gx BAT_THEME $NVIM_THEME
+# lazygit
 set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 
 # paths
@@ -64,11 +68,6 @@ if test -d $HOME/.bun
     fish_add_path $BUN_INSTALL/bin
 end
 
-# aliases & abbrs
-alias t='tmux attach-session -d || tmux new'
-alias tn='tmux new-session'
-alias vi='nvim'
-
 abbr -a ... cd ../..
 abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
@@ -86,6 +85,7 @@ abbr -a gb git branch
 abbr -a gd git diff -ubw
 abbr -a gp git pull
 abbr -a lg lazygit
+abbr -a vi nvim
 
 if type -q eza
     abbr -a lf eza -la --icons --git --ignore-glob .git
@@ -100,4 +100,12 @@ end
 
 if test -f "$HOME/.config/op/plugins.sh"
     source "$HOME/.config/op/plugins.sh"
+end
+
+function t
+    tmux attach-session -d || tmux new
+end
+
+function tn
+    tmux new-session
 end
