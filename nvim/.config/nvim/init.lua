@@ -330,6 +330,11 @@ require('lazy').setup({
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
+            -- Block fish-lsp to prevent resource issues
+            if server_name == 'fish_lsp' then
+              return
+            end
+
             local server = servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
@@ -708,6 +713,7 @@ require('lazy').setup({
         kotlin = { 'ktfmt' },
         rust = { 'rustfmt' },
         java = { 'google-java-format' },
+        fish = { 'fish_indent' },
       },
       -- Configure formatters to respect .editorconfig
       formatters = {
@@ -726,6 +732,11 @@ require('lazy').setup({
         },
         ktfmt = {
           args = { '--google-style', '-' },
+          stdin = true,
+        },
+        fish_indent = {
+          command = 'fish_indent',
+          args = {},
           stdin = true,
         },
       },
@@ -796,6 +807,7 @@ require('lazy').setup({
         jsonc = {'biomejs'},
         kotlin = {'detekt'},
         sh = {'shellcheck'},
+        fish = {},
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
