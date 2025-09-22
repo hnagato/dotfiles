@@ -17,6 +17,7 @@ node = "lts"
 python = "latest"
 ruby = "latest"
 rust = "stable"
+shellcheck = "latest"
 tree-sitter = "latest"
 uv = "latest"
 

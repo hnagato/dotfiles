@@ -110,5 +110,5 @@ function tn
 end
 
 function vi
-    nvim
+    nvim $argv
 end
