@@ -713,6 +713,7 @@
           },
           {
             "description": "HHKB Media Key Mode (fn + asdf to Volume down/up/mute, eject) (rev 2)",
+            "enabled": false,
             "manipulators": [
               {
                 "from": {
@@ -762,6 +763,7 @@
           },
           {
             "description": "Map fn + i, o, p  to F13, F14, F15.",
+            "enabled": false,
             "manipulators": [
               {
                 "from": {
@@ -857,6 +859,62 @@
             {
               "from": { "key_code": "caps_lock" },
               "to": [{ "key_code": "left_control" }]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "device_address": "c6-01-38-bb-26-4d",
+            "is_keyboard": true,
+            "is_pointing_device": true
+          },
+          "ignore": false,
+          "simple_modifications": [
+            {
+              "from": { "key_code": "caps_lock" },
+              "to": [{ "key_code": "left_control" }]
+            },
+            {
+              "from": { "key_code": "left_control" },
+              "to": [{ "apple_vendor_keyboard_key_code": "language" }]
+            }
+          ],
+          "treat_as_built_in_keyboard": true
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 1,
+            "vendor_id": 14477
+          },
+          "ignore": false,
+          "manipulate_caps_lock_led": false,
+          "simple_modifications": [
+            {
+              "from": { "key_code": "caps_lock" },
+              "to": [{ "key_code": "left_control" }]
+            },
+            {
+              "from": { "key_code": "left_control" },
+              "to": [{ "key_code": "international1" }]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 1,
+            "vendor_id": 14477
+          },
+          "simple_modifications": [
+            {
+              "from": { "key_code": "caps_lock" },
+              "to": [{ "key_code": "left_control" }]
+            },
+            {
+              "from": { "key_code": "left_control" },
+              "to": [{ "key_code": "international1" }]
             }
           ]
         }
