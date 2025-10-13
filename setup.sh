@@ -13,6 +13,4 @@ if [ ! -d "$HOME/.local/share/tmux/plugins/tpm" ]; then
 fi
 "$HOME/.local/share/tmux/plugins/tpm/bin/install_plugins"
 
-command -v ya >/dev/null 2>&1 && ya pkg install
-
 [ -d "$HOME/.ssh" ] && chmod 700 "$HOME/.ssh" && find "$HOME/.ssh/" -type f -exec chmod 600 {} \;
