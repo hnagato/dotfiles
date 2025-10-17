@@ -30,7 +30,6 @@ set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 
 # paths
 fish_add_path -m $HOME/.local/bin
-fish_add_path $HOME/.rd/bin
 
 if status is-interactive
     set HOMEBREW_HOME /opt/homebrew
@@ -95,10 +94,6 @@ end
 
 function psg
     ps -ef | grep -i $argv
-end
-
-if test -f "$HOME/.config/op/plugins.sh"
-    source "$HOME/.config/op/plugins.sh"
 end
 
 function t
