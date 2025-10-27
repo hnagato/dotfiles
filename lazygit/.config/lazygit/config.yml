@@ -19,6 +19,7 @@ git:
   branchLogCmd: git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' {{branchName}} --
   allBranchesLogCmds:
     - git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' --
+  disableForcePush: true
 
 gui:
   theme:
