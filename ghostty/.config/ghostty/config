@@ -11,7 +11,7 @@ font-family = UDEV Gothic NFLG
 font-size = 15
 font-feature = -dlig
 
-background-opacity = 0.95
+background-opacity = 0.90
 background-blur-radius = 10
 
 shell-integration-features = no-title,no-cursor
@@ -24,7 +24,7 @@ macos-window-buttons = hidden
 focus-follows-mouse = true
 
 window-width = 120
-window-height = 60
+window-height = 70
 
 keybind = ctrl+super+h=goto_split:left
 keybind = ctrl+super+j=goto_split:bottom
