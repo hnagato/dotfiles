@@ -12,6 +12,9 @@ set -gx GPG_TTY $(tty)
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 
+# gradle
+set -x GRADLE_OPTS "-Dorg.gradle.daemon=false"
+
 # themes
 set -gx NVIM_THEME kanagawa-dragon
 set -gx BAT_THEME $NVIM_THEME
@@ -31,31 +34,22 @@ set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 # paths
 fish_add_path -m $HOME/.local/bin
 
-if status is-interactive
-    set HOMEBREW_HOME /opt/homebrew
-    if test -d $HOMEBREW_HOME/bin
-        eval ($HOMEBREW_HOME/bin/brew shellenv)
-        fish_add_path $HOMEBREW_HOME/bin $HOMEBREW_HOME/sbin
-        if test -d $HOMEBREW_HOME/opt/mysql@8.0
-            fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
-        end
-    end
-    if type -q rdctl; and rdctl shell true &>/dev/null
-        set -gx DOCKER_HOST "unix://$HOME/.rd/docker.sock"
-        set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "/var/run/docker.sock"
-    end
+set HOMEBREW_HOME /opt/homebrew
+if test -d $HOMEBREW_HOME/bin
+    eval ($HOMEBREW_HOME/bin/brew shellenv)
+    fish_add_path $HOMEBREW_HOME/bin $HOMEBREW_HOME/sbin
 
-    if type -q starship
-        starship init fish | source
+    if test -d $HOMEBREW_HOME/opt/mysql@8.0
+        fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
     end
+end
 
-    if type -q mise
-        mise activate fish | source
-    end
+if type -q starship
+    starship init fish | source
+end
 
-    if type -q pyenv
-        pyenv init - | source
-    end
+if type -q mise
+    mise activate fish | source
 end
 
 if test -d $HOME/.cargo/bin
@@ -83,6 +77,7 @@ abbr -a gc git czg ai
 abbr -a gb git branch
 abbr -a gd git diff -ubw
 abbr -a gp git pull
+abbr -a gr git graph -l
 abbr -a lg lazygit
 
 if type -q eza
