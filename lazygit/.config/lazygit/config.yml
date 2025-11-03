@@ -13,14 +13,13 @@ customCommands:
     command: "sh -c 'gh pr view -w 2>/dev/null || gh browse'"
     description: "Open current PR or repository in browser"
 git:
-  paging:
-    pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
-    useConfig: false
+  pagers:
+    - pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
+      useConfig: false
   branchLogCmd: git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' {{branchName}} --
   allBranchesLogCmds:
     - git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' --
   disableForcePush: true
-
 gui:
   theme:
     activeBorderColor:
