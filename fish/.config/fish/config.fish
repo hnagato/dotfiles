@@ -12,9 +12,6 @@ set -gx GPG_TTY $(tty)
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 
-# gradle
-set -x GRADLE_OPTS "-Dorg.gradle.daemon=false"
-
 # themes
 set -gx NVIM_THEME kanagawa-dragon
 set -gx BAT_THEME $NVIM_THEME
