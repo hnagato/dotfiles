@@ -28,6 +28,9 @@ set -gx FZF_PROJECTS_ROOT ~/projects
 # lazygit
 set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 
+# fish greeting
+set -gx fish_greeting
+
 # paths
 fish_add_path -m $HOME/.local/bin
 
@@ -39,10 +42,6 @@ if test -d $HOMEBREW_HOME/bin
     if test -d $HOMEBREW_HOME/opt/mysql@8.0
         fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
     end
-end
-
-if type -q starship
-    starship init fish | source
 end
 
 if type -q mise
