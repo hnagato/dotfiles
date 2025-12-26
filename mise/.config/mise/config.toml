@@ -12,13 +12,9 @@ node = "lts"
 "npm:markdownlint-cli2" = "latest"
 "npm:neovim" = "latest"
 "npm:textlint" = "latest"
-"pipx:markitdown" = "latest"
-python = "latest"
-ruby = "latest"
 rust = "stable"
 shellcheck = "latest"
 tree-sitter = "latest"
-uv = "latest"
 
 [hooks]
 enter = "mise i -q"

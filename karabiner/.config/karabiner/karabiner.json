@@ -729,6 +729,15 @@
                             "to": [{ "key_code": "caps_lock" }]
                         }
                     ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 12292,
+                        "vendor_id": 14000
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default",
