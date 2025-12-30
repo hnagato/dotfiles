@@ -1,0 +1,22 @@
+# Generated/user-specific files
+.DS_Store
+.claude/
+fish_variables
+completions/
+conf.d/
+functions/*
+
+# Keep repo-managed functions
+!functions/fish_greeting.fish
+!functions/fish_title.fish.bak
+!functions/fish_user_key_bindings.fish
+!functions/fzf_docker.fish
+!functions/fzf_git_branch.fish
+!functions/fzf_project.fish
+!functions/fzf_ssh.fish
+!functions/fzf_tmux_windows.fish
+!functions/fzf_tmux_windows_popup.fish
+!functions/fzf_z_search.fish
+!functions/git.fish
+!functions/push_line.fish
+!functions/update_tools.fish
