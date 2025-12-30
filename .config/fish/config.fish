@@ -6,11 +6,6 @@ set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx PAGER less
 set -gx LESS "-RSM~gIsw"
-set -gx GPG_TTY $(tty)
-
-# homebrew
-set -gx HOMEBREW_NO_ENV_HINTS 1
-set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 
 # themes
 set -gx NVIM_THEME kanagawa-dragon
@@ -60,8 +55,7 @@ end
 abbr -a ... cd ../..
 abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
-abbr -a e cursor
-abbr -a c code
+abbr -a e code
 abbr -a i idea
 abbr -a cc claude
 abbr -a gs git status -sb
