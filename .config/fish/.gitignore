@@ -7,7 +7,6 @@ conf.d/
 functions/*
 
 # Keep repo-managed functions
-!functions/.stow-local
 !functions/cm.fish
 !functions/fish_greeting.fish
 !functions/fish_title.fish.bak
