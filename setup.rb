@@ -13,15 +13,6 @@ class Pathname
     (self + other.to_s).expand_path
   end
 
-  def basename?(name)
-    case name
-    when Regexp
-      basename.to_s =~ name
-    else
-      basename.to_s == name.to_s
-    end
-  end
-
   def mkdir_r
     return self if exist?
     parent.mkdir_r
@@ -63,7 +54,7 @@ end
 
 dotfiles.glob('{.config/*,.*}').each do |file|
   next if file == dotfiles || file == dotfiles.parent
-  next if file.basename?(/^\.(?:git|gitignore|config)$/)
+  next if file.basename.to_s =~ /^\.(?:git|gitignore|config)$/
 
   link_path(file, TARGET/file.relative_path_from(dotfiles))
 end
