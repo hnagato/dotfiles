@@ -3,6 +3,13 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
 
+-- Use a writable cache path for the Lua module loader
+if vim.loader then
+  local lua_cache = vim.fn.stdpath('state') .. '/luac'
+  vim.loader.path = lua_cache
+  vim.fn.mkdir(lua_cache, 'p')
+end
+
 -- Vim options
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -552,6 +559,7 @@ require('lazy').setup({
   -- Treesitter
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
     lazy = false,
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
@@ -986,11 +994,20 @@ require('lazy').setup({
     end
   },
 
+  -- markdown
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {},
+  },
+
   -- Kickstart plugins
   require('kickstart.plugins.gitsigns'),
   require('kickstart.plugins.debug'),
 
 }, {
+  git = {
+    url_format = "git@github.com:%s.git",
+  },
   rocks = {
     enabled = true,
     hererocks = true,
