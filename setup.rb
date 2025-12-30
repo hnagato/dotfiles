@@ -53,7 +53,7 @@ end
 
 dotfiles.glob('{.config/*,.*}').each do |file|
   next if file == dotfiles || file == dotfiles.parent
-  next if file.basename.to_s =~ /^\.(?:git|gitignore|config)$/
+  next if file.to_s =~ %r{/\.(?:config|git|gitignore)$}
 
   link_path(file, TARGET/file.relative_path_from(dotfiles))
 end
