@@ -21,7 +21,6 @@ class Pathname
   end
 end
 
-
 target_root = if ARGV.delete('-t')
   user = ENV['USER'] || ENV['LOGNAME'] || 'user'
   "/tmp/#{user}"
