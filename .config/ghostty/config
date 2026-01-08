@@ -16,6 +16,7 @@ background-blur-radius = 10
 
 shell-integration-features = no-title,no-cursor
 cursor-style = block
+cursor-style-blink = false
 
 macos-option-as-alt = true
 macos-non-native-fullscreen = true
