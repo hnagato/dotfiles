@@ -26,15 +26,15 @@ set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 # fish greeting
 set -gx fish_greeting
 
-# push
+# pure prompt
 set -g pure_show_numbered_git_indicator true
 set -g pure_show_jobs true
 set -g pure_separate_prompt_on_error true
-set -g fish_transient_prompt 1
 set -g pure_show_subsecond_command_duration true
 set -g pure_threshold_command_duration 2
-set -g async_prompt_functions _pure_prompt_git
 set -g pure_color_success green
+set -g fish_transient_prompt 1
+set -g async_prompt_functions _pure_prompt_git
 
 # paths
 fish_add_path -m $HOME/.local/bin
