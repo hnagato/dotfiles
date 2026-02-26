@@ -1,0 +1,101 @@
+schemaVersion = 1
+
+[hotkeys.app.activate]
+carbonKeyCode = 49
+carbonModifiers = 256
+
+[hotkeys.app.dictation]
+carbonKeyCode = 49
+carbonModifiers = 6656
+
+[hotkeys.app.leaderMode]
+carbonKeyCode = 49
+carbonModifiers = 2048
+
+[hotkeys.app.stageFinderSelection]
+carbonKeyCode = 49
+carbonModifiers = 768
+
+[hotkeys.app.textMode]
+carbonKeyCode = 49
+carbonModifiers = 2304
+
+[[hotkeys.custom]]
+id = '1328FD29-0C04-4628-BA89-DC2DADABB209'
+presentation = 'auto'
+
+    [hotkeys.custom.command]
+    actionIdentifier = 'TunaCore.CommonActionsCatalog.Toggle Application'
+    subjectIdentifier = 'TunaCore.AllApplicationsCatalog.Arc'
+
+    [hotkeys.custom.shortcut]
+    carbonKeyCode = 0
+    carbonModifiers = 4352
+
+[[hotkeys.custom]]
+id = 'A3E34037-BDA6-4ED3-B755-DA14A0160155'
+presentation = 'auto'
+
+    [hotkeys.custom.command]
+    actionIdentifier = 'TunaCore.CommonActionsCatalog.Run'
+    subjectIdentifier = 'Tuna.Internal.RecentObjectsCatalog.Lock Screen'
+
+    [hotkeys.custom.shortcut]
+    carbonKeyCode = 117
+    carbonModifiers = 256
+
+[[hotkeys.custom]]
+id = 'FAF15591-EDD8-487B-9F9B-4BCCD83EAA57'
+presentation = 'auto'
+
+    [hotkeys.custom.command]
+    actionIdentifier = 'Tuna.BasicActionsCatalog.Search'
+    subjectIdentifier = 'Tuna.Internal.ClipboardProxyCatalog.Clipboard History'
+
+    [hotkeys.custom.shortcut]
+    carbonKeyCode = 9
+    carbonModifiers = 4352
+
+[[leaderMode.bindings]]
+key = 'd'
+url = 'tuna://run/path.%252FUsers%252Fhnagato%252FDownloads/Open'
+
+[[leaderMode.bindings]]
+key = 'h'
+url = 'tuna://run/path.%252FUsers%252Fhnagato/Open'
+
+[[leaderMode.bindings]]
+iconPath = '/System/Applications/App Store.app'
+key = 'a'
+
+    [[leaderMode.bindings.children]]
+    iconPath = '/Applications/Arc.app'
+    key = 'a'
+    url = 'tuna://run/path.%252FApplications%252FArc.app/Open'
+
+    [[leaderMode.bindings.children]]
+    iconPath = '/Applications/Visual Studio Code.app'
+    key = 'c'
+    url = 'tuna://run/path.%252FApplications%252FVisual%2520Studio%2520Code.app/Open'
+
+    [[leaderMode.bindings.children]]
+    iconPath = '/Applications/Ghostty.app'
+    key = 'g'
+    url = 'tuna://run/path.%252FApplications%252FGhostty.app/Open'
+
+    [[leaderMode.bindings.children]]
+    key = 'f'
+    url = 'tuna://run/path.%252FSystem%252FLibrary%252FCoreServices%252FFinder.app/Open'
+
+    [[leaderMode.bindings.children]]
+    key = 'm'
+    url = 'tuna://run/path.%252FSystem%252FApplications%252FMessages.app/Open'
+
+    [[leaderMode.bindings.children]]
+    key = 'n'
+    url = 'tuna://run/path.%252FSystem%252FApplications%252FNotes.app/Open'
+
+[settings]
+clipboardHistoryLimit = 295
+leaderModeCheatsheetDelayMS = 1000
+themeIdentifier = 'com.brnbw.tuna.themes.default'
