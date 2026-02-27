@@ -1,16 +1,15 @@
 schemaVersion = 1
 
+[extensions]
+enabledIdentifiers = [ 'com.brnbw.tuna.plugins.github' ]
+
 [hotkeys.app.activate]
 carbonKeyCode = 49
-carbonModifiers = 256
-
-[hotkeys.app.dictation]
-carbonKeyCode = 49
-carbonModifiers = 6656
+carbonModifiers = 2048
 
 [hotkeys.app.leaderMode]
 carbonKeyCode = 49
-carbonModifiers = 2048
+carbonModifiers = 256
 
 [hotkeys.app.stageFinderSelection]
 carbonKeyCode = 49
@@ -80,7 +79,7 @@ key = 'o'
 
     [[leaderMode.bindings.children]]
     iconPath = '/Applications/Ghostty.app'
-    key = 'g'
+    key = 't'
     url = 'tuna://run/path.%252FApplications%252FGhostty.app/Open'
 
     [[leaderMode.bindings.children]]
@@ -100,21 +99,61 @@ key = 'o'
     key = 'o'
     url = 'tuna://run/path.%252FApplications%252FObsidian.app/Open'
 
+    [[leaderMode.bindings.children]]
+    key = 'e'
+    url = 'tuna://run/path.%252FApplications%252FCursor.app/Open'
+
+    [[leaderMode.bindings.children]]
+    key = 'i'
+    url = 'tuna://run/path.%252FUsers%252Fhnagato%252FApplications%252FAndroid%2520Studio.app/Open'
+
+    [[leaderMode.bindings.children]]
+    key = 'l'
+    url = 'tuna://run/path.%252FApplications%252FLINE.app/Open'
+
+    [[leaderMode.bindings.children]]
+    key = 's'
+    url = 'tuna://run/path.%252FApplications%252FSlack.app/Open'
+
 [[leaderMode.bindings]]
 iconPath = 'macwindow.and.cursorarrow'
 key = 'w'
 
     [[leaderMode.bindings.children]]
     iconPath = 'rectangle.lefthalf.filled'
-    key = 'h'
+    key = 'H'
     url = 'tuna://run/TunaSystem.WindowManagementCatalog.First%20Two%20Thirds/TunaCore.CommonActionsCatalog.Run'
 
     [[leaderMode.bindings.children]]
     iconPath = 'rectangle.righthalf.filled'
-    key = 'l'
+    key = 'L'
     url = 'tuna://run/TunaSystem.WindowManagementCatalog.Last%20Two%20Thirds/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.lefthalf.filled'
+    key = 'h'
+    url = 'tuna://run/TunaSystem.WindowManagementCatalog.Left%20Half/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.righthalf.filled'
+    key = 'l'
+    url = 'tuna://run/TunaSystem.WindowManagementCatalog.Right%20Half/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'f'
+    url = 'tuna://run/TunaSystem.WindowManagementCatalog.Maximize/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'r'
+    url = 'tuna://run/TunaSystem.WindowManagementCatalog.Restore/TunaCore.CommonActionsCatalog.Run'
 
 [settings]
 clipboardHistoryLimit = 300
 leaderModeCheatsheetDelayMS = 1000
 themeIdentifier = 'com.brnbw.tuna.themes.default'
+
+[[catalogSettings]]
+catalogIdentifier = 'com.brnbw.tuna.themes.default'
+
+    [catalogSettings.values]
+    ThemeTint = 'system'
