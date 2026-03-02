@@ -5,11 +5,15 @@ enabledIdentifiers = [ 'com.brnbw.tuna.plugins.github' ]
 
 [hotkeys.app.activate]
 carbonKeyCode = 49
-carbonModifiers = 2048
+carbonModifiers = 256
+
+[hotkeys.app.dictation]
+carbonKeyCode = 49
+carbonModifiers = 6656
 
 [hotkeys.app.leaderMode]
 carbonKeyCode = 49
-carbonModifiers = 256
+carbonModifiers = 2048
 
 [hotkeys.app.stageFinderSelection]
 carbonKeyCode = 49
@@ -30,6 +34,30 @@ presentation = 'hidden'
     [hotkeys.custom.shortcut]
     carbonKeyCode = 19
     carbonModifiers = 768
+
+[[hotkeys.custom]]
+id = '689BD864-397A-4DC6-A62C-CD4B65172510'
+presentation = 'hidden'
+
+    [hotkeys.custom.command]
+    actionIdentifier = 'TunaCore.CommonActionsCatalog.Activate'
+    subjectIdentifier = 'TunaCore.AllApplicationsCatalog.Dia'
+
+    [hotkeys.custom.shortcut]
+    carbonKeyCode = 0
+    carbonModifiers = 4352
+
+[[hotkeys.custom]]
+id = 'A27A883B-916B-49E0-B924-CC8A3E30AFA6'
+presentation = 'hidden'
+
+    [hotkeys.custom.command]
+    actionIdentifier = 'TunaCore.CommonActionsCatalog.Activate'
+    subjectIdentifier = 'TunaCore.AllApplicationsCatalog.Ghostty'
+
+    [hotkeys.custom.shortcut]
+    carbonKeyCode = 17
+    carbonModifiers = 4352
 
 [[hotkeys.custom]]
 id = 'A3E34037-BDA6-4ED3-B755-DA14A0160155'
