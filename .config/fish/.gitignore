@@ -16,6 +16,7 @@ functions/*
 !functions/fzf_ssh.fish
 !functions/fzf_tmux_windows.fish
 !functions/fzf_tmux_windows_popup.fish
+!functions/fzf_tmux_files_popup.fish
 !functions/fzf_z_search.fish
 !functions/git.fish
 !functions/push_line.fish
