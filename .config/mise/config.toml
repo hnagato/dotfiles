@@ -1,5 +1,6 @@
 [tools]
 bun = "1.2.19"
+carapace = "latest"
 deno = "latest"
 go = "latest"
 java = "liberica-21.0.6+10"
