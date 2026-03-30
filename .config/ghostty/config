@@ -9,7 +9,6 @@ theme = Kanagawa Dragon
 font-family = Berkeley Mono
 font-family = UDEV Gothic NFLG
 font-size = 15
-font-feature = -dlig
 
 background-opacity = 0.90
 background-blur-radius = 10
