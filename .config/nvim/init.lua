@@ -556,22 +556,30 @@ require('lazy').setup({
   },
 
 
-  -- Treesitter
+  -- Treesitter (main branch required for Neovim 0.12+)
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
     lazy = false,
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs',
-    opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
+    config = function()
+      require('nvim-treesitter').setup {}
+      require('nvim-treesitter').install {
+        'bash', 'c', 'diff', 'html', 'lua', 'luadoc',
+        'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc',
+      }
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          if vim.bo.filetype ~= 'ruby' then
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
+    end,
   },
 
   -- Statusline
@@ -813,7 +821,7 @@ require('lazy').setup({
         typescriptreact = {'biomejs'},
         json = {'biomejs'},
         jsonc = {'biomejs'},
-        kotlin = {'detekt'},
+        kotlin = kotlin_linters,
         sh = {'shellcheck'},
         fish = {},
       }
