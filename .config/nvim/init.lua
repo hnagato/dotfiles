@@ -306,7 +306,6 @@ require('lazy').setup({
         },
         gopls = {},
         rust_analyzer = {},
-        kotlin_language_server = {},
         jdtls = {},
         bashls = {},
         marksman = {
@@ -335,10 +334,13 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        automatic_enable = {
+          exclude = { 'fish_lsp', 'kotlin_language_server' },
+        },
         handlers = {
           function(server_name)
-            -- Block fish-lsp to prevent resource issues
-            if server_name == 'fish_lsp' then
+            -- Block servers that should not auto-start
+            if server_name == 'fish_lsp' or server_name == 'kotlin_language_server' then
               return
             end
 
