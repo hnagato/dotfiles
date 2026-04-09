@@ -23,8 +23,8 @@ macos-titlebar-style = hidden
 macos-window-buttons = hidden
 focus-follows-mouse = true
 
-window-width = 120
-window-height = 70
+window-width = 160
+window-height = 80
 
 keybind = ctrl+super+h=goto_split:left
 keybind = ctrl+super+j=goto_split:bottom
