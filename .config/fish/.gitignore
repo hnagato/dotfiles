@@ -19,5 +19,6 @@ functions/*
 !functions/fzf_tmux_files_popup.fish
 !functions/fzf_z_search.fish
 !functions/git.fish
+!functions/git_audit.fish
 !functions/push_line.fish
 !functions/update_tools.fish
