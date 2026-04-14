@@ -1061,9 +1061,63 @@ vim.schedule(function()
   vim.keymap.set("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 end)
 
+local get_visual_reference = function()
+  local start_row = vim.fn.line("v")
+  local end_row = vim.fn.line(".")
+
+  if start_row > end_row then
+    start_row, end_row = end_row, start_row
+  end
+
+  if start_row == 0 or end_row == 0 then
+    return nil, "No text selected"
+  end
+
+  local file_path = vim.api.nvim_buf_get_name(0)
+  if file_path == nil or file_path == "" then
+    return nil, "Current buffer has no file path"
+  end
+
+  if start_row == end_row then
+    return string.format("Inspect %s:%d", file_path, start_row), nil
+  end
+
+  return string.format("Inspect %s:%d-%d", file_path, start_row, end_row), nil
+end
+
+local send_to_right_tmux_pane = function(text)
+  if vim.env.TMUX == nil or vim.env.TMUX == "" then
+    return false, "Not running inside tmux"
+  end
+
+  local send_text = vim.system({ "tmux", "send-keys", "-t", "{right-of}", "-l", text }):wait()
+  if send_text.code ~= 0 then
+    return false, send_text.stderr or "Failed to send text to tmux pane"
+  end
+
+  local send_enter = vim.system({ "tmux", "send-keys", "-t", "{right-of}", "Enter" }):wait()
+  if send_enter.code ~= 0 then
+    return false, send_enter.stderr or "Failed to submit text in tmux pane"
+  end
+
+  return true, nil
+end
+
 -- Custom keymaps
 vim.keymap.set("n", "<leader>q", ":q!<CR>", { desc = "Force [Q]uit" })
 vim.keymap.set("n", "<leader>k", ":bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("x", "<leader>cc", function()
+  local reference, reference_error = get_visual_reference()
+  if reference_error ~= nil then
+    vim.notify(reference_error, vim.log.levels.WARN)
+    return
+  end
+
+  local ok, send_error = send_to_right_tmux_pane(reference)
+  if not ok then
+    vim.notify(send_error or "Failed to send reference to tmux pane", vim.log.levels.WARN)
+  end
+end, { desc = "[C]ode reference to [C]odex pane" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "[O]pen diagnostic Quickfix list" })
