@@ -10,7 +10,7 @@ font-family = Berkeley Mono
 font-family = UDEV Gothic NFLG
 font-size = 15
 
-background-opacity = 0.90
+background-opacity = 0.95
 background-blur-radius = 10
 
 shell-integration-features = no-title,no-cursor
