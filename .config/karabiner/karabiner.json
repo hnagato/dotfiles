@@ -5,6 +5,24 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "左右の Command キーを同時押しで F12 を送信する",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "optional": ["any"] },
+                                    "simultaneous": [
+                                        { "key_code": "left_command" },
+                                        { "key_code": "right_command" }
+                                    ]
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
+                                "to": [{ "key_code": "f12" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "For Visual Studio Code: Emacs key bindings [option+keys] (rev 5)",
                         "enabled": false,
                         "manipulators": [
@@ -709,7 +727,7 @@
                         },
                         {
                             "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "caps_lock" }]
+                            "to": [{ "key_code": "right_control" }]
                         }
                     ]
                 },
