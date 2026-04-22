@@ -5,7 +5,6 @@ limit coredumpsize 0
 
 ## Editor & Pager
 export EDITOR="code --wait"
-export PAGER=less
 
 export LANG=ja_JP.UTF-8
 
