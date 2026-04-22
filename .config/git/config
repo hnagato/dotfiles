@@ -40,12 +40,11 @@
 [init]
   defaultBranch = main
 [core]
-  pager = delta
+  pager = delta --paging=never | less -FRX
   quotepath = false
   precomposeunicode = true
   ignorecase = true
   excludesfile = ~/.config/git/ignore
-  hooksPath = ~/.config/git/hooks
 [branch]
   sort = -committerdate
 [tag]
