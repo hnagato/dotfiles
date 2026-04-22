@@ -1,6 +1,8 @@
 # ssh先での文字化け対策
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export PAGER=less
+export DELTA_PAGER='less -FRX'
 
 if (( $+commands[brew] )); then
   eval "$($(brew --prefix)/bin/brew shellenv)"
