@@ -40,7 +40,7 @@
 [init]
   defaultBranch = main
 [core]
-  pager = delta
+  pager = delta --paging=never | less -FRX
   quotepath = false
   precomposeunicode = true
   ignorecase = true

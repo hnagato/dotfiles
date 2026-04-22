@@ -5,6 +5,7 @@ set -gx LC_ALL ja_JP.UTF-8
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx PAGER less
+set -gx DELTA_PAGER 'less -FRX'
 set -gx LESS "-RSM~gIsw"
 
 # themes
