@@ -2,10 +2,10 @@
 # Advanced diff display settings
 
 [delta]
-#  features = kanagawa-dragon
+  features = kanagawa-dragon
   hyperlinks = true
   navigate = true
-#  dark = true
+  line-numbers = true
 
 [interactive]
   diffFilter = delta --color-only

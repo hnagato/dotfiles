@@ -1,3 +1,7 @@
 .config/nvim/.nvim-upstream-sync
 .config/nvim/lazy-lock.json
 .config/yazi/flavors
+ssh/.ssh/known_hosts
+.claude
+karabiner/.config/karabiner/automatic_backups
+/Library/Caches/mise
