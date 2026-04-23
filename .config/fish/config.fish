@@ -56,11 +56,6 @@ if type -q mise
     mise activate fish | source
 end
 
-if type -q carapace
-    set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
-    carapace _carapace | source
-end
-
 if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
 end

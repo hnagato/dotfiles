@@ -566,7 +566,7 @@ require('lazy').setup({
     config = function()
       require('nvim-treesitter').setup {}
       require('nvim-treesitter').install {
-        'bash', 'c', 'diff', 'html', 'lua', 'luadoc',
+        'bash', 'c', 'diff', 'fish', 'html', 'kotlin', 'lua', 'luadoc',
         'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc',
       }
       vim.api.nvim_create_autocmd('FileType', {
