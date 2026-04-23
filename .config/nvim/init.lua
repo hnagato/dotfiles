@@ -323,7 +323,6 @@ require('lazy').setup({
         'marksman',
         'gofumpt',
         'goimports',
-        'rustfmt',
         'ktfmt',
         'detekt',
         'google-java-format',
