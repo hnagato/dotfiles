@@ -44,7 +44,7 @@ set HOMEBREW_HOME /opt/homebrew
 if test -d $HOMEBREW_HOME/bin
     eval ($HOMEBREW_HOME/bin/brew shellenv)
     fish_add_path $HOMEBREW_HOME/bin $HOMEBREW_HOME/sbin
-    set -x HOMEBREW_FORBIDDEN_FORMULAE "node python python3 pip npm pnpm yarn"
+    set -x HOMEBREW_FORBIDDEN_FORMULAE "node python python3 pip npm pnpm yarn openjdk"
     alias python3 (uv python find)
     alias python python3
     if test -d $HOMEBREW_HOME/opt/mysql@8.0
