@@ -727,7 +727,7 @@
                         },
                         {
                             "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "right_control" }]
+                            "to": [{ "key_code": "caps_lock" }]
                         }
                     ]
                 },
