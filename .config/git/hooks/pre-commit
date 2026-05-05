@@ -1,5 +1,23 @@
 #!/bin/bash
 
+SIGNING_ENABLED=$(git config --bool --get commit.gpgsign || echo false)
+if [ "$SIGNING_ENABLED" != "true" ]; then
+  echo "❌ Git commit signing is disabled. Set commit.gpgsign=true before committing."
+  exit 1
+fi
+
+LOCAL_SIGNING=$(git config --local --bool --get commit.gpgsign 2>/dev/null || true)
+if [ "$LOCAL_SIGNING" = "false" ]; then
+  echo "❌ Repository-local commit.gpgsign=false overrides the global signing policy."
+  echo "   Run: git config --local --unset commit.gpgsign"
+  exit 1
+fi
+
+if ! git config --get user.signingkey >/dev/null; then
+  echo "❌ Git user.signingkey is not configured. Configure a signing key before committing."
+  exit 1
+fi
+
 echo "🔍 Running gitleaks security check..."
 if ! gitleaks protect --staged; then
   echo "❌ Gitleaks detected potential secrets. Commit blocked."

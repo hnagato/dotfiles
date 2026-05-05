@@ -41,6 +41,7 @@
   defaultBranch = main
 [core]
   pager = delta --paging=never | less -FRX
+  hooksPath = ~/.config/git/hooks
   quotepath = false
   precomposeunicode = true
   ignorecase = true

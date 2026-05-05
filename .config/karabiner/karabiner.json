@@ -755,7 +755,13 @@
                         "product_id": 12292,
                         "vendor_id": 14000
                     },
-                    "ignore": false
+                    "ignore": false,
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "caps_lock" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "language" }]
+                        }
+                    ]
                 },
                 {
                     "identifiers": { "is_keyboard": true },
