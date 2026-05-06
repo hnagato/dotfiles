@@ -2,6 +2,7 @@ function fzf_tmux_files_popup
     set -l selected (
         fd --hidden --follow --exclude .git --strip-cwd-prefix |
         fzf --exit-0 --no-multi \
+            --height=100% \
             --prompt="files> " \
             --preview '
                 if [ -d {} ]
@@ -10,7 +11,7 @@ function fzf_tmux_files_popup
                     bat --color=always --style=numbers --line-range :300 {}
                 end
             ' \
-            --preview-window=right:60%
+            --preview-window=down:60%:wrap
     )
 
     if test -n "$selected"
