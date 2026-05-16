@@ -9,8 +9,7 @@ permissions:
   contents: read
 
 env:
-  RENOVATE_GIT_AUTHOR: hnagato <134620+hnagato@users.noreply.github.com>
-  RENOVATE_GIT_PRIVATE_KEY: ${{ secrets.RENOVATE_GIT_PRIVATE_KEY }}
+  RENOVATE_PLATFORM_COMMIT: enabled
   RENOVATE_REPOSITORIES: hnagato/dotfiles
 
 jobs:
@@ -20,9 +19,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
 
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          app-id: ${{ secrets.RENOVATE_APP_ID }}
+          private-key: ${{ secrets.RENOVATE_APP_PRIVATE_KEY }}
+          repositories: dotfiles
+
       - name: Run Renovate
         uses: renovatebot/github-action@v46.1.14
         with:
           # renovate: datasource=docker depName=ghcr.io/renovatebot/renovate
           renovate-version: 43.181.1
-          token: ${{ secrets.RENOVATE_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
