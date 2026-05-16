@@ -1,0 +1,33 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended"],
+  dependencyDashboard: true,
+  enabledManagers: ["mise", "github-actions", "custom.regex"],
+  customManagers: [
+    {
+      customType: "regex",
+      managerFilePatterns: ["/^\\.github/workflows/renovate\\.yml$/"],
+      matchStrings: [
+        "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+renovate-version: (?<currentValue>\\S+)",
+      ],
+    },
+  ],
+  labels: ["dependencies"],
+  packageRules: [
+    {
+      matchManagers: ["mise"],
+      commitMessageTopic: "mise {{depName}}",
+      groupName: null,
+      separateMajorMinor: true,
+      separateMinorPatch: true,
+    },
+    {
+      matchManagers: ["github-actions"],
+      commitMessageTopic: "GitHub Action {{depName}}",
+    },
+    {
+      matchManagers: ["custom.regex"],
+      commitMessageTopic: "Renovate {{depName}}",
+    },
+  ],
+}

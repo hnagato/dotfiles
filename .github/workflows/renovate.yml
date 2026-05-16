@@ -1,0 +1,23 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: "17 18 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Run Renovate
+        uses: renovatebot/github-action@v46.1.14
+        with:
+          # renovate: datasource=docker depName=ghcr.io/renovatebot/renovate
+          renovate-version: 43.181.0
+          token: ${{ secrets.RENOVATE_TOKEN }}
