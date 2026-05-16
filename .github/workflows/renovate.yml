@@ -9,6 +9,8 @@ permissions:
   contents: read
 
 env:
+  RENOVATE_GIT_AUTHOR: hnagato <134620+hnagato@users.noreply.github.com>
+  RENOVATE_GIT_PRIVATE_KEY: ${{ secrets.RENOVATE_GIT_PRIVATE_KEY }}
   RENOVATE_REPOSITORIES: hnagato/dotfiles
 
 jobs:
