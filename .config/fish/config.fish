@@ -78,7 +78,8 @@ abbr -a gl git l
 abbr -a ga git add
 abbr -a gc git czg ai
 abbr -a gb git branch
-abbr -a gd git diff -ubw
+# abbr -a gd git diff -ubw
+abbr -a gd hunk diff --watch
 abbr -a gp git pull
 abbr -a gr git graph -l
 abbr -a lg lazygit

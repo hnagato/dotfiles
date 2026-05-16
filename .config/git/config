@@ -40,7 +40,7 @@
 [init]
   defaultBranch = main
 [core]
-  pager = delta --paging=never | less -FRX
+  pager = hunk pager
   hooksPath = ~/.config/git/hooks
   quotepath = false
   precomposeunicode = true
@@ -86,6 +86,3 @@
   tool = code
 [mergetool "code"]
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
-[include]
-  path = ~/.config/git/delta.gitconfig
-  path = ~/.config/git/themes.gitconfig
