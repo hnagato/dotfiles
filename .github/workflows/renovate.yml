@@ -8,6 +8,9 @@ on:
 permissions:
   contents: read
 
+env:
+  RENOVATE_REPOSITORIES: hnagato/dotfiles
+
 jobs:
   renovate:
     runs-on: ubuntu-latest
