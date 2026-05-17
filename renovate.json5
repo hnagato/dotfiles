@@ -16,6 +16,12 @@
   packageRules: [
     {
       matchManagers: ["mise"],
+      matchDepNames: ["lua"],
+      allowedVersions: "<5.5.0",
+      description: "Hold Lua 5.5.0 until the LuaRocks 3.13.0 release tarball issue is resolved",
+    },
+    {
+      matchManagers: ["mise"],
       commitMessageTopic: "mise {{depName}}",
       groupName: null,
       separateMajorMinor: true,
