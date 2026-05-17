@@ -5,7 +5,7 @@ export PAGER=less
 export DELTA_PAGER='less -FRX'
 
 if (( $+commands[brew] )); then
-  eval "$($(brew --prefix)/bin/brew shellenv)"
+  eval "$($(brew --prefix)/bin/brew shellenv zsh)"
   [[ -f `brew --prefix`/etc/autojump.zsh ]] && source `brew --prefix`/etc/autojump.zsh
 fi
 
