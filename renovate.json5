@@ -1,14 +1,18 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["config:recommended"],
+  extends: ["config:recommended", "helpers:pinGitHubActionDigests"],
   dependencyDashboard: true,
   enabledManagers: ["mise", "github-actions", "custom.regex"],
+  automergeType: "pr",
+  platformAutomerge: true,
+  ignoreTests: false,
   customManagers: [
     {
       customType: "regex",
-      managerFilePatterns: ["/^\\.github/workflows/renovate\\.yml$/"],
+      managerFilePatterns: ["/^\\.github/workflows/(?:renovate|dependency-validation)\\.yml$/"],
       matchStrings: [
         "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+renovate-version: (?<currentValue>\\S+)",
+        "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+RENOVATE_VERSION: (?<currentValue>\\S+)",
       ],
     },
   ],
@@ -19,6 +23,14 @@
       matchDepNames: ["lua"],
       allowedVersions: "<5.5.0",
       description: "Hold Lua 5.5.0 until the LuaRocks 3.13.0 release tarball issue is resolved",
+    },
+    {
+      matchManagers: ["mise", "github-actions", "custom.regex"],
+      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
+      matchCurrentVersion: "!/^0\\./",
+      minimumReleaseAge: "7 days",
+      automerge: true,
+      description: "Automerge stable patch/minor dependency updates after validation and a release cooldown",
     },
     {
       matchManagers: ["mise"],
