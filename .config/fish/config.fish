@@ -70,7 +70,7 @@ abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
 abbr -a e code
 abbr -a i idea
-abbr -a cc claude
+abbr -a cc codex
 abbr -a gs git status -sb
 abbr -a gco git checkout
 abbr -a gfa git fetch --all
@@ -96,7 +96,7 @@ function psg
 end
 
 function t
-    tmux attach-session -d || tmux new
+    tmux new-session -A -s main
 end
 
 function tn
