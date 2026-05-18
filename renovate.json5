@@ -26,11 +26,11 @@
     },
     {
       matchManagers: ["mise", "github-actions", "custom.regex"],
-      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
+      matchUpdateTypes: ["minor", "patch", "pin", "pinDigest", "digest"],
       matchCurrentVersion: "!/^0\\./",
       minimumReleaseAge: "7 days",
       automerge: true,
-      description: "Automerge stable patch/minor dependency updates after validation and a release cooldown",
+      description: "Automerge stable patch/minor and digest pinning updates after validation and a release cooldown",
     },
     {
       matchManagers: ["mise"],
