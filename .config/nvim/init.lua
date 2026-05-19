@@ -309,7 +309,15 @@ require('lazy').setup({
         jdtls = {},
         bashls = {},
         marksman = {
-          cmd = { 'marksman', 'server', '--config', vim.fn.expand('~/.config/nvim/marksman/global.toml') }
+          cmd = { 'marksman', 'server', '--config', vim.fn.expand('~/.config/nvim/marksman/global.toml') },
+          root_dir = function(fname)
+            local util = require('lspconfig.util')
+            local root = util.root_pattern('.marksman.toml', '.git')(fname)
+            if root == vim.loop.os_homedir() then
+              return nil
+            end
+            return root
+          end,
         },
       }
 
