@@ -14,8 +14,8 @@ customCommands:
     description: "Open current PR or repository in browser"
 git:
   pagers:
-    - pager: hunk pager --line-numbers --theme graphite
-      colorArg: always
+    - pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
+      useConfig: false
   branchLogCmd: git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' {{branchName}} --
   allBranchesLogCmds:
     - git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' --
