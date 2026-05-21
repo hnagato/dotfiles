@@ -11,11 +11,21 @@ fi
 export TARGET
 mkdir -p "$TARGET"
 
+build_bat_cache() {
+  command -v bat >/dev/null 2>&1 || return 0
+  [ -d "$TARGET/.config/bat/themes" ] || return 0
+
+  # bat only discovers custom themes after rebuilding its binary asset cache.
+  XDG_CONFIG_HOME="$TARGET/.config" XDG_CACHE_HOME="$TARGET/.cache" bat cache --build
+}
+
 if command -v mise >/dev/null 2>&1; then
   mise trust "$TARGET/.config/mise/config.toml" || true
 fi
 
 ./setup.rb "$@"
+
+build_bat_cache
 
 command -v fish >/dev/null 2>&1 && fish -c 'curl -sL git.io/fisher | source && fisher update'
 
