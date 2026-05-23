@@ -71,6 +71,7 @@ abbr -a ll ls -lhavGF
 abbr -a e code
 abbr -a i idea
 abbr -a cc codex
+abbr -a ccr codex resume
 abbr -a gs git status -sb
 abbr -a gco git checkout
 abbr -a gfa git fetch --all
