@@ -491,8 +491,13 @@ require('lazy').setup({
 
         -- NeoSolarized handles transparency internally for dark themes
         should_apply_transparency = false
-      elseif nvim_theme:match("^gruvbox_") then
-        local background = nvim_theme == "gruvbox_light_hard" and "light" or "dark"
+      elseif nvim_theme == "gruvbox" or nvim_theme:match("^gruvbox_") then
+        local background
+        if nvim_theme == "gruvbox" then
+          background = vim.o.background
+        else
+          background = nvim_theme == "gruvbox_light_hard" and "light" or "dark"
+        end
         vim.o.background = background
         vim.cmd.colorscheme("gruvbox")
 

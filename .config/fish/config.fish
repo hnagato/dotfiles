@@ -9,9 +9,9 @@ set -gx DELTA_PAGER 'less -FRX'
 set -gx LESS "-RSM~gIsw"
 
 # themes
-set -gx NVIM_THEME kanagawa-dragon
-set -gx BAT_THEME $NVIM_THEME
-set -gx TMUX_THEME dark
+set -gx NVIM_THEME gruvbox
+set -gx BAT_THEME gruvbox-light
+set -gx TMUX_THEME light
 
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
