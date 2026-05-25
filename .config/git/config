@@ -4,6 +4,8 @@
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyNxs7hvlujFU2mK9EqE3PcLCkuCQYf133vwSLzzSG6
 [color]
   ui = true
+[include]
+  path = ~/.config/git/delta.gitconfig
 [alias]
   ai  = add --interactive
   am  = commit --amend --reuse-message=HEAD

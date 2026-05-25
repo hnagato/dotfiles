@@ -2,7 +2,7 @@
 # Advanced diff display settings
 
 [delta]
-  features = kanagawa-dragon
+  features = gruvbox-light-hard
   hyperlinks = true
   navigate = true
   line-numbers = true
@@ -84,23 +84,23 @@
 
 [delta "gruvbox-light-hard"]
   light = true
-  commit-decoration-style = bold box ul "#d79921"
+  commit-decoration-style = bold box ul "#b57614"
   file-decoration-style = none
   file-style = omit
-  hunk-header-decoration-style = "#458588" box ul
+  hunk-header-decoration-style = "#076678" box ul
   hunk-header-file-style = "#3c3836"
-  hunk-header-line-number-style = bold "#d65d0e"
+  hunk-header-line-number-style = bold "#af3a03"
   hunk-header-style = file line-number syntax
   keep-plus-minus-markers = true
   line-numbers = true
-  line-numbers-left-style = "#928374"
-  line-numbers-minus-style = "#cc241d"
-  line-numbers-plus-style = "#98971a"
-  line-numbers-right-style = "#928374"
+  line-numbers-left-style = "#7c6f64"
+  line-numbers-minus-style = "#9d0006"
+  line-numbers-plus-style = "#79740e"
+  line-numbers-right-style = "#7c6f64"
   line-numbers-zero-style = "#928374"
-  minus-emph-style = bold "#3c3836" "#cc241d"
-  minus-style = "#3c3836" "#fae8e8"
-  plus-emph-style = bold "#3c3836" "#98971a"
-  plus-style = "#3c3836" "#e8f5e8"
+  minus-emph-style = bold "#f9f5d7" "#9d0006"
+  minus-style = "#9d0006" "#ebdbb2"
+  plus-emph-style = bold "#f9f5d7" "#79740e"
+  plus-style = "#427b58" "#ebdbb2"
   side-by-side = false
   syntax-theme = gruvbox-light

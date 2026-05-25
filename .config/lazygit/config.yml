@@ -14,7 +14,8 @@ customCommands:
     description: "Open current PR or repository in browser"
 git:
   pagers:
-    - pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
+    #- pager: delta --paging=never --light --line-numbers --features=gruvbox-light-hard --navigate
+    - pager: delta --paging=never --light --line-numbers --navigate
       useConfig: false
   branchLogCmd: git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' {{branchName}} --
   allBranchesLogCmds:
@@ -23,30 +24,30 @@ git:
 gui:
   theme:
     activeBorderColor:
-      - "#c4746e"
+      - "#458588"
     inactiveBorderColor:
-      - "#625e5a"
-    selectedLineBgColor:
-      - "#2d2a2e"
-    selectedRangeBgColor:
-      - "#2d2a2e"
-    cherryPickedCommitBgColor:
-      - "#c4746e"
-    cherryPickedCommitFgColor:
-      - "#0d0c0c"
-    unstagedChangesColor:
-      - "#c4746e"
-    defaultFgColor:
-      - "#c5c9c5"
+      - "#928374"
     searchingActiveBorderColor:
-      - "#8ba4b0"
+      - "#d79921"
+    selectedLineBgColor:
+      - "#ebdbb2"
+    selectedRangeBgColor:
+      - "#d5c4a1"
+    cherryPickedCommitBgColor:
+      - "#98971a"
+    cherryPickedCommitFgColor:
+      - "#3c3836"
+    unstagedChangesColor:
+      - "#cc241d"
+    defaultFgColor:
+      - "#3c3836"
     optionsTextColor:
-      - "#8ea4a2"
+      - "#076678"
     # reflog
     markedBaseCommitBgColor:
-      - "#8a9a7b"
+      - "#98971a"
     markedBaseCommitFgColor:
-      - "#0d0c0c"
+      - "#3c3836"
   # reflog authors
   authorColors:
-    "hnagato": "#8ea4a2"
+    "hnagato": "#689d6a"

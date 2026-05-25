@@ -4,7 +4,8 @@
 # examples:
 # https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
-theme = Kanagawa Dragon
+#theme = Kanagawa Lotus
+theme = Gruvbox Light Hard
 
 font-family = Berkeley Mono
 font-family = UDEV Gothic NFLG
