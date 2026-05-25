@@ -54,6 +54,7 @@ end
 dotfiles.glob('{.config/*,.*}').each do |file|
   next if file == dotfiles || file == dotfiles.parent
   next if file.to_s =~ %r{/\.(?:config|git|gitignore)$}
+  next if file.basename.to_s == '.marksman.toml'
 
   link_path(file, TARGET/file.relative_path_from(dotfiles))
 end
