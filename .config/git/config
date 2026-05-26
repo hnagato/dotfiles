@@ -86,3 +86,5 @@
   tool = code
 [mergetool "code"]
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[include]
+  path = ~/.config/git/delta.gitconfig
