@@ -1,0 +1,32 @@
+git:
+  pagers:
+    - pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
+      useConfig: false
+gui:
+  theme:
+    activeBorderColor:
+      - "#c4746e"
+    inactiveBorderColor:
+      - "#625e5a"
+    selectedLineBgColor:
+      - "#2d2a2e"
+    selectedRangeBgColor:
+      - "#2d2a2e"
+    cherryPickedCommitBgColor:
+      - "#c4746e"
+    cherryPickedCommitFgColor:
+      - "#0d0c0c"
+    unstagedChangesColor:
+      - "#c4746e"
+    defaultFgColor:
+      - "#c5c9c5"
+    searchingActiveBorderColor:
+      - "#8ba4b0"
+    optionsTextColor:
+      - "#8ea4a2"
+    markedBaseCommitBgColor:
+      - "#8a9a7b"
+    markedBaseCommitFgColor:
+      - "#0d0c0c"
+  authorColors:
+    "hnagato": "#8ea4a2"

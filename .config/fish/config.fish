@@ -9,20 +9,14 @@ set -gx DELTA_PAGER 'less -FRX'
 set -gx LESS "-RSM~gIsw"
 
 # themes
-set -gx NVIM_THEME kanagawa-dragon
-set -gx BAT_THEME $NVIM_THEME
-set -gx TMUX_THEME dark
+__dotfiles_apply_theme_mode (__dotfiles_theme_mode) --universal
 
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
 set -gx fzf_preview_dir_cmd eza -la --color=always --git --ignore-glob .git
-set -gx FZF_DEFAULT_OPTS --color=$TMUX_THEME --cycle --layout=reverse --height=90% --preview-window=wrap --marker="*"
 set -gx FZF_TMUX_OPTS -p
 set -gx fzf_history_time_format "%Y-%m-%d %H:%M:%S"
 set -gx FZF_PROJECTS_ROOT ~/projects
-
-# lazygit
-set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 
 # fish greeting
 set -gx fish_greeting
@@ -65,6 +59,33 @@ if test -d $HOME/.bun
     fish_add_path $BUN_INSTALL/bin
 end
 
+function hunk
+    if test -z "$HUNK_THEME"; or test (count $argv) -eq 0
+        command hunk $argv
+        return $status
+    end
+
+    for arg in $argv
+        if test "$arg" = --theme; or string match -q -- '--theme=*' "$arg"
+            command hunk $argv
+            return $status
+        end
+    end
+
+    switch $argv[1]
+        case diff show patch pager difftool
+            command hunk $argv[1] --theme $HUNK_THEME $argv[2..-1]
+        case stash
+            if test (count $argv) -ge 2; and test "$argv[2]" = show
+                command hunk stash show --theme $HUNK_THEME $argv[3..-1]
+            else
+                command hunk $argv
+            end
+        case '*'
+            command hunk $argv
+    end
+end
+
 abbr -a ... cd ../..
 abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
@@ -80,7 +101,6 @@ abbr -a ga git add
 abbr -a gc git czg ai
 abbr -a gb git branch
 # abbr -a gd git diff -ubw
-abbr -a gd hunk diff --watch
 abbr -a gp git pull
 abbr -a gr git graph -l
 abbr -a lg lazygit
