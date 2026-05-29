@@ -413,6 +413,12 @@ require('lazy').setup({
   },
 
   {
+    "kepano/flexoki-neovim",
+    lazy = false,
+    priority = 996,
+  },
+
+  {
     "Tsuzat/NeoSolarized.nvim",
     lazy = false,
     priority = 999,
@@ -490,6 +496,10 @@ require('lazy').setup({
         vim.cmd.colorscheme("NeoSolarized")
 
         -- NeoSolarized handles transparency internally for dark themes
+        should_apply_transparency = false
+      elseif nvim_theme == "flexoki-light" then
+        vim.o.background = "light"
+        vim.cmd.colorscheme("flexoki-light")
         should_apply_transparency = false
       elseif nvim_theme:match("^gruvbox_") then
         local background = nvim_theme == "gruvbox_light_hard" and "light" or "dark"

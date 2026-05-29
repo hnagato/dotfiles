@@ -1,4 +1,6 @@
 --theme="${BAT_THEME}"
+--theme-light="${BAT_THEME_LIGHT}"
+--theme-dark="${BAT_THEME_DARK}"
 --style="numbers,changes"
 --map-syntax ".ignore:Git Ignore"
  

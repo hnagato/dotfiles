@@ -13,40 +13,7 @@ customCommands:
     command: "sh -c 'gh pr view -w 2>/dev/null || gh browse'"
     description: "Open current PR or repository in browser"
 git:
-  pagers:
-    - pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
-      useConfig: false
   branchLogCmd: git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' {{branchName}} --
   allBranchesLogCmds:
     - git log --graph --color=always --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(green)%an %C(green bold)%ar%Creset' --
   disableForcePush: true
-gui:
-  theme:
-    activeBorderColor:
-      - "#c4746e"
-    inactiveBorderColor:
-      - "#625e5a"
-    selectedLineBgColor:
-      - "#2d2a2e"
-    selectedRangeBgColor:
-      - "#2d2a2e"
-    cherryPickedCommitBgColor:
-      - "#c4746e"
-    cherryPickedCommitFgColor:
-      - "#0d0c0c"
-    unstagedChangesColor:
-      - "#c4746e"
-    defaultFgColor:
-      - "#c5c9c5"
-    searchingActiveBorderColor:
-      - "#8ba4b0"
-    optionsTextColor:
-      - "#8ea4a2"
-    # reflog
-    markedBaseCommitBgColor:
-      - "#8a9a7b"
-    markedBaseCommitFgColor:
-      - "#0d0c0c"
-  # reflog authors
-  authorColors:
-    "hnagato": "#8ea4a2"
