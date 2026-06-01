@@ -1,0 +1,32 @@
+git:
+  pagers:
+    - pager: delta --paging=never --light --line-numbers --features=flexoki-light --navigate
+      useConfig: false
+gui:
+  theme:
+    activeBorderColor:
+      - "#205ea6"
+    inactiveBorderColor:
+      - "#b7b5ac"
+    selectedLineBgColor:
+      - "#e6e4d9"
+    selectedRangeBgColor:
+      - "#dad8ce"
+    cherryPickedCommitBgColor:
+      - "#ffe1d5"
+    cherryPickedCommitFgColor:
+      - "#100f0f"
+    unstagedChangesColor:
+      - "#af3029"
+    defaultFgColor:
+      - "#100f0f"
+    searchingActiveBorderColor:
+      - "#24837b"
+    optionsTextColor:
+      - "#205ea6"
+    markedBaseCommitBgColor:
+      - "#dde2b2"
+    markedBaseCommitFgColor:
+      - "#100f0f"
+  authorColors:
+    "hnagato": "#24837b"

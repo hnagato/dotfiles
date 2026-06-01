@@ -7,6 +7,8 @@ conf.d/
 functions/*
 
 # Keep repo-managed functions
+!functions/__dotfiles_apply_theme_mode.fish
+!functions/__dotfiles_theme_mode.fish
 !functions/fish_greeting.fish
 !functions/fish_title.fish.bak
 !functions/fish_user_key_bindings.fish
@@ -21,4 +23,5 @@ functions/*
 !functions/git.fish
 !functions/git_audit.fish
 !functions/push_line.fish
+!functions/theme_sync.fish
 !functions/update_tools.fish
