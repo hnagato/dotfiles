@@ -413,6 +413,12 @@ require('lazy').setup({
   },
 
   {
+    "kepano/flexoki-neovim",
+    lazy = false,
+    priority = 996,
+  },
+
+  {
     "Tsuzat/NeoSolarized.nvim",
     lazy = false,
     priority = 999,
@@ -490,6 +496,10 @@ require('lazy').setup({
         vim.cmd.colorscheme("NeoSolarized")
 
         -- NeoSolarized handles transparency internally for dark themes
+        should_apply_transparency = false
+      elseif nvim_theme == "flexoki-light" then
+        vim.o.background = "light"
+        vim.cmd.colorscheme("flexoki-light")
         should_apply_transparency = false
       elseif nvim_theme:match("^gruvbox_") then
         local background = nvim_theme == "gruvbox_light_hard" and "light" or "dark"
@@ -1068,7 +1078,7 @@ vim.schedule(function()
   vim.keymap.set("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 end)
 
-local get_visual_reference = function()
+local get_visual_selection_payload = function()
   local start_row = vim.fn.line("v")
   local end_row = vim.fn.line(".")
 
@@ -1085,26 +1095,170 @@ local get_visual_reference = function()
     return nil, "Current buffer has no file path"
   end
 
-  if start_row == end_row then
-    return string.format("Inspect %s:%d", file_path, start_row), nil
+  local lines = vim.api.nvim_buf_get_lines(0, start_row - 1, end_row, false)
+  if #lines == 0 then
+    return nil, "No text selected"
   end
 
-  return string.format("Inspect %s:%d-%d", file_path, start_row, end_row), nil
+  local location
+  if start_row == end_row then
+    location = string.format("%s:%d", file_path, start_row)
+  else
+    location = string.format("%s:%d-%d", file_path, start_row, end_row)
+  end
+
+  return string.format("From %s\n\n%s", location, table.concat(lines, "\n")), nil
 end
 
-local send_to_right_tmux_pane = function(text)
+local run_tmux = function(args, opts)
+  opts = opts or {}
+  opts.text = true
+
+  local command = vim.list_extend({ "tmux" }, args)
+  local result = vim.system(command, opts):wait()
+  if result.code ~= 0 then
+    return nil, vim.trim(result.stderr or "tmux command failed")
+  end
+
+  return result.stdout or "", nil
+end
+
+local ai_agent_tmux_commands = {
+  { name = "Codex", commands = { "codex" }, titles = {} },
+  { name = "Claude Code", commands = { "claude" }, titles = { "claude code" } },
+  { name = "Copilot CLI", commands = { "copilot" }, titles = { "github copilot" } },
+}
+
+local has_tmux_command_prefix = function(command, prefix)
+  return command == prefix or command:sub(1, #prefix + 1) == prefix .. "-"
+end
+
+local normalize_tmux_command = function(command)
+  local normalized = string.lower(vim.trim(command or ""))
+  local command_name = normalized:match("^(%S+)") or normalized
+  return command_name:gsub("^.*/", "")
+end
+
+local match_ai_agent_tmux_command = function(...)
+  local commands = { ... }
+  for _, agent in ipairs(ai_agent_tmux_commands) do
+    for _, command in ipairs(commands) do
+      local normalized = normalize_tmux_command(command)
+      for _, command_prefix in ipairs(agent.commands) do
+        if has_tmux_command_prefix(normalized, command_prefix) then
+          return agent
+        end
+      end
+    end
+  end
+
+  return nil
+end
+
+local match_ai_agent_tmux_title = function(title)
+  local normalized = string.lower(title or "")
+  for _, agent in ipairs(ai_agent_tmux_commands) do
+    for _, title_pattern in ipairs(agent.titles) do
+      if normalized:find(title_pattern, 1, true) ~= nil then
+        return agent
+      end
+    end
+  end
+
+  return nil
+end
+
+local match_ai_agent_tmux_pane = function(pane)
+  return match_ai_agent_tmux_command(pane.current_command, pane.start_command) or match_ai_agent_tmux_title(pane.title)
+end
+
+local parse_tmux_pane = function(line)
+  local pane_id, current_command, start_command, title = line:match("^([^\t]+)\t([^\t]*)\t([^\t]*)\t(.*)$")
+  if pane_id == nil then
+    return nil
+  end
+
+  return {
+    id = pane_id,
+    current_command = current_command,
+    start_command = start_command,
+    title = title,
+  }
+end
+
+local describe_ai_agent_pane = function(pane)
+  return string.format("%s (%s)", pane.id, pane.agent.name)
+end
+
+local find_ai_agent_tmux_pane = function()
+  local pane_format = "#{pane_id}\t#{pane_current_command}\t#{pane_start_command}\t#{pane_title}"
+  local right_output = run_tmux({ "display-message", "-p", "-t", "{right-of}", pane_format })
+  if right_output ~= nil then
+    local right_pane = parse_tmux_pane(vim.trim(right_output))
+    local right_agent = right_pane ~= nil and match_ai_agent_tmux_pane(right_pane) or nil
+    if right_pane ~= nil and right_agent ~= nil then
+      return right_pane.id, nil
+    end
+  end
+
+  local panes_output, panes_error = run_tmux({ "list-panes", "-F", pane_format })
+  if panes_error ~= nil then
+    return nil, panes_error
+  end
+
+  local candidates = {}
+  for line in panes_output:gmatch("[^\r\n]+") do
+    local pane = parse_tmux_pane(line)
+    local agent = pane ~= nil and match_ai_agent_tmux_pane(pane) or nil
+    if pane ~= nil and agent ~= nil then
+      pane.agent = agent
+      table.insert(candidates, pane)
+    end
+  end
+
+  if #candidates == 0 then
+    return nil, "No AI agent pane found in current tmux window"
+  end
+
+  if #candidates == 1 then
+    return candidates[1].id, nil
+  end
+
+  local pane_ids = vim.tbl_map(function(pane)
+    return describe_ai_agent_pane(pane)
+  end, candidates)
+  return nil, "Multiple AI agent panes found in current tmux window: " .. table.concat(pane_ids, ", ")
+end
+
+local send_to_ai_agent_tmux_pane = function(text)
   if vim.env.TMUX == nil or vim.env.TMUX == "" then
     return false, "Not running inside tmux"
   end
 
-  local send_text = vim.system({ "tmux", "send-keys", "-t", "{right-of}", "-l", text }):wait()
-  if send_text.code ~= 0 then
-    return false, send_text.stderr or "Failed to send text to tmux pane"
+  local target_pane, target_error = find_ai_agent_tmux_pane()
+  if target_error ~= nil then
+    return false, target_error
   end
 
-  local send_enter = vim.system({ "tmux", "send-keys", "-t", "{right-of}", "Enter" }):wait()
-  if send_enter.code ~= 0 then
-    return false, send_enter.stderr or "Failed to submit text in tmux pane"
+  local buffer_name = "ai-agent-nvim-selection"
+  local _, load_error = run_tmux({ "load-buffer", "-b", buffer_name, "-" }, { stdin = text })
+  if load_error ~= nil then
+    return false, load_error
+  end
+
+  local _, paste_error = run_tmux({ "paste-buffer", "-d", "-b", buffer_name, "-t", target_pane })
+  if paste_error ~= nil then
+    return false, paste_error
+  end
+
+  local _, enter_error = run_tmux({ "send-keys", "-t", target_pane, "Enter" })
+  if enter_error ~= nil then
+    return false, enter_error
+  end
+
+  local _, focus_error = run_tmux({ "select-pane", "-t", target_pane })
+  if focus_error ~= nil then
+    return false, "Sent selection, but failed to focus AI agent pane: " .. focus_error
   end
 
   return true, nil
@@ -1114,17 +1268,17 @@ end
 vim.keymap.set("n", "<leader>q", ":q!<CR>", { desc = "Force [Q]uit" })
 vim.keymap.set("n", "<leader>k", ":bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("x", "<leader>cc", function()
-  local reference, reference_error = get_visual_reference()
-  if reference_error ~= nil then
-    vim.notify(reference_error, vim.log.levels.WARN)
+  local payload, payload_error = get_visual_selection_payload()
+  if payload_error ~= nil then
+    vim.notify(payload_error, vim.log.levels.WARN)
     return
   end
 
-  local ok, send_error = send_to_right_tmux_pane(reference)
+  local ok, send_error = send_to_ai_agent_tmux_pane(payload)
   if not ok then
-    vim.notify(send_error or "Failed to send reference to tmux pane", vim.log.levels.WARN)
+    vim.notify(send_error or "Failed to send selection to AI agent pane", vim.log.levels.WARN)
   end
-end, { desc = "[C]ode reference to [C]odex pane" })
+end, { desc = "[C]ode: send selection to AI agent" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "[O]pen diagnostic Quickfix list" })

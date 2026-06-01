@@ -82,6 +82,29 @@
   side-by-side = false
   syntax-theme = gruvbox-dark
 
+[delta "flexoki-light"]
+  light = true
+  commit-decoration-style = bold box ul "#ad8301"
+  file-decoration-style = none
+  file-style = omit
+  hunk-header-decoration-style = "#cecdc3" box ul
+  hunk-header-file-style = "#100f0f"
+  hunk-header-line-number-style = bold "#bc5215"
+  hunk-header-style = file line-number syntax
+  keep-plus-minus-markers = true
+  line-numbers = true
+  line-numbers-left-style = "#878580"
+  line-numbers-minus-style = "#af3029"
+  line-numbers-plus-style = "#66800b"
+  line-numbers-right-style = "#878580"
+  line-numbers-zero-style = "#9f9d96"
+  minus-emph-style = bold "#100f0f" "#ffcabb"
+  minus-style = "#100f0f" "#ffe1d5"
+  plus-emph-style = bold "#100f0f" "#cdd597"
+  plus-style = "#100f0f" "#edeecf"
+  side-by-side = false
+  syntax-theme = flexoki-light
+
 [delta "gruvbox-light-hard"]
   light = true
   commit-decoration-style = bold box ul "#d79921"
