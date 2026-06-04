@@ -46,6 +46,10 @@ if test -d $HOMEBREW_HOME/bin
     end
 end
 
+if type -q git-wt
+    git-wt --init fish | source
+end
+
 if type -q mise
     mise activate fish | source
 end
@@ -91,8 +95,9 @@ abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
 abbr -a e code
 abbr -a i idea
-abbr -a cc codex
-abbr -a ccr codex resume
+abbr -a c claude
+abbr -a cc claude --continue
+abbr -a cr claude --resume
 abbr -a gs git status -sb
 abbr -a gco git checkout
 abbr -a gfa git fetch --all
