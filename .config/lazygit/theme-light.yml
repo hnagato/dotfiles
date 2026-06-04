@@ -9,7 +9,9 @@ gui:
     inactiveBorderColor:
       - "#b7b5ac"
     selectedLineBgColor:
-      - "#e6e4d9"
+      - "#cfe2f7"
+    inactiveViewSelectedLineBgColor:
+      - "#e2eef9"
     selectedRangeBgColor:
       - "#dad8ce"
     cherryPickedCommitBgColor:
