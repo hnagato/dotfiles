@@ -40,7 +40,7 @@
 [init]
   defaultBranch = main
 [core]
-  pager = hunk pager
+  pager = hunk
   hooksPath = ~/.config/git/hooks
   quotepath = false
   precomposeunicode = true
