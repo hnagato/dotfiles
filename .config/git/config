@@ -88,3 +88,8 @@
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [include]
   path = ~/.config/git/delta.gitconfig
+[wt]
+  copy = AGENTS.md
+  copy = CLAUDE.md
+  copy = .agents
+  copy = .claude
