@@ -41,6 +41,10 @@
   defaultBranch = main
 [core]
   pager = hunk
+[pager]
+  diff = delta
+  log = less -FRX
+  show = less -FRX
   hooksPath = ~/.config/git/hooks
   quotepath = false
   precomposeunicode = true

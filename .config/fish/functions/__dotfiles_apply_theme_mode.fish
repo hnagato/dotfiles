@@ -71,11 +71,5 @@ function __dotfiles_apply_theme_mode --description 'Apply dotfiles theme variabl
     __dotfiles_set_theme_var $scope DELTA_FEATURES $delta_features
     __dotfiles_set_theme_var $scope HUNK_THEME $hunk_theme
     __dotfiles_set_theme_var $scope LG_CONFIG_FILE $lazygit_config
-    __dotfiles_set_theme_var $scope GIT_PAGER "hunk pager --theme $hunk_theme"
     __dotfiles_set_theme_var $scope FZF_DEFAULT_OPTS "--color=$mode" --cycle --layout=reverse --height=90% --preview-window=wrap '--marker=*'
-
-    if status is-interactive
-        abbr -q gd; and abbr -e gd
-        abbr -a gd 'hunk diff --theme $HUNK_THEME --watch'
-    end
 end
