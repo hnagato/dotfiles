@@ -1,18 +1,14 @@
 function fzf_tmux_files_popup
-    # PARENT_PANE / PARENT_PID are injected by the tmux.conf popup command
-    set -l parent_pane "$PARENT_PANE"
-    set -l parent_pid "$PARENT_PID"
-    if test -z "$parent_pane"
-        set parent_pane (tmux display-message -p '#{pane_id}')
-    end
-    if test -z "$parent_pid"
-        set parent_pid (tmux display-message -p '#{pane_pid}')
-    end
+    # parent pane ID stored in tmux buffer by the key binding before popup opens
+    set -l parent_pane (tmux show-buffer -b _fzf_parent_pane 2>/dev/null | string trim)
 
     # Detect if parent pane is running an AI coding tool → prefix paths with '@'
     set -l at_prefix_mode false
-    if pgrep -P "$parent_pid" -f 'claude|gemini|codex|copilot' > /dev/null 2>&1
-        set at_prefix_mode true
+    if test -n "$parent_pane"
+        set -l pane_cmd (tmux display-message -t "$parent_pane" -p '#{pane_current_command}' 2>/dev/null)
+        if string match -qr 'claude|gemini|codex|copilot' -- "$pane_cmd"
+            set at_prefix_mode true
+        end
     end
 
     set -l selected (
@@ -21,11 +17,11 @@ function fzf_tmux_files_popup
             --height=100% \
             --prompt="Files> " \
             --preview '
-                if [ -d {} ]; then
+                if [ -d {} ]
                     eza --all --icons --color=always --tree --level=2 --git-ignore {}
                 else
                     bat --color=always --style=numbers --line-range :300 {}
-                fi
+                end
             ' \
             --preview-window=down:60%:wrap
     )
@@ -45,5 +41,5 @@ function fzf_tmux_files_popup
         end
     end
 
-    tmux send-keys -t "$parent_pane" -l -- "$output"
+    tmux send-keys -l -- "$output"
 end
