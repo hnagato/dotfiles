@@ -1251,11 +1251,6 @@ local send_to_ai_agent_tmux_pane = function(text)
     return false, paste_error
   end
 
-  local _, enter_error = run_tmux({ "send-keys", "-t", target_pane, "Enter" })
-  if enter_error ~= nil then
-    return false, enter_error
-  end
-
   local _, focus_error = run_tmux({ "select-pane", "-t", target_pane })
   if focus_error ~= nil then
     return false, "Sent selection, but failed to focus AI agent pane: " .. focus_error

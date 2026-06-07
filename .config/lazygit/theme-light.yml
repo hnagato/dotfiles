@@ -1,7 +1,6 @@
 git:
   pagers:
     - pager: delta --paging=never --light --line-numbers --features=flexoki-light --navigate
-      useConfig: false
 gui:
   theme:
     activeBorderColor:

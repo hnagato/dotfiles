@@ -2,7 +2,6 @@
 # Advanced diff display settings
 
 [delta]
-  features = kanagawa-dragon
   hyperlinks = true
   navigate = true
   line-numbers = true
