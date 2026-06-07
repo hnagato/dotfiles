@@ -9,7 +9,7 @@ permissions:
 
 env:
   # renovate: datasource=docker depName=ghcr.io/renovatebot/renovate
-  RENOVATE_VERSION: 43.181.2
+  RENOVATE_VERSION: 43.214.4
 
 jobs:
   dependency-validation:
