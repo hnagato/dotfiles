@@ -40,7 +40,11 @@
 [init]
   defaultBranch = main
 [core]
-  pager = hunk pager
+  pager = hunk
+[pager]
+  diff = delta
+  log = less -FRX
+  show = less -FRX
   hooksPath = ~/.config/git/hooks
   quotepath = false
   precomposeunicode = true
@@ -88,3 +92,8 @@
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [include]
   path = ~/.config/git/delta.gitconfig
+[wt]
+  copy = AGENTS.md
+  copy = CLAUDE.md
+  copy = .agents
+  copy = .claude
