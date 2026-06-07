@@ -98,10 +98,10 @@
   line-numbers-plus-style = "#66800b"
   line-numbers-right-style = "#878580"
   line-numbers-zero-style = "#9f9d96"
-  minus-emph-style = bold "#100f0f" "#ffcabb"
-  minus-style = "#100f0f" "#ffe1d5"
-  plus-emph-style = bold "#100f0f" "#cdd597"
-  plus-style = "#100f0f" "#edeecf"
+  minus-emph-style = bold "#100f0f" "#F89A8A"
+  minus-style = syntax "#FFCABB"
+  plus-emph-style = bold "#100f0f" "#BEC97E"
+  plus-style = syntax "#DDE2B2"
   side-by-side = false
   syntax-theme = flexoki-light
 
