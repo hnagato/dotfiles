@@ -40,9 +40,8 @@
 [init]
   defaultBranch = main
 [core]
-  pager = hunk
+  pager = delta
 [pager]
-  diff = delta
   log = less -FRX
   show = less -FRX
   hooksPath = ~/.config/git/hooks

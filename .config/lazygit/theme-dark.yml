@@ -1,7 +1,6 @@
 git:
   pagers:
     - pager: delta --paging=never --dark --line-numbers --features=kanagawa-dragon --navigate
-      useConfig: false
 gui:
   theme:
     activeBorderColor:
