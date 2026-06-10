@@ -180,8 +180,9 @@ end
 
 -- Remaps right Command + h/j/k/l to arrow keys, preserving any other active
 -- modifiers (e.g. shift for selection, cmd for word-level movement).
+-- isKeyDown is passed in from the caller to avoid a redundant getType() call.
 -- Returns false to pass the event through unchanged if the conditions are not met.
-local function remapRightCommandHjkl(eventObject)
+local function remapRightCommandHjkl(eventObject, isKeyDown)
   local arrowKey = arrowByKeyCode[eventObject:getKeyCode()]
   if arrowKey == nil then
     return false
@@ -192,7 +193,6 @@ local function remapRightCommandHjkl(eventObject)
     return false
   end
 
-  local isKeyDown = eventObject:getType() == eventTypes.keyDown
   local mappedEvent = event.newKeyEvent(modifiersWithoutRightCommand(rawFlags), arrowKey, isKeyDown)
 
   return true, { mappedEvent }
@@ -212,7 +212,7 @@ local function handleKeyboardEvent(eventObject)
     markPressedCommandsAsUsed()
   end
 
-  return remapRightCommandHjkl(eventObject)
+  return remapRightCommandHjkl(eventObject, eventType == eventTypes.keyDown)
 end
 
 -- Keep a global reference so Hammerspoon does not garbage collect the event tap.
