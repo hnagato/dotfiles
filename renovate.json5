@@ -39,8 +39,6 @@
       groupName: "mise non-major updates",
       groupSlug: "mise-non-major",
       commitMessageTopic: "mise dependencies",
-      separateMajorMinor: false,
-      separateMinorPatch: false,
     },
     {
       matchManagers: ["github-actions", "custom.regex"],
@@ -48,8 +46,6 @@
       groupName: "workflow dependency updates",
       groupSlug: "workflow-dependencies",
       commitMessageTopic: "workflow dependencies",
-      separateMajorMinor: false,
-      separateMinorPatch: false,
     },
     {
       matchManagers: ["mise"],
