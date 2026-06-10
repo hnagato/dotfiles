@@ -5,6 +5,7 @@
   enabledManagers: ["mise", "github-actions", "custom.regex"],
   automergeType: "pr",
   platformAutomerge: true,
+  rebaseWhen: "behind-base-branch",
   ignoreTests: false,
   customManagers: [
     {
