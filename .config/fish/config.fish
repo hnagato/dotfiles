@@ -98,6 +98,8 @@ abbr -a i idea
 abbr -a c claude
 abbr -a cc claude --continue
 abbr -a cr claude --resume
+abbr -a cx codex
+abbr -a cxr codex --resume
 abbr -a gs git status -sb
 abbr -a gco git checkout
 abbr -a gfa git fetch --all
