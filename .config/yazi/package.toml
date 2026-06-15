@@ -1,0 +1,12 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "marcosvnmelo/kanagawa-dragon"
+rev = "b433f4a"
+hash = "b967c24a30350b1c5cd3a2ad5a7732e7"
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-light"
+rev = "1b1e677"
+hash = "a80630a255909a511aba8a98d115bc15"
