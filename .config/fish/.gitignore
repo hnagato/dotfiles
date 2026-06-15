@@ -19,6 +19,7 @@ functions/*
 !functions/fzf_tmux_windows.fish
 !functions/fzf_tmux_windows_popup.fish
 !functions/fzf_tmux_files_popup.fish
+!functions/yazi_tmux_files_picker.fish
 !functions/fzf_z_search.fish
 !functions/git.fish
 !functions/git_audit.fish
