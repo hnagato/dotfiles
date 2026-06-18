@@ -41,6 +41,7 @@
   defaultBranch = main
 [core]
   pager = delta
+  quotePath = false
 [pager]
   log = less -FRX
   show = less -FRX

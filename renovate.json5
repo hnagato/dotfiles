@@ -1,22 +1,15 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["config:recommended", "helpers:pinGitHubActionDigests"],
-  dependencyDashboard: true,
-  enabledManagers: ["mise", "github-actions", "custom.regex"],
+  extends: [
+    "config:recommended",
+    ":disableDependencyDashboard",
+    "helpers:pinGitHubActionDigests",
+  ],
+  enabledManagers: ["mise", "github-actions"],
   automergeType: "pr",
   platformAutomerge: true,
   rebaseWhen: "behind-base-branch",
   ignoreTests: false,
-  customManagers: [
-    {
-      customType: "regex",
-      managerFilePatterns: ["/^\\.github/workflows/(?:renovate|dependency-validation)\\.yml$/"],
-      matchStrings: [
-        "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+renovate-version: (?<currentValue>\\S+)",
-        "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+RENOVATE_VERSION: (?<currentValue>\\S+)",
-      ],
-    },
-  ],
   labels: ["dependencies"],
   packageRules: [
     {
@@ -26,12 +19,19 @@
       description: "Hold Lua 5.5.0 until the LuaRocks 3.13.0 release tarball issue is resolved",
     },
     {
-      matchManagers: ["mise", "github-actions", "custom.regex"],
+      matchManagers: ["mise", "github-actions"],
       matchUpdateTypes: ["minor", "patch", "pin", "pinDigest", "digest"],
       matchCurrentVersion: "!/^0\\./",
       minimumReleaseAge: "7 days",
       automerge: true,
       description: "Automerge stable patch/minor and digest pinning updates after validation and a release cooldown",
+    },
+    {
+      matchManagers: ["mise", "github-actions"],
+      matchUpdateTypes: ["minor", "patch", "pin", "pinDigest", "digest"],
+      matchCurrentVersion: "/^0\\./",
+      automerge: true,
+      description: "Automerge pre-1.0 patch/minor and digest pinning updates without a release cooldown",
     },
     {
       matchManagers: ["mise"],
@@ -41,7 +41,7 @@
       commitMessageTopic: "mise dependencies",
     },
     {
-      matchManagers: ["github-actions", "custom.regex"],
+      matchManagers: ["github-actions"],
       matchUpdateTypes: ["minor", "patch", "pin", "pinDigest", "digest"],
       groupName: "workflow dependency updates",
       groupSlug: "workflow-dependencies",
@@ -55,10 +55,6 @@
     {
       matchManagers: ["github-actions"],
       commitMessageTopic: "GitHub Action {{depName}}",
-    },
-    {
-      matchManagers: ["custom.regex"],
-      commitMessageTopic: "Renovate {{depName}}",
     },
   ],
 }
