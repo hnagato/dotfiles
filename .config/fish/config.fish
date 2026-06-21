@@ -1,7 +1,6 @@
 set -gx LANG ja_JP.UTF-8
 set -gx LC_ALL ja_JP.UTF-8
 
-#set -gx EDITOR 'code --wait'
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx PAGER less
@@ -93,7 +92,7 @@ end
 abbr -a ... cd ../..
 abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
-abbr -a e code
+abbr -a e zed
 abbr -a i idea
 abbr -a c claude
 abbr -a cc claude --continue

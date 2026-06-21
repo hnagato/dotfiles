@@ -95,6 +95,24 @@ require('lazy').setup({
   -- Essential utilities
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
+  -- File manager (yazi) integration
+  {
+    'mikavilpas/yazi.nvim',
+    version = '*',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    keys = {
+      { '<leader>e', '<cmd>Yazi<cr>', desc = 'Open yazi at the current file' },
+      { '<leader>E', '<cmd>Yazi cwd<cr>', desc = 'Open yazi in nvim working directory' },
+      { '<leader>er', '<cmd>Yazi toggle<cr>', desc = 'Resume the last yazi session' },
+    },
+    opts = {
+      open_for_directories = false,
+      keymaps = {
+        show_help = '<f1>',
+      },
+    },
+  },
+
 
   -- Key mappings helper
   {
@@ -127,6 +145,7 @@ require('lazy').setup({
         },
       },
       spec = {
+        { '<leader>e', group = '[E]xplorer (yazi)' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
@@ -791,6 +810,7 @@ require('lazy').setup({
 
       -- Custom textlint linter definition
       lint.linters.textlint = {
+        name = "textlint",
         cmd = 'npx',
         stdin = true,
         args = {
@@ -804,7 +824,7 @@ require('lazy').setup({
         },
         stream = 'stdout',
         ignore_exitcode = true,
-        parser = function(output, bufnr)
+        parser = function(output)
           local diagnostics = {}
           if output and output ~= "" then
             local ok, result = pcall(vim.json.decode, output)
@@ -840,7 +860,6 @@ require('lazy').setup({
         typescriptreact = {'biomejs'},
         json = {'biomejs'},
         jsonc = {'biomejs'},
-        kotlin = kotlin_linters,
         sh = {'shellcheck'},
         fish = {},
       }
@@ -1207,7 +1226,7 @@ local find_ai_agent_tmux_pane = function()
   end
 
   local candidates = {}
-  for line in panes_output:gmatch("[^\r\n]+") do
+  for line in (panes_output or ""):gmatch("[^\r\n]+") do
     local pane = parse_tmux_pane(line)
     local agent = pane ~= nil and match_ai_agent_tmux_pane(pane) or nil
     if pane ~= nil and agent ~= nil then
