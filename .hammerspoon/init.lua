@@ -216,4 +216,4 @@ local function handleKeyboardEvent(eventObject)
 end
 
 -- Keep a global reference so Hammerspoon does not garbage collect the event tap.
-keyboardTap = eventtap.new({ eventTypes.flagsChanged, eventTypes.keyDown, eventTypes.keyUp }, handleKeyboardEvent):start()
+KeyboardTap = eventtap.new({ eventTypes.flagsChanged, eventTypes.keyDown, eventTypes.keyUp }, handleKeyboardEvent):start()
