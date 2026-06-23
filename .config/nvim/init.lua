@@ -743,7 +743,7 @@ require('lazy').setup({
       notify_on_error = true,
       format_on_save = function(bufnr)
         -- Disable for specific filetypes if needed
-        local disable_filetypes = { c = true, cpp = true, kotlin = true }
+        local disable_filetypes = { c = true, cpp = true, kotlin = true, markdown = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
