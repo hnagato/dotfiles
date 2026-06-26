@@ -245,7 +245,7 @@ local swipeMaxFingers = 3
 -- Minimum travel of the tracked finger (in normalized 0..1 units) before a swipe
 -- fires. Three-finger swipes register as quick flicks and macOS throttles touch
 -- updates once it recognizes the gesture, so the observable travel is small.
-local swipeThreshold = 0.025
+local swipeThreshold = 0.05
 
 -- Short debounce after a fire, purely to absorb jitter at a direction reversal.
 -- Horizontal repeats are gated by direction change (see lastDir), not by time,
@@ -407,6 +407,14 @@ local function handleGesture(eventObject)
   end
 
   if swipeState.blockedUntilRelease then
+    return false
+  end
+
+  -- Too few fingers while a gesture is in progress: a finger lifted mid-swipe.
+  -- Block re-latching until every finger lifts, while preserving tracking so the
+  -- release path can still decide whether the gesture was a tap.
+  if swipeState.tracking and count < swipeMinFingers then
+    swipeState.blockedUntilRelease = true
     return false
   end
 
