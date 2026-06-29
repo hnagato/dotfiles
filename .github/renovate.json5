@@ -10,7 +10,7 @@
   platformAutomerge: true,
   platformCommit: "enabled",
   rebaseWhen: "behind-base-branch",
-  ignoreTests: false,
+  ignoreTests: true,
   labels: ["dependencies"],
   packageRules: [
     {
