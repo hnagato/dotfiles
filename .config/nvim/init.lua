@@ -383,7 +383,8 @@ require('lazy').setup({
   {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
-    version = '*',
+    build = 'cargo build --release',
+    version = '1.*',
     opts = {
       keymap = {
         preset = 'enter',
