@@ -9,8 +9,11 @@
   automergeType: "pr",
   platformAutomerge: true,
   platformCommit: "enabled",
+  lockFileMaintenance: {
+    enabled: true,
+  },
   rebaseWhen: "behind-base-branch",
-  ignoreTests: true,
+  internalChecksFilter: "strict",
   labels: ["dependencies"],
   packageRules: [
     {
@@ -31,8 +34,9 @@
       matchManagers: ["mise", "github-actions"],
       matchUpdateTypes: ["minor", "patch", "pin", "pinDigest", "digest"],
       matchCurrentVersion: "/^0\\./",
+      minimumReleaseAge: "7 days",
       automerge: true,
-      description: "Automerge pre-1.0 patch/minor and digest pinning updates without a release cooldown",
+      description: "Automerge pre-1.0 patch/minor and digest pinning updates after validation and a release cooldown",
     },
     {
       matchManagers: ["mise"],

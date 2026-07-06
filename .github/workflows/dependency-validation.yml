@@ -1,0 +1,21 @@
+name: dependency-validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  mise-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - uses: jdx/mise-action@v4.2.0
+        with:
+          install: false
+          experimental: true
+      - run: mise install --locked --dry-run
