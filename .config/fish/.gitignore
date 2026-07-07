@@ -8,6 +8,7 @@ functions/*
 
 # Keep repo-managed functions
 !functions/__dotfiles_apply_theme_mode.fish
+!functions/__dotfiles_repair_nvim_lazy_checkouts.fish
 !functions/__dotfiles_theme_mode.fish
 !functions/fish_greeting.fish
 !functions/fish_title.fish.bak
