@@ -20,6 +20,14 @@ functions/*
 !functions/fzf_tmux_windows.fish
 !functions/fzf_tmux_windows_popup.fish
 !functions/fzf_tmux_files_popup.fish
+!functions/__herdr_cd_active_pane_cwd.fish
+!functions/__herdr_send_paths_to_pane.fish
+!functions/__herdr_target_pane_id.fish
+!functions/herdr_files_picker.fish
+!functions/herdr_lazygit.fish
+!functions/herdr_tab_cycle.fish
+!functions/herdr_tabs_picker.fish
+!functions/herdr_yazi_files_picker.fish
 !functions/yazi_tmux_files_picker.fish
 !functions/fzf_z_search.fish
 !functions/git.fish
