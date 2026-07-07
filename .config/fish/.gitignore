@@ -10,6 +10,9 @@ functions/*
 !functions/__dotfiles_apply_theme_mode.fish
 !functions/__dotfiles_repair_nvim_lazy_checkouts.fish
 !functions/__dotfiles_theme_mode.fish
+!functions/__herdr_cd_active_pane_cwd.fish
+!functions/__herdr_send_paths_to_pane.fish
+!functions/__herdr_target_pane_id.fish
 !functions/fish_greeting.fish
 !functions/fish_title.fish.bak
 !functions/fish_user_key_bindings.fish
@@ -24,6 +27,10 @@ functions/*
 !functions/fzf_z_search.fish
 !functions/git.fish
 !functions/git_audit.fish
+!functions/herdr_files_picker.fish
+!functions/herdr_lazygit.fish
+!functions/herdr_tabs_picker.fish
+!functions/herdr_yazi_files_picker.fish
 !functions/push_line.fish
 !functions/theme_sync.fish
 !functions/update_tools.fish
