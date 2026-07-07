@@ -7,7 +7,7 @@
   ],
   enabledManagers: ["mise", "github-actions"],
   automergeType: "pr",
-  platformAutomerge: true,
+  platformAutomerge: false,
   platformCommit: "enabled",
   lockFileMaintenance: {
     enabled: true,
