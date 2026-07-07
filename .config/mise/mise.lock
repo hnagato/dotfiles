@@ -1035,14 +1035,6 @@ backend = "npm:markdownlint-cli2"
 version = "5.4.0"
 backend = "npm:neovim"
 
-[[tools."npm:renovate"]]
-version = "43.246.1"
-backend = "npm:renovate"
-
-[[tools."npm:repomix"]]
-version = "1.15.0"
-backend = "npm:repomix"
-
 [[tools."npm:rulesync"]]
 version = "8.32.0"
 backend = "npm:rulesync"
