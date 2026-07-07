@@ -4,7 +4,7 @@ deno = "2.9.0"
 go = "1.26.4"
 java = "liberica-21.0.6+10"
 kotlin = "2.4.0"
-lua = "5.4.8"
+"asdf:mise-plugins/mise-lua" = "5.4.8"
 node = "24.18.0"
 "npm:@aku11i/phantom" = "6.2.0"
 "npm:@biomejs/biome" = "2.5.1"
@@ -38,6 +38,7 @@ lazygit = "0.63.0"
 pre-commit = "4.6.0"
 starship = "1.26.0"
 yazi = "26.5.6"
+"npm:renovate" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
