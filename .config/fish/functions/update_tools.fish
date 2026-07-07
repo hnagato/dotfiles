@@ -25,11 +25,12 @@ function update_tools --on-event fish_prompt
 
             set -l update_script "$HOME/.local/bin/update-tools.fish"
             set -l escaped_update_script (string escape -- $update_script)
-            set -l tmux_command "__dotfiles_repair_nvim_lazy_checkouts; and fish $escaped_update_script; set -l exit_code \$status; if test \$exit_code -eq 0; echo 'Update completed successfully'; else; echo 'Update failed (exit code: '\$exit_code')'; end; read -n1 -P 'Press any key to close...'; tmux kill-pane"
+            set -l tmux_command "set -gx DOTFILES_NVIM_UPDATE 1; __dotfiles_repair_nvim_lazy_checkouts; and fish $escaped_update_script; set -l exit_code \$status; if test \$exit_code -eq 0; echo 'Update completed successfully'; else; echo 'Update failed (exit code: '\$exit_code')'; end; read -n1 -P 'Press any key to close...'; tmux kill-pane"
 
             if test -n "$TMUX"; and tmux split-window -vb "$tmux_command" 2>/dev/null
                 set -U __fish_update_tools_timestamp $current_timestamp
             else
+                set -lx DOTFILES_NVIM_UPDATE 1
                 __dotfiles_repair_nvim_lazy_checkouts; and fish $update_script
                 set -l exit_code $status
                 set -U __fish_update_tools_timestamp $current_timestamp

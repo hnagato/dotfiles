@@ -3,6 +3,22 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
 
+local function dotfiles_has_argv_fragment(fragment)
+  for _, arg in ipairs(vim.v.argv or {}) do
+    if tostring(arg):find(fragment, 1, true) then
+      return true
+    end
+  end
+
+  return false
+end
+
+local dotfiles_nvim_update_mode = vim.env.DOTFILES_NVIM_UPDATE == '1'
+  or (#vim.api.nvim_list_uis() == 0 and (
+    dotfiles_has_argv_fragment('Lazy! restore')
+    or dotfiles_has_argv_fragment('MasonUpdate')
+  ))
+
 -- Use a writable cache path for the Lua module loader
 if vim.loader then
   local lua_cache = vim.fn.stdpath('state') .. '/luac'
@@ -223,7 +239,6 @@ require('lazy').setup({
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
-      'saghen/blink.cmp',
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -309,7 +324,13 @@ require('lazy').setup({
         },
       }
 
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      if not dotfiles_nvim_update_mode then
+        local blink_ok, blink_cmp = pcall(require, 'blink.cmp')
+        if blink_ok then
+          capabilities = blink_cmp.get_lsp_capabilities(capabilities)
+        end
+      end
 
       -- Language servers
       local servers = {
@@ -384,7 +405,8 @@ require('lazy').setup({
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
     build = 'cargo build --release',
-    version = '1.*',
+    branch = 'v1',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
       keymap = {
         preset = 'enter',

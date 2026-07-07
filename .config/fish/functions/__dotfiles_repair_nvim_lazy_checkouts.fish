@@ -28,8 +28,17 @@ function __dotfiles_repair_nvim_lazy_checkouts
             continue
         end
 
-        if not git -C "$plugin" status --short --ignore-submodules=dirty >/dev/null 2>&1
+        set -l tracked_status (git -C "$plugin" status --short --untracked-files=no --ignore-submodules=dirty 2>/dev/null)
+        set -l git_status $status
+
+        if test $git_status -ne 0
             echo "Removing broken Neovim Lazy checkout: $plugin_name" >&2
+            command rm -rf -- "$plugin"; or return $status
+            continue
+        end
+
+        if test (count $tracked_status) -gt 0
+            echo "Removing Neovim Lazy checkout with dirty tracked files: $plugin_name" >&2
             command rm -rf -- "$plugin"; or return $status
             continue
         end

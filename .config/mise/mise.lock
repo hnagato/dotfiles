@@ -1015,14 +1015,6 @@ backend = "npm:@biomejs/biome"
 version = "20.0.14"
 backend = "npm:ccusage"
 
-[[tools."npm:czg"]]
-version = "1.13.1"
-backend = "npm:czg"
-
-[[tools."npm:hunkdiff"]]
-version = "0.16.0"
-backend = "npm:hunkdiff"
-
 [[tools."npm:markdownlint-cli"]]
 version = "0.49.0"
 backend = "npm:markdownlint-cli"
@@ -1034,10 +1026,6 @@ backend = "npm:markdownlint-cli2"
 [[tools."npm:neovim"]]
 version = "5.4.0"
 backend = "npm:neovim"
-
-[[tools."npm:rulesync"]]
-version = "8.32.0"
-backend = "npm:rulesync"
 
 [[tools."npm:textlint"]]
 version = "15.7.1"
@@ -1261,10 +1249,6 @@ url = "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.9.tar.gz"
 [tools.ruby."platforms.macos-x64-baseline"]
 checksum = "sha256:7bb4d4f5e807cc27251d14d9d6086d182c5b25875191e44ab15b709cd7a7dd9c"
 url = "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.9.tar.gz"
-
-[[tools.ruby]]
-version = "3.4.9"
-backend = "core:ruby"
 
 [tools.ruby."platforms.windows-x64"]
 checksum = "sha256:4375268618b61dadf53bf8e54beaca74ea30580c90d3c47ea9f2a134bd3e494e"
