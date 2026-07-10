@@ -404,6 +404,68 @@ provenance = "github-attestations"
 version = "2.47.0"
 backend = "pipx:git-filter-repo"
 
+[[tools."github:JetBrains/kotlin"]]
+version = "2.4.0"
+backend = "github:JetBrains/kotlin"
+
+[tools."github:JetBrains/kotlin".options]
+asset_pattern = "kotlin-compiler-*.zip"
+
+[tools."github:JetBrains/kotlin"."platforms.linux-arm64"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.linux-arm64-musl"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.linux-x64"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.linux-x64-baseline"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.linux-x64-musl"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.macos-arm64"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.macos-x64"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.macos-x64-baseline"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.windows-x64"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
+[tools."github:JetBrains/kotlin"."platforms.windows-x64-baseline"]
+checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
+url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
+url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
+
 [[tools.gitleaks]]
 version = "8.30.1"
 backend = "aqua:gitleaks/gitleaks"
@@ -800,68 +862,6 @@ checksum = "sha256:a6fc67fedaf9128a3309a1e2ebb8b986aeccf70122ee46d2cb4849e423f0c
 url = "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-windows-amd64.exe"
 url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/453012788"
 provenance = "github-attestations"
-
-[[tools.kotlin]]
-version = "2.4.0"
-backend = "github:JetBrains/kotlin"
-
-[tools.kotlin.options]
-asset_pattern = "kotlin-compiler-*.zip"
-
-[tools.kotlin."platforms.linux-arm64"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.linux-arm64-musl"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.linux-x64"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.linux-x64-baseline"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.linux-x64-musl"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.macos-arm64"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.macos-x64"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.macos-x64-baseline"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.windows-x64"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
-
-[tools.kotlin."platforms.windows-x64-baseline"]
-checksum = "sha256:ba1b9e6eb6ddc3275079224f2e9ea4a2b02eef7d59ce2d38404f04b22613c20a"
-url = "https://github.com/JetBrains/kotlin/releases/download/v2.4.0/kotlin-compiler-2.4.0.zip"
-url_api = "https://api.github.com/repos/JetBrains/kotlin/releases/assets/437101463"
 
 [[tools.lazygit]]
 version = "0.63.0"
