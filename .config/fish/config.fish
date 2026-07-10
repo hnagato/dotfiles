@@ -38,7 +38,12 @@ if test -d $HOMEBREW_HOME/bin
     eval ($HOMEBREW_HOME/bin/brew shellenv)
     fish_add_path $HOMEBREW_HOME/bin $HOMEBREW_HOME/sbin
     set -x HOMEBREW_FORBIDDEN_FORMULAE "node python python3 pip npm pnpm yarn openjdk"
-    alias python3 (uv python find)
+    function python3 --description "Run the Python interpreter selected by uv"
+        set -l interpreter (uv python find)
+        or return $status
+
+        command $interpreter $argv
+    end
     alias python python3
     if test -d $HOMEBREW_HOME/opt/mysql@8.0
         fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
@@ -133,4 +138,11 @@ end
 
 function vi
     nvim $argv
+end
+
+if status is-interactive
+    and set -q HERDR_PANE_ID
+    and command -sq herdr
+    and command -sq jq
+    __herdr_sync_tab_name
 end
