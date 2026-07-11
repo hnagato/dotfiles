@@ -23,14 +23,9 @@ type = "pane"
 command = "fish -c 'herdr_tabs_picker'"
 
 [[keys.command]]
-key = "prefix+ctrl+f"
+key = "prefix+ctrl+space"
 type = "pane"
-command = "fish -c 'herdr_files_picker'"
-
-[[keys.command]]
-key = "prefix+ctrl+g"
-type = "pane"
-command = "fish -c 'herdr_lazygit'"
+command = "fish -c 'herdr_shell_popup'"
 
 [[keys.command]]
 key = "prefix+ctrl+e"
