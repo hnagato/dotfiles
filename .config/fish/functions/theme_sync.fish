@@ -36,7 +36,7 @@ function theme_sync --description 'Sync dotfiles theme with the current macOS ap
         return 0
     end
 
-    set -l theme_vars DOTFILES_THEME_MODE BAT_THEME BAT_THEME_LIGHT BAT_THEME_DARK NVIM_THEME TMUX_THEME DELTA_FEATURES HUNK_THEME LG_CONFIG_FILE LEAF_THEME FZF_DEFAULT_OPTS
+    set -l theme_vars DOTFILES_THEME_MODE BAT_THEME BAT_THEME_LIGHT BAT_THEME_DARK NVIM_THEME TMUX_THEME DELTA_FEATURES LG_CONFIG_FILE LEAF_THEME FZF_DEFAULT_OPTS
     for name in $theme_vars
         if set -q $name
             set -l value (string join -- ' ' $$name)
