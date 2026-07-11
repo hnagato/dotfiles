@@ -8,8 +8,8 @@ functions/*
 
 # Keep repo-managed functions
 !functions/__dotfiles_apply_theme_mode.fish
-!functions/__dotfiles_repair_nvim_lazy_checkouts.fish
 !functions/__dotfiles_theme_mode.fish
+!functions/__dotfiles_update_tools.fish
 !functions/__herdr_cd_active_pane_cwd.fish
 !functions/__herdr_send_paths_to_pane.fish
 !functions/__herdr_sync_tab_name.fish
@@ -24,6 +24,7 @@ functions/*
 !functions/fzf_tmux_windows.fish
 !functions/fzf_tmux_windows_popup.fish
 !functions/fzf_tmux_files_popup.fish
+!functions/fzf_tmux_agents_popup.fish
 !functions/__herdr_cd_active_pane_cwd.fish
 !functions/__herdr_send_popup_commandline.fish
 !functions/__herdr_send_paths_to_pane.fish

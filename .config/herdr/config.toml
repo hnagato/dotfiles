@@ -1,7 +1,8 @@
 onboarding = false
 [theme]
-name = "solarized-light"
-auto_switch = false
+dark_name = "kanagawa"
+light_name = "kanagawa-lotus"
+auto_switch = true
 
 [keys]
 prefix = "ctrl+z"
@@ -9,8 +10,8 @@ previous_workspace = "prefix+ctrl+left"
 next_workspace = "prefix+ctrl+right"
 previous_agent = "prefix+ctrl+up"
 next_agent = "prefix+ctrl+down"
-previous_tab = ["prefix+p", "prefix+ctrl+p", "prefix+comma"]
-next_tab = ["prefix+n", "prefix+ctrl+n", "prefix+."]
+previous_tab = ["prefix+p", "prefix+ctrl+p"]
+next_tab = ["prefix+n", "prefix+ctrl+n"]
 
 [[keys.command]]
 key = "prefix+ctrl+w"
@@ -32,11 +33,7 @@ key = "prefix+ctrl+e"
 type = "pane"
 command = "fish -c 'herdr_yazi_files_picker'"
 
-[experimental]
-switch_ascii_input_source_in_prefix = false
-
 [ui]
-agent_panel_sort = "spaces"
-
-[ui.toast]
-delivery = "terminal"
+confirm_close = true
+prompt_new_tab_name = false
+show_agent_labels_on_pane_borders = true

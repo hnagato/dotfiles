@@ -3,22 +3,6 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
 
-local function dotfiles_has_argv_fragment(fragment)
-  for _, arg in ipairs(vim.v.argv or {}) do
-    if tostring(arg):find(fragment, 1, true) then
-      return true
-    end
-  end
-
-  return false
-end
-
-local dotfiles_nvim_update_mode = vim.env.DOTFILES_NVIM_UPDATE == '1'
-  or (#vim.api.nvim_list_uis() == 0 and (
-    dotfiles_has_argv_fragment('Lazy! restore')
-    or dotfiles_has_argv_fragment('MasonUpdate')
-  ))
-
 -- Use a writable cache path for the Lua module loader
 if vim.loader then
   local lua_cache = vim.fn.stdpath('state') .. '/luac'
@@ -325,11 +309,9 @@ require('lazy').setup({
       }
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      if not dotfiles_nvim_update_mode then
-        local blink_ok, blink_cmp = pcall(require, 'blink.cmp')
-        if blink_ok then
-          capabilities = blink_cmp.get_lsp_capabilities(capabilities)
-        end
+      local blink_ok, blink_cmp = pcall(require, 'blink.cmp')
+      if blink_ok then
+        capabilities = blink_cmp.get_lsp_capabilities(capabilities)
       end
 
       -- Language servers
@@ -404,8 +386,7 @@ require('lazy').setup({
   {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
-    build = 'cargo build --release',
-    branch = 'v1',
+    version = '1.*',
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
       keymap = {
@@ -423,6 +404,9 @@ require('lazy').setup({
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      fuzzy = {
+        implementation = 'prefer_rust_with_warning',
       },
     },
     opts_extend = { "sources.default" }
@@ -1152,148 +1136,155 @@ local get_visual_selection_payload = function()
   return string.format("From %s\n\n%s", location, table.concat(lines, "\n")), nil
 end
 
-local run_tmux = function(args, opts)
-  opts = opts or {}
-  opts.text = true
-
-  local command = vim.list_extend({ "tmux" }, args)
-  local result = vim.system(command, opts):wait()
+local run_herdr = function(args)
+  local command = vim.list_extend({ "herdr" }, args)
+  local ok, result = pcall(function()
+    return vim.system(command, { text = true }):wait()
+  end)
+  if not ok then
+    return nil, tostring(result)
+  end
   if result.code ~= 0 then
-    return nil, vim.trim(result.stderr or "tmux command failed")
+    return nil, vim.trim(result.stderr or "herdr command failed")
   end
 
   return result.stdout or "", nil
 end
 
-local ai_agent_tmux_commands = {
-  { name = "Codex", commands = { "codex" }, titles = {} },
-  { name = "Claude Code", commands = { "claude" }, titles = { "claude code" } },
-  { name = "Copilot CLI", commands = { "copilot" }, titles = { "github copilot" } },
-}
+local get_herdr_snapshot = function()
+  local output, command_error = run_herdr({ "api", "snapshot" })
+  if command_error ~= nil then
+    return nil, command_error
+  end
 
-local has_tmux_command_prefix = function(command, prefix)
-  return command == prefix or command:sub(1, #prefix + 1) == prefix .. "-"
+  local ok, response = pcall(vim.json.decode, output)
+  if not ok or type(response) ~= "table" then
+    return nil, "Failed to decode Herdr snapshot"
+  end
+
+  local snapshot = response.result and response.result.snapshot
+  if type(snapshot) ~= "table" or type(snapshot.panes) ~= "table" then
+    return nil, "Herdr snapshot did not include pane information"
+  end
+
+  return snapshot, nil
 end
 
-local normalize_tmux_command = function(command)
-  local normalized = string.lower(vim.trim(command or ""))
-  local command_name = normalized:match("^(%S+)") or normalized
-  return command_name:gsub("^.*/", "")
+local is_ai_agent_herdr_pane = function(pane)
+  return type(pane.agent) == "string" and pane.agent ~= ""
 end
 
-local match_ai_agent_tmux_command = function(...)
-  local commands = { ... }
-  for _, agent in ipairs(ai_agent_tmux_commands) do
-    for _, command in ipairs(commands) do
-      local normalized = normalize_tmux_command(command)
-      for _, command_prefix in ipairs(agent.commands) do
-        if has_tmux_command_prefix(normalized, command_prefix) then
-          return agent
-        end
+local is_active_ai_agent_herdr_pane = function(pane)
+  return pane.agent_status == "working" or pane.agent_status == "blocked"
+end
+
+local describe_ai_agent_herdr_panes = function(panes)
+  local descriptions = vim.tbl_map(function(pane)
+    return string.format("%s (%s, %s)", pane.pane_id, pane.agent, pane.agent_status or "unknown")
+  end, panes)
+  return table.concat(descriptions, ", ")
+end
+
+local last_ai_agent_herdr_pane_id
+
+local find_ai_agent_herdr_pane = function()
+  local current_pane_id = vim.env.HERDR_PANE_ID
+  if current_pane_id == nil or current_pane_id == "" then
+    return nil, "Not running inside Herdr"
+  end
+
+  local snapshot, snapshot_error = get_herdr_snapshot()
+  if snapshot_error ~= nil then
+    return nil, snapshot_error
+  end
+
+  local current_pane
+  for _, pane in ipairs(snapshot.panes) do
+    if pane.pane_id == current_pane_id then
+      current_pane = pane
+      break
+    end
+  end
+  if current_pane == nil then
+    return nil, "Current pane was not found in the Herdr snapshot"
+  end
+
+  local current_tab_candidates = {}
+  local current_space_candidates = {}
+  local last_agent_pane
+  for _, pane in ipairs(snapshot.panes) do
+    if
+      pane.pane_id ~= current_pane_id
+      and pane.workspace_id == current_pane.workspace_id
+      and is_ai_agent_herdr_pane(pane)
+    then
+      table.insert(current_space_candidates, pane)
+      if pane.tab_id == current_pane.tab_id then
+        table.insert(current_tab_candidates, pane)
+      end
+      if pane.pane_id == last_ai_agent_herdr_pane_id then
+        last_agent_pane = pane
       end
     end
   end
 
-  return nil
-end
+  if last_ai_agent_herdr_pane_id ~= nil and last_agent_pane == nil then
+    last_ai_agent_herdr_pane_id = nil
+  end
 
-local match_ai_agent_tmux_title = function(title)
-  local normalized = string.lower(title or "")
-  for _, agent in ipairs(ai_agent_tmux_commands) do
-    for _, title_pattern in ipairs(agent.titles) do
-      if normalized:find(title_pattern, 1, true) ~= nil then
-        return agent
-      end
+  if #current_tab_candidates == 1 then
+    return current_tab_candidates[1].pane_id, nil
+  end
+
+  if #current_tab_candidates > 1 then
+    if last_agent_pane ~= nil and last_agent_pane.tab_id == current_pane.tab_id then
+      return last_agent_pane.pane_id, nil
     end
-  end
 
-  return nil
-end
-
-local match_ai_agent_tmux_pane = function(pane)
-  return match_ai_agent_tmux_command(pane.current_command, pane.start_command) or match_ai_agent_tmux_title(pane.title)
-end
-
-local parse_tmux_pane = function(line)
-  local pane_id, current_command, start_command, title = line:match("^([^\t]+)\t([^\t]*)\t([^\t]*)\t(.*)$")
-  if pane_id == nil then
-    return nil
-  end
-
-  return {
-    id = pane_id,
-    current_command = current_command,
-    start_command = start_command,
-    title = title,
-  }
-end
-
-local describe_ai_agent_pane = function(pane)
-  return string.format("%s (%s)", pane.id, pane.agent.name)
-end
-
-local find_ai_agent_tmux_pane = function()
-  local pane_format = "#{pane_id}\t#{pane_current_command}\t#{pane_start_command}\t#{pane_title}"
-  local right_output = run_tmux({ "display-message", "-p", "-t", "{right-of}", pane_format })
-  if right_output ~= nil then
-    local right_pane = parse_tmux_pane(vim.trim(right_output))
-    local right_agent = right_pane ~= nil and match_ai_agent_tmux_pane(right_pane) or nil
-    if right_pane ~= nil and right_agent ~= nil then
-      return right_pane.id, nil
+    local active_candidates = vim.tbl_filter(is_active_ai_agent_herdr_pane, current_tab_candidates)
+    if #active_candidates == 1 then
+      return active_candidates[1].pane_id, nil
     end
+
+    return nil, "Multiple AI agent panes found in the current Herdr tab: "
+      .. describe_ai_agent_herdr_panes(current_tab_candidates)
   end
 
-  local panes_output, panes_error = run_tmux({ "list-panes", "-F", pane_format })
-  if panes_error ~= nil then
-    return nil, panes_error
+  if last_agent_pane ~= nil then
+    return last_agent_pane.pane_id, nil
   end
 
-  local candidates = {}
-  for line in (panes_output or ""):gmatch("[^\r\n]+") do
-    local pane = parse_tmux_pane(line)
-    local agent = pane ~= nil and match_ai_agent_tmux_pane(pane) or nil
-    if pane ~= nil and agent ~= nil then
-      pane.agent = agent
-      table.insert(candidates, pane)
-    end
+  local active_candidates = vim.tbl_filter(is_active_ai_agent_herdr_pane, current_space_candidates)
+  if #active_candidates == 1 then
+    return active_candidates[1].pane_id, nil
   end
 
-  if #candidates == 0 then
-    return nil, "No AI agent pane found in current tmux window"
+  if #current_space_candidates == 1 then
+    return current_space_candidates[1].pane_id, nil
   end
 
-  if #candidates == 1 then
-    return candidates[1].id, nil
+  if #current_space_candidates == 0 then
+    return nil, "No AI agent pane found in the current Herdr space"
   end
 
-  local pane_ids = vim.tbl_map(function(pane)
-    return describe_ai_agent_pane(pane)
-  end, candidates)
-  return nil, "Multiple AI agent panes found in current tmux window: " .. table.concat(pane_ids, ", ")
+  return nil, "Multiple AI agent panes found in the current Herdr space: "
+    .. describe_ai_agent_herdr_panes(current_space_candidates)
 end
 
-local send_to_ai_agent_tmux_pane = function(text)
-  if vim.env.TMUX == nil or vim.env.TMUX == "" then
-    return false, "Not running inside tmux"
-  end
-
-  local target_pane, target_error = find_ai_agent_tmux_pane()
+local send_to_ai_agent_herdr_pane = function(text)
+  local target_pane, target_error = find_ai_agent_herdr_pane()
   if target_error ~= nil then
     return false, target_error
   end
 
-  local buffer_name = "ai-agent-nvim-selection"
-  local _, load_error = run_tmux({ "load-buffer", "-b", buffer_name, "-" }, { stdin = text })
-  if load_error ~= nil then
-    return false, load_error
+  local _, send_error = run_herdr({ "agent", "send", target_pane, text })
+  if send_error ~= nil then
+    return false, send_error
   end
 
-  local _, paste_error = run_tmux({ "paste-buffer", "-d", "-b", buffer_name, "-t", target_pane })
-  if paste_error ~= nil then
-    return false, paste_error
-  end
+  last_ai_agent_herdr_pane_id = target_pane
 
-  local _, focus_error = run_tmux({ "select-pane", "-t", target_pane })
+  local _, focus_error = run_herdr({ "agent", "focus", target_pane })
   if focus_error ~= nil then
     return false, "Sent selection, but failed to focus AI agent pane: " .. focus_error
   end
@@ -1311,7 +1302,7 @@ vim.keymap.set("x", "<leader>cc", function()
     return
   end
 
-  local ok, send_error = send_to_ai_agent_tmux_pane(payload)
+  local ok, send_error = send_to_ai_agent_herdr_pane(payload)
   if not ok then
     vim.notify(send_error or "Failed to send selection to AI agent pane", vim.log.levels.WARN)
   end

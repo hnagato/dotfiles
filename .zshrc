@@ -104,8 +104,7 @@ alias gl='git l'
 alias ga='git add'
 alias gc='git commit -vS -m'
 alias gb='git branch'
-# alias gd='git diff -ubw'
-alias gd='hunk diff --watch --mode stack'
+alias gd='git diff -ubw'
 alias gp='git pull'
 alias gg='git clone'
 
@@ -192,7 +191,7 @@ function theme_sync() {
       theme_sync $argv
       or exit $status
 
-      set -l theme_vars DOTFILES_THEME_MODE BAT_THEME BAT_THEME_LIGHT BAT_THEME_DARK NVIM_THEME TMUX_THEME DELTA_FEATURES HUNK_THEME LG_CONFIG_FILE LEAF_THEME FZF_DEFAULT_OPTS
+      set -l theme_vars DOTFILES_THEME_MODE BAT_THEME BAT_THEME_LIGHT BAT_THEME_DARK NVIM_THEME TMUX_THEME DELTA_FEATURES LG_CONFIG_FILE LEAF_THEME FZF_DEFAULT_OPTS
       for name in $theme_vars
           if set -q $name
               set -l value (string join -- " " $$name)
