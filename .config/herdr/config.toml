@@ -29,7 +29,7 @@ type = "pane"
 command = "fish -c 'herdr_yazi_files_picker'"
 
 [[keys.command]]
-key = "prefix+alt+g"
+key = "cmd+g"
 type = "pane"
 command = "fish -c 'lazygit'"
 
