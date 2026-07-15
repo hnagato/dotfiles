@@ -37,6 +37,8 @@ keybind = alt+super+k=resize_split:up,30
 keybind = alt+super+l=resize_split:right,30
 keybind = super+shift+e=text:\x1a\x06
 keybind = super+shift+g=text:\x1a\x07
+keybind = super+shift+[=text:\x1a\x10
+keybind = super+shift+]=text:\x1a\x0e
 
 keybind = shift+enter=text:\n
 

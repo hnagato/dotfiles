@@ -38,7 +38,12 @@ if test -d $HOMEBREW_HOME/bin
     eval ($HOMEBREW_HOME/bin/brew shellenv)
     fish_add_path $HOMEBREW_HOME/bin $HOMEBREW_HOME/sbin
     set -x HOMEBREW_FORBIDDEN_FORMULAE "node python python3 pip npm pnpm yarn openjdk"
-    alias python3 (uv python find)
+    function python3 --description "Run the Python interpreter selected by uv"
+        set -l interpreter (uv python find)
+        or return $status
+
+        command $interpreter $argv
+    end
     alias python python3
     if test -d $HOMEBREW_HOME/opt/mysql@8.0
         fish_add_path $HOMEBREW_HOME/opt/mysql@8.0/bin
@@ -62,33 +67,6 @@ if test -d $HOME/.bun
     fish_add_path $BUN_INSTALL/bin
 end
 
-function hunk
-    if test -z "$HUNK_THEME"; or test (count $argv) -eq 0
-        command hunk $argv
-        return $status
-    end
-
-    for arg in $argv
-        if test "$arg" = --theme; or string match -q -- '--theme=*' "$arg"
-            command hunk $argv
-            return $status
-        end
-    end
-
-    switch $argv[1]
-        case diff show patch pager difftool
-            command hunk $argv[1] --theme $HUNK_THEME $argv[2..-1]
-        case stash
-            if test (count $argv) -ge 2; and test "$argv[2]" = show
-                command hunk stash show --theme $HUNK_THEME $argv[3..-1]
-            else
-                command hunk $argv
-            end
-        case '*'
-            command hunk $argv
-    end
-end
-
 abbr -a ... cd ../..
 abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
@@ -97,8 +75,8 @@ abbr -a i idea
 abbr -a c claude
 abbr -a cc claude --continue
 abbr -a cr claude --resume
-abbr -a cx codex
-abbr -a cxr codex --resume
+abbr -a x codex
+abbr -a xr codex resume
 abbr -a gs git status -sb
 abbr -a gco git checkout
 abbr -a gfa git fetch --all
@@ -107,7 +85,6 @@ abbr -a ga git add
 abbr -a gc git czg ai
 abbr -a gb git branch
 abbr -a gd git diff -ubw
-abbr -a hd hunk diff --theme $HUNK_THEME --watch
 abbr -a gp git pull
 abbr -a gr git graph -l
 abbr -a lg lazygit
@@ -133,4 +110,11 @@ end
 
 function vi
     nvim $argv
+end
+
+if status is-interactive
+    and set -q HERDR_PANE_ID
+    and command -sq herdr
+    and command -sq jq
+    __herdr_sync_tab_name
 end

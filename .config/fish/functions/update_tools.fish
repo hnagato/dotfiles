@@ -1,9 +1,46 @@
-function update_tools --on-event fish_prompt
-    set -l current_timestamp (date '+%s')
-    set -l last_run_timestamp $__fish_update_tools_timestamp
-    set -l min_interval_seconds (math "8 * 60 * 60")
+function __dotfiles_start_update_in_herdr
+    command -sq herdr; or return 1
+    command -sq jq; or return 1
+    test -n "$HERDR_WORKSPACE_ID"; or return 1
 
-    if test -z "$last_run_timestamp"; or test (math "$current_timestamp - $last_run_timestamp") -ge $min_interval_seconds
+    set -l create_result (command herdr tab create \
+        --workspace "$HERDR_WORKSPACE_ID" \
+        --cwd "$PWD" \
+        --label update \
+        --no-focus 2>/dev/null)
+    or return 1
+
+    set -l tab_id (printf '%s\n' $create_result | jq -r '.result.tab.tab_id // empty' 2>/dev/null)
+    set -l pane_id (printf '%s\n' $create_result | jq -r '.result.root_pane.pane_id // empty' 2>/dev/null)
+
+    if test -z "$tab_id"; or test -z "$pane_id"
+        test -n "$tab_id"; and command herdr tab close "$tab_id" >/dev/null 2>&1
+        return 1
+    end
+
+    set -l update_command "command herdr tab rename \$HERDR_TAB_ID update >/dev/null 2>&1; __dotfiles_update_tools; set -l exit_code \$status; if test \$exit_code -eq 0; echo 'Update completed successfully'; else; echo 'Update failed (exit code: '\$exit_code')'; end"
+
+    if command herdr pane run "$pane_id" "$update_command" >/dev/null 2>&1
+        return 0
+    end
+
+    command herdr tab close "$tab_id" >/dev/null 2>&1
+    return 1
+end
+
+function update_tools --on-event fish_prompt
+    set -l current_date (date '+%Y-%m-%d')
+    set -l current_hour (date '+%H')
+    set -l last_run $__fish_update_tools_timestamp
+    set -l last_run_date
+
+    if string match -qr '^\d{4}-\d{2}-\d{2}$' -- "$last_run"
+        set last_run_date $last_run
+    else if string match -qr '^\d+$' -- "$last_run"
+        set last_run_date (date -r $last_run '+%Y-%m-%d' 2>/dev/null)
+    end
+
+    if test $current_hour -ge 9; and test "$last_run_date" != "$current_date"
         set -l lock_file /tmp/fish_update_tools_(id -u)
 
         if test -f $lock_file
@@ -23,15 +60,12 @@ function update_tools --on-event fish_prompt
         if not test -f $lock_file
             echo $fish_pid >$lock_file
 
-            set -l update_script "$HOME/.local/bin/update-tools.fish"
-            set -l tmux_command "fish $update_script; set -l exit_code \$status; if test \$exit_code -eq 0; echo 'Update completed successfully'; else; echo 'Update failed (exit code: '\$exit_code')'; end; read -n1 -P 'Press any key to close...'; tmux kill-pane"
-
-            if test -n "$TMUX"; and tmux split-window -vb "$tmux_command" 2>/dev/null
-                set -U __fish_update_tools_timestamp $current_timestamp
+            if __dotfiles_start_update_in_herdr
+                set -U __fish_update_tools_timestamp $current_date
             else
-                fish $update_script
+                __dotfiles_update_tools
                 set -l exit_code $status
-                set -U __fish_update_tools_timestamp $current_timestamp
+                set -U __fish_update_tools_timestamp $current_date
                 if test $exit_code -eq 0
                     echo "Update completed successfully" >&2
                 else

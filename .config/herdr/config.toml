@@ -1,0 +1,42 @@
+onboarding = false
+[theme]
+dark_name = "kanagawa"
+light_name = "kanagawa-lotus"
+auto_switch = true
+
+[keys]
+prefix = "ctrl+z"
+previous_workspace = "prefix+ctrl+left"
+next_workspace = "prefix+ctrl+right"
+previous_agent = ["prefix+up", "prefix+ctrl+up"]
+next_agent = ["prefix+down", "prefix+ctrl+down"]
+previous_tab = ["prefix+p", "prefix+ctrl+p"]
+next_tab = ["prefix+n", "prefix+ctrl+n"]
+
+[[keys.command]]
+key = "prefix+ctrl+w"
+type = "pane"
+command = "fish -c 'herdr_tabs_picker'"
+
+[[keys.command]]
+key = "prefix+ctrl+space"
+type = "pane"
+command = "fish -c 'herdr_shell_popup'"
+
+[[keys.command]]
+key = "prefix+ctrl+e"
+type = "pane"
+command = "fish -c 'herdr_yazi_files_picker'"
+
+[[keys.command]]
+key = "cmd+g"
+type = "pane"
+command = "fish -c 'lazygit'"
+
+[ui]
+confirm_close = true
+prompt_new_tab_name = false
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+delivery = "terminal"

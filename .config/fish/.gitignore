@@ -9,6 +9,11 @@ functions/*
 # Keep repo-managed functions
 !functions/__dotfiles_apply_theme_mode.fish
 !functions/__dotfiles_theme_mode.fish
+!functions/__dotfiles_update_tools.fish
+!functions/__herdr_cd_active_pane_cwd.fish
+!functions/__herdr_send_paths_to_pane.fish
+!functions/__herdr_sync_tab_name.fish
+!functions/__herdr_target_pane_id.fish
 !functions/fish_greeting.fish
 !functions/fish_title.fish.bak
 !functions/fish_user_key_bindings.fish
@@ -19,10 +24,21 @@ functions/*
 !functions/fzf_tmux_windows.fish
 !functions/fzf_tmux_windows_popup.fish
 !functions/fzf_tmux_files_popup.fish
+!functions/fzf_tmux_agents_popup.fish
+!functions/__herdr_cd_active_pane_cwd.fish
+!functions/__herdr_send_popup_commandline.fish
+!functions/__herdr_send_paths_to_pane.fish
+!functions/__herdr_target_pane_id.fish
+!functions/herdr_shell_popup.fish
+!functions/herdr_tab_cycle.fish
+!functions/herdr_tabs_picker.fish
+!functions/herdr_yazi_files_picker.fish
 !functions/yazi_tmux_files_picker.fish
 !functions/fzf_z_search.fish
 !functions/git.fish
 !functions/git_audit.fish
+!functions/herdr_tabs_picker.fish
+!functions/herdr_yazi_files_picker.fish
 !functions/push_line.fish
 !functions/theme_sync.fish
 !functions/update_tools.fish

@@ -104,8 +104,7 @@ alias gl='git l'
 alias ga='git add'
 alias gc='git commit -vS -m'
 alias gb='git branch'
-# alias gd='git diff -ubw'
-alias gd='hunk diff --watch --mode stack'
+alias gd='git diff -ubw'
 alias gp='git pull'
 alias gg='git clone'
 
@@ -179,6 +178,35 @@ alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 # tmux
 alias t="tmux attach-session -d || tmux new"
 alias tn="tmux new"
+
+function theme_sync() {
+  if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    command fish -c 'theme_sync $argv' -- "$@"
+    return $?
+  fi
+
+  local exports
+  exports=$(
+    command fish -c '
+      theme_sync $argv
+      or exit $status
+
+      set -l theme_vars DOTFILES_THEME_MODE BAT_THEME BAT_THEME_LIGHT BAT_THEME_DARK NVIM_THEME TMUX_THEME DELTA_FEATURES LG_CONFIG_FILE LEAF_THEME FZF_DEFAULT_OPTS
+      for name in $theme_vars
+          if set -q $name
+              set -l value (string join -- " " $$name)
+              printf "export %s=%s\n" $name (string escape -- $value)
+          end
+      end
+    ' -- "$@"
+  )
+  local status_code=$?
+  if (( status_code != 0 )); then
+    return $status_code
+  fi
+
+  eval "$exports"
+}
 #}}}
 
 # predict {{{

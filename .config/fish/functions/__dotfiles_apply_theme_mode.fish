@@ -41,7 +41,6 @@ function __dotfiles_apply_theme_mode --description 'Apply dotfiles theme variabl
     set -l nvim_theme
     set -l tmux_theme
     set -l delta_features
-    set -l hunk_theme
     set -l lazygit_config
     set -l leaf_theme
 
@@ -50,14 +49,12 @@ function __dotfiles_apply_theme_mode --description 'Apply dotfiles theme variabl
             set nvim_theme flexoki-light
             set tmux_theme light
             set delta_features flexoki-light
-            set hunk_theme paper
             set lazygit_config "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/theme-light.yml"
             set leaf_theme "$HOME/.config/leaf/flexoki-light.toml"
         case dark
             set nvim_theme kanagawa-dragon
             set tmux_theme dark
             set delta_features kanagawa-dragon
-            set hunk_theme custom
             set lazygit_config "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/theme-dark.yml"
             set leaf_theme "$HOME/.config/leaf/kanagawa-dragon.toml"
         case '*'
@@ -72,7 +69,6 @@ function __dotfiles_apply_theme_mode --description 'Apply dotfiles theme variabl
     __dotfiles_set_theme_var $scope NVIM_THEME $nvim_theme
     __dotfiles_set_theme_var $scope TMUX_THEME $tmux_theme
     __dotfiles_set_theme_var $scope DELTA_FEATURES $delta_features
-    __dotfiles_set_theme_var $scope HUNK_THEME $hunk_theme
     __dotfiles_set_theme_var $scope LG_CONFIG_FILE $lazygit_config
     __dotfiles_set_theme_var $scope LEAF_THEME $leaf_theme
     __dotfiles_set_theme_var $scope FZF_DEFAULT_OPTS "--color=$mode" --cycle --layout=reverse --height=90% --preview-window=wrap '--marker=*'
