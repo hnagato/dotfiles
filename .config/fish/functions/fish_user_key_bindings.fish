@@ -1,4 +1,8 @@
 function fish_user_key_bindings
+    if set -q HERDR_ENV
+        bind \cz true
+    end
+
     bind \cs push_line
     bind \co fzf_z_search
     bind \cx\cb fzf_git_branch

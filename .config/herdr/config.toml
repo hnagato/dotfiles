@@ -38,5 +38,9 @@ confirm_close = true
 prompt_new_tab_name = false
 show_agent_labels_on_pane_borders = true
 
+agent_panel_sort = "priority"
 [ui.toast]
 delivery = "terminal"
+
+[worktrees]
+directory = ".wt"
