@@ -164,63 +164,63 @@ version = "0.23.5"
 backend = "asdf:eza"
 
 [[tools.fastfetch]]
-version = "2.65.2"
+version = "2.66.0"
 backend = "aqua:fastfetch-cli/fastfetch"
 
 [tools.fastfetch."platforms.linux-arm64"]
-checksum = "sha256:7485815be2817db722096353c3440967b9b39cdd5500eaf29d3724ca3dc9c1b5"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-linux-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130742"
+checksum = "sha256:262e0585ca0dbfaa9548a5e10fa159064f2e57583f4c0622047b2fab8b89cc86"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-linux-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472227284"
 
 [tools.fastfetch."platforms.linux-arm64-musl"]
-checksum = "sha256:7485815be2817db722096353c3440967b9b39cdd5500eaf29d3724ca3dc9c1b5"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-linux-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130742"
+checksum = "sha256:262e0585ca0dbfaa9548a5e10fa159064f2e57583f4c0622047b2fab8b89cc86"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-linux-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472227284"
 
 [tools.fastfetch."platforms.linux-x64"]
-checksum = "sha256:d8a477a016fbcf6cf184b1e2a54f38e702aae0d27078f72f5dac54d6d0010739"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130711"
+checksum = "sha256:89aed1a60547f4959300f571d478f2babd430f3e2702dcfc7731c7a623fea524"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472227155"
 
 [tools.fastfetch."platforms.linux-x64-baseline"]
-checksum = "sha256:d8a477a016fbcf6cf184b1e2a54f38e702aae0d27078f72f5dac54d6d0010739"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130711"
+checksum = "sha256:89aed1a60547f4959300f571d478f2babd430f3e2702dcfc7731c7a623fea524"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472227155"
 
 [tools.fastfetch."platforms.linux-x64-musl"]
-checksum = "sha256:d8a477a016fbcf6cf184b1e2a54f38e702aae0d27078f72f5dac54d6d0010739"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130711"
+checksum = "sha256:89aed1a60547f4959300f571d478f2babd430f3e2702dcfc7731c7a623fea524"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472227155"
 
 [tools.fastfetch."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:d8a477a016fbcf6cf184b1e2a54f38e702aae0d27078f72f5dac54d6d0010739"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130711"
+checksum = "sha256:89aed1a60547f4959300f571d478f2babd430f3e2702dcfc7731c7a623fea524"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472227155"
 
 [tools.fastfetch."platforms.macos-arm64"]
-checksum = "sha256:be86c281b2fc57410399357153731ae723856fbb80ee66a074648f597b80530c"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-macos-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130536"
+checksum = "sha256:aca7dd5c97704573dc79399f963ea919b76443f642d924c020f0243da496a54c"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-macos-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472226641"
 
 [tools.fastfetch."platforms.macos-x64"]
-checksum = "sha256:2c2026826ab2f663ba6544961c2fdf45725b5be5ed0df57838ade58c7b82328f"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-macos-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130526"
+checksum = "sha256:f9c7b956888f154458d80f592ea0c6f509109f1ebce330f814067cc4a742efb6"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-macos-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472226610"
 
 [tools.fastfetch."platforms.macos-x64-baseline"]
-checksum = "sha256:2c2026826ab2f663ba6544961c2fdf45725b5be5ed0df57838ade58c7b82328f"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-macos-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130526"
+checksum = "sha256:f9c7b956888f154458d80f592ea0c6f509109f1ebce330f814067cc4a742efb6"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-macos-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472226610"
 
 [tools.fastfetch."platforms.windows-x64"]
-checksum = "sha256:77d43202b5ca499f065e2cf3e7a3cbc9678fe202c915457ce58344bf4898d49e"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-windows-amd64.zip"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130394"
+checksum = "sha256:3035b8add360bc3142ce81ac39be352d3738273224e232195217f01c2398c87a"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-windows-amd64.zip"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472226375"
 
 [tools.fastfetch."platforms.windows-x64-baseline"]
-checksum = "sha256:77d43202b5ca499f065e2cf3e7a3cbc9678fe202c915457ce58344bf4898d49e"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.65.2/fastfetch-windows-amd64.zip"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/460130394"
+checksum = "sha256:3035b8add360bc3142ce81ac39be352d3738273224e232195217f01c2398c87a"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.66.0/fastfetch-windows-amd64.zip"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/472226375"
 
 [[tools.fd]]
 version = "10.4.2"
@@ -979,7 +979,7 @@ version = "2.5.3"
 backend = "npm:@biomejs/biome"
 
 [[tools."npm:ccusage"]]
-version = "20.0.16"
+version = "20.0.17"
 backend = "npm:ccusage"
 
 [[tools."npm:markdownlint-cli"]]
