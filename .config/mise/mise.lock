@@ -983,7 +983,7 @@ version = "20.0.17"
 backend = "npm:ccusage"
 
 [[tools."npm:markdownlint-cli"]]
-version = "0.49.0"
+version = "0.49.1"
 backend = "npm:markdownlint-cli"
 
 [[tools."npm:markdownlint-cli2"]]
