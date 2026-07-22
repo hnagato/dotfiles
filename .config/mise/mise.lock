@@ -975,7 +975,7 @@ version = "6.2.0"
 backend = "npm:@aku11i/phantom"
 
 [[tools."npm:@biomejs/biome"]]
-version = "2.5.3"
+version = "2.5.4"
 backend = "npm:@biomejs/biome"
 
 [[tools."npm:ccusage"]]
