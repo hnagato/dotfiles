@@ -8,7 +8,7 @@ set -gx DELTA_PAGER 'less -FRX'
 set -gx LESS "-RSM~gIsw"
 
 # Herdr forwards prefix+prefix as a literal prefix key.
-if set -q HERDR_ENV; and test -t 0
+if status is-interactive; and set -q HERDR_ENV; and test -t 0
     command stty susp undef
 end
 
