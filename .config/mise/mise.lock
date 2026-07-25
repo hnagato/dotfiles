@@ -272,63 +272,63 @@ url = "https://github.com/sharkdp/fd/releases/download/v10.4.2/fd-v10.4.2-x86_64
 url_api = "https://api.github.com/repos/sharkdp/fd/releases/assets/370661516"
 
 [[tools.fzf]]
-version = "0.74.0"
+version = "0.74.1"
 backend = "aqua:junegunn/fzf"
 
 [tools.fzf."platforms.linux-arm64"]
-checksum = "sha256:bd9e6165ebdb702215d42368cbb95b8dd70a4e77ee97925adac8c31660e30ef7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106539"
+checksum = "sha256:f22204dd1a091d43e102268d062fd53b47133c8d8581671ee5eb225b75e31183"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468085"
 
 [tools.fzf."platforms.linux-arm64-musl"]
-checksum = "sha256:bd9e6165ebdb702215d42368cbb95b8dd70a4e77ee97925adac8c31660e30ef7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106539"
+checksum = "sha256:f22204dd1a091d43e102268d062fd53b47133c8d8581671ee5eb225b75e31183"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468085"
 
 [tools.fzf."platforms.linux-x64"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.linux-x64-baseline"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.linux-x64-musl"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.macos-arm64"]
-checksum = "sha256:da60e8980e4239a0fc5f1fcfe873f243dfda93a6a13b696b00e1dc8584a77a87"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106617"
+checksum = "sha256:849d1d33b050f04dd6b765665e417da151b0e4654dbed8f55c60fd8e23f3ba20"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468061"
 
 [tools.fzf."platforms.macos-x64"]
-checksum = "sha256:e2c470f058ac18615f54c0bebe0fd2956f2aa8e306a11621783a00aaa386eedd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106579"
+checksum = "sha256:642f29fb2800690385efb176a209b14d9f593795f0f70ee12c919ee15472e439"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468093"
 
 [tools.fzf."platforms.macos-x64-baseline"]
-checksum = "sha256:e2c470f058ac18615f54c0bebe0fd2956f2aa8e306a11621783a00aaa386eedd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106579"
+checksum = "sha256:642f29fb2800690385efb176a209b14d9f593795f0f70ee12c919ee15472e439"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468093"
 
 [tools.fzf."platforms.windows-x64"]
-checksum = "sha256:614efa4ea923a3d6715856b5f6fb6ce815acdb0ce549e7499202808f7a7a78e7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-windows_amd64.zip"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106560"
+checksum = "sha256:d83a94a68a9203f6366754123c0e4d7a61e16be18a5d845f4838664b330c4f5f"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-windows_amd64.zip"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468090"
 
 [tools.fzf."platforms.windows-x64-baseline"]
-checksum = "sha256:614efa4ea923a3d6715856b5f6fb6ce815acdb0ce549e7499202808f7a7a78e7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-windows_amd64.zip"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106560"
+checksum = "sha256:d83a94a68a9203f6366754123c0e4d7a61e16be18a5d845f4838664b330c4f5f"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-windows_amd64.zip"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468090"
 
 [[tools.gh]]
 version = "2.96.0"
@@ -1003,61 +1003,61 @@ version = "15.7.1"
 backend = "npm:textlint"
 
 [[tools.pnpm]]
-version = "11.14.0"
+version = "11.15.0"
 backend = "aqua:pnpm/pnpm"
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:6ec5224012d46e96747caed6b7ea02498f56e838c68df72acd9f8de46969b1a9"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872581"
+checksum = "sha256:d0c62d5953a9ba168267d81d178edf0fcdd9ea947da7b3e21ff8f65a679dd4ba"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481462338"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:37b6764b4d2301303fb70277c3ef4c0ee5a64eabea1c9d631ca2729b12c752e8"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872587"
+checksum = "sha256:04efd75a46b7d79dda92dbddaed729c4b54cc50d2ca836cb0f24f1f591387916"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-linux-arm64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481462341"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:d78ce4e1ebcc39c1213fcb5a8686eda5b09835195a318408a6361efbd450166d"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872586"
+checksum = "sha256:f9fb813541b04a9c63f0b87d4116794b24ecf6c61f1c0757f3f32b03bb3b55b3"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481462340"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-baseline"]
-checksum = "sha256:d78ce4e1ebcc39c1213fcb5a8686eda5b09835195a318408a6361efbd450166d"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872586"
+checksum = "sha256:f9fb813541b04a9c63f0b87d4116794b24ecf6c61f1c0757f3f32b03bb3b55b3"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481462340"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:eef0615b9b3da3d9c38196232899059c92c26e67dd62f42bb6044b40501aa5b3"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872582"
+checksum = "sha256:1a8ad7bbf355dc37d516d443e3de0768920fc22a03761ac7ff02a790a55ffb2d"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481462339"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:eef0615b9b3da3d9c38196232899059c92c26e67dd62f42bb6044b40501aa5b3"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872582"
+checksum = "sha256:1a8ad7bbf355dc37d516d443e3de0768920fc22a03761ac7ff02a790a55ffb2d"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481462339"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:5c389e50afcf5c825e533f203f2c0cb84546ffb1fee056772489c5088d01600f"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872584"
+checksum = "sha256:662da4d7515b268c20fae097147a0ddcb91f9eba23b79c1c8d403e0d6fea1900"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481462336"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:3bad9a8cf971b4a223c31c2063081c4d35ce8ce503f9ca2d3ece241e966eafb9"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872580"
+checksum = "sha256:da333ad91f95ee97caf9bb66a5a100f328d42b72a39007d4f3f2639a2b4166e7"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481465354"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64-baseline"]
-checksum = "sha256:3bad9a8cf971b4a223c31c2063081c4d35ce8ce503f9ca2d3ece241e966eafb9"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872580"
+checksum = "sha256:da333ad91f95ee97caf9bb66a5a100f328d42b72a39007d4f3f2639a2b4166e7"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.15.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/481465354"
 provenance = "github-attestations"
 
 [[tools.pre-commit]]
