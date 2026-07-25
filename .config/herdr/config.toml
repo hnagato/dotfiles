@@ -1,4 +1,5 @@
 onboarding = false
+
 [theme]
 dark_name = "kanagawa"
 light_name = "kanagawa-lotus"
@@ -37,10 +38,16 @@ command = "fish -c 'lazygit'"
 confirm_close = true
 prompt_new_tab_name = false
 show_agent_labels_on_pane_borders = true
-
 agent_panel_sort = "priority"
+
 [ui.toast]
 delivery = "terminal"
 
 [worktrees]
 directory = ".wt"
+
+[experimental]
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude", "codex", "copilot", "cursor"]
+cjk_ime_cursor_shape = "steady_block"
+switch_ascii_input_source_in_prefix = true
