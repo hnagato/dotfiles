@@ -19,7 +19,7 @@ ruby = "3.4.10"
 rust = "1.97.1"
 shellcheck = "0.11.0"
 tree-sitter = "0.26.11"
-uv = "0.11.29"
+uv = "0.11.30"
 
 # Homebrew-managed CLIs moved to mise so Renovate can propose version updates.
 bat = "0.26.1"
