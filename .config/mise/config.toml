@@ -1,6 +1,6 @@
 [tools]
 bun = "1.3.14"
-deno = "2.9.3"
+deno = "2.9.4"
 go = "1.26.5"
 java = "liberica-21.0.6+10"
 "github:JetBrains/kotlin" = { version = "v2.4.10", asset_pattern = "kotlin-compiler-*.zip" }
@@ -13,13 +13,13 @@ node = "24.18.0"
 "npm:neovim" = "5.4.0"
 "npm:textlint" = "15.7.1"
 "npm:ccusage" = "20.0.18"
-pnpm = "11.16.0"
+pnpm = "11.17.0"
 python = "3.14.6"
 ruby = "3.4.10"
 rust = "1.97.1"
 shellcheck = "0.11.0"
 tree-sitter = "0.26.11"
-uv = "0.11.31"
+uv = "0.11.32"
 
 # Homebrew-managed CLIs moved to mise so Renovate can propose version updates.
 bat = "0.26.1"
