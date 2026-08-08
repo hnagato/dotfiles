@@ -999,7 +999,7 @@ version = "43.249.1"
 backend = "npm:renovate"
 
 [[tools."npm:textlint"]]
-version = "15.7.1"
+version = "15.8.0"
 backend = "npm:textlint"
 
 [[tools.pnpm]]
