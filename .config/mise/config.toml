@@ -1,6 +1,6 @@
 [tools]
 bun = "1.3.14"
-deno = "2.9.4"
+deno = "2.9.5"
 go = "1.26.5"
 java = "liberica-21.0.6+10"
 "github:JetBrains/kotlin" = { version = "v2.4.10", asset_pattern = "kotlin-compiler-*.zip" }
