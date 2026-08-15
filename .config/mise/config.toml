@@ -18,7 +18,7 @@ python = "3.14.7"
 ruby = "3.4.10"
 rust = "1.97.1"
 shellcheck = "0.11.0"
-tree-sitter = "0.26.11"
+tree-sitter = "0.26.12"
 uv = "0.12.3"
 
 # Homebrew-managed CLIs moved to mise so Renovate can propose version updates.
