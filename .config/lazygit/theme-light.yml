@@ -1,6 +1,6 @@
 git:
-  pagers:
-    - pager: delta --paging=never --light --line-numbers --features=flexoki-light --navigate
+  diffRenderers:
+    - command: delta --paging=never --light --line-numbers --features=flexoki-light --navigate
 gui:
   theme:
     activeBorderColor:

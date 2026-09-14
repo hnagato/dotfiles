@@ -75,20 +75,13 @@ end
 abbr -a ... cd ../..
 abbr -a .... cd ../../../
 abbr -a ll ls -lhavGF
-abbr -a e zed
-abbr -a i idea
+abbr -a co code
+abbr -a st studio
 abbr -a c claude
 abbr -a cc claude --continue
-abbr -a cr claude --resume
 abbr -a x codex
-abbr -a xr codex resume
+abbr -a h herdr
 abbr -a gs git status -sb
-abbr -a gco git checkout
-abbr -a gfa git fetch --all
-abbr -a gl git l
-abbr -a ga git add
-abbr -a gc git czg ai
-abbr -a gb git branch
 abbr -a gd git diff -ubw
 abbr -a gp git pull
 abbr -a gr git graph -l
