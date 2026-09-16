@@ -164,63 +164,63 @@ version = "0.23.5"
 backend = "asdf:eza"
 
 [[tools.fastfetch]]
-version = "2.67.1"
+version = "2.68.1"
 backend = "aqua:fastfetch-cli/fastfetch"
 
 [tools.fastfetch."platforms.linux-arm64"]
-checksum = "sha256:b974b76e3d8df90311440a2250c83561aa0a863f129925285f2789d932b4cbaa"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-linux-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064958"
+checksum = "sha256:d3369aa9c1bc77fd8bd7ba3be2ae2cdcece4a137620c48a9de58026779fdb7d4"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-linux-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503808"
 
 [tools.fastfetch."platforms.linux-arm64-musl"]
-checksum = "sha256:b974b76e3d8df90311440a2250c83561aa0a863f129925285f2789d932b4cbaa"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-linux-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064958"
+checksum = "sha256:d3369aa9c1bc77fd8bd7ba3be2ae2cdcece4a137620c48a9de58026779fdb7d4"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-linux-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503808"
 
 [tools.fastfetch."platforms.linux-x64"]
-checksum = "sha256:adc8a9eb64eccef267e50bb1e6f9a767bb608da5ee4a3b652ef36a10d9105d4d"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064883"
+checksum = "sha256:0c51ef6fa3e976eb5038fe0afda38629d3ca07947740bb0e3354c7c4f1238c0c"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503660"
 
 [tools.fastfetch."platforms.linux-x64-baseline"]
-checksum = "sha256:adc8a9eb64eccef267e50bb1e6f9a767bb608da5ee4a3b652ef36a10d9105d4d"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064883"
+checksum = "sha256:0c51ef6fa3e976eb5038fe0afda38629d3ca07947740bb0e3354c7c4f1238c0c"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503660"
 
 [tools.fastfetch."platforms.linux-x64-musl"]
-checksum = "sha256:adc8a9eb64eccef267e50bb1e6f9a767bb608da5ee4a3b652ef36a10d9105d4d"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064883"
+checksum = "sha256:0c51ef6fa3e976eb5038fe0afda38629d3ca07947740bb0e3354c7c4f1238c0c"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503660"
 
 [tools.fastfetch."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:adc8a9eb64eccef267e50bb1e6f9a767bb608da5ee4a3b652ef36a10d9105d4d"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064883"
+checksum = "sha256:0c51ef6fa3e976eb5038fe0afda38629d3ca07947740bb0e3354c7c4f1238c0c"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503660"
 
 [tools.fastfetch."platforms.macos-arm64"]
-checksum = "sha256:4a9b6847ec600ee1adb222ec5e1df60bf0e43768f9a21fbf20b14eaef9fecb0b"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-macos-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064584"
+checksum = "sha256:22426608dca945e0531af37054e21a2727aa7bb30179efaf44de7f59163be5fe"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-macos-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503362"
 
 [tools.fastfetch."platforms.macos-x64"]
-checksum = "sha256:c114d6c2fe8d0d2de0a896e5bb397004785599b3df4ed368ea16c125e3c6db79"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-macos-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064559"
+checksum = "sha256:1e9a6ba7474a41b3cc2bb1b923afcf40c749c25bd17dc1e62b64464e7445a534"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-macos-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503339"
 
 [tools.fastfetch."platforms.macos-x64-baseline"]
-checksum = "sha256:c114d6c2fe8d0d2de0a896e5bb397004785599b3df4ed368ea16c125e3c6db79"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-macos-amd64.tar.gz"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064559"
+checksum = "sha256:1e9a6ba7474a41b3cc2bb1b923afcf40c749c25bd17dc1e62b64464e7445a534"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-macos-amd64.tar.gz"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503339"
 
 [tools.fastfetch."platforms.windows-x64"]
-checksum = "sha256:19aeb34e4bb5b19f09236afbb6fb617241828cd94d967e7108c5eb3471cd26d8"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-windows-amd64.zip"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064396"
+checksum = "sha256:7002024c5ba37bdf9142f8b38039d3dd5da6de33d3b679b57693dc42483d882d"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-windows-amd64.zip"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503096"
 
 [tools.fastfetch."platforms.windows-x64-baseline"]
-checksum = "sha256:19aeb34e4bb5b19f09236afbb6fb617241828cd94d967e7108c5eb3471cd26d8"
-url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.67.1/fastfetch-windows-amd64.zip"
-url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/514064396"
+checksum = "sha256:7002024c5ba37bdf9142f8b38039d3dd5da6de33d3b679b57693dc42483d882d"
+url = "https://github.com/fastfetch-cli/fastfetch/releases/download/2.68.1/fastfetch-windows-amd64.zip"
+url_api = "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/assets/539503096"
 
 [[tools.fd]]
 version = "10.5.0"
@@ -1515,60 +1515,60 @@ url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/538592024"
 provenance = "github-attestations"
 
 [[tools.yazi]]
-version = "26.8.15"
+version = "26.9.1"
 backend = "aqua:sxyazi/yazi"
 
 [tools.yazi."platforms.linux-arm64"]
-checksum = "sha256:f5a85771f06bb0e8c488136ae0aedaec8d341a7cee995549df391d7d852fe8d1"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-aarch64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472941"
+checksum = "sha256:02807f08d6b589b65b7516a4e259d83f5995d7a23bb12b3a155141385b370b3a"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-aarch64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261402"
 
 [tools.yazi."platforms.linux-arm64-musl"]
-checksum = "sha256:dfaafadd3a80a18ccbd24c32be4888178202ea96f784a9b1021d526c908cab4b"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-aarch64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472937"
+checksum = "sha256:dd569daecaae914185f295634109295ccd25c1b42b02eb89a74f651970024f2e"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-aarch64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261411"
 
 [tools.yazi."platforms.linux-x64"]
-checksum = "sha256:cc67eb7991550c2f9407cda52d3f5af0937627aa6884e7de99a04fcf059807e0"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472936"
+checksum = "sha256:a02fe91d3304294048c681f010f1100856872a4e98ecf6927328e888d40a6ad2"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261400"
 
 [tools.yazi."platforms.linux-x64-baseline"]
-checksum = "sha256:cc67eb7991550c2f9407cda52d3f5af0937627aa6884e7de99a04fcf059807e0"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472936"
+checksum = "sha256:a02fe91d3304294048c681f010f1100856872a4e98ecf6927328e888d40a6ad2"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261400"
 
 [tools.yazi."platforms.linux-x64-musl"]
-checksum = "sha256:a6702034790afcdbb546b73b288c9b184a751fa3f2f17f0ad4d26fc302fb8d45"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472939"
+checksum = "sha256:9b9c39decccf8cb0ff53a7d637d38f8a79d93bbd0099f4ea9c619ef6bb392f5d"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261404"
 
 [tools.yazi."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:a6702034790afcdbb546b73b288c9b184a751fa3f2f17f0ad4d26fc302fb8d45"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472939"
+checksum = "sha256:9b9c39decccf8cb0ff53a7d637d38f8a79d93bbd0099f4ea9c619ef6bb392f5d"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261404"
 
 [tools.yazi."platforms.macos-arm64"]
-checksum = "sha256:3f54907ea08abe96506f4b22239340ed8923a6aeaeae78f33d59bce57daca4cd"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-aarch64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472942"
+checksum = "sha256:3921182a21cceb0a505e5dac578e1487d48104caa5f114e9f8adf40b5a7289a9"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261410"
 
 [tools.yazi."platforms.macos-x64"]
-checksum = "sha256:70bb2bcf57d8af862a54e2d12f2fddceefb9aa4ba3783e9a4dcbf2a8e64aacb3"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472934"
+checksum = "sha256:36e09036fcc446488d876d139a5e303f2443b82cfb6ac7dfcb43892d6fe6fa20"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261413"
 
 [tools.yazi."platforms.macos-x64-baseline"]
-checksum = "sha256:70bb2bcf57d8af862a54e2d12f2fddceefb9aa4ba3783e9a4dcbf2a8e64aacb3"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472934"
+checksum = "sha256:36e09036fcc446488d876d139a5e303f2443b82cfb6ac7dfcb43892d6fe6fa20"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261413"
 
 [tools.yazi."platforms.windows-x64"]
-checksum = "sha256:451f6770999fa8f9b08e6c9f94a688c263b6d3007b0944c4407f1ae335eace30"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472935"
+checksum = "sha256:7c033e5f2de6355fd03d865319053fc97db780275974ed17653c057f5d0f8d21"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261401"
 
 [tools.yazi."platforms.windows-x64-baseline"]
-checksum = "sha256:451f6770999fa8f9b08e6c9f94a688c263b6d3007b0944c4407f1ae335eace30"
-url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472935"
+checksum = "sha256:7c033e5f2de6355fd03d865319053fc97db780275974ed17653c057f5d0f8d21"
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261401"
