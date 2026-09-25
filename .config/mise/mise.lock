@@ -1016,7 +1016,7 @@ version = "5.5.0"
 backend = "npm:neovim"
 
 [[tools."npm:renovate"]]
-version = "44.94.0"
+version = "44.95.0"
 backend = "npm:renovate"
 
 [[tools."npm:textlint"]]
