@@ -1,0 +1,231 @@
+[
+  {
+    "plugin_id": "annotate",
+    "name": "Annotate",
+    "version": "0.5.0",
+    "min_herdr_version": "0.8.0",
+    "description": "Comment on terminal selections and copy annotations as agent context.",
+    "manifest_path": "/Users/hnagato/projects/hnagato/dotfiles/.config/herdr/plugins/github/annotate-9c299759567c/herdr-plugin.toml",
+    "plugin_root": "/Users/hnagato/projects/hnagato/dotfiles/.config/herdr/plugins/github/annotate-9c299759567c",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "scripts/fetch-herdr-annotate.sh"
+        ]
+      },
+      {
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell.exe",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "scripts/fetch-herdr-annotate.ps1"
+        ]
+      },
+      {
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "scripts/fetch-plannotator-tui.sh"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "capture",
+        "title": "Annotate selection",
+        "description": "Open a comment dialog for the current terminal selection.",
+        "contexts": [
+          "pane"
+        ],
+        "command": [
+          "./bin/herdr-annotate.exe",
+          "capture"
+        ]
+      },
+      {
+        "id": "copy-archive",
+        "title": "Copy annotations as context and archive them",
+        "description": "Copy all saved annotations to the clipboard as Markdown, then archive them.",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "./bin/herdr-annotate.exe",
+          "copy-archive"
+        ]
+      },
+      {
+        "id": "copy-context",
+        "title": "Copy annotations as context",
+        "description": "Copy all saved annotations to the clipboard as Markdown.",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "./bin/herdr-annotate.exe",
+          "copy-context"
+        ]
+      },
+      {
+        "id": "last",
+        "title": "Annotate: agent's last message",
+        "description": "Review the focused agent's most recent message in plannotator-tui and send feedback back.",
+        "contexts": [
+          "pane"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "./bin/plannotator-tui.exe",
+          "herdr",
+          "last"
+        ]
+      },
+      {
+        "id": "last-newest",
+        "title": "Annotate: agent's newest message",
+        "description": "Review the focused agent's newest message in plannotator-tui, without choosing from a picker first.",
+        "contexts": [
+          "pane"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "./bin/plannotator-tui.exe",
+          "herdr",
+          "last",
+          "--newest"
+        ]
+      },
+      {
+        "id": "manage",
+        "title": "Manage annotations",
+        "description": "Browse, copy, archive, restore, and delete annotations.",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "./bin/herdr-annotate.exe",
+          "manage"
+        ]
+      },
+      {
+        "id": "open",
+        "title": "Annotate: open here",
+        "description": "Review the focused pane's folder in plannotator-tui and send feedback to its agent.",
+        "contexts": [
+          "workspace",
+          "pane"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "./bin/plannotator-tui.exe",
+          "herdr",
+          "open"
+        ]
+      },
+      {
+        "id": "open-link",
+        "title": "Annotate this file",
+        "description": "Open a Ctrl-clicked Markdown file in plannotator-tui.",
+        "contexts": [
+          "pane"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "./bin/plannotator-tui.exe",
+          "herdr",
+          "open"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "doc",
+        "title": "Annotate",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "overlay",
+        "command": [
+          "sh",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/scripts/plannotator-tui.sh\" herdr pane"
+        ]
+      },
+      {
+        "id": "editor",
+        "title": "Annotate",
+        "placement": "popup",
+        "width": 88,
+        "height": 24,
+        "command": [
+          "./bin/herdr-annotate.exe",
+          "editor"
+        ]
+      },
+      {
+        "id": "manager",
+        "title": "Annotations",
+        "placement": "popup",
+        "width": 100,
+        "height": 30,
+        "command": [
+          "./bin/herdr-annotate.exe",
+          "manager"
+        ]
+      }
+    ],
+    "link_handlers": [
+      {
+        "id": "markdown-file",
+        "title": "Annotate this file",
+        "pattern": "^file://.*\\.(md|markdown|mdx)$",
+        "action": "open-link",
+        "platforms": [
+          "macos",
+          "linux"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "plannotator",
+      "repo": "herdr-annotate",
+      "resolved_commit": "d02b0b42cf1955a3b206959659f1833622f213b8",
+      "managed_path": "/Users/hnagato/.config/herdr/plugins/github/annotate-9c299759567c",
+      "installed_unix_ms": 1790231415850
+    }
+  }
+]
