@@ -38,7 +38,6 @@ lazygit = "0.65.1"
 pre-commit = "4.6.2"
 starship = "1.26.0"
 yazi = "26.9.1"
-"npm:renovate" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
