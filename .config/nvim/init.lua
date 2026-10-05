@@ -385,8 +385,13 @@ require('lazy').setup({
   -- Autocompletion
   {
     'saghen/blink.cmp',
-    dependencies = 'rafamadriz/friendly-snippets',
-    version = '1.*',
+    dependencies = {
+      'saghen/blink.lib',
+      'rafamadriz/friendly-snippets',
+    },
+    build = function()
+      require('blink.cmp').build():pwait()
+    end,
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
       keymap = {

@@ -13,6 +13,15 @@ previous_agent = ["prefix+up", "prefix+ctrl+up"]
 next_agent = ["prefix+down", "prefix+ctrl+down"]
 previous_tab = ["prefix+p", "prefix+ctrl+p"]
 next_tab = ["prefix+n", "prefix+ctrl+n"]
+new_tab = "cmd+t"
+close_pane = "cmd+w"
+split_vertical = "cmd+shift+d"
+split_horizontal = "cmd+d"
+zoom = "cmd+shift+enter"
+focus_pane_left=["cmd+ctrl+h", "prefix+h"]
+focus_pane_down=["cmd+ctrl+j", "prefix+j"]
+focus_pane_up=["cmd+ctrl+k", "prefix+k"]
+focus_pane_right=["cmd+ctrl+l", "prefix+l"]
 
 [[keys.command]]
 key = "prefix+ctrl+w"
@@ -33,6 +42,31 @@ command = "fish -c 'herdr_yazi_files_picker'"
 key = "cmd+g"
 type = "pane"
 command = "fish -c 'lazygit'"
+
+# Document review (plannotator-tui)
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "annotate.open"
+description = "review documents in this folder"
+
+[[keys.command]]
+key = "prefix+shift+o"
+type = "plugin_action"
+command = "annotate.last"
+description = "review the agent's last reply"
+
+[[keys.command]]
+key = "prefix+ctrl+o"
+type = "plugin_action"
+command = "annotate.last-newest"
+description = "review the agent's newest reply"
+
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "herdr-automatic-rename.reset"
+description = "hand this tab's name back to automatic naming"
 
 [ui]
 confirm_close = true
