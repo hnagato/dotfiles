@@ -1148,58 +1148,58 @@ version = "3.14.7"
 backend = "core:python"
 
 [tools.python."platforms.linux-arm64"]
-checksum = "sha256:4dba8d7e06199f841a9d6b54e4eb58d446a5c20c65085a916190dd0162c6e93b"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:9b8bd45d06fc3fcdc56f2713a62535fe1c019816461ae87c170dd56184dd3f4d"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-arm64-musl"]
-checksum = "sha256:10be7fe15ba5d1e5cfee1c2d8a9c720f29621b873e1f147f0b0a07f23de20d1a"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-aarch64-unknown-linux-musl-install_only_stripped.tar.gz"
+checksum = "sha256:4cfa7844ab77ef43bd8e3579e1a33d21a1551e6f20f73b101973e745b24687ce"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-aarch64-unknown-linux-musl-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64"]
-checksum = "sha256:a2478d654ed51d443bae21ec20ad927f116b4f5aae4094ab74918a6aa38f0575"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:da5357f47b1d9c8d4c439004d463d893ef688a44c27438a62b47073d26d1377e"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-baseline"]
-checksum = "sha256:a2478d654ed51d443bae21ec20ad927f116b4f5aae4094ab74918a6aa38f0575"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:da5357f47b1d9c8d4c439004d463d893ef688a44c27438a62b47073d26d1377e"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-musl"]
-checksum = "sha256:1fe25b50644b50b3333afa0d4013cc9cbab4dde4284c0154aebef4f53523ed99"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
+checksum = "sha256:ecb40bf33dd24d43fe44f7830e0933cd5755d3cf02e45dc404a0cfb0ea6ce0d0"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:1fe25b50644b50b3333afa0d4013cc9cbab4dde4284c0154aebef4f53523ed99"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
+checksum = "sha256:ecb40bf33dd24d43fe44f7830e0933cd5755d3cf02e45dc404a0cfb0ea6ce0d0"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.macos-arm64"]
-checksum = "sha256:532645be202d3df8510ab318ca5faed92060a694c8327144e14fa81f31af0f6d"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-aarch64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:44b4716f4e63bc85e1c07ea2aca730d13a0ec3557d06526d84a13b1d111cf4f9"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-aarch64-apple-darwin-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.macos-x64"]
-checksum = "sha256:9964e2d618ebea03be8ea3e65ab0ecc0f2b030ce203345b8f92654641fd4de66"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:419c8d110a393add7e20480f785a9cc2213978cdb10f8198ee7bb38b02cdb0fe"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-apple-darwin-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.macos-x64-baseline"]
-checksum = "sha256:9964e2d618ebea03be8ea3e65ab0ecc0f2b030ce203345b8f92654641fd4de66"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:419c8d110a393add7e20480f785a9cc2213978cdb10f8198ee7bb38b02cdb0fe"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-apple-darwin-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.windows-x64"]
-checksum = "sha256:840e368318d1630bd8efbd3f7de8fab32cb4bbd735baef733f9034f2676c6a92"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+checksum = "sha256:6378385d5e42ec0874656e5efd707fb92334a6972b1aca90fd254eb924a8f404"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.windows-x64-baseline"]
-checksum = "sha256:840e368318d1630bd8efbd3f7de8fab32cb4bbd735baef733f9034f2676c6a92"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260807/cpython-3.14.7+20260807-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+checksum = "sha256:6378385d5e42ec0874656e5efd707fb92334a6972b1aca90fd254eb924a8f404"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [[tools.ruby]]
@@ -1213,8 +1213,8 @@ ruby_build_repo = "https://github.com/rbenv/ruby-build.git"
 ruby_install = "false"
 
 [tools.ruby."platforms.linux-arm64"]
-checksum = "sha256:6e4483d9b1c5cd8d6e94529324774eb9bd26aa81d3bed236298c189750e227db"
-url = "https://github.com/jdx/ruby/releases/download/3.4.11-1/ruby-3.4.11.arm64_linux.tar.gz"
+checksum = "sha256:dcb1e5254779d0c901f913a235611816ff6bb149aaa631be3b7209649b59836f"
+url = "https://github.com/jdx/ruby/releases/download/3.4.11-2/ruby-3.4.11.arm64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-arm64-musl"]
@@ -1222,13 +1222,13 @@ checksum = "sha256:5c22be44524312b3d433d68739bcc530633b1da5ef8ba0afa0a37680da17d
 url = "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.11.tar.gz"
 
 [tools.ruby."platforms.linux-x64"]
-checksum = "sha256:b25a69eb4004852bc57877047f23fc8b1300aab6d2245f37ea6563f19305070b"
-url = "https://github.com/jdx/ruby/releases/download/3.4.11-1/ruby-3.4.11.x86_64_linux.tar.gz"
+checksum = "sha256:187448200a8af7a9caf32bc4eb40b63bdc1fe3666400d1bdd875fc1adbe0be36"
+url = "https://github.com/jdx/ruby/releases/download/3.4.11-2/ruby-3.4.11.x86_64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-x64-baseline"]
-checksum = "sha256:b25a69eb4004852bc57877047f23fc8b1300aab6d2245f37ea6563f19305070b"
-url = "https://github.com/jdx/ruby/releases/download/3.4.11-1/ruby-3.4.11.x86_64_linux.tar.gz"
+checksum = "sha256:187448200a8af7a9caf32bc4eb40b63bdc1fe3666400d1bdd875fc1adbe0be36"
+url = "https://github.com/jdx/ruby/releases/download/3.4.11-2/ruby-3.4.11.x86_64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-x64-musl"]
@@ -1240,8 +1240,8 @@ checksum = "sha256:5c22be44524312b3d433d68739bcc530633b1da5ef8ba0afa0a37680da17d
 url = "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.11.tar.gz"
 
 [tools.ruby."platforms.macos-arm64"]
-checksum = "sha256:4daac1266bd302c1a20fff0d65b25919ef3d64740ace1afd9f8bff69fd63db42"
-url = "https://github.com/jdx/ruby/releases/download/3.4.11-1/ruby-3.4.11.macos.tar.gz"
+checksum = "sha256:72efe9e14e3a9a254edf3dc56f2e843422e8b23317e4bc2b6cef9271c3838d89"
+url = "https://github.com/jdx/ruby/releases/download/3.4.11-2/ruby-3.4.11.macos.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.macos-x64"]
