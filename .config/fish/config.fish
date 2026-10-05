@@ -110,9 +110,13 @@ function vi
     nvim $argv
 end
 
-if status is-interactive
-    and set -q HERDR_PANE_ID
-    and command -sq herdr
-    and command -sq jq
-    __herdr_sync_tab_name
+# if status is-interactive
+#     and set -q HERDR_PANE_ID
+#     and command -sq herdr
+#     and command -sq jq
+#     __herdr_sync_tab_name
+# end
+
+for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.fish
+    test -r "$_f"; and source "$_f"; and break
 end
