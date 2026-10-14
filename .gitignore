@@ -6,3 +6,5 @@ karabiner/.config/karabiner/automatic_backups
 /Library/Caches/mise
 /.cache
 /.config/mise/*.local.toml
+/.config/herdr/session-snapshots
+/.config/herdr/herdr.sock.agent

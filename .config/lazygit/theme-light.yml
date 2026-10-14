@@ -29,5 +29,5 @@ gui:
       - "#dde2b2"
     markedBaseCommitFgColor:
       - "#100f0f"
-  authorColors:
-    "hnagato": "#24837b"
+    authorColors:
+      "hnagato": "#24837b"
