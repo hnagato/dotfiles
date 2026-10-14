@@ -13,9 +13,32 @@ Packages, dotfiles, macOS defaults, and setup hooks are declared for `mise boots
 
 ## Set up a new Mac
 
-1. Install Homebrew, then run `brew install mise git`.
-2. Register an SSH key with GitHub. dotfiles.private is cloned over `git@github.com:`.
-3. Clone this repository and link `~/.config/mise`.
+SSH keys live in 1Password, but 1Password, `~/.ssh/config`, and the agent config are all installed by this setup. Break the cycle by installing 1Password by hand and pointing SSH straight at its agent for the first session.
+
+1. Install the Xcode Command Line Tools and Homebrew.
+
+   ```shell
+   xcode-select --install
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   eval "$(/opt/homebrew/bin/brew shellenv)"
+   ```
+
+2. Install 1Password and mise, sign in to 1Password, and turn on Settings → Developer → Use the SSH agent.
+
+   ```shell
+   brew install --cask 1password
+   brew install mise
+   ```
+
+3. In the same shell, use the 1Password agent without `~/.ssh/config`. Do not create `~/.ssh` yourself; bootstrap links it from this repository. `UserKnownHostsFile=/dev/null` keeps ssh from creating it.
+
+   ```shell
+   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+   export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null"
+   ssh -T git@github.com
+   ```
+
+4. Clone this repository and link `~/.config/mise`.
 
    ```shell
    git clone git@github.com:hnagato/dotfiles.git ~/projects/hnagato/dotfiles
@@ -23,13 +46,13 @@ Packages, dotfiles, macOS defaults, and setup hooks are declared for `mise boots
    ln -s ~/projects/hnagato/dotfiles/.config/mise ~/.config/mise
    ```
 
-4. Choose the envs: `personal` or `work`, plus `private` when needed.
+5. Choose the envs: `personal` or `work`, plus `private` when needed.
 
    ```shell
    echo 'env = ["personal", "private"]' > ~/.config/mise/miserc.local.toml
    ```
 
-5. Preview, then apply twice. The first run clones and links dotfiles.private; the second run loads its config.
+6. Preview, then apply twice in the same shell. The first run clones dotfiles.private with the exported agent and links `~/.ssh` and its `bootstrap.toml`; the second run loads the private config. After that, `~/.ssh/config` selects the agent, so new shells need no exports.
 
    ```shell
    mise bootstrap --dry-run
