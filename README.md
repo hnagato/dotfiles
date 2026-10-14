@@ -13,7 +13,13 @@ Packages, dotfiles, macOS defaults, and setup hooks are declared for `mise boots
 
 ## Set up a new Mac
 
-SSH keys live in 1Password, but 1Password, `~/.ssh/config`, and the agent config are all installed by this setup. Break the cycle by installing 1Password by hand and pointing SSH straight at its agent for the first session.
+Run `bootstrap.sh`; it performs the steps below and skips the ones already done, so re-run it after any interruption.
+
+```shell
+bash <(curl -fsSL https://raw.githubusercontent.com/hnagato/dotfiles/master/bootstrap.sh) personal   # or work
+```
+
+The manual steps follow. SSH keys live in 1Password, but 1Password, `~/.ssh/config`, and the agent config are all installed by this setup. Break the cycle by installing 1Password by hand and pointing SSH straight at its agent for the first session.
 
 1. Install the Xcode Command Line Tools and Homebrew.
 
@@ -52,10 +58,10 @@ SSH keys live in 1Password, but 1Password, `~/.ssh/config`, and the agent config
    echo 'env = ["personal", "private"]' > ~/.config/mise/miserc.local.toml
    ```
 
-6. Preview, then apply twice in the same shell. The first run clones dotfiles.private with the exported agent and links `~/.ssh` and its `bootstrap.toml`; the second run loads the private config. After that, `~/.ssh/config` selects the agent, so new shells need no exports.
+6. Apply twice in the same shell, from `$HOME`. Skip `--dry-run` here: on a new Mac it stops at the link to dotfiles.private, which only the real run clones. The first run clones dotfiles.private with the exported agent and links `~/.ssh` and its `bootstrap.toml`; the second run loads the private config. After that, `~/.ssh/config` selects the agent, so new shells need no exports.
 
    ```shell
-   mise bootstrap --dry-run
+   cd ~
    mise bootstrap
    mise bootstrap
    ```
