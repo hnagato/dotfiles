@@ -73,11 +73,9 @@
 "brew-cask:shottr" = "latest"
 "brew-cask:syntax-highlight" = "latest"
 "brew-cask:the-unarchiver" = "latest"
-"mas:1429033973" = "latest" # RunCat
 "mas:1463298887" = "latest" # Userscripts
 "mas:1480933944" = "latest" # Vimari
 "mas:1569813296" = "latest" # 1Password for Safari
-"mas:1610460142" = "latest" # LspBrowserExtension
 "mas:288545208" = "latest" # Instapaper
 "mas:302584613" = "latest" # Kindle
 "mas:494803304" = "latest" # WiFi Explorer
