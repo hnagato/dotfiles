@@ -67,6 +67,9 @@ minimum_release_age = "7d"
 "~/.config/starship.toml" = "~/projects/hnagato/dotfiles/.config/starship.toml"
 "~/.config/tmux" = "~/projects/hnagato/dotfiles/.config/tmux"
 "~/.config/yazi" = "~/projects/hnagato/dotfiles/.config/yazi"
+"~/.config/karabiner" = { mode = "absent" }
+"~/.config/leaf" = { mode = "absent" }
+"~/.config/tuna" = { mode = "absent" }
 
 # Shared by every Mac. Machine-specific packages live in config.<env>.toml.
 [bootstrap.packages]
