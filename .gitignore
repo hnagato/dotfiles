@@ -5,3 +5,4 @@ ssh/.ssh/known_hosts
 karabiner/.config/karabiner/automatic_backups
 /Library/Caches/mise
 /.cache
+/.config/mise/*.local.toml

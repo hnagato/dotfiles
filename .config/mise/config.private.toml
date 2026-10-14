@@ -1,0 +1,7 @@
+# Loaded with env "private". The private repo's own config becomes
+# config.private.local.toml, so it takes effect from the next run.
+[bootstrap.repos]
+"~/projects/hnagato/dotfiles.private" = { url = "git@github.com:hnagato/dotfiles.private.git" }
+
+[dotfiles]
+"~/.config/mise/config.private.local.toml" = "~/projects/hnagato/dotfiles.private/bootstrap.toml"
