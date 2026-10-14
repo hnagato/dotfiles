@@ -1,1 +1,8 @@
 # personal Mac only. Shared settings live in config.toml.
+[bootstrap.packages]
+"brew-cask:cloudflare-warp" = "latest"
+"brew-cask:discord" = "latest"
+"brew-cask:obsidian" = "latest"
+"brew-cask:quicklook-video" = "latest"
+"mas:539883307" = "latest" # LINE
+"mas:6475002485" = "latest" # Reeder

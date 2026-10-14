@@ -1,21 +1,21 @@
 # dotfiles
 
-パッケージ、dotfiles、macOS defaults、hooks を `mise bootstrap` で宣言的に管理する
+Packages, dotfiles, macOS defaults, and setup hooks are declared for `mise bootstrap`.
 
-| ファイル | 内容 |
+| File | Contents |
 | --- | --- |
-| `.config/mise/config.toml` | 共通の tools、dotfiles、macOS defaults、hooks と、それらが依存する packages |
-| `.config/mise/config.personal.toml` | personal Mac だけに入れるもの |
-| `.config/mise/config.work.toml` | work Mac だけに入れるもの |
-| `.config/mise/config.private.toml` | dotfiles.private を clone し、その `bootstrap.toml` を `config.private.local.toml` として link する |
-| `.config/mise/vscode-extensions.txt` | VS Code 拡張の一覧（`post-packages` hook で未導入分を入れる） |
-| `~/.config/mise/miserc.local.toml` | マシンごとの env 選択。git 管理しない |
+| `.config/mise/config.toml` | Shared tools, packages, dotfiles, macOS defaults, and hooks |
+| `.config/mise/config.personal.toml` | Packages for the personal Mac only |
+| `.config/mise/config.work.toml` | Packages for the work Mac only |
+| `.config/mise/config.private.toml` | Clones dotfiles.private and links its `bootstrap.toml` as `config.private.local.toml` |
+| `.config/mise/vscode-extensions.txt` | VS Code extensions; the `post-packages` hook installs missing ones |
+| `~/.config/mise/miserc.local.toml` | Per-machine env selection, not tracked |
 
-## 新規マシンのセットアップ
+## Set up a new Mac
 
-1. Homebrew を入れてから `brew install mise git`
-2. GitHub に SSH 鍵を登録する（dotfiles.private は `git@github.com:` で clone する）
-3. dotfiles を clone して `~/.config/mise` を link する
+1. Install Homebrew, then run `brew install mise git`.
+2. Register an SSH key with GitHub. dotfiles.private is cloned over `git@github.com:`.
+3. Clone this repository and link `~/.config/mise`.
 
    ```shell
    git clone git@github.com:hnagato/dotfiles.git ~/projects/hnagato/dotfiles
@@ -23,13 +23,13 @@
    ln -s ~/projects/hnagato/dotfiles/.config/mise ~/.config/mise
    ```
 
-4. env を選ぶ（`personal` か `work` に、必要なら `private` を加える）
+4. Choose the envs: `personal` or `work`, plus `private` when needed.
 
    ```shell
    echo 'env = ["personal", "private"]' > ~/.config/mise/miserc.local.toml
    ```
 
-5. 内容を確認してから 2 回適用する。1 回目で dotfiles.private の clone と link を行い、2 回目でその設定が読み込まれる
+5. Preview, then apply twice. The first run clones and links dotfiles.private; the second run loads its config.
 
    ```shell
    mise bootstrap --dry-run
@@ -37,7 +37,7 @@
    mise bootstrap
    ```
 
-## 日々の同期
+## Sync
 
 ```shell
 git -C ~/projects/hnagato/dotfiles pull
@@ -45,13 +45,13 @@ mise bootstrap --skip-dirty
 mise bootstrap status --missing
 ```
 
-- repo に未コミットの変更（`mise.lock` など）があると repos ステップが止まるので、`--skip-dirty` を付ける
-- hooks（fisher、TPM、bat cache、`killall Dock` など）は毎回実行される
+- Pass `--skip-dirty`; otherwise uncommitted changes in a declared repository (such as `mise.lock`) stop the repos step.
+- Hooks (fisher, TPM, bat cache, `killall Dock`, and so on) run on every invocation.
 
-## 管理対象外
+## Not managed
 
-| パス | 理由 |
+| Path | Reason |
 | --- | --- |
-| `~/.config/mise` | bootstrap の入口。config 自身の置き場なので手で link する |
-| `~/.claude`、`~/.cache` | git で追跡していないデータ。既存の link はそのまま残す |
-| `~/.claude.json` | Claude Code が書き換える実ファイル |
+| `~/.config/mise` | Entry point that holds the config itself; link it by hand |
+| `~/.claude`, `~/.cache` | Untracked data; existing links are left as they are |
+| `~/.claude.json` | A real file that Claude Code rewrites |
