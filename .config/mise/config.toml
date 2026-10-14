@@ -48,7 +48,6 @@ minimum_release_age = "7d"
 [dotfiles]
 "~/.config/bat" = "~/projects/hnagato/dotfiles/.config/bat"
 "~/.config/fish" = "~/projects/hnagato/dotfiles/.config/fish"
-"~/.config/gh" = {}
 "~/.config/ghostty" = "~/projects/hnagato/dotfiles/.config/ghostty"
 "~/.config/git" = "~/projects/hnagato/dotfiles/.config/git"
 "~/.config/herdr" = "~/projects/hnagato/dotfiles/.config/herdr"
