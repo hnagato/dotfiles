@@ -3,7 +3,7 @@ bun = "1.4.2"
 deno = "2.9.7"
 go = "1.27.1"
 java = "liberica-21.0.6+10"
-"github:JetBrains/kotlin" = { version = "v2.4.20", asset_pattern = "kotlin-compiler-*.zip" }
+"github:JetBrains/kotlin" = { version = "v2.4.21", asset_pattern = "kotlin-compiler-*.zip" }
 "asdf:mise-plugins/mise-lua" = "5.4.8"
 node = "24.21.0"
 "npm:@aku11i/phantom" = "6.2.0"
