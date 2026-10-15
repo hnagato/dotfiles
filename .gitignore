@@ -8,3 +8,5 @@ karabiner/.config/karabiner/automatic_backups
 /.config/mise/*.local.toml
 /.config/herdr/session-snapshots
 /.config/herdr/herdr.sock.agent
+/.config/herdr/plugins/.locks
+/.config/herdr/plugins/github-installations/*
