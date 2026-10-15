@@ -1,7 +1,7 @@
 [tools]
 bun = "1.4.2"
 deno = "2.9.7"
-go = "1.27.1"
+go = "1.27.2"
 java = "liberica-21.0.6+10"
 "github:JetBrains/kotlin" = { version = "v2.4.21", asset_pattern = "kotlin-compiler-*.zip" }
 "asdf:mise-plugins/mise-lua" = "5.4.8"
