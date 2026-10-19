@@ -10,6 +10,8 @@ Packages, dotfiles, macOS defaults, and setup hooks are declared for `mise boots
 | `.config/mise/config.private.toml` | Clones dotfiles.private and links its `bootstrap.toml` as `config.private.local.toml` |
 | `.config/mise/vscode-extensions.txt` | VS Code extensions; the `post-packages` hook installs missing ones |
 | `~/.config/mise/miserc.local.toml` | Per-machine env selection, not tracked |
+| `.config/ghostty/config.personal`, `config.work` | Ghostty overrides such as `font-size` for each Mac |
+| `~/.config/ghostty/config.local` | Selects `config.personal` or `config.work`, not tracked |
 
 ## Set up a new Mac
 
@@ -56,6 +58,7 @@ The manual steps follow. SSH keys live in 1Password, but 1Password, `~/.ssh/conf
 
    ```shell
    echo 'env = ["personal", "private"]' > ~/.config/mise/miserc.local.toml
+   echo 'config-file = config.personal' > ~/projects/hnagato/dotfiles/.config/ghostty/config.local
    ```
 
 6. Apply twice in the same shell, from `$HOME`. Skip `--dry-run` here: on a new Mac it stops at the link to dotfiles.private, which only the real run clones. The first run clones dotfiles.private with the exported agent and links `~/.ssh` and its `bootstrap.toml`; the second run loads the private config. After that, `~/.ssh/config` selects the agent, so new shells need no exports.

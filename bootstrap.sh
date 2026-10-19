@@ -113,6 +113,8 @@ fi
 log "env: $envs"
 miserc="$HOME/.config/mise/miserc.local.toml"
 [ -e "$miserc" ] || echo "env = [$envs]" >"$miserc"
+ghostty_local="$REPO_DIR/.config/ghostty/config.local"
+[ -e "$ghostty_local" ] || echo "config-file = config.$machine_env" >"$ghostty_local"
 
 # The first run clones dotfiles.private and links its bootstrap.toml; the second run loads it.
 log "mise bootstrap (1/2)"

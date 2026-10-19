@@ -8,7 +8,6 @@ theme = light:Flexoki Light,dark:Kanagawa Dragon
 
 font-family = Berkeley Mono
 font-family = Juisee
-font-size = 14
 adjust-cell-height = 5%
 
 background-opacity = 0.95
@@ -61,3 +60,6 @@ keybind = ctrl+[=text:\x1B
 # custom-shader = ./shaders/cursor_smear.glsl
 # custom-shader = ./shaders/cursor_frozen.glsl
 # custom-shader = ./shaders/cursor_glide.glsl
+
+# Per-machine overrides such as font-size; config.local selects config.personal or config.work
+config-file = ?config.local
