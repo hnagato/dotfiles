@@ -1,9 +1,9 @@
 [tools]
-bun = "1.4.2"
+bun = "1.4.3"
 deno = "2.9.7"
-go = "1.27.1"
+go = "1.27.2"
 java = "liberica-21.0.6+10"
-"github:JetBrains/kotlin" = { version = "v2.4.20", asset_pattern = "kotlin-compiler-*.zip" }
+"github:JetBrains/kotlin" = { version = "v2.4.21", asset_pattern = "kotlin-compiler-*.zip" }
 "asdf:mise-plugins/mise-lua" = "5.4.8"
 node = "24.21.0"
 "npm:@aku11i/phantom" = "6.2.0"
@@ -12,21 +12,21 @@ node = "24.21.0"
 "npm:markdownlint-cli2" = "0.23.3"
 "npm:neovim" = "5.5.0"
 "npm:textlint" = "15.8.0"
-"npm:ccusage" = "20.0.26"
-pnpm = "12.8.2"
-python = "3.14.7"
+"npm:ccusage" = "20.0.30"
+pnpm = "12.13.0"
+python = "3.15.0"
 ruby = "3.4.11"
-rust = "1.98.1"
+rust = "1.99.0"
 shellcheck = "0.11.0"
-tree-sitter = "0.27.0"
-uv = "0.12.21"
+tree-sitter = "0.27.1"
+uv = "0.13.0"
 
 # Homebrew-managed CLIs moved to mise so Renovate can propose version updates.
 bat = "0.26.1"
 eza = "0.23.5"
 fastfetch = "2.69.0"
 fd = "10.5.0"
-fzf = "0.74.4"
+fzf = "0.74.5"
 gh = "2.102.0"
 git-filter-repo = "2.47.0"
 gitleaks = "8.30.1"
@@ -34,7 +34,7 @@ glow = "3.0.0"
 hugo = "0.167.0"
 hyperfine = "2.0.0"
 jq = "1.8.2"
-lazygit = "0.65.1"
+lazygit = "0.66.1"
 pre-commit = "4.6.2"
 starship = "1.26.0"
 yazi = "26.9.1"
@@ -44,3 +44,328 @@ idiomatic_version_file_enable_tools = ["node"]
 experimental = true
 lockfile = true
 minimum_release_age = "7d"
+
+[dotfiles]
+"~/.config/bat" = "~/projects/hnagato/dotfiles/.config/bat"
+"~/.config/fish" = "~/projects/hnagato/dotfiles/.config/fish"
+"~/.config/ghostty" = "~/projects/hnagato/dotfiles/.config/ghostty"
+"~/.config/git" = "~/projects/hnagato/dotfiles/.config/git"
+"~/.config/herdr" = "~/projects/hnagato/dotfiles/.config/herdr"
+"~/.config/karabiner" = { mode = "absent" }
+"~/.config/lazygit" = "~/projects/hnagato/dotfiles/.config/lazygit"
+"~/.config/leaf" = { mode = "absent" }
+"~/.config/nvim" = "~/projects/hnagato/dotfiles/.config/nvim"
+"~/.config/starship.toml" = "~/projects/hnagato/dotfiles/.config/starship.toml"
+"~/.config/tmux" = "~/projects/hnagato/dotfiles/.config/tmux"
+"~/.config/tuna" = { mode = "absent" }
+"~/.config/yazi" = "~/projects/hnagato/dotfiles/.config/yazi"
+"~/.editorconfig" = "~/projects/hnagato/dotfiles/.editorconfig"
+"~/.gnupg" = "~/projects/hnagato/dotfiles/.gnupg"
+"~/.hammerspoon/init.lua" = "~/projects/hnagato/dotfiles/.hammerspoon/init.lua"
+"~/.inputrc" = "~/projects/hnagato/dotfiles/.inputrc"
+"~/.markdownlint-cli2.jsonc" = "~/projects/hnagato/dotfiles/.markdownlint-cli2.jsonc"
+"~/.marksman.toml" = "~/projects/hnagato/dotfiles/.marksman.toml"
+"~/.ssh" = "~/projects/hnagato/dotfiles/.ssh"
+"~/.textlintrc.json" = "~/projects/hnagato/dotfiles/.textlintrc.json"
+"~/.tigrc" = "~/projects/hnagato/dotfiles/.tigrc"
+"~/.zshenv" = "~/projects/hnagato/dotfiles/.zshenv"
+"~/.zshrc" = "~/projects/hnagato/dotfiles/.zshrc"
+
+# Shared by every Mac. Machine-specific packages live in config.<env>.toml.
+[bootstrap.packages]
+"brew:aws-nuke" = "latest"
+"brew:blueutil" = "latest"
+"brew:btop" = "latest"
+"brew:carlocab/personal/unrar" = "latest"
+"brew:coreutils" = "latest"
+"brew:crit" = "latest"
+"brew:docker-compose" = "latest"
+"brew:fish" = "latest"
+"brew:git" = "latest"
+"brew:git-delta" = "latest"
+"brew:git-graph" = "latest"
+"brew:herdr" = "latest"
+"brew:iftop" = "latest"
+"brew:k1low/tap/git-wt" = "latest"
+"brew:lefthook" = "latest"
+"brew:m1ddc" = "latest"
+"brew:mas" = "latest"
+"brew:mint" = "latest"
+"brew:mise" = "latest"
+"brew:neovim" = "latest"
+"brew:nkf" = "latest"
+"brew:nmap" = "latest"
+"brew:parallel" = "latest"
+"brew:presenterm" = "latest"
+"brew:ripgrep" = "latest"
+"brew:secretspec" = "latest"
+"brew:smartmontools" = "latest"
+"brew:sslscan" = "latest"
+"brew:swaks" = "latest"
+"brew:tig" = "latest"
+"brew:tmux" = "latest"
+"brew:tree" = "latest"
+"brew:unison" = "latest"
+"brew:watch" = "latest"
+"brew:wget" = "latest"
+"brew:zsh" = "latest"
+"brew-cask:1password" = "latest"
+"brew-cask:1password-cli" = "latest"
+"brew-cask:appcleaner" = "latest"
+"brew-cask:betterzip" = "latest"
+"brew-cask:caffeine" = "latest"
+"brew-cask:font-inter" = "latest"
+"brew-cask:font-udev-gothic" = "latest"
+"brew-cask:font-udev-gothic-nf" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:github" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:grandperspective" = "latest"
+"brew-cask:hammerspoon" = "latest"
+"brew-cask:iina" = "latest"
+"brew-cask:loop" = "latest"
+"brew-cask:qlmarkdown" = "latest"
+"brew-cask:raycast" = "latest"
+"brew-cask:syntax-highlight" = "latest"
+"brew-cask:the-unarchiver" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"mas:1463298887" = "latest" # Userscripts
+"mas:1480933944" = "latest" # Vimari
+"mas:1569813296" = "latest" # 1Password for Safari
+"mas:288545208" = "latest" # Instapaper
+"mas:302584613" = "latest" # Kindle
+"mas:494803304" = "latest" # WiFi Explorer
+"mas:6745342698" = "latest" # uBlock Origin Lite
+"mas:6767488326" = "latest" # slapss
+"mas:904280696" = "latest" # Things
+
+[bootstrap.macos.defaults.NSGlobalDomain]
+# テキスト編集時の kill ring 履歴数。
+# macOS デフォルト値: 1
+NSTextKillRingSize = "4"
+# 長押し時の Character Picker を無効化し、キーリピートを優先する。
+# macOS デフォルト値: true
+ApplePressAndHoldEnabled = false
+# repeat count 入力のキーバインドを control-u にする。
+# macOS デフォルト値: 未設定
+NSRepeatCountBinding = "^u"
+# Tab キー移動をすべてのコントロールに広げる。
+# macOS デフォルト値: 2
+AppleKeyboardUIMode = 3
+# fn キーを標準ファンクションキーとして扱う。
+# macOS デフォルト値: false
+"com.apple.keyboard.fnState" = true
+# キーリピート開始までの待ち時間を短くする。
+# macOS デフォルト値: 25
+InitialKeyRepeat = 15.0
+# キーリピート速度を速くする。
+# macOS デフォルト値: 6
+KeyRepeat = 2.0
+# スマートダッシュ置換を無効化する。
+# macOS デフォルト値: true
+NSAutomaticDashSubstitutionEnabled = false
+# スマート引用符置換を無効化する。
+# macOS デフォルト値: true
+NSAutomaticQuoteSubstitutionEnabled = false
+# スペル自動修正を無効化する。
+# macOS デフォルト値: true
+NSAutomaticSpellingCorrectionEnabled = false
+# アプリ終了時にウィンドウ状態を復元しない。
+# macOS デフォルト値: true
+NSQuitAlwaysKeepsWindows = false
+# ツールチップ表示までの待ち時間を短くする。
+# macOS デフォルト値: 1000
+NSInitialToolTipDelay = 100
+# ウィンドウリサイズアニメーションを短くする。
+# macOS デフォルト値: 0.2
+NSWindowResizeTime = 0.001
+# コンテキストメニューのサービス表示しきい値を上げる。
+# macOS デフォルト値: 未設定
+NSServicesMinimumItemCountForContextSubmenu = 10
+# 保存パネルを展開状態で開く。
+# macOS デフォルト値: false
+NSNavPanelExpandedStateForSaveMode = true
+# メニューバーの透明効果を有効化する。
+# macOS デフォルト値: true
+AppleEnableMenuBarTransparency = true
+# スクロールバー表示を自動にする。
+# macOS デフォルト値: Automatic
+AppleShowScrollBars = "Automatic"
+# すべての拡張子を表示する。
+# macOS デフォルト値: false
+AppleShowAllExtensions = true
+
+
+[bootstrap.macos.defaults."com.apple.driver.AppleBluetoothMultitouch.trackpad"]
+# タップでクリックを有効化する。
+# macOS デフォルト値: false
+Clicking = true
+# ドラッグロックを有効化する。
+# macOS デフォルト値: false
+DragLock = true
+
+
+[bootstrap.macos.defaults."com.apple.dock"]
+# Dock を自動的に隠す。
+# macOS デフォルト値: false
+autohide = true
+# Dock が表示されるまでの遅延をなくす。
+# macOS デフォルト値: 0.5
+autohide-delay = 0.0
+# Dock の最小化エフェクトを scale にする。
+# macOS デフォルト値: genie
+mineffect = "scale"
+# ウィンドウをアプリケーションアイコンへしまう。
+# macOS デフォルト値: false
+minimize-to-application = true
+# 非表示アプリの Dock アイコンを半透明にする。
+# macOS デフォルト値: false
+showhidden = true
+# Dock の拡大表示を有効化する。
+# macOS デフォルト値: false
+magnification = true
+# スタックにマウスオーバーのハイライトを付ける。
+# macOS デフォルト値: false
+mouse-over-hilite-stack = true
+# 起動中アプリのインジケータを表示する。
+# macOS デフォルト値: true
+show-process-indicator = true
+# Dashboard をオーバーレイ表示にする。
+# macOS デフォルト値: false
+dashboard-in-overlay = true
+# Mission Control のアニメーション時間を短くする。
+# macOS デフォルト値: 0.2
+expose-animation-duration = 0.10000000149011612
+# Dock に最近使ったアプリを表示しない。
+# macOS デフォルト値: true
+show-recents = false
+# Dock のアイコンサイズ。
+# macOS デフォルト値: 64
+tilesize = 72.0
+
+[bootstrap.macos.defaults."com.apple.finder"]
+# Quick Look でフォルダを透過表示する。
+# macOS デフォルト値: false
+QLEnableXRayFolders = true
+# Quick Look でテキスト選択を有効化する。
+# macOS デフォルト値: false
+QLEnableTextSelection = true
+# Finder のアニメーションを抑制する。
+# macOS デフォルト値: false
+DisableAllAnimations = true
+# Finder で不可視ファイルを表示しない。
+# macOS デフォルト値: false
+AppleShowAllFiles = false
+# Finder のステータスバーを表示する。
+# macOS デフォルト値: false
+ShowStatusBar = true
+# Finder のパスバーを表示する。
+# macOS デフォルト値: false
+ShowPathbar = true
+# Finder の既定表示をリスト表示にする。
+# macOS デフォルト値: icnv
+FXPreferredViewStyle = "Nlsv"
+# Finder 検索の既定範囲を現在のフォルダにする。
+# macOS デフォルト値: SCev
+FXDefaultSearchScope = "SCcf"
+# 拡張子変更時の警告を無効化する。
+# macOS デフォルト値: true
+FXEnableExtensionChangeWarning = false
+# Finder の新規ウィンドウをホームにする。
+# macOS デフォルト値: PfDe
+NewWindowTarget = "PfHm"
+# Finder のパスバーをホーム起点で表示する。
+# macOS デフォルト値: false
+PathBarRootAtHome = true
+
+[bootstrap.macos.defaults."com.apple.LaunchServices"]
+# ダウンロードアプリの quarantine 警告を抑制する。
+# macOS デフォルト値: true
+LSQuarantine = false
+
+[bootstrap.macos.defaults."com.apple.frameworks.diskimages"]
+# ディスクイメージ検証をスキップする。
+# macOS デフォルト値: false
+skip-verify = true
+# ロック済みディスクイメージの検証をスキップする。
+# macOS デフォルト値: false
+skip-verify-locked = true
+# リモートディスクイメージの検証をスキップする。
+# macOS デフォルト値: false
+skip-verify-remote = true
+
+[bootstrap.macos.defaults."com.apple.screencapture"]
+# スクリーンショットの影を無効化する。
+# macOS デフォルト値: false
+disable-shadow = true
+
+[bootstrap.macos.defaults."com.apple.screensaver"]
+# スクリーンセーバ解除時にパスワードを要求する。
+# macOS デフォルト値: 0
+askForPassword = 1
+# スクリーンセーバ解除時のパスワード要求遅延をなくす。
+# macOS デフォルト値: 5
+askForPasswordDelay = 0
+
+[bootstrap.macos.defaults."com.apple.Terminal"]
+# Terminal のセキュアキーボード入力を無効にしておく。
+# macOS デフォルト値: false
+SecureKeyboardEntry = false
+
+
+[bootstrap.macos.defaults."com.apple.CrashReporter"]
+# CrashReporter のダイアログを表示しない。
+# macOS デフォルト値: crashreport
+DialogType = "none"
+
+[bootstrap.macos.defaults."com.apple.PowerChime"]
+# 充電音を鳴らさない。
+# macOS デフォルト値: false
+ChimeOnNoHardware = true
+
+[bootstrap.macos.defaults."com.apple.desktopservices"]
+# ネットワークボリュームに .DS_Store を作らない。
+# macOS デフォルト値: false
+DSDontWriteNetworkStores = true
+
+[bootstrap.macos.defaults."com.apple.universalaccess"]
+# アクセシビリティのカーソルサイズを少し大きくする。
+# macOS デフォルト値: 1
+mouseDriverCursorSize = 2.004645347595215
+# Ctrl + スクロールでズームする。
+# macOS デフォルト値: false
+closeViewScrollWheelToggle = true
+
+[bootstrap.macos.defaults."com.apple.TimeMachine"]
+# 新しいディスクを Time Machine 用に使うか確認しない。
+# macOS デフォルト値: false
+DoNotOfferNewDisksForBackup = true
+
+[bootstrap.macos.defaults."com.apple.ActivityMonitor"]
+# Activity Monitor の Dock アイコンを CPU 使用率表示にする。
+# macOS デフォルト値: 0
+IconType = 6
+# Activity Monitor の表示カテゴリをすべてのプロセスにする。
+# macOS デフォルト値: 100
+ShowCategory = 100
+# Activity Monitor のソート列を CPU 使用率にする。
+# macOS デフォルト値: ProcessName
+SortColumn = "CPUUsage"
+# Activity Monitor のソート方向を降順にする。
+# macOS デフォルト値: 1
+SortDirection = 0
+
+[bootstrap.hooks]
+post-packages = "code --list-extensions | grep -vxFf - ~/.config/mise/vscode-extensions.txt | xargs -n1 code --install-extension || true"
+post-defaults = "killall Dock Finder SystemUIServer PowerChime 2>/dev/null || true"
+post-dotfiles = [
+  # bat only discovers custom themes after rebuilding its binary asset cache.
+  "command -v bat >/dev/null && bat cache --build >/dev/null",
+  "chmod 700 ~/.ssh ~/.gnupg && find ~/.ssh/ ~/.gnupg/ -type f -exec chmod 600 {} + && find ~/.gnupg/ -type d -exec chmod 700 {} +",
+]
+final = [
+  "fish -c 'curl -sL git.io/fisher | source && fisher update'",
+  "test -d ~/.local/share/tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm",
+  "~/.local/share/tmux/plugins/tpm/bin/install_plugins",
+  "~/.config/herdr/sync-plugins.sh || true",
+]

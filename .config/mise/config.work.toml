@@ -1,0 +1,13 @@
+# work Mac only. Shared settings live in config.toml.
+[bootstrap.packages]
+"brew-cask:android-studio" = "latest"
+"brew-cask:claude-code@latest" = "latest"
+"brew-cask:codex" = "latest"
+"brew-cask:copilot-cli" = "latest"
+"brew-cask:intellij-idea" = "latest"
+"brew-cask:kap" = "latest"
+"brew-cask:keycastr" = "latest"
+"brew-cask:mysql-shell" = "latest"
+"brew-cask:rancher" = "latest"
+"brew-cask:sequel-ace" = "latest"
+"brew-cask:shottr" = "latest"
