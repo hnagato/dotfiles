@@ -3,3 +3,5 @@ herdr-server.log
 session.json
 plugins/github
 release-notes.json
+plugins.json
+.plugins.lock
