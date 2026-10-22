@@ -8,7 +8,7 @@ theme = light:Flexoki Light,dark:Kanagawa Dragon
 
 font-family = Berkeley Mono
 font-family = Juisee
-adjust-cell-height = 5%
+adjust-cell-height = 16%
 
 background-opacity = 0.95
 background-blur-radius = 10
