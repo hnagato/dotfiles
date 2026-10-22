@@ -55,6 +55,7 @@ minimum_release_age = "7d"
 "~/.config/lazygit" = "~/projects/hnagato/dotfiles/.config/lazygit"
 "~/.config/leaf" = { mode = "absent" }
 "~/.config/nvim" = "~/projects/hnagato/dotfiles/.config/nvim"
+"~/.config/rex/init.lua" = "~/projects/hnagato/dotfiles/.config/rex/init.lua"
 "~/.config/starship.toml" = "~/projects/hnagato/dotfiles/.config/starship.toml"
 "~/.config/tmux" = "~/projects/hnagato/dotfiles/.config/tmux"
 "~/.config/tuna" = { mode = "absent" }
