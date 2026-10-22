@@ -1005,7 +1005,7 @@ version = "2.5.15"
 backend = "npm:@biomejs/biome"
 
 [[tools."npm:ccusage"]]
-version = "20.0.32"
+version = "20.0.33"
 backend = "npm:ccusage"
 
 [[tools."npm:markdownlint-cli"]]
@@ -1265,7 +1265,7 @@ checksum = "sha256:5c22be44524312b3d433d68739bcc530633b1da5ef8ba0afa0a37680da17d
 url = "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.11.tar.gz"
 
 [[tools.rust]]
-version = "1.99.0"
+version = "1.99.1"
 backend = "core:rust"
 
 [[tools.shellcheck]]
