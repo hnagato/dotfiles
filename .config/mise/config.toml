@@ -6,7 +6,7 @@ java = "liberica-21.0.6+10"
 "github:JetBrains/kotlin" = { version = "v2.4.21", asset_pattern = "kotlin-compiler-*.zip" }
 "asdf:mise-plugins/mise-lua" = "5.4.8"
 node = "24.22.0"
-"npm:@aku11i/phantom" = "6.2.0"
+"npm:@aku11i/phantom" = "6.3.1"
 "npm:@biomejs/biome" = "2.5.15"
 "npm:markdownlint-cli" = "0.49.1"
 "npm:markdownlint-cli2" = "0.23.3"
@@ -36,7 +36,7 @@ hyperfine = "2.0.0"
 jq = "1.8.2"
 lazygit = "0.66.2"
 pre-commit = "4.7.0"
-starship = "1.26.0"
+starship = "1.27.0"
 yazi = "26.9.1"
 
 [settings]
