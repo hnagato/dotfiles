@@ -161,7 +161,51 @@ url = "https://dl.deno.land/release/v2.9.7/deno-x86_64-pc-windows-msvc.zip"
 
 [[tools.eza]]
 version = "0.23.5"
-backend = "asdf:eza"
+backend = "vfox:jdx/vfox-eza"
+
+[tools.eza."platforms.linux-arm64"]
+checksum = "sha256:40b87ae8628aa2ff0f0d2dc24ab52f689631366385c3da630bae745671fd71ec"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_aarch64-unknown-linux-gnu.tar.gz"
+
+[tools.eza."platforms.linux-arm64-musl"]
+checksum = "sha256:40b87ae8628aa2ff0f0d2dc24ab52f689631366385c3da630bae745671fd71ec"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_aarch64-unknown-linux-gnu.tar.gz"
+
+[tools.eza."platforms.linux-x64"]
+checksum = "sha256:35c70c5c43c29108075e58b893234c67ef585f0b53a7eaf8e9e7d4eec9f339b4"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-gnu.tar.gz"
+
+[tools.eza."platforms.linux-x64-baseline"]
+checksum = "sha256:35c70c5c43c29108075e58b893234c67ef585f0b53a7eaf8e9e7d4eec9f339b4"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-gnu.tar.gz"
+
+[tools.eza."platforms.linux-x64-musl"]
+checksum = "sha256:35c70c5c43c29108075e58b893234c67ef585f0b53a7eaf8e9e7d4eec9f339b4"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-gnu.tar.gz"
+
+[tools.eza."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:35c70c5c43c29108075e58b893234c67ef585f0b53a7eaf8e9e7d4eec9f339b4"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-gnu.tar.gz"
+
+[tools.eza."platforms.macos-arm64"]
+checksum = "sha256:c351f9506f6e30a8efb61701afc2313986004b8813c466c0f8b947db1ae891e9"
+url = "https://github.com/cargo-bins/cargo-quickinstall/releases/download/eza-0.23.5/eza-0.23.5-aarch64-apple-darwin.tar.gz"
+
+[tools.eza."platforms.macos-x64"]
+checksum = "sha256:61f9ee9ffb8d491be1edece6af496675f92f024dd9ce6cd25dfc5038eb342668"
+url = "https://github.com/cargo-bins/cargo-quickinstall/releases/download/eza-0.23.5/eza-0.23.5-x86_64-apple-darwin.tar.gz"
+
+[tools.eza."platforms.macos-x64-baseline"]
+checksum = "sha256:61f9ee9ffb8d491be1edece6af496675f92f024dd9ce6cd25dfc5038eb342668"
+url = "https://github.com/cargo-bins/cargo-quickinstall/releases/download/eza-0.23.5/eza-0.23.5-x86_64-apple-darwin.tar.gz"
+
+[tools.eza."platforms.windows-x64"]
+checksum = "sha256:bbef561f5cfc8e778649b65e69c9c6e4c836c0fbe83ee3d0a5128091d797ed8a"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza.exe_x86_64-pc-windows-gnu.tar.gz"
+
+[tools.eza."platforms.windows-x64-baseline"]
+checksum = "sha256:bbef561f5cfc8e778649b65e69c9c6e4c836c0fbe83ee3d0a5128091d797ed8a"
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza.exe_x86_64-pc-windows-gnu.tar.gz"
 
 [[tools.fastfetch]]
 version = "2.70.0"
@@ -412,7 +456,7 @@ provenance = "github-attestations"
 
 [[tools.git-filter-repo]]
 version = "2.47.0"
-backend = "pipx:git-filter-repo"
+backend = "pypi:git-filter-repo"
 
 [[tools."github:JetBrains/kotlin"]]
 version = "2.4.21"
@@ -1206,18 +1250,6 @@ provenance = "github-attestations"
 version = "3.4.11"
 backend = "core:ruby"
 
-[tools.ruby."platforms.windows-x64"]
-checksum = "sha256:a9aca84326a90422c0905bcb47be629b687a881dcad96149604c2cb074d03154"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.11-1/rubyinstaller-3.4.11-1-x64.7z"
-
-[tools.ruby."platforms.windows-x64-baseline"]
-checksum = "sha256:a9aca84326a90422c0905bcb47be629b687a881dcad96149604c2cb074d03154"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.11-1/rubyinstaller-3.4.11-1-x64.7z"
-
-[[tools.ruby]]
-version = "3.4.11"
-backend = "core:ruby"
-
 [tools.ruby.options]
 compile = "false"
 precompiled_url = "jdx/ruby"
@@ -1263,6 +1295,18 @@ url = "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.11.tar.gz"
 [tools.ruby."platforms.macos-x64-baseline"]
 checksum = "sha256:5c22be44524312b3d433d68739bcc530633b1da5ef8ba0afa0a37680da17d3de"
 url = "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.11.tar.gz"
+
+[[tools.ruby]]
+version = "3.4.11"
+backend = "core:ruby"
+
+[tools.ruby."platforms.windows-x64"]
+checksum = "sha256:a9aca84326a90422c0905bcb47be629b687a881dcad96149604c2cb074d03154"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.11-1/rubyinstaller-3.4.11-1-x64.7z"
+
+[tools.ruby."platforms.windows-x64-baseline"]
+checksum = "sha256:a9aca84326a90422c0905bcb47be629b687a881dcad96149604c2cb074d03154"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.11-1/rubyinstaller-3.4.11-1-x64.7z"
 
 [[tools.rust]]
 version = "1.99.1"
