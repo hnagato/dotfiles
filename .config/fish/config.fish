@@ -117,6 +117,7 @@ end
 #     __herdr_sync_tab_name
 # end
 
-for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.fish
+for _f in $HOME/.config/herdr/plugins/github-installations/herdr-automatic-rename-*/*/checkout/shell/hook.fish \
+          $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.fish
     test -r "$_f"; and source "$_f"; and break
 end
