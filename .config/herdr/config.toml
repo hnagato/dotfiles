@@ -5,6 +5,28 @@ dark_name = "kanagawa"
 light_name = "kanagawa-lotus"
 auto_switch = true
 
+# Flexoki Light: herdr has no built-in flexoki theme, so override kanagawa-lotus
+[theme.custom.light]
+accent = "#205EA6"
+panel_bg = "#FFFCF0"
+sidebar_bg = "#FFFCF0"
+surface_dim = "#F2F0E5"
+active_row_bg = "#E6E4D9"
+surface0 = "#DAD8CE"
+surface1 = "#CECDC3"
+selection_bg = "#CECDC3"
+overlay0 = "#B7B5AC"
+overlay1 = "#878580"
+subtext0 = "#6F6E69"
+text = "#100F0F"
+blue = "#205EA6"
+teal = "#24837B"
+green = "#66800B"
+yellow = "#AD8301"
+red = "#AF3029"
+peach = "#BC5215"
+mauve = "#5E409D"
+
 [keys]
 prefix = "ctrl+z"
 previous_workspace = "prefix+ctrl+left"
