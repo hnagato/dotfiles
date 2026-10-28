@@ -10,8 +10,8 @@ font-family = Berkeley Mono
 font-family = Juisee
 adjust-cell-height = 10%
 
-background-opacity = 0.95
-background-blur-radius = 10
+background-opacity = 0.9
+background-blur = macos-glass-regular
 
 shell-integration-features = no-title,no-cursor
 cursor-style = block
