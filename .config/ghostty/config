@@ -33,8 +33,6 @@ window-height = 80
 # keybind = alt+cmd+j=resize_split:down,30
 # keybind = alt+cmd+k=resize_split:up,30
 # keybind = alt+cmd+l=resize_split:right,30
-keybind = cmd+shift+e=text:\x1a\x06
-keybind = cmd+shift+g=text:\x1a\x07
 keybind = cmd+shift+[=text:\x1a\x10
 keybind = cmd+shift+]=text:\x1a\x0e
 # pass through to herdr

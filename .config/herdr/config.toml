@@ -29,6 +29,7 @@ mauve = "#5E409D"
 
 [keys]
 prefix = "ctrl+z"
+goto = ["prefix+g", "cmd+shift+l"]
 previous_workspace = "prefix+ctrl+left"
 next_workspace = "prefix+ctrl+right"
 previous_agent = ["prefix+up", "prefix+ctrl+up"]
