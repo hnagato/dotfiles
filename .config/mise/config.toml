@@ -136,7 +136,6 @@ minimum_release_age = "7d"
 "mas:302584613" = "latest" # Kindle
 "mas:494803304" = "latest" # WiFi Explorer
 "mas:6745342698" = "latest" # uBlock Origin Lite
-"mas:6767488326" = "latest" # slapss
 "mas:904280696" = "latest" # Things
 
 [bootstrap.macos.defaults.NSGlobalDomain]
