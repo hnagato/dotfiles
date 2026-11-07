@@ -1060,7 +1060,7 @@ version = "2.6.4"
 backend = "npm:@biomejs/biome"
 
 [[tools."npm:ccusage"]]
-version = "20.0.45"
+version = "20.0.46"
 backend = "npm:ccusage"
 
 [[tools."npm:markdownlint-cli"]]
