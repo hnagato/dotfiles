@@ -24,7 +24,7 @@ uv = "0.13.7"
 # Homebrew-managed CLIs moved to mise so Renovate can propose version updates.
 bat = "0.26.1"
 eza = "0.23.5"
-fastfetch = "2.70.0"
+fastfetch = "2.71.0"
 fd = "10.5.1"
 fzf = "0.74.5"
 gh = "2.103.3"
