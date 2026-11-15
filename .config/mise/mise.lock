@@ -1124,7 +1124,7 @@ version = "5.5.0"
 backend = "npm:neovim"
 
 [[tools."npm:textlint"]]
-version = "15.8.0"
+version = "16.0.0"
 backend = "npm:textlint"
 
 [[tools.pnpm]]
