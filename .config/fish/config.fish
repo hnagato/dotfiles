@@ -13,7 +13,7 @@ if status is-interactive; and set -q HERDR_ENV; and test -t 0
 end
 
 # themes
-# __dotfiles_apply_theme_mode (__dotfiles_theme_mode) --universal
+__dotfiles_apply_theme_mode (__dotfiles_theme_mode) --universal
 
 # fzf
 set -gx fzf_fd_opts --hidden --exclude=.git
