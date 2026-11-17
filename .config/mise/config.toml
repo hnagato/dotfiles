@@ -6,7 +6,7 @@ java = "liberica-21.0.6+10"
 "github:JetBrains/kotlin" = { version = "v2.4.21", asset_pattern = "kotlin-compiler-*.zip" }
 "asdf:mise-plugins/mise-lua" = "5.4.8"
 "cargo:sping" = "1.8.0"
-node = "26.13.0"
+node = "26.13.1"
 "npm:@aku11i/phantom" = "6.3.2"
 "npm:@biomejs/biome" = "2.6.6"
 "npm:markdownlint-cli" = "0.50.0"
