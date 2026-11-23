@@ -5,7 +5,7 @@ go = "1.27.4"
 java = "liberica-21.0.6+10"
 "github:JetBrains/kotlin" = { version = "v2.4.21", asset_pattern = "kotlin-compiler-*.zip" }
 "asdf:mise-plugins/mise-lua" = "5.4.8"
-"cargo:sping" = "1.8.0"
+"cargo:sping" = "1.9.0"
 node = "26.13.1"
 "npm:@aku11i/phantom" = "6.3.2"
 "npm:@biomejs/biome" = "2.6.8"
