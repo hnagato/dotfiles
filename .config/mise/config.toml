@@ -1,5 +1,5 @@
 [tools]
-bun = "1.4.4"
+bun = "1.4.5"
 deno = "2.9.8"
 go = "1.27.4"
 java = "liberica-21.0.6+10"
