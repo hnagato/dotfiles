@@ -1116,7 +1116,7 @@ version = "0.50.0"
 backend = "npm:markdownlint-cli"
 
 [[tools."npm:markdownlint-cli2"]]
-version = "0.24.1"
+version = "0.24.2"
 backend = "npm:markdownlint-cli2"
 
 [[tools."npm:neovim"]]
